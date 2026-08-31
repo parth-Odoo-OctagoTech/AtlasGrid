@@ -45,7 +45,6 @@ jobs:
           DEPLOY_URL=$(vercel deploy --prebuilt --prod --yes --token=${{ secrets.VERCEL_TOKEN }})
           echo "Deployed successfully to: $DEPLOY_URL"
           vercel alias set "$DEPLOY_URL" atlasgrid-seven.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
-          vercel alias set "$DEPLOY_URL" atlasgrid.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
