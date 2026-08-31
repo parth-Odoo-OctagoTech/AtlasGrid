@@ -48,6 +48,13 @@ const DC_OPERATORS = [
   "Digital Realty",
   "Oracle Cloud (OCI)",
   "NTT Global Data Centers",
+  "Reliance Jio Data Centers",
+  "AdaniConnex",
+  "STT GDC India",
+  "CtrlS Datacenters",
+  "Yotta Infrastructure",
+  "Nxtra by Airtel",
+  "Sify Technologies",
   "CyrusOne",
   "QTS Data Centers",
 ];
