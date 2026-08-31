@@ -1,21 +1,10 @@
-import * as fs from "fs";
-import * as path from "path";
 import { DataCenter, DataCenterSummary } from "../types/data-center";
+import datacentersRaw from "@/data/datacenters.json";
+
+const staticDataCenters: DataCenter[] = datacentersRaw as unknown as DataCenter[];
 
 export function getAllDataCenters(): DataCenter[] {
-  const filePath = path.join(process.cwd(), "data", "datacenters.json");
-  if (!fs.existsSync(filePath)) {
-    console.warn("datacenters.json not found, returning empty array");
-    return [];
-  }
-
-  try {
-    const raw = fs.readFileSync(filePath, "utf-8");
-    return JSON.parse(raw) || [];
-  } catch (err) {
-    console.error("Error reading datacenters.json:", err);
-    return [];
-  }
+  return staticDataCenters || [];
 }
 
 export function getDataCenterById(id: string): DataCenter | null {

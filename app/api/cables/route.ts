@@ -1,26 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as fs from "fs";
-import * as path from "path";
-
-let cachedCables: any = null;
+import cablesData from "@/data/submarine-cables.json";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   try {
-    if (cachedCables) {
-      return NextResponse.json(cachedCables);
-    }
-
-    const filePath = path.join(process.cwd(), "data", "submarine-cables.json");
-    if (!fs.existsSync(filePath)) {
-      return NextResponse.json({ type: "FeatureCollection", features: [] });
-    }
-
-    const raw = fs.readFileSync(filePath, "utf-8");
-    cachedCables = JSON.parse(raw);
-
-    return NextResponse.json(cachedCables, {
+    return NextResponse.json(cablesData, {
       headers: {
         "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=7200",
       },

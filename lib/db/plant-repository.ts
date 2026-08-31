@@ -1,12 +1,12 @@
-import * as fs from "fs";
-import * as path from "path";
 import { FilterState } from "../types/filters";
 import { Interconnector, PowerPlant, FuelType } from "../types/power-plant";
+import rawPlantsData from "@/data/power-plants.json";
+import rawIcData from "@/data/interconnectors.json";
 
 class PlantRepository {
-  private plants: PowerPlant[] = [];
+  private plants: PowerPlant[] = (rawPlantsData as unknown as PowerPlant[]) || [];
   private plantsMap: Map<string, PowerPlant> = new Map();
-  private interconnectors: Interconnector[] = [];
+  private interconnectors: Interconnector[] = (rawIcData as unknown as Interconnector[]) || [];
   private isLoaded: boolean = false;
 
   constructor() {
@@ -15,30 +15,11 @@ class PlantRepository {
 
   private init() {
     if (this.isLoaded) return;
-
-    try {
-      const dataDir = path.join(process.cwd(), "data");
-      const plantsPath = path.join(dataDir, "power-plants.json");
-      const icPath = path.join(dataDir, "interconnectors.json");
-
-      if (fs.existsSync(plantsPath)) {
-        const rawPlants = fs.readFileSync(plantsPath, "utf-8");
-        this.plants = JSON.parse(rawPlants);
-        this.plantsMap.clear();
-        for (const p of this.plants) {
-          this.plantsMap.set(p.id, p);
-        }
-      }
-
-      if (fs.existsSync(icPath)) {
-        const rawIc = fs.readFileSync(icPath, "utf-8");
-        this.interconnectors = JSON.parse(rawIc);
-      }
-
-      this.isLoaded = true;
-    } catch (err) {
-      console.error("Failed to load power plants dataset from disk:", err);
+    this.plantsMap.clear();
+    for (const p of this.plants) {
+      this.plantsMap.set(p.id, p);
     }
+    this.isLoaded = true;
   }
 
   public getAllPlants(): PowerPlant[] {
