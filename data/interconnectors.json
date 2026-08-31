@@ -1,0 +1,398 @@
+[
+  {
+    "id": "ic-1",
+    "name": "Pacific DC Intertie (PDCI)",
+    "source": [
+      -121.13,
+      45.59
+    ],
+    "target": [
+      -118.48,
+      34.31
+    ],
+    "fromRegion": "Northwest BPA",
+    "toRegion": "CAISO (Sylmar LA)",
+    "capacityMw": 3100,
+    "currentFlowMw": 2450,
+    "voltageKv": 500,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-2",
+    "name": "Path 26 (Midway-Vincent)",
+    "source": [
+      -119.5,
+      35.3
+    ],
+    "target": [
+      -118.3,
+      34.4
+    ],
+    "fromRegion": "Northern CAISO",
+    "toRegion": "Southern CAISO",
+    "capacityMw": 4000,
+    "currentFlowMw": 1850,
+    "voltageKv": 500,
+    "type": "HVAC"
+  },
+  {
+    "id": "ic-3",
+    "name": "PJM - MISO Intertie",
+    "source": [
+      -84.5,
+      41.5
+    ],
+    "target": [
+      -83,
+      41.5
+    ],
+    "fromRegion": "MISO Midwest",
+    "toRegion": "PJM Interconnection",
+    "capacityMw": 6500,
+    "currentFlowMw": -1200,
+    "voltageKv": 765,
+    "type": "HVAC"
+  },
+  {
+    "id": "ic-4",
+    "name": "Québec - New England HVDC Intertie",
+    "source": [
+      -73.5,
+      45.5
+    ],
+    "target": [
+      -71.5,
+      42.5
+    ],
+    "fromRegion": "Hydro-Québec",
+    "toRegion": "ISO-NE Boston",
+    "capacityMw": 2000,
+    "currentFlowMw": 1820,
+    "voltageKv": 450,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-5",
+    "name": "IFA-2 Interconnector (France - UK)",
+    "source": [
+      -0.3,
+      49.3
+    ],
+    "target": [
+      -1.2,
+      50.8
+    ],
+    "fromRegion": "ENTSO-E France",
+    "toRegion": "UK National Grid",
+    "capacityMw": 1000,
+    "currentFlowMw": 920,
+    "voltageKv": 320,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-6",
+    "name": "NordLink (Germany - Norway)",
+    "source": [
+      9.1,
+      53.9
+    ],
+    "target": [
+      7.2,
+      58.2
+    ],
+    "fromRegion": "ENTSO-E Germany",
+    "toRegion": "NordPool Norway",
+    "capacityMw": 1400,
+    "currentFlowMw": -1100,
+    "voltageKv": 525,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-7",
+    "name": "Biscay Gulf Interconnector (Spain - France)",
+    "source": [
+      -2.9,
+      43.3
+    ],
+    "target": [
+      -0.6,
+      44.8
+    ],
+    "fromRegion": "REE Spain",
+    "toRegion": "RTE France",
+    "capacityMw": 2000,
+    "currentFlowMw": 850,
+    "voltageKv": 400,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-8",
+    "name": "BritNed (UK - Netherlands)",
+    "source": [
+      0.7,
+      51.4
+    ],
+    "target": [
+      4,
+      51.9
+    ],
+    "fromRegion": "UK National Grid",
+    "toRegion": "TenneT Netherlands",
+    "capacityMw": 1000,
+    "currentFlowMw": 650,
+    "voltageKv": 450,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-9",
+    "name": "Western HVDC Link (Scotland - England)",
+    "source": [
+      -4.8,
+      55.6
+    ],
+    "target": [
+      -3,
+      53.3
+    ],
+    "fromRegion": "Scotland Grid",
+    "toRegion": "England PJM/UK",
+    "capacityMw": 2250,
+    "currentFlowMw": 1950,
+    "voltageKv": 400,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-10",
+    "name": "Viking Link (UK - Denmark)",
+    "source": [
+      0.2,
+      53
+    ],
+    "target": [
+      8.5,
+      55.5
+    ],
+    "fromRegion": "UK National Grid",
+    "toRegion": "Energinet Denmark",
+    "capacityMw": 1400,
+    "currentFlowMw": 1200,
+    "voltageKv": 525,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-11",
+    "name": "Baihetan - Jiangsu ±800kV UHVDC",
+    "source": [
+      102.9,
+      27.2
+    ],
+    "target": [
+      119.8,
+      31.8
+    ],
+    "fromRegion": "Sichuan Hydro Basin",
+    "toRegion": "East China Industrial Grid",
+    "capacityMw": 8000,
+    "currentFlowMw": 7600,
+    "voltageKv": 800,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-12",
+    "name": "Changji - Guquan ±1100kV UHVDC",
+    "source": [
+      87.3,
+      44
+    ],
+    "target": [
+      117.8,
+      31
+    ],
+    "fromRegion": "Xinjiang Clean Energy Base",
+    "toRegion": "East China (Anhui/Shanghai)",
+    "capacityMw": 12000,
+    "currentFlowMw": 10500,
+    "voltageKv": 1100,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-13",
+    "name": "Honshu - Hokkaido HVDC Interconnector",
+    "source": [
+      140.7,
+      41.8
+    ],
+    "target": [
+      140.5,
+      41.2
+    ],
+    "fromRegion": "Hokkaido Grid",
+    "toRegion": "TEPCO Honshu Grid",
+    "capacityMw": 900,
+    "currentFlowMw": 600,
+    "voltageKv": 250,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-14",
+    "name": "Gujarat - Maharashtra Western Intertie",
+    "source": [
+      72.93,
+      20.95
+    ],
+    "target": [
+      73.18,
+      19.35
+    ],
+    "fromRegion": "Gujarat Grid (GETCO)",
+    "toRegion": "Maharashtra Grid (MSETCL)",
+    "capacityMw": 4000,
+    "currentFlowMw": 1650,
+    "voltageKv": 765,
+    "type": "HVAC"
+  },
+  {
+    "id": "ic-15",
+    "name": "Champa - Kurukshetra ±800kV UHVDC",
+    "source": [
+      82.68,
+      22.03
+    ],
+    "target": [
+      76.88,
+      29.97
+    ],
+    "fromRegion": "Western Region WR-I (Chhattisgarh)",
+    "toRegion": "Northern Region NR-I (Haryana)",
+    "capacityMw": 6000,
+    "currentFlowMw": 4800,
+    "voltageKv": 800,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-16",
+    "name": "Raigarh - Pugalur ±800kV HVDC",
+    "source": [
+      83.4,
+      21.9
+    ],
+    "target": [
+      77.95,
+      11.02
+    ],
+    "fromRegion": "Chhattisgarh Thermal Hub",
+    "toRegion": "Tamil Nadu Southern Grid",
+    "capacityMw": 6000,
+    "currentFlowMw": 5200,
+    "voltageKv": 800,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-17",
+    "name": "Biswanath Chariali - Agra ±800kV UHVDC",
+    "source": [
+      93.15,
+      26.73
+    ],
+    "target": [
+      78,
+      27.18
+    ],
+    "fromRegion": "Northeast Hydro (Assam)",
+    "toRegion": "Northern Grid (Agra/UP)",
+    "capacityMw": 6000,
+    "currentFlowMw": 4200,
+    "voltageKv": 800,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-18",
+    "name": "Itaipu HVDC Transmission System",
+    "source": [
+      -54.6,
+      -25.4
+    ],
+    "target": [
+      -46.6,
+      -23.5
+    ],
+    "fromRegion": "Itaipu Binacional",
+    "toRegion": "São Paulo Industrial Hub",
+    "capacityMw": 6300,
+    "currentFlowMw": 5800,
+    "voltageKv": 600,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-19",
+    "name": "Xingu - Rio ±800kV UHVDC Line",
+    "source": [
+      -51.8,
+      -3.1
+    ],
+    "target": [
+      -43.2,
+      -22.9
+    ],
+    "fromRegion": "Belo Monte Hydro Basin",
+    "toRegion": "Rio de Janeiro Grid",
+    "capacityMw": 4000,
+    "currentFlowMw": 3650,
+    "voltageKv": 800,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-20",
+    "name": "Basslink (Tasmania - Victoria)",
+    "source": [
+      146.9,
+      -41.1
+    ],
+    "target": [
+      146.6,
+      -38.5
+    ],
+    "fromRegion": "Tasmania Hydro",
+    "toRegion": "NEM Victoria",
+    "capacityMw": 500,
+    "currentFlowMw": 320,
+    "voltageKv": 400,
+    "type": "HVDC"
+  },
+  {
+    "id": "ic-21",
+    "name": "Heywood Interconnector (SA - VIC)",
+    "source": [
+      140.7,
+      -37.8
+    ],
+    "target": [
+      141.6,
+      -38.1
+    ],
+    "fromRegion": "South Australia Wind/BESS",
+    "toRegion": "Victoria Grid",
+    "capacityMw": 650,
+    "currentFlowMw": 480,
+    "voltageKv": 275,
+    "type": "HVAC"
+  },
+  {
+    "id": "ic-22",
+    "name": "GCCIA Gulf Grid Interconnector",
+    "source": [
+      50.1,
+      26.3
+    ],
+    "target": [
+      54.5,
+      24.3
+    ],
+    "fromRegion": "Saudi / Bahrain Grid",
+    "toRegion": "UAE National Grid",
+    "capacityMw": 1200,
+    "currentFlowMw": 750,
+    "voltageKv": 400,
+    "type": "HVAC"
+  }
+]
