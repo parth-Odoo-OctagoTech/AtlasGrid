@@ -11,9 +11,10 @@ import { FloatingFilters } from "@/components/filters/FloatingFilters";
 import { StationInspector } from "@/components/inspector/StationInspector";
 import { GridAnalyticsModal } from "@/components/analytics/GridAnalyticsModal";
 import { AlertCenterDrawer } from "@/components/analytics/AlertCenterDrawer";
+import { DataCenterFleetModal } from "@/components/analytics/DataCenterFleetModal";
 
 const DeckGLMap = dynamic(
-  () => import("@/components/map/DeckGLMap").then((mod) => mod.DeckGLMap),
+  () => import("@/components/map/DeckGLMap"),
   {
     ssr: false,
     loading: () => <div className="relative h-full w-full overflow-hidden bg-background" />,
@@ -124,6 +125,9 @@ export default function PowerGridDashboard() {
 
       {/* Global Analytics Modal */}
       <GridAnalyticsModal plants={plants} interconnectors={interconnectors} />
+
+      {/* Global Data Center Fleet & Capacity Intelligence Modal */}
+      <DataCenterFleetModal dataCenters={dataCenters} />
 
       {/* Grid Anomaly Alert Center Drawer */}
       <AlertCenterDrawer />

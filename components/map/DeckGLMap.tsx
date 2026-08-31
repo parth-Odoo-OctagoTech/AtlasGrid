@@ -772,3 +772,5 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
     </div>
   );
 }
+
+export default DeckGLMap;

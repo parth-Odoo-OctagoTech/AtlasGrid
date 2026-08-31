@@ -16,6 +16,53 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                function isExtensionError(event) {
+                  try {
+                    var str = '';
+                    if (event && event.filename) str += event.filename + ' ';
+                    if (event && event.message) str += event.message + ' ';
+                    if (event && event.error && event.error.stack) str += event.error.stack + ' ';
+                    if (event && event.reason) {
+                      str += (event.reason.stack || event.reason.message || event.reason) + ' ';
+                    }
+                    return (
+                      str.indexOf('chrome-extension://') !== -1 ||
+                      str.indexOf('moz-extension://') !== -1 ||
+                      str.indexOf('safari-extension://') !== -1 ||
+                      str.indexOf('eppiocemhmnlbhjplcgkofciiegomcon') !== -1 ||
+                      str.indexOf('bis_') !== -1 ||
+                      str.indexOf('M_ID') !== -1
+                    );
+                  } catch(e) {
+                    return false;
+                  }
+                }
+
+                window.addEventListener('error', function(event) {
+                  if (isExtensionError(event)) {
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                    return true;
+                  }
+                }, true);
+
+                window.addEventListener('unhandledrejection', function(event) {
+                  if (isExtensionError(event)) {
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                    return true;
+                  }
+                }, true);
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="h-screen w-screen bg-background antialiased overflow-hidden" suppressHydrationWarning>
         <QueryProvider>
           <RealtimeTelemetryProvider>{children}</RealtimeTelemetryProvider>

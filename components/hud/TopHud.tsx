@@ -31,8 +31,9 @@ export function TopHud() {
   const setAlertsOpen = useGridStore((s) => s.setAlertsOpen);
   const setAnalyticsOpen = useGridStore((s) => s.setAnalyticsOpen);
   const setSearchOpen = useGridStore((s) => s.setSearchOpen);
+  const setDcFleetOpen = useGridStore((s) => s.setDcFleetOpen);
 
-  // Global Hotkey listener (Cmd+K / A for Alerts / D for Analytics)
+  // Global Hotkey listener (Cmd+K / A for Alerts / D for Analytics / C for Compute Fleet)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't trigger if user is in an input field
@@ -45,10 +46,13 @@ export function TopHud() {
       if (e.key === "d" || e.key === "D") {
         setAnalyticsOpen(!useGridStore.getState().isAnalyticsOpen);
       }
+      if (e.key === "c" || e.key === "C") {
+        setDcFleetOpen(!useGridStore.getState().isDcFleetOpen);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setAlertsOpen, setAnalyticsOpen]);
+  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen]);
 
   const totalDcPowerMw = useMemo(
     () => dataCenters.reduce((sum, d) => sum + d.estimatedPowerMw, 0),
@@ -154,20 +158,24 @@ export function TopHud() {
           </div>
         </div>
 
-        {/* Global Data Center AI Power Demand */}
-        <div className="pl-5 flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-purple-500/10 border border-purple-500/20">
-            <Server className="h-3.5 w-3.5 text-purple-400" />
+        {/* Global Data Center Compute Power Demand (Clickable to open Data Center Fleet Directory) */}
+        <button
+          onClick={() => setDcFleetOpen(true)}
+          className="pl-5 flex items-center gap-2.5 text-left group hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          title="Click to open Global Data Center Fleet Directory (Hotkey: C)"
+        >
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-purple-500/10 border border-purple-500/30 group-hover:bg-purple-500/20 group-hover:border-purple-400/50 group-hover:shadow-glow-sm transition-all">
+            <Server className="h-3.5 w-3.5 text-purple-400 group-hover:text-purple-300" />
           </div>
           <div>
-            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold">
-              Data Center IT Load
+            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold group-hover:text-purple-300 transition-colors flex items-center gap-1">
+              <span>Data Center IT Load</span>
             </div>
-            <div className="font-mono font-bold text-purple-300 tracking-tight">
+            <div className="font-mono font-bold text-purple-300 tracking-tight group-hover:text-white transition-colors">
               {(totalDcPowerMw / 1000).toFixed(1)} <span className="text-[10px] font-normal text-gray-400">GW ({dataCenters.length.toLocaleString()} Facilities)</span>
             </div>
           </div>
-        </div>
+        </button>
 
         {/* Average Global Spot Price */}
         <div className="pl-5 flex items-center gap-2.5">
@@ -249,10 +257,24 @@ export function TopHud() {
           </kbd>
         </button>
 
+        {/* DC Fleet Intelligence Trigger */}
+        <button
+          onClick={() => setDcFleetOpen(true)}
+          className="flex items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 px-3 py-1.5 text-xs text-purple-300 hover:bg-purple-500/20 hover:text-white hover:border-purple-400/60 transition-all shadow-sm group"
+          title="Open Data Center Fleet & Capacity Dashboard (Hotkey: C)"
+        >
+          <Server className="h-3.5 w-3.5 text-purple-400 group-hover:scale-110 transition-transform" />
+          <span className="hidden sm:inline text-[11px] font-semibold">DC Fleet</span>
+          <kbd className="hidden md:inline rounded bg-purple-950/80 px-1 py-0.5 text-[9px] font-mono text-purple-300 border border-purple-500/30">
+            C
+          </kbd>
+        </button>
+
         {/* Global Analytics Modal Trigger */}
         <button
           onClick={() => setAnalyticsOpen(true)}
           className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-slate-900/70 px-3 py-1.5 text-xs text-gray-300 hover:border-cyan-500/40 hover:text-white transition-all shadow-sm group"
+          title="Open Global Grid Analytics (Hotkey: D)"
         >
           <BarChart3 className="h-3.5 w-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
           <span className="hidden sm:inline text-[11px]">Analytics</span>
@@ -269,6 +291,7 @@ export function TopHud() {
               ? "border-red-500/50 bg-red-500/20 text-red-400 shadow-glow-red animate-pulse"
               : "border-white/10 bg-slate-900/70 text-gray-300 hover:text-white hover:border-red-500/40"
           }`}
+          title="Open Grid Alerts & Anomaly Center (Hotkey: A)"
         >
           <AlertTriangle className="h-3.5 w-3.5 text-red-400 group-hover:scale-110 transition-transform" />
           <span className="text-[11px]">Alerts</span>
