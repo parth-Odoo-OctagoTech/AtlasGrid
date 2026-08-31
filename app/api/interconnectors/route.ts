@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { plantRepository } from "@/lib/db/plant-repository";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const interconnectors = plantRepository.getInterconnectors();

@@ -4,6 +4,8 @@ import * as path from "path";
 
 let cachedCables: any = null;
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     if (cachedCables) {

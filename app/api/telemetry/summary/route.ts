@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { plantRepository } from "@/lib/db/plant-repository";
 import { gridPhysicsEngine } from "@/lib/simulator/grid-physics-engine";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const summary = plantRepository.getGlobalSummary();

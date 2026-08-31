@@ -3,6 +3,8 @@ import { plantRepository } from "@/lib/db/plant-repository";
 import { FilterState } from "@/lib/types/filters";
 import { FuelType, StationStatus } from "@/lib/types/power-plant";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
