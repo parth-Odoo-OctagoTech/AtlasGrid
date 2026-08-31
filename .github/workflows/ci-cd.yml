@@ -36,20 +36,16 @@ jobs:
       - name: Run Global QA & Geospatial Integrity Tests
         run: npm test
 
-      - name: Next.js Production Build
-        run: npm run build
-        env:
-          NEXT_PUBLIC_APP_NAME: "AtlasGrid"
-          NODE_ENV: "production"
-
       - name: Deploy to Vercel Production
         if: github.ref == 'refs/heads/main'
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
-          alias-domains: |
-            atlasgrid-seven.vercel.app
-            atlasgrid.vercel.app
+        run: |
+          npm install --global vercel@latest
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          DEPLOY_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --yes)
+          echo "Deployed successfully to: $DEPLOY_URL"
+          vercel alias set "$DEPLOY_URL" atlasgrid-seven.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+          vercel alias set "$DEPLOY_URL" atlasgrid.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
