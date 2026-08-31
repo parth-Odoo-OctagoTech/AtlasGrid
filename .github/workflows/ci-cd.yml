@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   validate-and-build:
-    name: Typecheck, Test & Build
+    name: Typecheck, Test & Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -41,3 +41,15 @@ jobs:
         env:
           NEXT_PUBLIC_APP_NAME: "AtlasGrid"
           NODE_ENV: "production"
+
+      - name: Deploy to Vercel Production
+        if: github.ref == 'refs/heads/main'
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          alias-domains: |
+            atlasgrid-seven.vercel.app
+            atlasgrid.vercel.app
