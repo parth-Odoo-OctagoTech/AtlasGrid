@@ -14,12 +14,16 @@ const nextConfig = {
     '@loaders.gl/core',
     'maplibre-gl',
   ],
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, dev }) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
       path: false,
     };
+    // Disable filesystem pack caching in dev mode to eliminate Webpack PackFileCacheStrategy corruption and __webpack_modules__ mismatch
+    if (dev) {
+      config.cache = false;
+    }
     return config;
   }
 };
