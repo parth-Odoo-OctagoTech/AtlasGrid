@@ -49,5 +49,12 @@ export const OPERATOR_COLORS: Record<string, { hex: string; rgb: [number, number
   "QTS Data Centers": { hex: "#FF5E00", rgb: [255, 94, 0] },
   "Oracle Cloud (OCI)": { hex: "#F80000", rgb: [248, 0, 0] },
   "Switch SuperNAP": { hex: "#10B981", rgb: [16, 185, 129] },
+  "Reliance Jio Data Centers": { hex: "#0F3CC9", rgb: [15, 60, 201] },
+  "AdaniConnex": { hex: "#0068B5", rgb: [0, 104, 181] },
+  "STT GDC India": { hex: "#FF5500", rgb: [255, 85, 0] },
+  "CtrlS Datacenters": { hex: "#00A859", rgb: [0, 168, 89] },
+  "Yotta Infrastructure": { hex: "#E81123", rgb: [232, 17, 35] },
+  "Nxtra by Airtel": { hex: "#EA1D2C", rgb: [234, 29, 44] },
+  "Sify Technologies": { hex: "#009688", rgb: [0, 150, 136] },
   "Other": { hex: "#06B6D4", rgb: [6, 182, 212] },
 };
