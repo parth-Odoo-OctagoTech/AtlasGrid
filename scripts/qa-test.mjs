@@ -416,6 +416,97 @@ const ashburnSupplyingPlants = plants.filter((p) => testHaversine(ashburnDc.lati
 assert(ashburnSupplyingPlants.length >= 1, `Local power plants found within 150km of Ashburn DC (${ashburnSupplyingPlants.length} stations)`);
 
 // ---------------------------------------------------------------------------
+// TEST 10: India Data Center Ecosystem & Sovereign AI Compute
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 10: India Data Center Ecosystem & Sovereign AI Compute ---");
+
+const indiaDcs = datacenters.filter((d) => d.country === "IN");
+assert(indiaDcs.length >= 250, `India data centers count: ${indiaDcs.length} (expected 250+)`);
+
+const indiaTotalMw = indiaDcs.reduce((sum, d) => sum + (d.estimatedPowerMw || 0), 0);
+assert(indiaTotalMw >= 10000, `India total DC capacity: ${indiaTotalMw.toLocaleString()} MW (expected >= 10,000 MW)`);
+
+// Reliance Jio
+const jioDcs = indiaDcs.filter((d) => d.operator === "Reliance Jio Data Centers");
+assert(jioDcs.length >= 10, `Reliance Jio campuses count: ${jioDcs.length} (expected >= 10)`);
+const jamnagarAi = jioDcs.find((d) => d.name.includes("Jamnagar"));
+assert(!!jamnagarAi && jamnagarAi.estimatedPowerMw >= 100, `Reliance Jamnagar Green AI Mega-Campus verified (${jamnagarAi?.estimatedPowerMw} MW operational)`);
+
+// AdaniConneX
+const adaniDcs = indiaDcs.filter((d) => d.operator === "AdaniConnex");
+assert(adaniDcs.length >= 10, `AdaniConneX campuses count: ${adaniDcs.length} (expected >= 10)`);
+const vizagAdani = adaniDcs.find((d) => d.name.includes("Visakhapatnam"));
+assert(!!vizagAdani && vizagAdani.estimatedPowerMw >= 100, `AdaniConneX Visakhapatnam Green DC Park verified (${vizagAdani?.estimatedPowerMw} MW operational)`);
+
+// STT GDC India
+const sttDcs = indiaDcs.filter((d) => d.operator === "STT GDC India" || d.operator === "STT GDC");
+assert(sttDcs.length >= 20, `STT GDC India campuses count: ${sttDcs.length} (expected >= 20)`);
+
+// CtrlS Datacenters
+const ctrlSDcs = indiaDcs.filter((d) => d.operator === "CtrlS Datacenters");
+assert(ctrlSDcs.length >= 15, `CtrlS Datacenters Rated-4 campuses count: ${ctrlSDcs.length} (expected >= 15)`);
+
+// Yotta Data Services
+const yottaDcs = indiaDcs.filter((d) => d.operator === "Yotta Infrastructure");
+assert(yottaDcs.length >= 8, `Yotta Data Services campuses count: ${yottaDcs.length} (expected >= 8)`);
+
+// Nxtra & Sify
+const nxtraDcs = indiaDcs.filter((d) => d.operator === "Nxtra by Airtel");
+assert(nxtraDcs.length >= 8, `Nxtra by Airtel campuses count: ${nxtraDcs.length} (expected >= 8)`);
+const sifyDcs = indiaDcs.filter((d) => d.operator === "Sify Technologies");
+assert(sifyDcs.length >= 7, `Sify Technologies campuses count: ${sifyDcs.length} (expected >= 7)`);
+
+// ---------------------------------------------------------------------------
+// TEST 11: Dataset Uniqueness & API Route Reliability
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 11: Dataset Uniqueness & Serverless Reliability ---");
+
+const dcIdSet = new Set();
+let dcIdDuplicates = 0;
+for (const d of datacenters) {
+  if (dcIdSet.has(d.id)) dcIdDuplicates++;
+  dcIdSet.add(d.id);
+}
+assert(dcIdDuplicates === 0, `Zero duplicate IDs across all data centers (unique: ${dcIdSet.size}/${datacenters.length})`);
+
+const plantIdSet = new Set();
+let plantIdDuplicates = 0;
+for (const p of plants) {
+  if (plantIdSet.has(p.id)) plantIdDuplicates++;
+  plantIdSet.add(p.id);
+}
+assert(plantIdDuplicates === 0, `Zero duplicate IDs across all power plants (unique: ${plantIdSet.size}/${plants.length})`);
+
+// Verify API route handlers export dynamic = "force-dynamic"
+const apiRoutes = [
+  "app/api/stations/route.ts",
+  "app/api/stations/[id]/route.ts",
+  "app/api/datacenters/route.ts",
+  "app/api/telemetry/summary/route.ts",
+  "app/api/telemetry/stream/route.ts",
+  "app/api/cables/route.ts",
+  "app/api/interconnectors/route.ts",
+  "app/api/entsoe/route.ts",
+  "app/api/us-iso/route.ts",
+];
+
+let routesWithForceDynamic = 0;
+for (const routePath of apiRoutes) {
+  const fullPath = path.join(process.cwd(), routePath);
+  if (fs.existsSync(fullPath)) {
+    const content = fs.readFileSync(fullPath, "utf-8");
+    if (content.includes('export const dynamic = "force-dynamic"')) {
+      routesWithForceDynamic++;
+    }
+  }
+}
+assert(routesWithForceDynamic === apiRoutes.length, `All ${apiRoutes.length} API routes export force-dynamic for serverless reliability`);
+
+// Verify Fleet modal component exists
+const modalPath = path.join(process.cwd(), "components/analytics/DataCenterFleetModal.tsx");
+assert(fs.existsSync(modalPath), "DataCenterFleetModal.tsx exists in components/analytics");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");
