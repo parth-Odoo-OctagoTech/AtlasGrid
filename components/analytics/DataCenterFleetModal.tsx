@@ -551,12 +551,12 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
 
                           {/* Cooling Architecture */}
                           <td className="py-3 px-3 text-gray-300 text-[11px]">
-                            {dc.coolingType}
+                            {dc.coolingType || "—"}
                           </td>
 
                           {/* Redundancy Tier */}
                           <td className="py-3 px-3 font-mono text-gray-300 text-[11px]">
-                            {dc.tier}
+                            {dc.tier || "—"}
                           </td>
 
                           {/* Interconnects */}
@@ -564,7 +564,7 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                             {dc.connectedNetworksCount ? (
                               <span>{dc.connectedNetworksCount} ASNs</span>
                             ) : (
-                              <span className="text-gray-500">Standard</span>
+                              <span className="text-gray-500">—</span>
                             )}
                           </td>
 

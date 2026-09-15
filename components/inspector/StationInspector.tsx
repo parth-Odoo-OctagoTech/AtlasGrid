@@ -207,40 +207,36 @@ export function StationInspector() {
         </div>
 
         {/* PeeringDB & Interconnect Network Card */}
-        <div className="mt-4 rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3.5">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-2 flex items-center justify-between">
+        <div className="mt-4 rounded-xl border border-white/10 bg-slate-900/60 p-3.5">
+          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <Network className="h-3.5 w-3.5 text-indigo-400" />
-              PeeringDB & Network Interconnect
+              Network Interconnect & Peering
             </span>
-            <span className="font-mono text-[10px] text-indigo-400 bg-indigo-900/40 px-2 py-0.5 rounded border border-indigo-500/30">
-              Verified IXP Hub
-            </span>
+            {selectedDataCenter.peeringDbId && (
+              <span className="font-mono text-[10px] text-indigo-300 bg-indigo-900/30 px-2 py-0.5 rounded border border-indigo-500/20">
+                PeeringDB #{selectedDataCenter.peeringDbId}
+              </span>
+            )}
           </h3>
-          <div className="grid grid-cols-3 gap-2 mt-2 font-mono text-center">
-            <div className="bg-slate-900/80 p-2 rounded-lg border border-surface-border">
-              <div className="text-sm font-bold text-indigo-300">
-                {selectedDataCenter.connectedNetworksCount || 42}+
+          <div className="grid grid-cols-2 gap-2 mt-2 font-mono text-center">
+            <div className="bg-slate-950/60 p-2 rounded-lg border border-white/5">
+              <div className="text-sm font-bold text-indigo-200">
+                {selectedDataCenter.connectedNetworksCount != null ? selectedDataCenter.connectedNetworksCount : "—"}
               </div>
-              <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Carrier ASNs</div>
+              <div className="text-[10px] uppercase text-gray-400 font-sans mt-0.5">Carrier ASNs</div>
             </div>
-            <div className="bg-slate-900/80 p-2 rounded-lg border border-surface-border">
-              <div className="text-sm font-bold text-cyan-300">
-                {selectedDataCenter.ixpCount || 2}
+            <div className="bg-slate-950/60 p-2 rounded-lg border border-white/5">
+              <div className="text-sm font-bold text-cyan-200">
+                {selectedDataCenter.ixpCount != null ? selectedDataCenter.ixpCount : "—"}
               </div>
-              <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Internet Exchanges</div>
-            </div>
-            <div className="bg-slate-900/80 p-2 rounded-lg border border-surface-border">
-              <div className="text-sm font-bold text-emerald-300">
-                &lt; 5 ms
-              </div>
-              <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Core Latency</div>
+              <div className="text-[10px] uppercase text-gray-400 font-sans mt-0.5">Internet Exchanges</div>
             </div>
           </div>
           {selectedDataCenter.address && (
-            <div className="mt-2.5 text-[11px] text-gray-300 flex items-center gap-1.5 border-t border-indigo-500/20 pt-2">
-              <Building className="h-3 w-3 text-indigo-400 shrink-0" />
-              <span className="truncate">{selectedDataCenter.address}, {selectedDataCenter.city || selectedDataCenter.countryName}</span>
+            <div className="mt-2.5 text-[11px] text-gray-400 flex items-center gap-1.5 border-t border-white/5 pt-2">
+              <Building className="h-3 w-3 text-gray-400 shrink-0" />
+              <span className="truncate">{selectedDataCenter.address}, {selectedDataCenter.city || selectedDataCenter.countryName || selectedDataCenter.country}</span>
             </div>
           )}
         </div>
@@ -588,19 +584,19 @@ export function StationInspector() {
           <div>
             <span className="text-[10px] uppercase text-gray-400 block">Turbine / Hardware</span>
             <span className="font-mono text-white truncate block">
-              {selectedStation.turbineManufacturer || "GE Vernova / Heavy Duty"}
+              {selectedStation.turbineManufacturer || "—"}
             </span>
           </div>
           <div>
             <span className="text-[10px] uppercase text-gray-400 block">Substation Link</span>
             <span className="font-mono text-cyan-400 truncate block">
-              {selectedStation.substationName || `${selectedStation.gridRegion} 500kV Main`}
+              {selectedStation.substationName || "—"}
             </span>
           </div>
           <div>
             <span className="text-[10px] uppercase text-gray-400 block">Cooling System</span>
             <span className="text-white truncate block">
-              {selectedStation.coolingType || "Closed-Loop Cooling Towers"}
+              {selectedStation.coolingType || "—"}
             </span>
           </div>
         </div>

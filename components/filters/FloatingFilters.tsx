@@ -67,7 +67,7 @@ const DC_CATEGORIES = [
 ];
 
 export function FloatingFilters() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const filters = useGridStore((s) => s.filters);
   const setFilter = useGridStore((s) => s.setFilter);
   const setInfrastructureType = useGridStore((s) => s.setInfrastructureType);
@@ -100,28 +100,31 @@ export function FloatingFilters() {
     filters.priceFilter !== "all";
 
   return (
-    <div className="absolute left-4 top-16 z-20 transition-all duration-300">
-      <div className="rounded-2xl glass-panel p-3.5 shadow-2xl text-white text-xs max-w-sm sm:max-w-md animate-in fade-in slide-in-from-left-3 duration-200">
+    <div className="absolute left-4 top-16 z-20 transition-all duration-200">
+      <div className="rounded-xl glass-panel p-2.5 shadow-lg text-white text-xs max-w-sm sm:max-w-md border border-white/10 bg-slate-950/90">
         {/* Header Bar */}
-        <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/10">
-          <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-cyan-500/10 border border-cyan-500/30">
+        <div className="flex items-center justify-between gap-2">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center gap-2 text-left hover:opacity-90 transition-opacity"
+          >
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-white/5 border border-white/10">
               <SlidersHorizontal className="h-3.5 w-3.5 text-cyan-400" />
             </div>
-            <span className="font-bold tracking-wide uppercase text-xs">
+            <span className="font-semibold text-xs text-white">
               Filters & Layers
             </span>
             {isFiltered && (
-              <span className="rounded-full bg-cyan-500/20 px-2 py-0.5 text-[9px] font-mono text-cyan-300 border border-cyan-500/40 font-semibold shadow-sm">
-                FILTERED
+              <span className="rounded-full bg-cyan-500/20 px-2 py-0.5 text-[10px] font-mono text-cyan-300 border border-cyan-500/30 font-medium">
+                Active
               </span>
             )}
-          </div>
-          <div className="flex items-center gap-1.5">
+          </button>
+          <div className="flex items-center gap-1">
             {isFiltered && (
               <button
                 onClick={resetFilters}
-                className="flex items-center gap-1 text-[11px] text-gray-400 hover:text-cyan-300 transition-colors px-1.5 py-0.5 rounded hover:bg-slate-800/60"
+                className="flex items-center gap-1 text-[11px] text-gray-400 hover:text-white transition-colors px-1.5 py-0.5 rounded hover:bg-white/5"
                 title="Reset all filters"
               >
                 <RotateCcw className="h-3 w-3" />
@@ -130,7 +133,7 @@ export function FloatingFilters() {
             )}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-slate-800/80 transition-colors"
+              className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-white/5 transition-colors"
             >
               <ChevronDown
                 className={`h-3.5 w-3.5 transition-transform duration-200 ${

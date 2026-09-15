@@ -115,7 +115,7 @@ export function MapControls() {
         >
           <Server className="h-4 w-4" />
           <span className="pointer-events-none absolute right-12 hidden whitespace-nowrap rounded-lg bg-slate-950/90 px-2.5 py-1 text-[11px] font-medium text-white shadow-xl group-hover:block border border-white/10 backdrop-blur-md">
-            {layerVisibility.datacenters ? "Hide AI Data Centers" : "Show AI Data Centers (4,382)"}
+            {layerVisibility.datacenters ? "Hide Data Centers" : "Show Data Centers"}
           </span>
         </button>
 
@@ -145,7 +145,7 @@ export function MapControls() {
         >
           <Cable className="h-4 w-4" />
           <span className="pointer-events-none absolute right-12 hidden whitespace-nowrap rounded-lg bg-slate-950/90 px-2.5 py-1 text-[11px] font-medium text-white shadow-xl group-hover:block border border-white/10 backdrop-blur-md">
-            {layerVisibility.subseaCables ? "Hide Subsea Cables" : "Show Subsea Cables (712)"}
+            {layerVisibility.subseaCables ? "Hide Subsea Cables" : "Show Subsea Cables"}
           </span>
         </button>
 

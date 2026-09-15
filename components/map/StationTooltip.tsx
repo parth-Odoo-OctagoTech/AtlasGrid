@@ -22,75 +22,67 @@ export function StationTooltip() {
           top: `${hoverCoordinates.y}px`,
         }}
       >
-        <div className="w-80 rounded-2xl glass-panel-elevated p-3.5 shadow-2xl transition-all text-white border border-purple-500/30">
+        <div className="w-72 rounded-xl glass-panel-elevated p-3 text-white border border-white/10 shadow-lg">
           {/* Header */}
-          <div className="flex items-start justify-between gap-2 border-b border-white/10 pb-2">
+          <div className="flex items-start justify-between gap-2 border-b border-white/8 pb-2">
             <div className="min-w-0">
-              <h4 className="truncate text-xs font-bold text-white flex items-center gap-1.5">
+              <h4 className="truncate text-xs font-semibold text-white flex items-center gap-1.5">
                 <Server className="h-3.5 w-3.5 text-purple-400 shrink-0" />
                 <span className="truncate">{hoveredDataCenter.name}</span>
               </h4>
               <div className="flex items-center gap-1.5 text-[11px] text-gray-400 mt-0.5">
                 <span className="text-gray-300 font-medium">{hoveredDataCenter.countryName || hoveredDataCenter.country}</span>
                 <span>•</span>
-                <span className="font-mono text-purple-400">{hoveredDataCenter.region}</span>
+                <span className="font-mono text-gray-300">{hoveredDataCenter.region}</span>
               </div>
             </div>
             <span
-              className="inline-flex shrink-0 items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold"
+              className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium"
               style={{
-                backgroundColor: `rgba(${opMeta.rgb.join(",")}, 0.2)`,
+                backgroundColor: `rgba(${opMeta.rgb.join(",")}, 0.15)`,
                 color: opMeta.hex,
-                border: `1px solid rgba(${opMeta.rgb.join(",")}, 0.4)`,
+                border: `1px solid rgba(${opMeta.rgb.join(",")}, 0.3)`,
               }}
             >
-              {hoveredDataCenter.operator}
+              {hoveredDataCenter.operator.replace(" (AWS)", "").replace(" (GCP)", "").replace(" (OCI)", "")}
             </span>
           </div>
 
           {/* Metrics Grid */}
-          <div className="grid grid-cols-2 gap-2 pt-2.5 text-xs">
-            <div className="rounded-xl bg-slate-900/60 p-2 border border-white/5">
-              <div className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold">
-                IT Power Load
+          <div className="grid grid-cols-2 gap-2 pt-2 text-xs">
+            <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
+              <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
+                IT Load
               </div>
-              <div className="flex items-baseline gap-1 font-mono font-bold text-purple-300 mt-0.5">
-                <span>{hoveredDataCenter.estimatedPowerMw} MW</span>
-                <span className="text-[9px] font-normal text-gray-400">
-                  demand
-                </span>
+              <div className="font-mono font-bold text-purple-200 mt-0.5">
+                {hoveredDataCenter.estimatedPowerMw} MW
               </div>
             </div>
 
-            <div className="rounded-xl bg-slate-900/60 p-2 border border-white/5">
-              <div className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold">
-                Efficiency Rating
+            <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
+              <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
+                PUE
               </div>
-              <div className="flex items-baseline gap-1 font-mono font-bold text-emerald-400 mt-0.5">
-                <span>{hoveredDataCenter.pue}</span>
-                <span className="text-[9px] font-normal text-gray-400">PUE</span>
+              <div className="font-mono font-bold text-emerald-300 mt-0.5">
+                {hoveredDataCenter.pue != null ? hoveredDataCenter.pue : "—"}
               </div>
             </div>
           </div>
 
-          <div className="mt-2 text-[10px] text-gray-400 flex items-center justify-between px-0.5">
-            <span className="truncate max-w-[150px]">{hoveredDataCenter.coolingType}</span>
-            <span className="font-mono text-purple-300 font-medium">{hoveredDataCenter.tier}</span>
-          </div>
+          {(hoveredDataCenter.coolingType || hoveredDataCenter.tier) && (
+            <div className="mt-2 text-[11px] text-gray-400 flex items-center justify-between px-0.5">
+              <span className="truncate max-w-[150px]">{hoveredDataCenter.coolingType || "—"}</span>
+              <span className="font-mono text-gray-300">{hoveredDataCenter.tier || "—"}</span>
+            </div>
+          )}
 
           {/* Quick Footer */}
-          <div className="mt-2 flex items-center justify-between border-t border-white/10 pt-2 text-[10px] text-gray-400">
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${hoveredDataCenter.latitude},${hoveredDataCenter.longitude}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-purple-400 hover:text-purple-300 underline pointer-events-auto flex items-center gap-0.5"
-              title="Open exact coordinates in Google Maps"
-            >
-              <span>{hoveredDataCenter.latitude.toFixed(3)}°, {hoveredDataCenter.longitude.toFixed(3)}°</span>
-            </a>
-            <span className="shrink-0 text-purple-300 font-medium flex items-center gap-0.5">
-              Inspect details <ArrowUpRight className="h-2.5 w-2.5" />
+          <div className="mt-2 flex items-center justify-between border-t border-white/8 pt-2 text-[11px] text-gray-400">
+            <span className="font-mono text-gray-400">
+              {hoveredDataCenter.latitude.toFixed(3)}°, {hoveredDataCenter.longitude.toFixed(3)}°
+            </span>
+            <span className="shrink-0 text-cyan-300 font-medium flex items-center gap-0.5">
+              Inspect <ArrowUpRight className="h-3 w-3" />
             </span>
           </div>
         </div>
@@ -112,26 +104,26 @@ export function StationTooltip() {
         top: `${hoverCoordinates.y}px`,
       }}
     >
-      <div className="w-80 rounded-2xl glass-panel-elevated p-3.5 shadow-2xl transition-all text-white border border-cyan-500/30">
+      <div className="w-72 rounded-xl glass-panel-elevated p-3 text-white border border-white/10 shadow-lg">
         {/* Header */}
-        <div className="flex items-start justify-between gap-2 border-b border-white/10 pb-2">
+        <div className="flex items-start justify-between gap-2 border-b border-white/8 pb-2">
           <div className="min-w-0">
-            <h4 className="truncate text-xs font-bold text-white flex items-center gap-1.5">
+            <h4 className="truncate text-xs font-semibold text-white flex items-center gap-1.5">
               <Zap className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
               <span className="truncate">{hoveredStation.name}</span>
             </h4>
             <div className="flex items-center gap-1.5 text-[11px] text-gray-400 mt-0.5">
               <span className="text-gray-300 font-medium">{hoveredStation.countryName}</span>
               <span>•</span>
-              <span className="font-mono text-cyan-400">{hoveredStation.gridRegion}</span>
+              <span className="font-mono text-gray-300">{hoveredStation.gridRegion}</span>
             </div>
           </div>
           <span
-            className="inline-flex shrink-0 items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold"
+            className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium"
             style={{
-              backgroundColor: `rgba(${fuel.rgb.join(",")}, 0.2)`,
+              backgroundColor: `rgba(${fuel.rgb.join(",")}, 0.15)`,
               color: fuel.hex,
-              border: `1px solid rgba(${fuel.rgb.join(",")}, 0.4)`,
+              border: `1px solid rgba(${fuel.rgb.join(",")}, 0.3)`,
             }}
           >
             <span
@@ -143,47 +135,47 @@ export function StationTooltip() {
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-2 gap-2 pt-2.5 text-xs">
-          <div className="rounded-xl bg-slate-900/60 p-2 border border-white/5">
-            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold">
-              Live Generation
+        <div className="grid grid-cols-2 gap-2 pt-2 text-xs">
+          <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
+            <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
+              Generation
             </div>
-            <div className="flex items-baseline gap-1 font-mono font-bold text-white mt-0.5">
+            <div className="font-mono font-bold text-white mt-0.5">
               <span>{hoveredStation.currentOutputMw.toLocaleString()}</span>
-              <span className="text-[9px] font-normal text-gray-400">
-                / {hoveredStation.capacityMw.toLocaleString()} MW
+              <span className="text-[10px] font-normal text-gray-400">
+                {" "}/ {hoveredStation.capacityMw.toLocaleString()} MW
               </span>
             </div>
           </div>
 
-          <div className="rounded-xl bg-slate-900/60 p-2 border border-white/5">
-            <div className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold">
-              Spot LMP Price
+          <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
+            <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
+              Spot Price
             </div>
             <div
-              className={`flex items-baseline gap-0.5 font-mono font-bold mt-0.5 ${
+              className={`font-mono font-bold mt-0.5 ${
                 isSpike
-                  ? "text-red-400 animate-pulse"
+                  ? "text-red-400"
                   : isNegative
                   ? "text-emerald-400"
-                  : "text-amber-400"
+                  : "text-amber-300"
               }`}
             >
               <span>${hoveredStation.spotPriceMwh.toFixed(1)}</span>
-              <span className="text-[9px] font-normal text-gray-400">/MWh</span>
+              <span className="text-[10px] font-normal text-gray-400">/MWh</span>
             </div>
           </div>
         </div>
 
         {/* Capacity Factor Bar */}
-        <div className="mt-2.5 px-0.5">
+        <div className="mt-2 px-0.5">
           <div className="flex justify-between text-[10px] text-gray-400">
             <span>Capacity Factor</span>
-            <span className="font-mono text-white font-semibold">
+            <span className="font-mono text-white font-medium">
               {(hoveredStation.capacityFactor * 100).toFixed(0)}%
             </span>
           </div>
-          <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-slate-800">
             <div
               className="h-full rounded-full transition-all duration-300"
               style={{
@@ -195,22 +187,13 @@ export function StationTooltip() {
         </div>
 
         {/* Quick Footer */}
-        <div className="mt-2 flex items-center justify-between border-t border-white/10 pt-2 text-[10px] text-gray-400">
-          <span className="truncate max-w-[130px]">Op: {hoveredStation.operator}</span>
-          <div className="flex items-center gap-2">
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${hoveredStation.latitude},${hoveredStation.longitude}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-cyan-400 hover:text-cyan-300 underline pointer-events-auto flex items-center gap-0.5"
-              title="Open exact coordinates in Google Maps"
-            >
-              <span>{hoveredStation.latitude.toFixed(2)}°, {hoveredStation.longitude.toFixed(2)}°</span>
-            </a>
-            <span className="shrink-0 text-cyan-300 font-medium flex items-center gap-0.5">
-              Inspect details <ArrowUpRight className="h-2.5 w-2.5" />
-            </span>
-          </div>
+        <div className="mt-2 flex items-center justify-between border-t border-white/8 pt-2 text-[11px] text-gray-400">
+          <span className="truncate max-w-[130px] text-gray-400">
+            {hoveredStation.operator || "—"}
+          </span>
+          <span className="shrink-0 text-cyan-300 font-medium flex items-center gap-0.5">
+            Inspect <ArrowUpRight className="h-3 w-3" />
+          </span>
         </div>
       </div>
     </div>
