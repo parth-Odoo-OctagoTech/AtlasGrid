@@ -82,7 +82,7 @@ export function StationTooltip() {
               {hoveredDataCenter.latitude.toFixed(3)}°, {hoveredDataCenter.longitude.toFixed(3)}°
             </span>
             <span className="shrink-0 text-[#2b95d6] font-semibold flex items-center gap-0.5">
-              INSPECT <ArrowUpRight className="h-3 w-3" />
+              INSPECT & LINKS <ArrowUpRight className="h-3 w-3" />
             </span>
           </div>
         </div>

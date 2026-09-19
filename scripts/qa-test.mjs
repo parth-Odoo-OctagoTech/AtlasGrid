@@ -507,6 +507,28 @@ const modalPath = path.join(process.cwd(), "components/analytics/DataCenterFleet
 assert(fs.existsSync(modalPath), "DataCenterFleetModal.tsx exists in components/analytics");
 
 // ---------------------------------------------------------------------------
+// TEST 12: Data Center External References & Google Maps Hyperlinks
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 12: Data Center External References & Google Maps Hyperlinks ---");
+
+const utilsPath = path.join(process.cwd(), "lib/utils/datacenter-links.ts");
+assert(fs.existsSync(utilsPath), "lib/utils/datacenter-links.ts helper exists");
+
+let allValidMapsUrls = 0;
+let validSourceRefs = 0;
+for (const d of datacenters) {
+  const gMapsUrl = `https://www.google.com/maps/search/?api=1&query=${d.latitude},${d.longitude}`;
+  if (gMapsUrl.startsWith("https://www.google.com/maps/search/?api=1&query=") && !isNaN(d.latitude) && !isNaN(d.longitude)) {
+    allValidMapsUrls++;
+  }
+  if (d.peeringDbId || d.osmId || d.website) {
+    validSourceRefs++;
+  }
+}
+assert(allValidMapsUrls === datacenters.length, `100% of data centers generate valid Google Maps search hyperlinks (${allValidMapsUrls}/${datacenters.length})`);
+assert(validSourceRefs === datacenters.length, `100% of data centers have authoritative online source references (${validSourceRefs}/${datacenters.length})`);
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");

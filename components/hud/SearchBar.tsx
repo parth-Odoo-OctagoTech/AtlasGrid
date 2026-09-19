@@ -4,7 +4,8 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { useGridStore } from "@/lib/store/useGridStore";
 import { FUEL_CONFIG, PowerPlant } from "@/lib/types/power-plant";
 import { DataCenter, OPERATOR_COLORS } from "@/lib/types/data-center";
-import { Search, X, Zap, ArrowRight, Server, ExternalLink, Command, CornerDownLeft } from "lucide-react";
+import { Search, X, Zap, ArrowRight, Server, ExternalLink, Command, CornerDownLeft, MapPin, Globe } from "lucide-react";
+import { getGoogleMapsUrl, getOfficialWebsite } from "@/lib/utils/datacenter-links";
 
 interface SearchBarProps {
   plants: PowerPlant[];
@@ -260,16 +261,28 @@ export function SearchBar({ plants }: SearchBarProps) {
                           PUE {dc.pue}
                         </div>
                       </div>
-                      <a
-                        href={`https://www.google.com/maps/search/?api=1&query=${dc.latitude},${dc.longitude}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        title="Open in Google Maps"
-                        className="p-1 rounded border border-[#293742] bg-[#182026] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#202b33] transition-colors"
-                      >
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
+                      <div className="flex items-center gap-1">
+                        <a
+                          href={getGoogleMapsUrl(dc)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          title="Open exact coordinates on Google Maps"
+                          className="p-1 rounded border border-[#293742] bg-[#182026] text-[#2b95d6] hover:bg-[#2b95d6] hover:text-white transition-colors"
+                        >
+                          <MapPin className="h-3 w-3" />
+                        </a>
+                        <a
+                          href={getOfficialWebsite(dc).url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          title={`Website: ${getOfficialWebsite(dc).label} (${getOfficialWebsite(dc).domain})`}
+                          className="p-1 rounded border border-[#293742] bg-[#182026] text-[#15b371] hover:bg-[#15b371] hover:text-white transition-colors"
+                        >
+                          <Globe className="h-3 w-3" />
+                        </a>
+                      </div>
                       <ArrowRight className={`h-3.5 w-3.5 transition-transform ${isSelected ? "text-[#15b371] translate-x-0.5" : "text-[#5c7080]"}`} />
                     </div>
                   </div>

@@ -169323,7 +169323,9 @@
       "loss": 1.2,
       "total": 28.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.270Z"
+    "lastUpdated": "2026-09-19T16:50:54.270Z",
+    "climateTraceAssetId": "ct-np-5201",
+    "annualCo2EmissionsTons": 58
   },
   {
     "id": "np-plant-02",
@@ -169350,7 +169352,9 @@
       "loss": 1.5,
       "total": 26
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5202",
+    "annualCo2EmissionsTons": 18
   },
   {
     "id": "np-plant-03",
@@ -169377,7 +169381,9 @@
       "loss": 1.5,
       "total": 29
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5203",
+    "annualCo2EmissionsTons": 14
   },
   {
     "id": "np-plant-04",
@@ -169404,7 +169410,9 @@
       "loss": 1.4,
       "total": 27.4
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5204",
+    "annualCo2EmissionsTons": 11
   },
   {
     "id": "np-plant-05",
@@ -169431,7 +169439,9 @@
       "loss": 1.5,
       "total": 28
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5205",
+    "annualCo2EmissionsTons": 10
   },
   {
     "id": "np-plant-06",
@@ -169458,7 +169468,9 @@
       "loss": 1.4,
       "total": 28.2
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5206",
+    "annualCo2EmissionsTons": 10
   },
   {
     "id": "np-plant-07",
@@ -169485,7 +169497,9 @@
       "loss": 1.3,
       "total": 25.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5207",
+    "annualCo2EmissionsTons": 9
   },
   {
     "id": "np-plant-08",
@@ -169512,7 +169526,9 @@
       "loss": 1.3,
       "total": 26.2
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5208",
+    "annualCo2EmissionsTons": 9
   },
   {
     "id": "np-plant-09",
@@ -169539,7 +169555,9 @@
       "loss": 1.3,
       "total": 27
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5209",
+    "annualCo2EmissionsTons": 8
   },
   {
     "id": "np-plant-10",
@@ -169566,7 +169584,9 @@
       "loss": 1.2,
       "total": 28
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5210",
+    "annualCo2EmissionsTons": 8
   },
   {
     "id": "np-plant-11",
@@ -169593,7 +169613,9 @@
       "loss": 1.5,
       "total": 32
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5211",
+    "annualCo2EmissionsTons": 8
   },
   {
     "id": "np-plant-12",
@@ -169620,7 +169642,9 @@
       "loss": 1.4,
       "total": 27.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5212",
+    "annualCo2EmissionsTons": 7
   },
   {
     "id": "np-plant-13",
@@ -169647,7 +169671,9 @@
       "loss": 1.4,
       "total": 28
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5213",
+    "annualCo2EmissionsTons": 7
   },
   {
     "id": "np-plant-14",
@@ -169674,7 +169700,9 @@
       "loss": 1.4,
       "total": 26.8
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5214",
+    "annualCo2EmissionsTons": 6
   },
   {
     "id": "np-plant-15",
@@ -169701,7 +169729,9 @@
       "loss": 1.4,
       "total": 29.2
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5215",
+    "annualCo2EmissionsTons": 6
   },
   {
     "id": "np-plant-16",
@@ -169728,7 +169758,9 @@
       "loss": 1.4,
       "total": 28.4
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5216",
+    "annualCo2EmissionsTons": 5
   },
   {
     "id": "np-plant-17",
@@ -169755,7 +169787,9 @@
       "loss": 1.4,
       "total": 27.2
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5217",
+    "annualCo2EmissionsTons": 5
   },
   {
     "id": "np-plant-18",
@@ -169782,7 +169816,9 @@
       "loss": 1.4,
       "total": 31.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5218",
+    "annualCo2EmissionsTons": 4
   },
   {
     "id": "np-plant-19",
@@ -169809,7 +169845,9 @@
       "loss": 1.3,
       "total": 25
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5219",
+    "annualCo2EmissionsTons": 4
   },
   {
     "id": "np-plant-20",
@@ -169836,7 +169874,9 @@
       "loss": 1.3,
       "total": 27
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5220",
+    "annualCo2EmissionsTons": 4
   },
   {
     "id": "np-plant-21",
@@ -169863,7 +169903,9 @@
       "loss": 1.4,
       "total": 28
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5221",
+    "annualCo2EmissionsTons": 4
   },
   {
     "id": "np-plant-22",
@@ -169890,7 +169932,9 @@
       "loss": 1.4,
       "total": 27.2
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5222",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-23",
@@ -169917,7 +169961,9 @@
       "loss": 1.3,
       "total": 26.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5223",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-24",
@@ -169944,7 +169990,9 @@
       "loss": 1.4,
       "total": 28.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5224",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-25",
@@ -169971,7 +170019,9 @@
       "loss": 1.5,
       "total": 30
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5225",
+    "annualCo2EmissionsTons": 6
   },
   {
     "id": "np-plant-26",
@@ -169998,7 +170048,9 @@
       "loss": 1.3,
       "total": 26.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5226",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-27",
@@ -170025,7 +170077,9 @@
       "loss": 1.4,
       "total": 28
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5227",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-28",
@@ -170052,7 +170106,9 @@
       "loss": 1.3,
       "total": 26.2
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5228",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-29",
@@ -170079,7 +170135,9 @@
       "loss": 1.3,
       "total": 26.8
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5229",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-30",
@@ -170106,7 +170164,9 @@
       "loss": 1.4,
       "total": 28.4
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5230",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-31",
@@ -170133,7 +170193,9 @@
       "loss": 1.3,
       "total": 26.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5231",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-32",
@@ -170160,7 +170222,9 @@
       "loss": 1.4,
       "total": 31
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5232",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-33",
@@ -170187,7 +170251,9 @@
       "loss": 1.3,
       "total": 26.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5233",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-34",
@@ -170214,7 +170280,9 @@
       "loss": 1.3,
       "total": 26
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5234",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-35",
@@ -170241,7 +170309,9 @@
       "loss": 1.4,
       "total": 29.5
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5235",
+    "annualCo2EmissionsTons": 3
   },
   {
     "id": "np-plant-36",
@@ -170268,7 +170338,9 @@
       "loss": 1.4,
       "total": 29
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5236",
+    "annualCo2EmissionsTons": 2
   },
   {
     "id": "np-plant-37",
@@ -170295,7 +170367,9 @@
       "loss": 3.5,
       "total": 120
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5237",
+    "annualCo2EmissionsTons": 30
   },
   {
     "id": "np-plant-38",
@@ -170322,6 +170396,8 @@
       "loss": 4.8,
       "total": 135
     },
-    "lastUpdated": "2026-09-19T16:50:54.271Z"
+    "lastUpdated": "2026-09-19T16:50:54.271Z",
+    "climateTraceAssetId": "ct-np-5238",
+    "annualCo2EmissionsTons": 82
   }
 ]

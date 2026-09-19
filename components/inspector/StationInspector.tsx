@@ -35,7 +35,16 @@ import {
   RadioTower,
   ArrowRight,
   Sparkles,
+  MapPin,
+  Database,
+  Search,
 } from "lucide-react";
+import {
+  getGoogleMapsUrl,
+  getOfficialWebsite,
+  getPrimarySourceReference,
+  getWebSearchUrl,
+} from "@/lib/utils/datacenter-links";
 
 export function StationInspector() {
   const isInspectorOpen = useGridStore((s) => s.isInspectorOpen);
@@ -99,6 +108,10 @@ export function StationInspector() {
   // 1. DATA CENTER INSPECTOR VIEW (Palantir Foundry Object Sheet)
   if (selectedDataCenter) {
     const opMeta = OPERATOR_COLORS[selectedDataCenter.operator] || OPERATOR_COLORS.Other;
+    const gMapsUrl = getGoogleMapsUrl(selectedDataCenter);
+    const officialWeb = getOfficialWebsite(selectedDataCenter);
+    const sourceRef = getPrimarySourceReference(selectedDataCenter);
+    const webSearchUrl = getWebSearchUrl(selectedDataCenter);
 
     return (
       <aside className="absolute right-0 top-12 bottom-0 z-30 w-full sm:w-[480px] overflow-y-auto bg-[#182026] border-l border-[#293742] text-[#f5f8fa] shadow-2xl transition-all animate-in slide-in-from-right duration-200 font-sans">
@@ -132,7 +145,7 @@ export function StationInspector() {
                 </span>
                 <span>•</span>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${selectedDataCenter.latitude},${selectedDataCenter.longitude}`}
+                  href={gMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-[11px] text-[#2b95d6] hover:underline"
@@ -140,6 +153,43 @@ export function StationInspector() {
                 >
                   <span>{selectedDataCenter.latitude.toFixed(4)}°N, {selectedDataCenter.longitude.toFixed(4)}°E</span>
                   <ExternalLink className="h-2.5 w-2.5" />
+                </a>
+              </div>
+
+              {/* Quick Jump Action Chips */}
+              <div className="mt-2.5 flex flex-wrap items-center gap-1.5 font-mono">
+                <a
+                  href={gMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#202b33] border border-[#293742] text-[10px] text-[#2b95d6] hover:bg-[#2b95d6] hover:text-white transition-colors"
+                  title="Open exact coordinates on Google Maps"
+                >
+                  <MapPin className="h-2.5 w-2.5 text-[#2b95d6]" />
+                  <span>Google Maps</span>
+                  <ExternalLink className="h-2 w-2 opacity-70" />
+                </a>
+                <a
+                  href={officialWeb.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#202b33] border border-[#293742] text-[10px] text-[#15b371] hover:bg-[#15b371] hover:text-white transition-colors"
+                  title={`Official Website: ${officialWeb.domain}`}
+                >
+                  <Globe className="h-2.5 w-2.5 text-[#15b371]" />
+                  <span>Website</span>
+                  <ExternalLink className="h-2 w-2 opacity-70" />
+                </a>
+                <a
+                  href={sourceRef.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#202b33] border border-[#293742] text-[10px] text-[#d9822b] hover:bg-[#d9822b] hover:text-white transition-colors"
+                  title={`${sourceRef.sourceName}: ${sourceRef.label}`}
+                >
+                  <Database className="h-2.5 w-2.5 text-[#d9822b]" />
+                  <span>{sourceRef.badge}</span>
+                  <ExternalLink className="h-2 w-2 opacity-70" />
                 </a>
               </div>
             </div>
@@ -249,6 +299,115 @@ export function StationInspector() {
           </div>
         </div>
 
+        {/* External References & Online Intelligence (Google Maps, Official Website, Primary Source) */}
+        <div className="p-4 border-b border-[#293742] bg-[#141c22]">
+          <div className="text-[10px] uppercase tracking-wider font-mono font-semibold text-[#8a9ba8] mb-2.5 flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-[#2b95d6]">
+              <Globe className="h-3.5 w-3.5 text-[#2b95d6]" />
+              <span>Online Details & Authoritative References</span>
+            </div>
+            <span className="text-[9px] font-mono text-[#15b371] bg-[#101418] px-1.5 py-0.5 rounded border border-[#293742]">
+              VERIFIED LINKS
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            {/* 1. Google Maps Link */}
+            <a
+              href={gMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start justify-between rounded border border-[#293742] bg-[#101418] p-2.5 hover:border-[#2b95d6] hover:bg-[#182026] transition-all group"
+            >
+              <div className="flex items-start gap-2 min-w-0">
+                <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[#202b33] text-[#2b95d6] group-hover:bg-[#2b95d6] group-hover:text-white transition-colors">
+                  <MapPin className="h-3.5 w-3.5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-[#f5f8fa] group-hover:text-[#2b95d6] transition-colors">
+                    <span>Google Maps (Exact Pin)</span>
+                    <ExternalLink className="h-3 w-3 shrink-0 opacity-70 group-hover:opacity-100" />
+                  </div>
+                  <div className="mt-0.5 text-[10px] font-mono text-[#8a9ba8]">
+                    {selectedDataCenter.latitude.toFixed(5)}°, {selectedDataCenter.longitude.toFixed(5)}° • Satellite & Street View
+                  </div>
+                </div>
+              </div>
+              <span className="shrink-0 text-[10px] font-mono text-[#2b95d6] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742] group-hover:border-[#2b95d6]">
+                OPEN MAPS ↗
+              </span>
+            </a>
+
+            {/* 2. Official Facility / Operator Website */}
+            <a
+              href={officialWeb.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start justify-between rounded border border-[#293742] bg-[#101418] p-2.5 hover:border-[#15b371] hover:bg-[#182026] transition-all group"
+            >
+              <div className="flex items-start gap-2 min-w-0">
+                <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[#202b33] text-[#15b371] group-hover:bg-[#15b371] group-hover:text-white transition-colors">
+                  <Globe className="h-3.5 w-3.5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-[#f5f8fa] group-hover:text-[#15b371] transition-colors">
+                    <span className="truncate max-w-[190px]">{officialWeb.label}</span>
+                    <ExternalLink className="h-3 w-3 shrink-0 opacity-70 group-hover:opacity-100" />
+                  </div>
+                  <div className="mt-0.5 text-[10px] font-mono text-[#8a9ba8] truncate max-w-[220px]">
+                    {officialWeb.domain}
+                  </div>
+                </div>
+              </div>
+              <span className="shrink-0 text-[10px] font-mono text-[#15b371] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742] group-hover:border-[#15b371]">
+                {officialWeb.isDirect ? "OFFICIAL" : "PORTAL"} ↗
+              </span>
+            </a>
+
+            {/* 3. Authoritative Source Reference (PeeringDB / OpenStreetMap) */}
+            <a
+              href={sourceRef.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start justify-between rounded border border-[#293742] bg-[#101418] p-2.5 hover:border-[#d9822b] hover:bg-[#182026] transition-all group"
+            >
+              <div className="flex items-start gap-2 min-w-0">
+                <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[#202b33] text-[#d9822b] group-hover:bg-[#d9822b] group-hover:text-white transition-colors">
+                  <Database className="h-3.5 w-3.5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-[#f5f8fa] group-hover:text-[#d9822b] transition-colors">
+                    <span className="truncate max-w-[190px]">{sourceRef.sourceName}</span>
+                    <ExternalLink className="h-3 w-3 shrink-0 opacity-70 group-hover:opacity-100" />
+                  </div>
+                  <div className="mt-0.5 text-[10px] font-mono text-[#8a9ba8] truncate max-w-[220px]">
+                    {sourceRef.description}
+                  </div>
+                </div>
+              </div>
+              <span className="shrink-0 text-[10px] font-mono text-[#d9822b] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742] group-hover:border-[#d9822b]">
+                {sourceRef.badge.toUpperCase()} ↗
+              </span>
+            </a>
+
+            {/* 4. Google Specs & Web Intelligence Search */}
+            <a
+              href={webSearchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between rounded border border-[#293742] bg-[#101418] px-2.5 py-2 hover:border-[#8a9ba8] hover:bg-[#182026] transition-all group text-xs font-mono"
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                <Search className="h-3.5 w-3.5 text-[#8a9ba8] group-hover:text-[#f5f8fa] shrink-0" />
+                <span className="text-[11px] text-[#8a9ba8] group-hover:text-[#f5f8fa] truncate">
+                  Search online specs & whitepapers for this campus
+                </span>
+              </div>
+              <ArrowRight className="h-3 w-3 text-[#5c7080] group-hover:text-[#f5f8fa] shrink-0 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+        </div>
+
         {/* Local Grid Power Supply Cross-Reference Module (Palantir Object Graph Nexus) */}
         {localGridSupply && (
           <div className="p-4 border-b border-[#293742]">
@@ -345,22 +504,46 @@ export function StationInspector() {
         )}
 
         {/* Action Tray */}
-        <div className="p-4 bg-[#101418] border-t border-[#293742] flex items-center justify-between gap-2">
+        <div className="p-3 bg-[#101418] border-t border-[#293742] flex items-center gap-2">
           <button
             onClick={() => flyToStation(selectedDataCenter)}
             className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1.5"
+            title="Inspect in 3D Foundry Canvas"
           >
             <Compass className="h-3.5 w-3.5" />
-            <span>Inspect in Canvas</span>
+            <span>Canvas</span>
           </button>
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${selectedDataCenter.latitude},${selectedDataCenter.longitude}`}
+            href={gMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-1.5 rounded text-xs font-mono text-[#a7b6c2] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#2b95d6] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1.5"
+            title="Open exact coordinates on Google Maps"
           >
-            <span>Satellite</span>
-            <ExternalLink className="h-3 w-3" />
+            <MapPin className="h-3.5 w-3.5 text-[#2b95d6]" />
+            <span>Google Maps</span>
+            <ExternalLink className="h-2.5 w-2.5 opacity-70" />
+          </a>
+          <a
+            href={officialWeb.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#15b371] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1.5"
+            title={`Open website: ${officialWeb.domain}`}
+          >
+            <Globe className="h-3.5 w-3.5 text-[#15b371]" />
+            <span>Website</span>
+            <ExternalLink className="h-2.5 w-2.5 opacity-70" />
+          </a>
+          <a
+            href={sourceRef.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 rounded text-xs font-mono text-[#8a9ba8] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+            title={`${sourceRef.sourceName}: ${sourceRef.label}`}
+          >
+            <Database className="h-3 w-3 text-[#d9822b]" />
+            <span>Source</span>
           </a>
         </div>
       </aside>

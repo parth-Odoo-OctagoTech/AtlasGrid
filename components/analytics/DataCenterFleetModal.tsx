@@ -21,7 +21,15 @@ import {
   Network,
   Radio,
   Layers,
+  MapPin,
+  Database,
 } from "lucide-react";
+import {
+  getGoogleMapsUrl,
+  getOfficialWebsite,
+  getPrimarySourceReference,
+  OPERATOR_PORTALS,
+} from "@/lib/utils/datacenter-links";
 
 interface DataCenterFleetModalProps {
   dataCenters: DataCenter[];
@@ -197,6 +205,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
       "Carrier ASNs",
       "IXP Interconnects",
       "PeeringDB ID",
+      "Google Maps URL",
+      "Official Website",
+      "Source Reference URL",
     ];
 
     const rows = filteredDataCenters.map((dc) => [
@@ -214,6 +225,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
       dc.connectedNetworksCount || 0,
       dc.ixpCount || 0,
       dc.peeringDbId || "",
+      `"${getGoogleMapsUrl(dc)}"`,
+      `"${getOfficialWebsite(dc).url}"`,
+      `"${getPrimarySourceReference(dc).url}"`,
     ]);
 
     const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
@@ -480,7 +494,7 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                     <th className="py-2.5 px-3">Cooling</th>
                     <th className="py-2.5 px-3">Tier</th>
                     <th className="py-2.5 px-3 font-mono text-center">Interconnects</th>
-                    <th className="py-2.5 px-3 text-right">Action</th>
+                    <th className="py-2.5 px-3 text-right">Links & Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#202b33]">
@@ -494,6 +508,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                   ) : (
                     paginatedData.map((dc) => {
                       const opMeta = OPERATOR_COLORS[dc.operator] || OPERATOR_COLORS.Other;
+                      const gMapsUrl = getGoogleMapsUrl(dc);
+                      const officialWeb = getOfficialWebsite(dc);
+                      const sourceRef = getPrimarySourceReference(dc);
 
                       return (
                         <tr
@@ -502,13 +519,17 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                         >
                           {/* Facility Name & Location */}
                           <td className="py-2 px-3">
-                            <div className="font-semibold text-[#f5f8fa] text-xs flex items-center gap-1.5 font-sans">
+                            <button
+                              onClick={() => handleFlyTo(dc)}
+                              className="font-semibold text-[#f5f8fa] text-xs flex items-center gap-1.5 font-sans text-left hover:text-[#2b95d6] transition-colors group"
+                              title="Click to locate and inspect in Foundry Canvas"
+                            >
                               <span
                                 className="h-1.5 w-1.5 rounded-full shrink-0"
                                 style={{ backgroundColor: opMeta.hex }}
                               />
-                              <span className="truncate max-w-[240px]">{dc.name}</span>
-                            </div>
+                              <span className="truncate max-w-[240px] group-hover:underline">{dc.name}</span>
+                            </button>
                             <div className="mt-0.5 text-[10px] text-[#8a9ba8] font-mono flex items-center gap-1.5">
                               <span className="text-[#f5f8fa]">{dc.countryName || dc.country}</span>
                               <span>•</span>
@@ -568,18 +589,43 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                             )}
                           </td>
 
-                          {/* Actions */}
+                          {/* Links & Actions */}
                           <td className="py-2 px-3 text-right">
                             <div className="flex items-center justify-end gap-1 font-mono">
+                              {/* Google Maps Link */}
                               <a
-                                href={`https://www.google.com/maps/search/?api=1&query=${dc.latitude},${dc.longitude}`}
+                                href={gMapsUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                title="Open in Google Maps Satellite View"
-                                className="p-1 rounded border border-[#293742] bg-[#202b33] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
+                                title={`Open ${dc.name} on Google Maps (${dc.latitude.toFixed(4)}°, ${dc.longitude.toFixed(4)}°)`}
+                                className="p-1 rounded border border-[#293742] bg-[#202b33] text-[#2b95d6] hover:bg-[#2b95d6] hover:text-white transition-colors"
                               >
-                                <ExternalLink className="h-3 w-3" />
+                                <MapPin className="h-3 w-3" />
                               </a>
+
+                              {/* Official Website Link */}
+                              <a
+                                href={officialWeb.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={`${officialWeb.label} (${officialWeb.domain})`}
+                                className="p-1 rounded border border-[#293742] bg-[#202b33] text-[#15b371] hover:bg-[#15b371] hover:text-white transition-colors"
+                              >
+                                <Globe className="h-3 w-3" />
+                              </a>
+
+                              {/* Source Reference Link */}
+                              <a
+                                href={sourceRef.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={`${sourceRef.sourceName}: ${sourceRef.label}`}
+                                className="p-1 rounded border border-[#293742] bg-[#202b33] text-[#d9822b] hover:bg-[#d9822b] hover:text-white transition-colors"
+                              >
+                                <Database className="h-3 w-3" />
+                              </a>
+
+                              {/* Locate on Map Button */}
                               <button
                                 onClick={() => handleFlyTo(dc)}
                                 className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors"
@@ -694,16 +740,30 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => {
-                        setSelectedOperator(op.operator);
-                        setActiveTab("grid");
-                        setCurrentPage(1);
-                      }}
-                      className="w-full text-center text-[10px] font-mono text-[#2b95d6] hover:text-[#f5f8fa] py-1 rounded bg-[#202b33] border border-[#293742] hover:bg-[#293742] transition-colors"
-                    >
-                      FILTER {op.count} OBJECTS →
-                    </button>
+                    <div className="flex items-center gap-1.5 pt-1">
+                      <button
+                        onClick={() => {
+                          setSelectedOperator(op.operator);
+                          setActiveTab("grid");
+                          setCurrentPage(1);
+                        }}
+                        className="flex-1 text-center text-[10px] font-mono text-[#2b95d6] hover:text-[#f5f8fa] py-1 rounded bg-[#202b33] border border-[#293742] hover:bg-[#293742] transition-colors"
+                      >
+                        VIEW {op.count} OBJECTS →
+                      </button>
+                      {OPERATOR_PORTALS[op.operator] && (
+                        <a
+                          href={OPERATOR_PORTALS[op.operator]}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2 py-1 rounded bg-[#202b33] border border-[#293742] text-[#15b371] hover:bg-[#15b371] hover:text-white transition-colors text-[10px] flex items-center gap-1 shrink-0"
+                          title="Open official operator infrastructure portal"
+                        >
+                          <Globe className="h-3 w-3" />
+                          <span>PORTAL</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 );
               })}
