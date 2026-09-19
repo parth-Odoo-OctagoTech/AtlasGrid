@@ -231,6 +231,10 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
             p.substationName?.toLowerCase().includes("gujarat") ||
             (p.latitude >= 20.0 && p.latitude <= 24.8 && p.longitude >= 68.0 && p.longitude <= 74.8 && p.country === "IN")
         );
+      } else if (filters.region === "NEPAL_NEA") {
+        list = list.filter(
+          (p) => p.gridRegion === "NEPAL_NEA" || p.country === "NP" || p.countryName === "Nepal"
+        );
       } else {
         list = list.filter(
           (p) => p.gridRegion === filters.region || p.country === filters.region
@@ -290,6 +294,10 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
           (dc) =>
             dc.country === "India" ||
             (dc.latitude >= 20.0 && dc.latitude <= 24.8 && dc.longitude >= 68.0 && dc.longitude <= 74.8)
+        );
+      } else if (filters.region === "NEPAL_NEA") {
+        list = list.filter(
+          (dc) => dc.country === "NP" || dc.country === "Nepal" || dc.countryName === "Nepal"
         );
       } else {
         const regLow = filters.region.toLowerCase();

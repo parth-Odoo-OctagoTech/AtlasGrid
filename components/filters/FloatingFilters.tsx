@@ -21,6 +21,7 @@ import { useState } from "react";
 
 const REGIONS = [
   { id: "GLOBAL", label: "Global (All Regions)", coords: [10.0, 30.0], zoom: 2.2 },
+  { id: "NEPAL_NEA", label: "Nepal - National Grid (NEA)", coords: [84.8, 28.0], zoom: 7.0 },
   { id: "GUJARAT", label: "India - Gujarat State Grid", coords: [71.8, 22.8], zoom: 7.2 },
   { id: "INDIA_NREB", label: "India - National Grid", coords: [78.5, 22.5], zoom: 4.8 },
   { id: "CAISO", label: "US - CAISO (California)", coords: [-119.5, 36.5], zoom: 6.0 },
@@ -48,6 +49,12 @@ const DC_OPERATORS = [
   "Digital Realty",
   "Oracle Cloud (OCI)",
   "NTT Global Data Centers",
+  "Ncell",
+  "DataWorld / WorldLink",
+  "National Information Technology Center (NITC)",
+  "Data Hub Nepal",
+  "DishHome (Datalaya)",
+  "Nepal Telecom",
   "Reliance Jio Data Centers",
   "AdaniConnex",
   "STT GDC India",

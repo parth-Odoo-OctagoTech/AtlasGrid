@@ -56,5 +56,11 @@ export const OPERATOR_COLORS: Record<string, { hex: string; rgb: [number, number
   "Yotta Infrastructure": { hex: "#E81123", rgb: [232, 17, 35] },
   "Nxtra by Airtel": { hex: "#EA1D2C", rgb: [234, 29, 44] },
   "Sify Technologies": { hex: "#009688", rgb: [0, 150, 136] },
+  "Ncell": { hex: "#782F92", rgb: [120, 47, 146] },
+  "DataWorld / WorldLink": { hex: "#0088CC", rgb: [0, 136, 204] },
+  "National Information Technology Center (NITC)": { hex: "#DC2626", rgb: [220, 38, 38] },
+  "Data Hub Nepal": { hex: "#059669", rgb: [5, 150, 105] },
+  "DishHome (Datalaya)": { hex: "#E11D48", rgb: [225, 29, 72] },
+  "Nepal Telecom": { hex: "#2563EB", rgb: [37, 99, 235] },
   "Other": { hex: "#06B6D4", rgb: [6, 182, 212] },
 };
