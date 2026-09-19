@@ -1292,8 +1292,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 87,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 285338
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 530436
   },
   {
     "id": "dc-aws-hyperscale-100054",
@@ -1316,8 +1316,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 100,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 251447
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 467434
   },
   {
     "id": "dc-aws-hyperscale-100055",
@@ -1340,8 +1340,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 113,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 151748
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 346511
   },
   {
     "id": "dc-aws-hyperscale-100056",
@@ -1364,8 +1364,8 @@
     "city": "Anyang",
     "connectedNetworksCount": 126,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 65122
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 1002876
   },
   {
     "id": "dc-aws-hyperscale-100057",
@@ -1388,8 +1388,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 139,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 63693
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 939134
   },
   {
     "id": "dc-aws-hyperscale-100058",
@@ -10916,8 +10916,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 41,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 66415
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 90859
   },
   {
     "id": "dc-aws-cloudfront-100455",
@@ -10940,8 +10940,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 52,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 42801
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 61526
   },
   {
     "id": "dc-aws-cloudfront-100456",
@@ -10964,8 +10964,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 63,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 23614
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 33945
   },
   {
     "id": "dc-aws-cloudfront-100457",
@@ -10988,8 +10988,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 74,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 39603
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 42196
   },
   {
     "id": "dc-aws-cloudfront-100458",
@@ -11084,8 +11084,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 41,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 21677
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 319621
   },
   {
     "id": "dc-aws-cloudfront-100462",
@@ -11108,8 +11108,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 52,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 13970
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 205978
   },
   {
     "id": "dc-aws-cloudfront-100463",
@@ -11132,8 +11132,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 63,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 7707
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 113643
   },
   {
     "id": "dc-aws-cloudfront-100464",
@@ -11156,8 +11156,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 74,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 10608
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 163362
   },
   {
     "id": "dc-aws-cloudfront-100465",
@@ -11180,8 +11180,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 85,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 13836
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 213081
   },
   {
     "id": "dc-aws-cloudfront-100466",
@@ -11204,8 +11204,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 36,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 8189
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 120746
   },
   {
     "id": "dc-aws-cloudfront-100467",
@@ -11660,8 +11660,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 41,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 70105
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 133752
   },
   {
     "id": "dc-aws-cloudfront-100486",
@@ -11684,8 +11684,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 52,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 45178
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 86196
   },
   {
     "id": "dc-aws-cloudfront-100487",
@@ -11708,8 +11708,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 63,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 24926
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 47556
   },
   {
     "id": "dc-aws-cloudfront-100488",
@@ -11732,8 +11732,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 74,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 35831
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 68362
   },
   {
     "id": "dc-aws-cloudfront-100489",
@@ -11756,8 +11756,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 85,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 46736
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 89168
   },
   {
     "id": "dc-aws-cloudfront-100490",
@@ -11780,8 +11780,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 36,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 26484
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 50529
   },
   {
     "id": "dc-aws-cloudfront-100491",
@@ -11804,8 +11804,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 47,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 37389
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 71334
   },
   {
     "id": "dc-aws-cloudfront-100492",
@@ -11828,8 +11828,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 58,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 40351
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 92140
   },
   {
     "id": "dc-aws-cloudfront-100493",
@@ -22836,8 +22836,8 @@
     "peeringDbId": 1588,
     "connectedNetworksCount": 103,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 86,
-    "estimatedAnnualCo2Tons": 150626
+    "localCleanEnergyPercent": 82.7,
+    "estimatedAnnualCo2Tons": 177705
   },
   {
     "id": "dc-460059465",
@@ -33479,8 +33479,8 @@
     "city": "Japan",
     "connectedNetworksCount": 146,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 300097
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 557872
   },
   {
     "id": "dc-verified-38",
@@ -47505,8 +47505,8 @@
     "peeringDbId": 4216,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 51.8,
-    "estimatedAnnualCo2Tons": 40155
+    "localCleanEnergyPercent": 52.1,
+    "estimatedAnnualCo2Tons": 40905
   },
   {
     "id": "dc-1379421123",
@@ -51337,8 +51337,8 @@
     "peeringDbId": 5085,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 78.8,
-    "estimatedAnnualCo2Tons": 10800
+    "localCleanEnergyPercent": 81.4,
+    "estimatedAnnualCo2Tons": 9542
   },
   {
     "id": "dc-1460855151",
@@ -53660,8 +53660,8 @@
     "peeringDbId": 4314,
     "connectedNetworksCount": 19,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 78.8,
-    "estimatedAnnualCo2Tons": 64802
+    "localCleanEnergyPercent": 81.4,
+    "estimatedAnnualCo2Tons": 57252
   },
   {
     "id": "dc-37947315",
@@ -66019,8 +66019,8 @@
     "peeringDbId": 7860,
     "connectedNetworksCount": 94,
     "ixpCount": 7,
-    "localCleanEnergyPercent": 71.7,
-    "estimatedAnnualCo2Tons": 493303
+    "localCleanEnergyPercent": 73.8,
+    "estimatedAnnualCo2Tons": 469562
   },
   {
     "id": "dc-1458626323",
@@ -70050,8 +70050,8 @@
     "peeringDbId": 4594,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 72.5,
-    "estimatedAnnualCo2Tons": 49105
+    "localCleanEnergyPercent": 74.8,
+    "estimatedAnnualCo2Tons": 45867
   },
   {
     "id": "dc-290703004",
@@ -91196,7 +91196,7 @@
     "connectedNetworksCount": 8,
     "ixpCount": 0,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 2550
+    "estimatedAnnualCo2Tons": 2307
   },
   {
     "id": "dc-460167186",
@@ -91284,7 +91284,7 @@
     "connectedNetworksCount": 13,
     "ixpCount": 0,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 5872
+    "estimatedAnnualCo2Tons": 5313
   },
   {
     "id": "dc-460167187",
@@ -91400,7 +91400,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 3091
+    "estimatedAnnualCo2Tons": 2796
   },
   {
     "id": "dc-1173537117",
@@ -132575,7 +132575,7 @@
     "peeringDbId": 9263,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 79.2,
+    "localCleanEnergyPercent": 79.1,
     "estimatedAnnualCo2Tons": 25019
   },
   {
@@ -154545,7 +154545,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 1030
+    "estimatedAnnualCo2Tons": 944
   },
   {
     "id": "dc-683531738",
@@ -181936,8 +181936,8 @@
     "peeringDbId": 4489,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 62,
-    "estimatedAnnualCo2Tons": 53349
+    "localCleanEnergyPercent": 42.6,
+    "estimatedAnnualCo2Tons": 88989
   },
   {
     "id": "dc-409707108",
@@ -184663,8 +184663,8 @@
     "peeringDbId": 9061,
     "connectedNetworksCount": 57,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70,
-    "estimatedAnnualCo2Tons": 88080
+    "localCleanEnergyPercent": 69.2,
+    "estimatedAnnualCo2Tons": 90398
   },
   {
     "id": "dc-1206579186",
@@ -219263,7 +219263,7 @@
     "connectedNetworksCount": 19,
     "ixpCount": 3,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 7130
+    "estimatedAnnualCo2Tons": 6734
   },
   {
     "id": "dc-463443856",
@@ -262955,8 +262955,8 @@
     "peeringDbId": 5453,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 89.6,
-    "estimatedAnnualCo2Tons": 19259
+    "localCleanEnergyPercent": 84.9,
+    "estimatedAnnualCo2Tons": 26692
   },
   {
     "id": "dc-13808344906",
@@ -264618,8 +264618,8 @@
     "peeringDbId": 2381,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 96.1,
-    "estimatedAnnualCo2Tons": 6755
+    "localCleanEnergyPercent": 100,
+    "estimatedAnnualCo2Tons": 3565
   },
   {
     "id": "dc-103166277",
@@ -268051,8 +268051,8 @@
     "peeringDbId": 4130,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 33.8,
-    "estimatedAnnualCo2Tons": 99657
+    "localCleanEnergyPercent": 38,
+    "estimatedAnnualCo2Tons": 93403
   },
   {
     "id": "dc-1227095270",
@@ -281311,8 +281311,8 @@
     "peeringDbId": 7806,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67,
-    "estimatedAnnualCo2Tons": 18801
+    "localCleanEnergyPercent": 57.9,
+    "estimatedAnnualCo2Tons": 24638
   },
   {
     "id": "dc-151883651",
@@ -286553,8 +286553,8 @@
     "peeringDbId": 6384,
     "connectedNetworksCount": 49,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 69.7,
-    "estimatedAnnualCo2Tons": 95630
+    "localCleanEnergyPercent": 43.9,
+    "estimatedAnnualCo2Tons": 161061
   },
   {
     "id": "dc-12581599889",
@@ -286576,8 +286576,8 @@
     "peeringDbId": 5889,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 69.7,
-    "estimatedAnnualCo2Tons": 50331
+    "localCleanEnergyPercent": 43.9,
+    "estimatedAnnualCo2Tons": 84769
   },
   {
     "id": "dc-12514343279",
@@ -286599,8 +286599,8 @@
     "peeringDbId": 6279,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 58.7,
-    "estimatedAnnualCo2Tons": 29581
+    "localCleanEnergyPercent": 48,
+    "estimatedAnnualCo2Tons": 35026
   },
   {
     "id": "dc-12189865062",
@@ -287969,8 +287969,8 @@
     "peeringDbId": 6884,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 45.8,
-    "estimatedAnnualCo2Tons": 35762
+    "localCleanEnergyPercent": 64.6,
+    "estimatedAnnualCo2Tons": 25460
   },
   {
     "id": "dc-1163514700",
@@ -288013,8 +288013,8 @@
     "peeringDbId": 4700,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 49.7,
-    "estimatedAnnualCo2Tons": 65382
+    "localCleanEnergyPercent": 69,
+    "estimatedAnnualCo2Tons": 59836
   },
   {
     "id": "dc-1668495487",
@@ -288036,8 +288036,8 @@
     "peeringDbId": 4487,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64.7,
-    "estimatedAnnualCo2Tons": 30199
+    "localCleanEnergyPercent": 61.6,
+    "estimatedAnnualCo2Tons": 32318
   },
   {
     "id": "dc-12184236423",
@@ -288059,8 +288059,8 @@
     "peeringDbId": 1423,
     "connectedNetworksCount": 19,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 64.7,
-    "estimatedAnnualCo2Tons": 137468
+    "localCleanEnergyPercent": 61.6,
+    "estimatedAnnualCo2Tons": 147115
   },
   {
     "id": "dc-12512264088",
@@ -288082,8 +288082,8 @@
     "peeringDbId": 6088,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 30022
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 43157
   },
   {
     "id": "dc-12506545229",
@@ -288105,8 +288105,8 @@
     "peeringDbId": 2229,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 7064
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 10155
   },
   {
     "id": "dc-12500429896",
@@ -288128,8 +288128,8 @@
     "peeringDbId": 6896,
     "connectedNetworksCount": 58,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 110332
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 129377
   },
   {
     "id": "dc-12535469426",
@@ -288151,8 +288151,8 @@
     "peeringDbId": 9426,
     "connectedNetworksCount": 71,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 136690
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 186999
   },
   {
     "id": "dc-12512132704",
@@ -288174,8 +288174,8 @@
     "peeringDbId": 9704,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 31877
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 43609
   },
   {
     "id": "dc-759872066",
@@ -289146,8 +289146,8 @@
     "peeringDbId": 7291,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46.6,
-    "estimatedAnnualCo2Tons": 19524
+    "localCleanEnergyPercent": 33.8,
+    "estimatedAnnualCo2Tons": 24332
   },
   {
     "id": "dc-8920088329",
@@ -289563,8 +289563,8 @@
     "peeringDbId": 2231,
     "connectedNetworksCount": 80,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 28256
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 38656
   },
   {
     "id": "dc-12504065381",
@@ -289586,8 +289586,8 @@
     "peeringDbId": 6381,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 40280
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 47233
   },
   {
     "id": "dc-12500332318",
@@ -289609,8 +289609,8 @@
     "peeringDbId": 8318,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 20397
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 23918
   },
   {
     "id": "dc-12512132708",
@@ -289632,8 +289632,8 @@
     "peeringDbId": 9708,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64.7,
-    "estimatedAnnualCo2Tons": 47815
+    "localCleanEnergyPercent": 68.2,
+    "estimatedAnnualCo2Tons": 44739
   },
   {
     "id": "dc-12512425601",
@@ -289655,8 +289655,8 @@
     "peeringDbId": 5601,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 21192
+    "localCleanEnergyPercent": 60.6,
+    "estimatedAnnualCo2Tons": 21487
   },
   {
     "id": "dc-326480223",
@@ -289699,8 +289699,8 @@
     "peeringDbId": 6223,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 35320
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 43905
   },
   {
     "id": "dc-1352345057",
@@ -289775,8 +289775,8 @@
     "peeringDbId": 6057,
     "connectedNetworksCount": 18,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 74.4,
-    "estimatedAnnualCo2Tons": 103827
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 154875
   },
   {
     "id": "dc-12505756902",
@@ -289798,8 +289798,8 @@
     "peeringDbId": 5902,
     "connectedNetworksCount": 31,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 74.4,
-    "estimatedAnnualCo2Tons": 41060
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 61248
   },
   {
     "id": "dc-147616071",
@@ -289874,8 +289874,8 @@
     "peeringDbId": 8071,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 27403
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 29197
   },
   {
     "id": "dc-13426436638",
@@ -289897,8 +289897,8 @@
     "peeringDbId": 3638,
     "connectedNetworksCount": 57,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 158647
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 169035
   },
   {
     "id": "dc-1124852913",
@@ -289961,8 +289961,8 @@
     "peeringDbId": 6913,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 24724
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 26343
   },
   {
     "id": "dc-721312811",
@@ -290029,8 +290029,8 @@
     "peeringDbId": 8811,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 49036
+    "localCleanEnergyPercent": 43.5,
+    "estimatedAnnualCo2Tons": 60128
   },
   {
     "id": "dc-721312813",
@@ -290089,8 +290089,8 @@
     "peeringDbId": 8813,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 29669
+    "localCleanEnergyPercent": 43.5,
+    "estimatedAnnualCo2Tons": 36380
   },
   {
     "id": "dc-12179754315",
@@ -290112,8 +290112,8 @@
     "peeringDbId": 1315,
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 74.4,
-    "estimatedAnnualCo2Tons": 26564
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 39624
   },
   {
     "id": "dc-12518369831",
@@ -290135,8 +290135,8 @@
     "peeringDbId": 9831,
     "connectedNetworksCount": 52,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 74.4,
-    "estimatedAnnualCo2Tons": 61811
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 92201
   },
   {
     "id": "dc-1188039061",
@@ -291115,8 +291115,8 @@
     "peeringDbId": 6900,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 55.7,
-    "estimatedAnnualCo2Tons": 66888
+    "localCleanEnergyPercent": 51.1,
+    "estimatedAnnualCo2Tons": 76822
   },
   {
     "id": "dc-12525275584",
@@ -291138,8 +291138,8 @@
     "peeringDbId": 3584,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 54.8,
-    "estimatedAnnualCo2Tons": 31200
+    "localCleanEnergyPercent": 31.9,
+    "estimatedAnnualCo2Tons": 46652
   },
   {
     "id": "dc-617551098",
@@ -291206,8 +291206,8 @@
     "peeringDbId": 8098,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 49,
-    "estimatedAnnualCo2Tons": 68593
+    "localCleanEnergyPercent": 33,
+    "estimatedAnnualCo2Tons": 74430
   },
   {
     "id": "dc-468985576",
@@ -292384,8 +292384,8 @@
     "peeringDbId": 8540,
     "connectedNetworksCount": 64,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 61.2,
-    "estimatedAnnualCo2Tons": 165674
+    "localCleanEnergyPercent": 31.4,
+    "estimatedAnnualCo2Tons": 240228
   },
   {
     "id": "dc-13313262456",
@@ -292407,8 +292407,8 @@
     "peeringDbId": 4456,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 60.8,
-    "estimatedAnnualCo2Tons": 59934
+    "localCleanEnergyPercent": 33.2,
+    "estimatedAnnualCo2Tons": 84438
   },
   {
     "id": "dc-11449625487",
@@ -292430,8 +292430,8 @@
     "peeringDbId": 6487,
     "connectedNetworksCount": 20,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 64.4,
-    "estimatedAnnualCo2Tons": 79471
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 141772
   },
   {
     "id": "dc-1063702126",
@@ -292482,8 +292482,8 @@
     "peeringDbId": 2126,
     "connectedNetworksCount": 33,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 115669
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 219924
   },
   {
     "id": "dc-457994055",
@@ -292526,8 +292526,8 @@
     "peeringDbId": 3055,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 26843
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 51038
   },
   {
     "id": "dc-457994056",
@@ -292570,8 +292570,8 @@
     "peeringDbId": 3056,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 51357
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 97645
   },
   {
     "id": "dc-647564684",
@@ -292618,8 +292618,8 @@
     "peeringDbId": 6684,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 31690
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 60253
   },
   {
     "id": "dc-1188015096",
@@ -292686,8 +292686,8 @@
     "peeringDbId": 7096,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 7457
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 14177
   },
   {
     "id": "dc-1188015515",
@@ -292730,8 +292730,8 @@
     "peeringDbId": 7515,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 28521
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 54228
   },
   {
     "id": "dc-210707557",
@@ -292798,8 +292798,8 @@
     "peeringDbId": 9557,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 10066
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 19139
   },
   {
     "id": "dc-1070483840",
@@ -292842,8 +292842,8 @@
     "peeringDbId": 6840,
     "connectedNetworksCount": 54,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 57.1,
-    "estimatedAnnualCo2Tons": 189861
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 282835
   },
   {
     "id": "dc-1088995070",
@@ -292886,8 +292886,8 @@
     "peeringDbId": 5070,
     "connectedNetworksCount": 67,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 61.3,
-    "estimatedAnnualCo2Tons": 69463
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 113417
   },
   {
     "id": "dc-1361845727",
@@ -292946,8 +292946,8 @@
     "peeringDbId": 2727,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 61.3,
-    "estimatedAnnualCo2Tons": 34732
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 56709
   },
   {
     "id": "dc-1054690520",
@@ -292990,8 +292990,8 @@
     "peeringDbId": 8520,
     "connectedNetworksCount": 23,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 69.3,
-    "estimatedAnnualCo2Tons": 210594
+    "localCleanEnergyPercent": 70.5,
+    "estimatedAnnualCo2Tons": 203276
   },
   {
     "id": "dc-1318997239",
@@ -293034,8 +293034,8 @@
     "peeringDbId": 3239,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 34768
+    "localCleanEnergyPercent": 64.5,
+    "estimatedAnnualCo2Tons": 57947
   },
   {
     "id": "dc-627183337",
@@ -293086,8 +293086,8 @@
     "peeringDbId": 1337,
     "connectedNetworksCount": 49,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 85633
+    "localCleanEnergyPercent": 71.9,
+    "estimatedAnnualCo2Tons": 90771
   },
   {
     "id": "dc-12522915154",
@@ -293109,8 +293109,8 @@
     "peeringDbId": 1154,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 40471
+    "localCleanEnergyPercent": 71.9,
+    "estimatedAnnualCo2Tons": 42899
   },
   {
     "id": "dc-1021126656",
@@ -293177,8 +293177,8 @@
     "peeringDbId": 5656,
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 29434
+    "localCleanEnergyPercent": 71.9,
+    "estimatedAnnualCo2Tons": 31200
   },
   {
     "id": "dc-122666857",
@@ -293229,8 +293229,8 @@
     "peeringDbId": 6857,
     "connectedNetworksCount": 18,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 67237
+    "localCleanEnergyPercent": 71.9,
+    "estimatedAnnualCo2Tons": 71272
   },
   {
     "id": "dc-764378315",
@@ -293289,8 +293289,8 @@
     "peeringDbId": 9315,
     "connectedNetworksCount": 31,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 109272
+    "localCleanEnergyPercent": 71.9,
+    "estimatedAnnualCo2Tons": 115829
   },
   {
     "id": "dc-1026050674",
@@ -293333,8 +293333,8 @@
     "peeringDbId": 6674,
     "connectedNetworksCount": 44,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 68.2,
-    "estimatedAnnualCo2Tons": 155538
+    "localCleanEnergyPercent": 71.9,
+    "estimatedAnnualCo2Tons": 164870
   },
   {
     "id": "dc-751903104",
@@ -293425,8 +293425,8 @@
     "peeringDbId": 8104,
     "connectedNetworksCount": 57,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 69.4,
-    "estimatedAnnualCo2Tons": 67611
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 59444
   },
   {
     "id": "dc-1361845728",
@@ -293469,8 +293469,8 @@
     "peeringDbId": 2728,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 61.3,
-    "estimatedAnnualCo2Tons": 43415
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 70886
   },
   {
     "id": "dc--18736971",
@@ -293521,8 +293521,8 @@
     "peeringDbId": 8971,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 61.3,
-    "estimatedAnnualCo2Tons": 23987
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 39164
   },
   {
     "id": "dc-175354642",
@@ -293565,8 +293565,8 @@
     "peeringDbId": 8642,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 43621
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 82937
   },
   {
     "id": "dc-1052052568",
@@ -293609,8 +293609,8 @@
     "peeringDbId": 7568,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 24793
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 47139
   },
   {
     "id": "dc-149133536",
@@ -293653,8 +293653,8 @@
     "peeringDbId": 4536,
     "connectedNetworksCount": 52,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 119930
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 273855
   },
   {
     "id": "dc-12500429894",
@@ -293676,8 +293676,8 @@
     "peeringDbId": 6894,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 22370
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 42679
   },
   {
     "id": "dc-13469638202",
@@ -293699,8 +293699,8 @@
     "peeringDbId": 5202,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 44366
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 84646
   },
   {
     "id": "dc-12182279465",
@@ -293722,8 +293722,8 @@
     "peeringDbId": 6465,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 22428
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 51214
   },
   {
     "id": "dc-12192863704",
@@ -293745,8 +293745,8 @@
     "peeringDbId": 6704,
     "connectedNetworksCount": 34,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 28113
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 64196
   },
   {
     "id": "dc-9502451401",
@@ -293768,8 +293768,8 @@
     "peeringDbId": 9401,
     "connectedNetworksCount": 47,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 65416
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 149376
   },
   {
     "id": "dc-12500429892",
@@ -293791,8 +293791,8 @@
     "peeringDbId": 6892,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 6230
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 14226
   },
   {
     "id": "dc-746750722",
@@ -293835,8 +293835,8 @@
     "peeringDbId": 3722,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 23830
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 54415
   },
   {
     "id": "dc-359486766",
@@ -293879,8 +293879,8 @@
     "peeringDbId": 9766,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 8411
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 19205
   },
   {
     "id": "dc-12512287384",
@@ -293902,8 +293902,8 @@
     "peeringDbId": 2384,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 28113
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 64196
   },
   {
     "id": "dc-647243187",
@@ -293954,8 +293954,8 @@
     "peeringDbId": 9187,
     "connectedNetworksCount": 42,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 127717
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 291638
   },
   {
     "id": "dc-557360778",
@@ -294034,8 +294034,8 @@
     "peeringDbId": 9778,
     "connectedNetworksCount": 55,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 37381
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 85357
   },
   {
     "id": "dc-593967303",
@@ -294118,8 +294118,8 @@
     "peeringDbId": 4303,
     "connectedNetworksCount": 68,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 70167
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 160223
   },
   {
     "id": "dc-644702393",
@@ -294242,8 +294242,8 @@
     "peeringDbId": 6393,
     "connectedNetworksCount": 81,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 106535
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 243269
   },
   {
     "id": "dc-12500429895",
@@ -294265,8 +294265,8 @@
     "peeringDbId": 6895,
     "connectedNetworksCount": 24,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 35512
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 81090
   },
   {
     "id": "dc-12500431002",
@@ -294288,8 +294288,8 @@
     "peeringDbId": 8002,
     "connectedNetworksCount": 37,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 73204
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 167158
   },
   {
     "id": "dc-12192863708",
@@ -294311,8 +294311,8 @@
     "peeringDbId": 6708,
     "connectedNetworksCount": 50,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 87222
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 199167
   },
   {
     "id": "dc-137626386",
@@ -294367,8 +294367,8 @@
     "peeringDbId": 8386,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 30450
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 69531
   },
   {
     "id": "dc-12500429890",
@@ -294390,8 +294390,8 @@
     "peeringDbId": 6890,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 15420
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 35210
   },
   {
     "id": "dc-12500429891",
@@ -294413,8 +294413,8 @@
     "peeringDbId": 6891,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 35512
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 81090
   },
   {
     "id": "dc-229034518",
@@ -294473,8 +294473,8 @@
     "peeringDbId": 3518,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 73.2,
-    "estimatedAnnualCo2Tons": 18690
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 42679
   },
   {
     "id": "dc-1508043704",
@@ -294549,8 +294549,8 @@
     "peeringDbId": 4704,
     "connectedNetworksCount": 45,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 68.4,
-    "estimatedAnnualCo2Tons": 50479
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 99584
   },
   {
     "id": "dc-527166726",
@@ -294689,8 +294689,8 @@
     "peeringDbId": 1726,
     "connectedNetworksCount": 58,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 63.8,
-    "estimatedAnnualCo2Tons": 100971
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 175338
   },
   {
     "id": "dc-12192288504",
@@ -294712,8 +294712,8 @@
     "peeringDbId": 7504,
     "connectedNetworksCount": 71,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 63.8,
-    "estimatedAnnualCo2Tons": 149306
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 259273
   },
   {
     "id": "dc-1319184189",
@@ -294756,8 +294756,8 @@
     "peeringDbId": 1189,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 25445
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 47302
   },
   {
     "id": "dc-12504065377",
@@ -294779,8 +294779,8 @@
     "peeringDbId": 6377,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 64570
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 43378
   },
   {
     "id": "dc-12564883385",
@@ -294802,8 +294802,8 @@
     "peeringDbId": 2385,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 28698
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 19279
   },
   {
     "id": "dc-12504065376",
@@ -294825,8 +294825,8 @@
     "peeringDbId": 6376,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 56917
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 38237
   },
   {
     "id": "dc-12851624968",
@@ -294848,8 +294848,8 @@
     "peeringDbId": 3968,
     "connectedNetworksCount": 66,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 69.4,
-    "estimatedAnnualCo2Tons": 75652
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 66513
   },
   {
     "id": "dc-567684460",
@@ -295048,8 +295048,8 @@
     "peeringDbId": 1460,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 72.3,
-    "estimatedAnnualCo2Tons": 45275
+    "localCleanEnergyPercent": 22.9,
+    "estimatedAnnualCo2Tons": 112512
   },
   {
     "id": "dc-1499403710",
@@ -295621,8 +295621,8 @@
     "peeringDbId": 7768,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.3,
-    "estimatedAnnualCo2Tons": 66165
+    "localCleanEnergyPercent": 15.9,
+    "estimatedAnnualCo2Tons": 71513
   },
   {
     "id": "dc-1197569182",
@@ -295665,8 +295665,8 @@
     "peeringDbId": 3182,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 23.8,
-    "estimatedAnnualCo2Tons": 160536
+    "localCleanEnergyPercent": 16,
+    "estimatedAnnualCo2Tons": 176994
   },
   {
     "id": "dc-1201847647",
@@ -295757,8 +295757,8 @@
     "peeringDbId": 6647,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 23.8,
-    "estimatedAnnualCo2Tons": 58377
+    "localCleanEnergyPercent": 16,
+    "estimatedAnnualCo2Tons": 64361
   },
   {
     "id": "dc-1009615405",
@@ -296106,8 +296106,8 @@
     "peeringDbId": 9283,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 45,
-    "estimatedAnnualCo2Tons": 138743
+    "localCleanEnergyPercent": 20.7,
+    "estimatedAnnualCo2Tons": 201326
   },
   {
     "id": "dc-11073240773",
@@ -296189,8 +296189,8 @@
     "peeringDbId": 1205,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 29,
-    "estimatedAnnualCo2Tons": 147693
+    "localCleanEnergyPercent": 17.4,
+    "estimatedAnnualCo2Tons": 173962
   },
   {
     "id": "dc-1489759025",
@@ -296353,8 +296353,8 @@
     "peeringDbId": 9749,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 32524
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 60462
   },
   {
     "id": "dc-1319184193",
@@ -296421,8 +296421,8 @@
     "peeringDbId": 1193,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 7653
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 14226
   },
   {
     "id": "dc-1319184206",
@@ -296465,8 +296465,8 @@
     "peeringDbId": 1206,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 29272
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 54415
   },
   {
     "id": "dc-1276375030",
@@ -296509,8 +296509,8 @@
     "peeringDbId": 5030,
     "connectedNetworksCount": 36,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 105034
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 195255
   },
   {
     "id": "dc-1319184187",
@@ -296617,8 +296617,8 @@
     "peeringDbId": 1187,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 34533
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 64196
   },
   {
     "id": "dc-352629530",
@@ -296677,8 +296677,8 @@
     "peeringDbId": 1530,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 13392
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 24896
   },
   {
     "id": "dc-352629531",
@@ -296721,8 +296721,8 @@
     "peeringDbId": 1531,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 30611
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 56905
   },
   {
     "id": "dc-1352478531",
@@ -296765,8 +296765,8 @@
     "peeringDbId": 4531,
     "connectedNetworksCount": 72,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 401673
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 746700
   },
   {
     "id": "dc-12517886327",
@@ -296788,8 +296788,8 @@
     "peeringDbId": 3327,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 81,
-    "estimatedAnnualCo2Tons": 21325
+    "localCleanEnergyPercent": 87.9,
+    "estimatedAnnualCo2Tons": 12748
   },
   {
     "id": "dc-12531210896",
@@ -296811,8 +296811,8 @@
     "peeringDbId": 7896,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 81,
-    "estimatedAnnualCo2Tons": 9647
+    "localCleanEnergyPercent": 87.9,
+    "estimatedAnnualCo2Tons": 5767
   },
   {
     "id": "dc-12531210892",
@@ -296834,8 +296834,8 @@
     "peeringDbId": 7892,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 81,
-    "estimatedAnnualCo2Tons": 24822
+    "localCleanEnergyPercent": 87.9,
+    "estimatedAnnualCo2Tons": 14839
   },
   {
     "id": "dc-971289359",
@@ -296878,8 +296878,8 @@
     "peeringDbId": 1359,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 26.7,
-    "estimatedAnnualCo2Tons": 56316
+    "localCleanEnergyPercent": 18.4,
+    "estimatedAnnualCo2Tons": 64361
   },
   {
     "id": "dc-10171383675",
@@ -296901,8 +296901,8 @@
     "peeringDbId": 7675,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 25.5,
-    "estimatedAnnualCo2Tons": 138822
+    "localCleanEnergyPercent": 18.4,
+    "estimatedAnnualCo2Tons": 157283
   },
   {
     "id": "dc-207890264",
@@ -296993,8 +296993,8 @@
     "peeringDbId": 9264,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 26.7,
-    "estimatedAnnualCo2Tons": 69691
+    "localCleanEnergyPercent": 18.4,
+    "estimatedAnnualCo2Tons": 79647
   },
   {
     "id": "dc-9536287665",
@@ -297016,8 +297016,8 @@
     "peeringDbId": 5665,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 17.9,
-    "estimatedAnnualCo2Tons": 172525
+    "localCleanEnergyPercent": 10.4,
+    "estimatedAnnualCo2Tons": 194615
   },
   {
     "id": "dc-1254818450",
@@ -297060,8 +297060,8 @@
     "peeringDbId": 3450,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 23.8,
-    "estimatedAnnualCo2Tons": 87565
+    "localCleanEnergyPercent": 5.7,
+    "estimatedAnnualCo2Tons": 107874
   },
   {
     "id": "dc-1254828630",
@@ -297104,8 +297104,8 @@
     "peeringDbId": 4630,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 24,
-    "estimatedAnnualCo2Tons": 139810
+    "localCleanEnergyPercent": 5.7,
+    "estimatedAnnualCo2Tons": 179790
   },
   {
     "id": "dc-1253903177",
@@ -297148,8 +297148,8 @@
     "peeringDbId": 6177,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 24,
-    "estimatedAnnualCo2Tons": 77245
+    "localCleanEnergyPercent": 5.7,
+    "estimatedAnnualCo2Tons": 99334
   },
   {
     "id": "dc-1253893668",
@@ -297200,8 +297200,8 @@
     "peeringDbId": 5668,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 24,
-    "estimatedAnnualCo2Tons": 163577
+    "localCleanEnergyPercent": 5.7,
+    "estimatedAnnualCo2Tons": 210355
   },
   {
     "id": "dc-957884276",
@@ -297244,8 +297244,8 @@
     "peeringDbId": 6276,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 17.9,
-    "estimatedAnnualCo2Tons": 100640
+    "localCleanEnergyPercent": 5.7,
+    "estimatedAnnualCo2Tons": 119561
   },
   {
     "id": "dc-1345688742",
@@ -297340,8 +297340,8 @@
     "peeringDbId": 7626,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 97.3,
-    "estimatedAnnualCo2Tons": 3826
+    "localCleanEnergyPercent": 77.1,
+    "estimatedAnnualCo2Tons": 28109
   },
   {
     "id": "dc-1222222038",
@@ -297412,8 +297412,8 @@
     "peeringDbId": 5038,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 13135
+    "localCleanEnergyPercent": 4.8,
+    "estimatedAnnualCo2Tons": 198772
   },
   {
     "id": "dc-770421867",
@@ -297504,8 +297504,8 @@
     "peeringDbId": 4867,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 97.5,
-    "estimatedAnnualCo2Tons": 4062
+    "localCleanEnergyPercent": 86.6,
+    "estimatedAnnualCo2Tons": 20839
   },
   {
     "id": "dc-1461701602",
@@ -297620,8 +297620,8 @@
     "peeringDbId": 3602,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 97.8,
-    "estimatedAnnualCo2Tons": 7433
+    "localCleanEnergyPercent": 77.9,
+    "estimatedAnnualCo2Tons": 51019
   },
   {
     "id": "dc-1413213983",
@@ -297664,8 +297664,8 @@
     "peeringDbId": 7983,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 9382
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 144482
   },
   {
     "id": "dc-1374553894",
@@ -297716,8 +297716,8 @@
     "peeringDbId": 2894,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 2208
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 33996
   },
   {
     "id": "dc-453640737",
@@ -297760,8 +297760,8 @@
     "peeringDbId": 5737,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 8444
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 130034
   },
   {
     "id": "dc-1236581232",
@@ -297808,8 +297808,8 @@
     "peeringDbId": 9232,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 3113
+    "localCleanEnergyPercent": 7.9,
+    "estimatedAnnualCo2Tons": 42451
   },
   {
     "id": "dc-1236581233",
@@ -297852,8 +297852,8 @@
     "peeringDbId": 9233,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 10404
+    "localCleanEnergyPercent": 7.9,
+    "estimatedAnnualCo2Tons": 141895
   },
   {
     "id": "dc-11497013685",
@@ -297875,8 +297875,8 @@
     "peeringDbId": 9685,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 4035
+    "localCleanEnergyPercent": 7.9,
+    "estimatedAnnualCo2Tons": 55029
   },
   {
     "id": "dc-11497013684",
@@ -297898,8 +297898,8 @@
     "peeringDbId": 9684,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 9223
+    "localCleanEnergyPercent": 7.9,
+    "estimatedAnnualCo2Tons": 125780
   },
   {
     "id": "dc-12514316390",
@@ -297921,8 +297921,8 @@
     "peeringDbId": 6390,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 84.3,
-    "estimatedAnnualCo2Tons": 6755
+    "localCleanEnergyPercent": 61.2,
+    "estimatedAnnualCo2Tons": 18430
   },
   {
     "id": "dc-868233076",
@@ -297981,8 +297981,8 @@
     "peeringDbId": 4076,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 87.5,
-    "estimatedAnnualCo2Tons": 15762
+    "localCleanEnergyPercent": 28.3,
+    "estimatedAnnualCo2Tons": 99438
   },
   {
     "id": "dc-868337684",
@@ -298025,8 +298025,8 @@
     "peeringDbId": 9684,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 87.5,
-    "estimatedAnnualCo2Tons": 7130
+    "localCleanEnergyPercent": 28.3,
+    "estimatedAnnualCo2Tons": 44984
   },
   {
     "id": "dc-8148369824",
@@ -298048,8 +298048,8 @@
     "peeringDbId": 4824,
     "connectedNetworksCount": 32,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 87.5,
-    "estimatedAnnualCo2Tons": 39196
+    "localCleanEnergyPercent": 28.3,
+    "estimatedAnnualCo2Tons": 247279
   },
   {
     "id": "dc-12519522768",
@@ -298071,8 +298071,8 @@
     "peeringDbId": 1768,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 62.3,
-    "estimatedAnnualCo2Tons": 18249
+    "localCleanEnergyPercent": 35.9,
+    "estimatedAnnualCo2Tons": 37675
   },
   {
     "id": "dc-475111255",
@@ -298211,8 +298211,8 @@
     "peeringDbId": 2255,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 89.3,
-    "estimatedAnnualCo2Tons": 12468
+    "localCleanEnergyPercent": 22.9,
+    "estimatedAnnualCo2Tons": 122518
   },
   {
     "id": "dc-475112270",
@@ -298287,8 +298287,8 @@
     "peeringDbId": 3270,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 89.3,
-    "estimatedAnnualCo2Tons": 6314
+    "localCleanEnergyPercent": 22.9,
+    "estimatedAnnualCo2Tons": 62042
   },
   {
     "id": "dc-1239264180",
@@ -298331,8 +298331,8 @@
     "peeringDbId": 1180,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 54526
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 36630
   },
   {
     "id": "dc-1239264181",
@@ -298375,8 +298375,8 @@
     "peeringDbId": 1181,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 28698
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 19279
   },
   {
     "id": "dc-1239264179",
@@ -298419,8 +298419,8 @@
     "peeringDbId": 1179,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 47830
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 32132
   },
   {
     "id": "dc-1272790323",
@@ -298463,8 +298463,8 @@
     "peeringDbId": 2323,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 26426
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 17753
   },
   {
     "id": "dc-1239264183",
@@ -298507,8 +298507,8 @@
     "peeringDbId": 1183,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 55961
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 37594
   },
   {
     "id": "dc-1272790322",
@@ -298551,8 +298551,8 @@
     "peeringDbId": 2322,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 31807
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 21368
   },
   {
     "id": "dc-1239264177",
@@ -298595,8 +298595,8 @@
     "peeringDbId": 1177,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 64570
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 43378
   },
   {
     "id": "dc-1239264178",
@@ -298639,8 +298639,8 @@
     "peeringDbId": 1178,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 28698
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 19279
   },
   {
     "id": "dc-1125544933",
@@ -298683,8 +298683,8 @@
     "peeringDbId": 5933,
     "connectedNetworksCount": 48,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 69.3,
-    "estimatedAnnualCo2Tons": 34526
+    "localCleanEnergyPercent": 44.6,
+    "estimatedAnnualCo2Tons": 75765
   },
   {
     "id": "dc-12522915153",
@@ -298706,8 +298706,8 @@
     "peeringDbId": 1153,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 67.6,
-    "estimatedAnnualCo2Tons": 26314
+    "localCleanEnergyPercent": 39,
+    "estimatedAnnualCo2Tons": 48389
   },
   {
     "id": "dc-12514280890",
@@ -298729,8 +298729,8 @@
     "peeringDbId": 6890,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 54.7,
-    "estimatedAnnualCo2Tons": 67913
+    "localCleanEnergyPercent": 39,
+    "estimatedAnnualCo2Tons": 92577
   },
   {
     "id": "dc-1037295836",
@@ -298789,8 +298789,8 @@
     "peeringDbId": 1836,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 58.2,
-    "estimatedAnnualCo2Tons": 39196
+    "localCleanEnergyPercent": 34.8,
+    "estimatedAnnualCo2Tons": 59002
   },
   {
     "id": "dc-1365862177",
@@ -298833,8 +298833,8 @@
     "peeringDbId": 5177,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 58.2,
-    "estimatedAnnualCo2Tons": 9223
+    "localCleanEnergyPercent": 34.8,
+    "estimatedAnnualCo2Tons": 13883
   },
   {
     "id": "dc-12194379696",
@@ -298856,8 +298856,8 @@
     "peeringDbId": 1696,
     "connectedNetworksCount": 43,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.7,
-    "estimatedAnnualCo2Tons": 104421
+    "localCleanEnergyPercent": 48,
+    "estimatedAnnualCo2Tons": 156303
   },
   {
     "id": "dc-12744226747",
@@ -298879,8 +298879,8 @@
     "peeringDbId": 2747,
     "connectedNetworksCount": 56,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.7,
-    "estimatedAnnualCo2Tons": 150928
+    "localCleanEnergyPercent": 48,
+    "estimatedAnnualCo2Tons": 225918
   },
   {
     "id": "dc-12519522771",
@@ -298902,8 +298902,8 @@
     "peeringDbId": 1771,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 62.3,
-    "estimatedAnnualCo2Tons": 41174
+    "localCleanEnergyPercent": 35.9,
+    "estimatedAnnualCo2Tons": 85004
   },
   {
     "id": "dc-12519522767",
@@ -298925,8 +298925,8 @@
     "peeringDbId": 1767,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 62.3,
-    "estimatedAnnualCo2Tons": 15968
+    "localCleanEnergyPercent": 35.9,
+    "estimatedAnnualCo2Tons": 32966
   },
   {
     "id": "dc-669039505",
@@ -299017,8 +299017,8 @@
     "peeringDbId": 7505,
     "connectedNetworksCount": 25,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.7,
-    "estimatedAnnualCo2Tons": 124798
+    "localCleanEnergyPercent": 48,
+    "estimatedAnnualCo2Tons": 186805
   },
   {
     "id": "dc-12511899059",
@@ -299040,8 +299040,8 @@
     "peeringDbId": 1059,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 52.3,
-    "estimatedAnnualCo2Tons": 17847
+    "localCleanEnergyPercent": 56.2,
+    "estimatedAnnualCo2Tons": 16846
   },
   {
     "id": "dc-12511899058",
@@ -299063,8 +299063,8 @@
     "peeringDbId": 1058,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.1,
-    "estimatedAnnualCo2Tons": 38013
+    "localCleanEnergyPercent": 56.2,
+    "estimatedAnnualCo2Tons": 46821
   },
   {
     "id": "dc-540895898",
@@ -299171,8 +299171,8 @@
     "peeringDbId": 5064,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 50,
-    "estimatedAnnualCo2Tons": 56660
+    "localCleanEnergyPercent": 7.9,
+    "estimatedAnnualCo2Tons": 172947
   },
   {
     "id": "dc-442479059",
@@ -299215,8 +299215,8 @@
     "peeringDbId": 4059,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 62.3,
-    "estimatedAnnualCo2Tons": 18249
+    "localCleanEnergyPercent": 35.9,
+    "estimatedAnnualCo2Tons": 37675
   },
   {
     "id": "dc-aws-pop-edge-300000",
@@ -301591,8 +301591,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 47966
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 32223
   },
   {
     "id": "dc-aws-pop-edge-300099",
@@ -301615,8 +301615,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 65954
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 44307
   },
   {
     "id": "dc-aws-pop-edge-300100",
@@ -301639,8 +301639,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 46,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 33976
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 22825
   },
   {
     "id": "dc-aws-pop-edge-300101",
@@ -301663,8 +301663,8 @@
     "city": "Nagoya",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 55.7,
-    "estimatedAnnualCo2Tons": 49688
+    "localCleanEnergyPercent": 51.1,
+    "estimatedAnnualCo2Tons": 57068
   },
   {
     "id": "dc-aws-pop-edge-300102",
@@ -301687,8 +301687,8 @@
     "city": "Nagoya",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 55.7,
-    "estimatedAnnualCo2Tons": 68321
+    "localCleanEnergyPercent": 51.1,
+    "estimatedAnnualCo2Tons": 78468
   },
   {
     "id": "dc-aws-pop-edge-300103",
@@ -301711,8 +301711,8 @@
     "city": "Nagoya",
     "connectedNetworksCount": 46,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 55.7,
-    "estimatedAnnualCo2Tons": 35196
+    "localCleanEnergyPercent": 51.1,
+    "estimatedAnnualCo2Tons": 40423
   },
   {
     "id": "dc-aws-pop-edge-300104",
@@ -301831,8 +301831,8 @@
     "city": "Sapporo",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 62.3,
-    "estimatedAnnualCo2Tons": 45752
+    "localCleanEnergyPercent": 35.9,
+    "estimatedAnnualCo2Tons": 94457
   },
   {
     "id": "dc-aws-pop-edge-300109",
@@ -301855,8 +301855,8 @@
     "city": "Sapporo",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 62.3,
-    "estimatedAnnualCo2Tons": 62910
+    "localCleanEnergyPercent": 35.9,
+    "estimatedAnnualCo2Tons": 129878
   },
   {
     "id": "dc-aws-pop-edge-300110",
@@ -301879,8 +301879,8 @@
     "city": "Sendai",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.3,
-    "estimatedAnnualCo2Tons": 19924
+    "localCleanEnergyPercent": 61.2,
+    "estimatedAnnualCo2Tons": 54362
   },
   {
     "id": "dc-aws-pop-edge-300111",
@@ -301903,8 +301903,8 @@
     "city": "Sendai",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.3,
-    "estimatedAnnualCo2Tons": 27396
+    "localCleanEnergyPercent": 61.2,
+    "estimatedAnnualCo2Tons": 74747
   },
   {
     "id": "dc-microsoft-azure-500000",
@@ -303919,8 +303919,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 262576
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 500967
   },
   {
     "id": "dc-microsoft-azure-500084",
@@ -303943,8 +303943,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 262576
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 500967
   },
   {
     "id": "dc-microsoft-azure-500085",
@@ -303967,8 +303967,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 262576
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 500967
   },
   {
     "id": "dc-microsoft-azure-500086",
@@ -303991,8 +303991,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 206624
+    "localCleanEnergyPercent": 60.6,
+    "estimatedAnnualCo2Tons": 209494
   },
   {
     "id": "dc-microsoft-azure-500087",
@@ -304015,8 +304015,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 206624
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 297022
   },
   {
     "id": "dc-microsoft-azure-500088",
@@ -304039,8 +304039,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 241061
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 256845
   },
   {
     "id": "dc-microsoft-azure-500089",
@@ -304063,8 +304063,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 72874
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 1074510
   },
   {
     "id": "dc-microsoft-azure-500090",
@@ -304087,8 +304087,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 69773
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 1074510
   },
   {
     "id": "dc-microsoft-azure-500091",
@@ -304111,8 +304111,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 72874
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 1074510
   },
   {
     "id": "dc-microsoft-azure-500092",
@@ -306919,8 +306919,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 264839
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 492330
   },
   {
     "id": "dc-google-cloud--gcp--500209",
@@ -306943,8 +306943,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 264839
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 492330
   },
   {
     "id": "dc-google-cloud--gcp--500210",
@@ -306967,8 +306967,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 264839
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 492330
   },
   {
     "id": "dc-google-cloud--gcp--500211",
@@ -306991,8 +306991,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 188585
+    "localCleanEnergyPercent": 60.6,
+    "estimatedAnnualCo2Tons": 191205
   },
   {
     "id": "dc-google-cloud--gcp--500212",
@@ -307015,8 +307015,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 188585
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 271091
   },
   {
     "id": "dc-google-cloud--gcp--500213",
@@ -307039,8 +307039,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 220016
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 257995
   },
   {
     "id": "dc-google-cloud--gcp--500214",
@@ -307063,8 +307063,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 66863
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 985878
   },
   {
     "id": "dc-google-cloud--gcp--500215",
@@ -307087,8 +307087,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 64018
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 985878
   },
   {
     "id": "dc-google-cloud--gcp--500216",
@@ -307111,8 +307111,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 64018
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 985878
   },
   {
     "id": "dc-google-cloud--gcp--500217",
@@ -308816,7 +308816,7 @@
     "connectedNetworksCount": 140,
     "ixpCount": 6,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 14041
+    "estimatedAnnualCo2Tons": 12035
   },
   {
     "id": "dc-meta-hyperscale-500288",
@@ -312295,8 +312295,8 @@
     "city": "Milan",
     "connectedNetworksCount": 195,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 97.5,
-    "estimatedAnnualCo2Tons": 14386
+    "localCleanEnergyPercent": 97.1,
+    "estimatedAnnualCo2Tons": 15824
   },
   {
     "id": "dc-equinix-ibx-500433",
@@ -312319,8 +312319,8 @@
     "city": "Milan",
     "connectedNetworksCount": 200,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 97.1,
-    "estimatedAnnualCo2Tons": 18232
+    "localCleanEnergyPercent": 97.5,
+    "estimatedAnnualCo2Tons": 16022
   },
   {
     "id": "dc-equinix-ibx-500434",
@@ -312607,8 +312607,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 185,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 50704
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 96738
   },
   {
     "id": "dc-equinix-ibx-500446",
@@ -312631,8 +312631,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 190,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 61796
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 117900
   },
   {
     "id": "dc-equinix-ibx-500447",
@@ -312655,8 +312655,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 195,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 72887
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 139061
   },
   {
     "id": "dc-equinix-ibx-500448",
@@ -312679,8 +312679,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 200,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 83979
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 160223
   },
   {
     "id": "dc-equinix-ibx-500449",
@@ -312703,8 +312703,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 205,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39613
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 75577
   },
   {
     "id": "dc-equinix-ibx-500450",
@@ -312727,8 +312727,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 210,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 50704
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 96738
   },
   {
     "id": "dc-equinix-ibx-500451",
@@ -312751,8 +312751,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 215,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 61796
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 117900
   },
   {
     "id": "dc-equinix-ibx-500452",
@@ -312775,8 +312775,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 220,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 72887
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 139061
   },
   {
     "id": "dc-equinix-ibx-500453",
@@ -312799,8 +312799,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 225,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 83979
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 160223
   },
   {
     "id": "dc-equinix-ibx-500454",
@@ -312823,8 +312823,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 230,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39613
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 75577
   },
   {
     "id": "dc-equinix-ibx-500455",
@@ -312847,8 +312847,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 235,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 50704
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 96738
   },
   {
     "id": "dc-equinix-ibx-500456",
@@ -312871,8 +312871,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 240,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 61796
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 117900
   },
   {
     "id": "dc-equinix-ibx-500457",
@@ -312895,8 +312895,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 185,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 48036
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 65715
   },
   {
     "id": "dc-equinix-ibx-500458",
@@ -312919,8 +312919,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 190,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 58543
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 84156
   },
   {
     "id": "dc-equinix-ibx-500459",
@@ -312943,8 +312943,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 195,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 69051
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 99261
   },
   {
     "id": "dc-equinix-ibx-500460",
@@ -313471,8 +313471,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 185,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 15678
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 231171
   },
   {
     "id": "dc-equinix-ibx-500482",
@@ -313495,8 +313495,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 190,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 19108
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 281740
   },
   {
     "id": "dc-equinix-ibx-500483",
@@ -316424,7 +316424,7 @@
     "connectedNetworksCount": 156,
     "ixpCount": 4,
     "localCleanEnergyPercent": 100,
-    "estimatedAnnualCo2Tons": 10233
+    "estimatedAnnualCo2Tons": 11598
   },
   {
     "id": "dc-digital-realty-500605",
@@ -316663,8 +316663,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 144,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 61277
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 116909
   },
   {
     "id": "dc-digital-realty-500615",
@@ -316687,8 +316687,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 148,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 75417
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 143888
   },
   {
     "id": "dc-digital-realty-500616",
@@ -316711,8 +316711,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 152,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 89558
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 170867
   },
   {
     "id": "dc-digital-realty-500617",
@@ -316735,8 +316735,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 156,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 103699
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 197846
   },
   {
     "id": "dc-digital-realty-500618",
@@ -316759,8 +316759,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 160,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 47136
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 89930
   },
   {
     "id": "dc-digital-realty-500619",
@@ -316783,8 +316783,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 164,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 61277
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 116909
   },
   {
     "id": "dc-digital-realty-500620",
@@ -316807,8 +316807,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 168,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 75417
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 143888
   },
   {
     "id": "dc-digital-realty-500621",
@@ -317071,8 +317071,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 144,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 18947
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 279373
   },
   {
     "id": "dc-digital-realty-500632",
@@ -317095,8 +317095,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 148,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 22327
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 343843
   },
   {
     "id": "dc-digital-realty-500633",
@@ -317119,8 +317119,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 152,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 26514
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 408314
   },
   {
     "id": "dc-digital-realty-500634",
@@ -317671,8 +317671,8 @@
     "city": "San Jose",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 79.4,
-    "estimatedAnnualCo2Tons": 93031
+    "localCleanEnergyPercent": 78.8,
+    "estimatedAnnualCo2Tons": 95822
   },
   {
     "id": "dc-oracle-cloud--oci--500657",
@@ -318439,8 +318439,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 141407
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 269790
   },
   {
     "id": "dc-oracle-cloud--oci--500689",
@@ -318463,8 +318463,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 141407
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 269790
   },
   {
     "id": "dc-oracle-cloud--oci--500690",
@@ -318487,8 +318487,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 156292
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 166526
   },
   {
     "id": "dc-oracle-cloud--oci--500691",
@@ -318511,8 +318511,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 156292
+    "localCleanEnergyPercent": 51.7,
+    "estimatedAnnualCo2Tons": 166526
   },
   {
     "id": "dc-oracle-cloud--oci--500692",
@@ -318535,8 +318535,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 43725
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 644706
   },
   {
     "id": "dc-oracle-cloud--oci--500693",
@@ -318559,8 +318559,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 43725
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 644706
   },
   {
     "id": "dc-oracle-cloud--oci--500694",
@@ -318583,8 +318583,8 @@
     "city": "Chuncheon",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 89.3,
-    "estimatedAnnualCo2Tons": 48376
+    "localCleanEnergyPercent": 22.9,
+    "estimatedAnnualCo2Tons": 475389
   },
   {
     "id": "dc-oracle-cloud--oci--500695",
@@ -318607,8 +318607,8 @@
     "city": "Chuncheon",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 89.3,
-    "estimatedAnnualCo2Tons": 48376
+    "localCleanEnergyPercent": 22.9,
+    "estimatedAnnualCo2Tons": 475389
   },
   {
     "id": "dc-oracle-cloud--oci--500696",
@@ -320647,8 +320647,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 115,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 51849
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 98923
   },
   {
     "id": "dc-ntt-global-data-centers-500781",
@@ -320671,8 +320671,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 120,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 64419
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 122905
   },
   {
     "id": "dc-ntt-global-data-centers-500782",
@@ -320695,8 +320695,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 125,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 76988
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 146886
   },
   {
     "id": "dc-ntt-global-data-centers-500783",
@@ -320719,8 +320719,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 130,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 89558
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 170867
   },
   {
     "id": "dc-ntt-global-data-centers-500784",
@@ -320743,8 +320743,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 135,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39280
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 74942
   },
   {
     "id": "dc-ntt-global-data-centers-500785",
@@ -320767,8 +320767,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 140,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 51849
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 98923
   },
   {
     "id": "dc-ntt-global-data-centers-500786",
@@ -320791,8 +320791,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 145,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 64419
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 122905
   },
   {
     "id": "dc-ntt-global-data-centers-500787",
@@ -320815,8 +320815,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 150,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 76988
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 146886
   },
   {
     "id": "dc-ntt-global-data-centers-500788",
@@ -320839,8 +320839,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 155,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 89558
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 170867
   },
   {
     "id": "dc-ntt-global-data-centers-500789",
@@ -320863,8 +320863,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 160,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39280
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 74942
   },
   {
     "id": "dc-ntt-global-data-centers-500790",
@@ -320887,8 +320887,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 165,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 51849
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 98923
   },
   {
     "id": "dc-ntt-global-data-centers-500791",
@@ -320911,8 +320911,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 170,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 64419
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 122905
   },
   {
     "id": "dc-ntt-global-data-centers-500792",
@@ -320935,8 +320935,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 115,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 49120
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 67200
   },
   {
     "id": "dc-ntt-global-data-centers-500793",
@@ -320959,8 +320959,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 120,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 61028
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 87728
   },
   {
     "id": "dc-ntt-global-data-centers-500794",
@@ -320983,8 +320983,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 125,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 72936
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 99781
   },
   {
     "id": "dc-ntt-global-data-centers-500795",
@@ -321007,8 +321007,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 130,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 98985
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 116072
   },
   {
     "id": "dc-ntt-global-data-centers-500796",
@@ -321031,8 +321031,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 135,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 37212
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50909
   },
   {
     "id": "dc-ntt-global-data-centers-500797",
@@ -321055,8 +321055,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 140,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 49120
+    "localCleanEnergyPercent": 53.1,
+    "estimatedAnnualCo2Tons": 70611
   },
   {
     "id": "dc-ntt-global-data-centers-500798",
@@ -323575,8 +323575,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 27562
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 52586
   },
   {
     "id": "dc-other-500903",
@@ -323599,8 +323599,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 26112
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 35722
   },
   {
     "id": "dc-other-500904",
@@ -323623,8 +323623,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 56.5,
-    "estimatedAnnualCo2Tons": 35360
+    "localCleanEnergyPercent": 79.3,
+    "estimatedAnnualCo2Tons": 23754
   },
   {
     "id": "dc-other-500905",
@@ -323647,8 +323647,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 8523
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 125663
   },
   {
     "id": "dc-other-500906",
@@ -324847,8 +324847,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 95,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 66.2,
-    "estimatedAnnualCo2Tons": 467364
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 868817
   },
   {
     "id": "dc-other-500956",
@@ -324871,8 +324871,8 @@
     "city": "Fuchu",
     "connectedNetworksCount": 95,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 336875
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 640505
   },
   {
     "id": "dc-other-500957",
@@ -329263,8 +329263,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 45,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 37212
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50909
   },
   {
     "id": "dc-azure-frontdoor-700181",
@@ -329287,8 +329287,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 50,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 37212
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50909
   },
   {
     "id": "dc-azure-frontdoor-700182",
@@ -329311,8 +329311,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 55,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 43415
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50909
   },
   {
     "id": "dc-azure-frontdoor-700183",
@@ -329407,8 +329407,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 45,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 12146
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 179085
   },
   {
     "id": "dc-azure-frontdoor-700187",
@@ -329431,8 +329431,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 50,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 11629
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 179085
   },
   {
     "id": "dc-azure-frontdoor-700188",
@@ -329455,8 +329455,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 55,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 12146
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 179085
   },
   {
     "id": "dc-azure-frontdoor-700189",
@@ -329695,8 +329695,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 45,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39280
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 74942
   },
   {
     "id": "dc-azure-frontdoor-700199",
@@ -329719,8 +329719,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 50,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39280
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 74942
   },
   {
     "id": "dc-azure-frontdoor-700200",
@@ -329743,8 +329743,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 55,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 39280
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 74942
   },
   {
     "id": "dc-azure-frontdoor-700201",
@@ -334687,8 +334687,8 @@
     "city": "Kuala Lumpur",
     "connectedNetworksCount": 62,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.3,
-    "estimatedAnnualCo2Tons": 36074
+    "localCleanEnergyPercent": 84.5,
+    "estimatedAnnualCo2Tons": 35820
   },
   {
     "id": "dc-gcp-edge-pop-700407",
@@ -335023,8 +335023,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 56,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 36582
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50046
   },
   {
     "id": "dc-gcp-edge-pop-700421",
@@ -335047,8 +335047,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 62,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 36582
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50046
   },
   {
     "id": "dc-gcp-edge-pop-700422",
@@ -335071,8 +335071,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 68,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 64,
-    "estimatedAnnualCo2Tons": 42679
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 50046
   },
   {
     "id": "dc-gcp-edge-pop-700423",
@@ -335167,8 +335167,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 56,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 11432
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 176050
   },
   {
     "id": "dc-gcp-edge-pop-700427",
@@ -335191,8 +335191,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 62,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 11940
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 176050
   },
   {
     "id": "dc-gcp-edge-pop-700428",
@@ -335215,8 +335215,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 68,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 11940
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 176050
   },
   {
     "id": "dc-gcp-edge-pop-700429",
@@ -335455,8 +335455,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 56,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 38614
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 73672
   },
   {
     "id": "dc-gcp-edge-pop-700439",
@@ -335479,8 +335479,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 62,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 38614
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 73672
   },
   {
     "id": "dc-gcp-edge-pop-700440",
@@ -335503,8 +335503,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 68,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 38614
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 73672
   },
   {
     "id": "dc-gcp-edge-pop-700441",
@@ -337687,8 +337687,8 @@
     "city": "Hong Kong",
     "connectedNetworksCount": 35,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 54.3,
-    "estimatedAnnualCo2Tons": 68223
+    "localCleanEnergyPercent": 40.1,
+    "estimatedAnnualCo2Tons": 89517
   },
   {
     "id": "dc-oci-fastconnect-700532",
@@ -337903,8 +337903,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 35,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 70.7,
-    "estimatedAnnualCo2Tons": 29770
+    "localCleanEnergyPercent": 55.4,
+    "estimatedAnnualCo2Tons": 40727
   },
   {
     "id": "dc-oci-fastconnect-700541",
@@ -337951,8 +337951,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 35,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 9717
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 143268
   },
   {
     "id": "dc-oci-fastconnect-700543",
@@ -338047,8 +338047,8 @@
     "city": "Tokyo",
     "connectedNetworksCount": 35,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 67.2,
-    "estimatedAnnualCo2Tons": 31424
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 59953
   },
   {
     "id": "dc-oci-fastconnect-700547",
@@ -340424,8 +340424,8 @@
     "connectedNetworksCount": 45,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 19710
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 303534
   },
   {
     "id": "dc-kr-kt-mokdong1",
@@ -340449,8 +340449,8 @@
     "connectedNetworksCount": 50,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 17936
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 276216
   },
   {
     "id": "dc-kr-kt-mokdong2",
@@ -340474,8 +340474,8 @@
     "connectedNetworksCount": 60,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 22706
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 349671
   },
   {
     "id": "dc-kr-kt-gangnam",
@@ -340499,8 +340499,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 13009
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 200332
   },
   {
     "id": "dc-kr-kt-bundang",
@@ -340524,8 +340524,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 15374
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 236757
   },
   {
     "id": "dc-kr-kt-yeouido",
@@ -340549,8 +340549,8 @@
     "connectedNetworksCount": 45,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 10407
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 160266
   },
   {
     "id": "dc-kr-kt-busan",
@@ -340574,8 +340574,8 @@
     "connectedNetworksCount": 75,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 97.5,
-    "estimatedAnnualCo2Tons": 7616
+    "localCleanEnergyPercent": 79.1,
+    "estimatedAnnualCo2Tons": 57947
   },
   {
     "id": "dc-kr-lguplus-pyeongchon1",
@@ -340599,8 +340599,8 @@
     "connectedNetworksCount": 55,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 40208
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 619209
   },
   {
     "id": "dc-kr-lguplus-seocho",
@@ -340624,8 +340624,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 15729
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 242220
   },
   {
     "id": "dc-kr-lguplus-nonhyun",
@@ -340649,8 +340649,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 13206
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 203368
   },
   {
     "id": "dc-kr-lguplus-gasan",
@@ -340674,8 +340674,8 @@
     "connectedNetworksCount": 38,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 17798
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 274091
   },
   {
     "id": "dc-kr-skb-bundang",
@@ -340699,8 +340699,8 @@
     "connectedNetworksCount": 48,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 22174
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 341476
   },
   {
     "id": "dc-kr-skb-gasan",
@@ -340724,8 +340724,8 @@
     "connectedNetworksCount": 42,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 22123
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 340687
   },
   {
     "id": "dc-kr-kinx-gwacheon",
@@ -340749,8 +340749,8 @@
     "connectedNetworksCount": 65,
     "ixpCount": 4,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 12319
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 189709
   },
   {
     "id": "dc-kr-kinx-dogok",
@@ -340774,8 +340774,8 @@
     "connectedNetworksCount": 55,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 7923
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 122021
   },
   {
     "id": "dc-kr-kinx-gasan",
@@ -340799,8 +340799,8 @@
     "connectedNetworksCount": 50,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 9366
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 144239
   },
   {
     "id": "dc-kr-naver-gak-sejong",
@@ -340824,8 +340824,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 119206
+    "localCleanEnergyPercent": 4.8,
+    "estimatedAnnualCo2Tons": 1803985
   },
   {
     "id": "dc-kr-naver-gak-chuncheon",
@@ -340849,8 +340849,8 @@
     "connectedNetworksCount": 30,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 89.3,
-    "estimatedAnnualCo2Tons": 20954
+    "localCleanEnergyPercent": 22.9,
+    "estimatedAnnualCo2Tons": 205913
   },
   {
     "id": "dc-kr-kakao-ansan",
@@ -340874,8 +340874,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 18922
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 291393
   },
   {
     "id": "dc-kr-samsung-sangam",
@@ -340899,8 +340899,8 @@
     "connectedNetworksCount": 25,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 15810
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 233114
   },
   {
     "id": "dc-kr-samsung-suwon",
@@ -340924,8 +340924,8 @@
     "connectedNetworksCount": 30,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 22174
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 341476
   },
   {
     "id": "dc-kr-equinix-sl1",
@@ -340949,8 +340949,8 @@
     "connectedNetworksCount": 85,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 10540
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 155409
   },
   {
     "id": "dc-kr-equinix-sl4",
@@ -340974,8 +340974,8 @@
     "connectedNetworksCount": 60,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 13072
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 192744
   },
   {
     "id": "dc-kr-digitalrealty-icn10",
@@ -340999,8 +340999,8 @@
     "connectedNetworksCount": 70,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 6423
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 94703
   },
   {
     "id": "dc-kr-azure-busan",
@@ -341024,8 +341024,8 @@
     "connectedNetworksCount": 90,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 97.5,
-    "estimatedAnnualCo2Tons": 23170
+    "localCleanEnergyPercent": 77.3,
+    "estimatedAnnualCo2Tons": 190399
   },
   {
     "id": "dc-kr-stt-seoul1",
@@ -341049,8 +341049,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 15440
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 227651
   },
   {
     "id": "dc-kr-digitaledge-sel1",
@@ -341074,8 +341074,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 9153
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 140961
   },
   {
     "id": "dc-kr-digitaledge-pus1",
@@ -341099,8 +341099,8 @@
     "connectedNetworksCount": 50,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 97.7,
-    "estimatedAnnualCo2Tons": 5427
+    "localCleanEnergyPercent": 79.1,
+    "estimatedAnnualCo2Tons": 43169
   },
   {
     "id": "dc-kr-lgcns-sangam",
@@ -341124,8 +341124,8 @@
     "connectedNetworksCount": 30,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.3,
-    "estimatedAnnualCo2Tons": 13381
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 197297
   },
   {
     "id": "dc-kr-lgcns-jukjeon",
@@ -341149,8 +341149,8 @@
     "connectedNetworksCount": 45,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 47221
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 727207
   },
   {
     "id": "dc-kr-stt-seoul2",
@@ -341174,7 +341174,7 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 90.9,
-    "estimatedAnnualCo2Tons": 14783
+    "localCleanEnergyPercent": 3.1,
+    "estimatedAnnualCo2Tons": 227651
   }
 ]
