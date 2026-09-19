@@ -1,0 +1,39 @@
+name: Autonomous Grid Infrastructure Crawler
+
+on:
+  schedule:
+    # Run every 6 hours continuously
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  crawl-and-verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Autonomous Crawler Cycle
+        run: node scripts/run-crawler-daemon.mjs
+
+      - name: Run Infrastructure QA Test Suite
+        run: node scripts/qa-test.mjs
+
+      - name: Commit and Push Verified Infrastructure
+        run: |
+          git config --global user.name "AtlasGrid Autonomous Crawler Bot"
+          git config --global user.email "bot@atlasgrid.ai"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(crawler): automated verification & grid expansion [skip ci]" && git push origin main)

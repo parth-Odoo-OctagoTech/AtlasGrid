@@ -18,6 +18,7 @@ import {
   Moon,
   Server,
   Cable,
+  Zap,
 } from "lucide-react";
 
 export function MapControls() {
@@ -116,6 +117,21 @@ export function MapControls() {
           <Server className="h-3.5 w-3.5" />
           <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
             {layerVisibility.datacenters ? "Layer: Hide Data Centers" : "Layer: Show Data Centers"}
+          </span>
+        </button>
+
+        {/* High-Voltage Substations Toggle */}
+        <button
+          onClick={() => toggleLayer("substations")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.substations
+              ? "bg-[#ec4899]/15 text-[#ec4899] border border-[#ec4899]/40"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+        >
+          <Zap className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.substations ? "Layer: Hide Substations (765kV-154kV)" : "Layer: Show Substations"}
           </span>
         </button>
 

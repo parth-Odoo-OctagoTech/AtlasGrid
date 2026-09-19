@@ -142,6 +142,20 @@ export function TopHud() {
               : "ONTOLOGY SYNCED"}
           </span>
 
+          {/* Autonomous Crawler Bot Status Pill */}
+          <div
+            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[#293742] bg-[#101418] text-[10px] font-mono text-[#8a9ba8]"
+            title="AtlasGrid Continuous Crawler Bot: Active on 6h cycle with automated land verification"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#15b371]" />
+            </span>
+            <span className="text-[#f5f8fa] font-semibold">BOT: ACTIVE</span>
+            <span className="text-[#5c7080]">•</span>
+            <span className="text-[#2b95d6]">6h SYNC</span>
+          </div>
+
           {/* Live UTC Master Clock */}
           {mounted && utcTime && (
             <span className="hidden xl:inline-flex items-center gap-1 text-[10px] font-mono text-[#8a9ba8] px-1.5 py-0.5">

@@ -19,6 +19,8 @@ export interface DataCenter {
   polygonCoords?: [number, number][] | null;
   // PeeringDB & Interconnect Integration
   peeringDbId?: number;
+  peeringDbUrl?: string;
+  officialWebsite?: string;
   address?: string;
   city?: string;
   connectedNetworksCount?: number;

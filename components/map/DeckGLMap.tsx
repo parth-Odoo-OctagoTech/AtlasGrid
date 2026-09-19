@@ -10,7 +10,7 @@ import { Map } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import { useGridStore } from "@/lib/store/useGridStore";
-import { FUEL_CONFIG, FuelType, Interconnector, PowerPlant } from "@/lib/types/power-plant";
+import { FUEL_CONFIG, FuelType, Interconnector, PowerPlant, Substation, getSubstationColor } from "@/lib/types/power-plant";
 import { DataCenter, OPERATOR_COLORS } from "@/lib/types/data-center";
 import {
   findLocalGridSupply,
@@ -168,11 +168,19 @@ interface DeckGLMapProps {
   plants: PowerPlant[];
   interconnectors: Interconnector[];
   dataCenters?: DataCenter[];
+  substations?: Substation[];
   cables?: any[];
   isLoading?: boolean;
 }
 
-export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = [], isLoading }: DeckGLMapProps) {
+export function DeckGLMap({
+  plants,
+  interconnectors,
+  dataCenters = [],
+  substations = [],
+  cables = [],
+  isLoading,
+}: DeckGLMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
 
@@ -184,10 +192,13 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
   const layerVisibility = useGridStore((s) => s.layerVisibility);
   const setSelectedStation = useGridStore((s) => s.setSelectedStation);
   const setSelectedDataCenter = useGridStore((s) => s.setSelectedDataCenter);
+  const setSelectedSubstation = useGridStore((s) => s.setSelectedSubstation);
   const selectedStation = useGridStore((s) => s.selectedStation);
   const selectedDataCenter = useGridStore((s) => s.selectedDataCenter);
+  const selectedSubstation = useGridStore((s) => s.selectedSubstation);
   const setHoveredStation = useGridStore((s) => s.setHoveredStation);
   const setHoveredDataCenter = useGridStore((s) => s.setHoveredDataCenter);
+  const setHoveredSubstation = useGridStore((s) => s.setHoveredSubstation);
   const filters = useGridStore((s) => s.filters);
 
   const isGlobe = projectionMode === "globe";
@@ -668,6 +679,38 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
       );
     }
 
+    // 9. High-Voltage Substations Layer (765kV, 500kV, 400kV, 345kV, 275kV, etc.)
+    if (layerVisibility.substations && substations && substations.length > 0) {
+      activeLayers.push(
+        new ScatterplotLayer<Substation>({
+          id: "substations-nodes",
+          data: substations,
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: (d) => Math.max(1200, Math.sqrt(d.voltageKv) * 160),
+          getFillColor: (d) => {
+            const col = getSubstationColor(d.voltageKv);
+            return [...col.rgb, 210] as [number, number, number, number];
+          },
+          getLineColor: (d) => {
+            const col = getSubstationColor(d.voltageKv);
+            return [...col.rgb, 255] as [number, number, number, number];
+          },
+          stroked: true,
+          lineWidthMinPixels: 2,
+          radiusMinPixels: 4,
+          radiusMaxPixels: 20,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+          updateTriggers: {
+            getFillColor: [substations],
+            getLineColor: [substations],
+            getRadius: [substations],
+          },
+        })
+      );
+    }
+
     return activeLayers;
   }, [
     visualizationMode,
@@ -675,12 +718,14 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
     filteredPlants,
     interconnectors,
     filteredDataCenters,
+    substations,
     cables,
     isGlobe,
     basemapStyle,
     isLightMode,
     selectedStation,
     selectedDataCenter,
+    selectedSubstation,
     plants,
     dataCenters,
   ]);
@@ -693,10 +738,12 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
           setSelectedStation(info.object as PowerPlant);
         } else if ("estimatedPowerMw" in info.object) {
           setSelectedDataCenter(info.object as DataCenter);
+        } else if ("voltageKv" in info.object) {
+          setSelectedSubstation(info.object as Substation);
         }
       }
     },
-    [setSelectedStation, setSelectedDataCenter]
+    [setSelectedStation, setSelectedDataCenter, setSelectedSubstation]
   );
 
   // Hover handler for interactive HUD tooltip
@@ -706,16 +753,23 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
         if ("fuelType" in info.object) {
           setHoveredStation(info.object as PowerPlant, { x: info.x, y: info.y });
           setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
         } else if ("estimatedPowerMw" in info.object) {
           setHoveredDataCenter(info.object as DataCenter, { x: info.x, y: info.y });
           setHoveredStation(null, null);
+          setHoveredSubstation(null, null);
+        } else if ("voltageKv" in info.object) {
+          setHoveredSubstation(info.object as Substation, { x: info.x, y: info.y });
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
         }
       } else {
         setHoveredStation(null, null);
         setHoveredDataCenter(null, null);
+        setHoveredSubstation(null, null);
       }
     },
-    [setHoveredStation, setHoveredDataCenter]
+    [setHoveredStation, setHoveredDataCenter, setHoveredSubstation]
   );
 
   return (

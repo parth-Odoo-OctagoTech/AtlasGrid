@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import { BasemapStyle, FilterState, InfrastructureType, ProjectionMode, ViewportState, VisualizationMode } from "../types/filters";
-import { FuelType, Interconnector, PowerPlant, StationStatus } from "../types/power-plant";
+import { FuelType, Interconnector, PowerPlant, StationStatus, Substation } from "../types/power-plant";
 import { DataCenter } from "../types/data-center";
 import { GridAlert, GridSummary } from "../types/telemetry";
 
 export interface LayerVisibility {
   plants: boolean;
   datacenters: boolean;
+  substations: boolean;
   subseaCables: boolean;
   lmpHeatmap: boolean;
   interconnectors: boolean;
@@ -40,6 +41,7 @@ interface GridStoreState {
   selectedStationId: string | null;
   selectedStation: PowerPlant | null;
   selectedDataCenter: DataCenter | null;
+  selectedSubstation: Substation | null;
   isInspectorOpen: boolean;
   isAlertsOpen: boolean;
   isAnalyticsOpen: boolean;
@@ -56,13 +58,23 @@ interface GridStoreState {
   // Hover Tooltip
   hoveredStation: PowerPlant | null;
   hoveredDataCenter: DataCenter | null;
+  hoveredSubstation: Substation | null;
   hoverCoordinates: { x: number; y: number } | null;
 
   // Filters
   filters: FilterState;
 
-  // Data Centers
+  // Data Centers & Substations
   dataCenters: DataCenter[];
+  substations: Substation[];
+
+  // Crawler Bot State
+  crawlerStatus: {
+    isRunning: boolean;
+    lastRun: string | null;
+    newNodes: number;
+    totalVerified: number;
+  };
 
   // Live Telemetry & Alerts
   telemetrySummary: GridSummary | null;
@@ -77,7 +89,10 @@ interface GridStoreState {
   // Actions
   setSelectedStation: (station: PowerPlant | null) => void;
   setSelectedDataCenter: (dc: DataCenter | null) => void;
+  setSelectedSubstation: (sub: Substation | null) => void;
   setDataCenters: (dcs: DataCenter[]) => void;
+  setSubstations: (subs: Substation[]) => void;
+  setCrawlerStatus: (status: Partial<GridStoreState["crawlerStatus"]>) => void;
   selectStationById: (id: string | null, plants?: PowerPlant[]) => void;
   setHoveredStation: (
     station: PowerPlant | null,
@@ -85,6 +100,10 @@ interface GridStoreState {
   ) => void;
   setHoveredDataCenter: (
     dc: DataCenter | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredSubstation: (
+    sub: Substation | null,
     coords?: { x: number; y: number } | null
   ) => void;
   setVisualizationMode: (mode: VisualizationMode) => void;
@@ -100,7 +119,7 @@ interface GridStoreState {
   toggleStatus: (status: StationStatus) => void;
   resetFilters: () => void;
   setViewport: (viewport: Partial<ViewportState>) => void;
-  flyToStation: (station: PowerPlant | DataCenter) => void;
+  flyToStation: (station: PowerPlant | DataCenter | Substation) => void;
   flyToCoordinates: (
     lng: number,
     lat: number,
@@ -126,6 +145,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   selectedStationId: null,
   selectedStation: null,
   selectedDataCenter: null,
+  selectedSubstation: null,
   isInspectorOpen: false,
   isAlertsOpen: false,
   isAnalyticsOpen: false,
@@ -139,6 +159,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   layerVisibility: {
     plants: true,
     datacenters: true,
+    substations: true,
     subseaCables: false,
     lmpHeatmap: false,
     interconnectors: true,
@@ -148,10 +169,19 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
 
   hoveredStation: null,
   hoveredDataCenter: null,
+  hoveredSubstation: null,
   hoverCoordinates: null,
 
   filters: INITIAL_FILTERS,
   dataCenters: [],
+  substations: [],
+
+  crawlerStatus: {
+    isRunning: false,
+    lastRun: null,
+    newNodes: 0,
+    totalVerified: 0,
+  },
 
   telemetrySummary: null,
   liveAlerts: [],
@@ -165,6 +195,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
     set({
       selectedStation: station,
       selectedDataCenter: null,
+      selectedSubstation: null,
       selectedStationId: station ? station.id : null,
       isInspectorOpen: !!station,
     }),
@@ -173,29 +204,50 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
     set({
       selectedDataCenter: dc,
       selectedStation: null,
+      selectedSubstation: null,
       selectedStationId: dc ? dc.id : null,
       isInspectorOpen: !!dc,
     }),
 
+  setSelectedSubstation: (sub) =>
+    set({
+      selectedSubstation: sub,
+      selectedStation: null,
+      selectedDataCenter: null,
+      selectedStationId: sub ? sub.id : null,
+      isInspectorOpen: !!sub,
+    }),
+
   setDataCenters: (dcs) => set({ dataCenters: dcs }),
+  setSubstations: (subs) => set({ substations: subs }),
+  setCrawlerStatus: (status) =>
+    set((state) => ({
+      crawlerStatus: { ...state.crawlerStatus, ...status },
+    })),
 
   selectStationById: (id, plants) => {
     if (!id) {
-      set({ selectedStationId: null, selectedStation: null, selectedDataCenter: null, isInspectorOpen: false });
+      set({ selectedStationId: null, selectedStation: null, selectedDataCenter: null, selectedSubstation: null, isInspectorOpen: false });
       return;
     }
     if (plants) {
       const found = plants.find((p) => p.id === id);
       if (found) {
-        set({ selectedStationId: id, selectedStation: found, selectedDataCenter: null, isInspectorOpen: true });
+        set({ selectedStationId: id, selectedStation: found, selectedDataCenter: null, selectedSubstation: null, isInspectorOpen: true });
         get().flyToStation(found);
         return;
       }
     }
     const dcFound = get().dataCenters.find((d) => d.id === id);
     if (dcFound) {
-      set({ selectedStationId: id, selectedDataCenter: dcFound, selectedStation: null, isInspectorOpen: true });
+      set({ selectedStationId: id, selectedDataCenter: dcFound, selectedStation: null, selectedSubstation: null, isInspectorOpen: true });
       get().flyToStation(dcFound);
+      return;
+    }
+    const subFound = get().substations.find((s) => s.id === id);
+    if (subFound) {
+      set({ selectedStationId: id, selectedSubstation: subFound, selectedStation: null, selectedDataCenter: null, isInspectorOpen: true });
+      get().flyToCoordinates(subFound.longitude, subFound.latitude, 9, 35, 0);
       return;
     }
     set({ selectedStationId: id, isInspectorOpen: true });
@@ -210,6 +262,12 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setHoveredDataCenter: (dc, coords) =>
     set({
       hoveredDataCenter: dc,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredSubstation: (sub, coords) =>
+    set({
+      hoveredSubstation: sub,
       hoverCoordinates: coords || null,
     }),
 

@@ -186,3 +186,37 @@ export const FUEL_CONFIG: Record<FuelType, FuelTypeMeta> = {
     defaultCo2: 300,
   },
 };
+
+export type SubstationType = "pooling" | "transmission_hub" | "switchyard" | "converter_station";
+
+export interface Substation {
+  id: string;
+  name: string;
+  voltageKv: number;
+  latitude: number;
+  longitude: number;
+  lat?: number;
+  lng?: number;
+  gridRegion: GridRegion | string;
+  region?: string;
+  country: string;
+  countryName: string;
+  type: SubstationType;
+  operator: string;
+  connectedCapacityMw: number;
+  connectedPlantsCount: number;
+}
+
+export function getSubstationColor(voltageKv: number): { rgb: [number, number, number]; hex: string; label: string } {
+  if (voltageKv >= 765) {
+    return { rgb: [236, 72, 153], hex: "#ec4899", label: "765kV UHV" }; // Magenta
+  } else if (voltageKv >= 500) {
+    return { rgb: [245, 158, 11], hex: "#f59e0b", label: "500kV EHV" }; // Amber
+  } else if (voltageKv >= 400) {
+    return { rgb: [6, 182, 212], hex: "#06b6d4", label: "400kV Grid" }; // Cyan
+  } else if (voltageKv >= 275) {
+    return { rgb: [59, 130, 246], hex: "#3b82f6", label: "275-345kV Regional" }; // Blue
+  } else {
+    return { rgb: [16, 185, 129], hex: "#10b981", label: "<230kV Feeder" }; // Emerald
+  }
+}

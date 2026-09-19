@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useGridStore } from "@/lib/store/useGridStore";
-import { FUEL_CONFIG, PowerPlant } from "@/lib/types/power-plant";
+import { FUEL_CONFIG, PowerPlant, Substation, getSubstationColor } from "@/lib/types/power-plant";
 import { DispatchChart } from "./DispatchChart";
 import { OPERATOR_COLORS, DataCenter } from "@/lib/types/data-center";
 import {
@@ -53,8 +53,10 @@ export function StationInspector() {
   const setInspectorOpen = useGridStore((s) => s.setInspectorOpen);
   const selectedStation = useGridStore((s) => s.selectedStation);
   const selectedDataCenter = useGridStore((s) => s.selectedDataCenter);
+  const selectedSubstation = useGridStore((s) => s.selectedSubstation);
   const setSelectedStation = useGridStore((s) => s.setSelectedStation);
   const setSelectedDataCenter = useGridStore((s) => s.setSelectedDataCenter);
+  const setSelectedSubstation = useGridStore((s) => s.setSelectedSubstation);
   const flyToStation = useGridStore((s) => s.flyToStation);
 
   // Fetch stations for cross-referencing
@@ -105,7 +107,190 @@ export function StationInspector() {
     return findSuppliedDataCenters(selectedStation, allDataCentersData, 100);
   }, [selectedStation, allDataCentersData]);
 
-  if (!isInspectorOpen || (!selectedStation && !selectedDataCenter)) return null;
+  if (!isInspectorOpen || (!selectedStation && !selectedDataCenter && !selectedSubstation)) return null;
+
+  // 0. SUBSTATION INSPECTOR VIEW (Palantir Foundry Object Sheet)
+  if (selectedSubstation) {
+    const voltMeta = getSubstationColor(selectedSubstation.voltageKv);
+    const gMapsUrl = `https://www.google.com/maps?q=${selectedSubstation.latitude},${selectedSubstation.longitude}`;
+    const osmUrl = `https://www.openstreetmap.org/#map=16/${selectedSubstation.latitude}/${selectedSubstation.longitude}`;
+
+    // Find nearby connected plants
+    const connectedPlants = (allStationsData || [])
+      .filter((p: PowerPlant) => {
+        const d = Math.hypot(p.latitude - selectedSubstation.latitude, p.longitude - selectedSubstation.longitude) * 111;
+        return d <= 50 || p.substationName?.toLowerCase().includes(selectedSubstation.name.toLowerCase().split(" ")[0]);
+      })
+      .slice(0, 5);
+
+    return (
+      <aside className="absolute right-0 top-12 bottom-0 z-30 w-full sm:w-[480px] overflow-y-auto bg-[#182026] border-l border-[#293742] text-[#f5f8fa] shadow-2xl transition-all animate-in slide-in-from-right duration-200 font-sans">
+        {/* Breadcrumb Header */}
+        <div className="p-4 border-b border-[#293742] bg-[#101418]">
+          <div className="flex items-center justify-between gap-2 mb-1 text-[10px] font-mono text-[#8a9ba8]">
+            <div className="flex items-center gap-1.5">
+              <span>ONTOLOGY</span>
+              <span>/</span>
+              <span>OBJECT EXPLORER</span>
+              <span>/</span>
+              <span className="text-[#ec4899]">Substation:v1</span>
+            </div>
+            <span className="px-1.5 py-0.2 rounded bg-[#202b33] border border-[#293742] text-[9px] text-[#15b371] font-semibold">
+              ENERGIZED
+            </span>
+          </div>
+
+          <div className="flex items-start justify-between gap-3 mt-2">
+            <div className="min-w-0">
+              <h2 className="text-base font-bold text-[#f5f8fa] leading-tight font-sans flex items-center gap-2">
+                <Zap className="h-4 w-4 shrink-0" style={{ color: voltMeta.hex }} />
+                <span>{selectedSubstation.name}</span>
+              </h2>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-mono text-[#8a9ba8]">
+                <span className="text-[#f5f8fa]">
+                  {selectedSubstation.countryName || selectedSubstation.country}
+                </span>
+                <span>•</span>
+                <span className="text-[#2b95d6]">
+                  {selectedSubstation.gridRegion || selectedSubstation.region}
+                </span>
+                <span>•</span>
+                <a
+                  href={gMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] text-[#2b95d6] hover:underline"
+                >
+                  <span>{selectedSubstation.latitude.toFixed(4)}°, {selectedSubstation.longitude.toFixed(4)}°</span>
+                  <ExternalLink className="h-2.5 w-2.5" />
+                </a>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                setSelectedSubstation(null);
+                setInspectorOpen(false);
+              }}
+              className="rounded p-1 text-[#8a9ba8] hover:bg-[#202b33] hover:text-[#f5f8fa] transition-colors"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Quick Action Chips */}
+          <div className="mt-3 flex flex-wrap items-center gap-1.5 font-mono">
+            <a
+              href={gMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#202b33] border border-[#293742] text-[10px] text-[#2b95d6] hover:bg-[#2b95d6] hover:text-white transition-colors"
+            >
+              <MapPin className="h-3 w-3" />
+              <span>Google Maps</span>
+            </a>
+            <a
+              href={osmUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#202b33] border border-[#293742] text-[10px] text-[#15b371] hover:bg-[#15b371] hover:text-white transition-colors"
+            >
+              <ExternalLink className="h-3 w-3" />
+              <span>OpenStreetMap</span>
+            </a>
+            <span
+              className="px-2 py-0.5 rounded text-[10px] font-bold"
+              style={{
+                backgroundColor: `rgba(${voltMeta.rgb.join(",")}, 0.15)`,
+                color: voltMeta.hex,
+                border: `1px solid rgba(${voltMeta.rgb.join(",")}, 0.4)`,
+              }}
+            >
+              {selectedSubstation.voltageKv} kV Transmission
+            </span>
+          </div>
+        </div>
+
+        {/* Substation Telemetry & Details Body */}
+        <div className="p-4 space-y-4 font-mono text-xs">
+          {/* Core Metrics Cards */}
+          <div className="grid grid-cols-2 gap-2">
+            <div className="p-2.5 rounded bg-[#101418] border border-[#293742]">
+              <div className="text-[10px] uppercase text-[#8a9ba8]">Primary Voltage</div>
+              <div className="text-lg font-bold mt-0.5" style={{ color: voltMeta.hex }}>
+                {selectedSubstation.voltageKv} kV
+              </div>
+              <div className="text-[10px] text-[#8a9ba8] mt-0.5">{voltMeta.label}</div>
+            </div>
+
+            <div className="p-2.5 rounded bg-[#101418] border border-[#293742]">
+              <div className="text-[10px] uppercase text-[#8a9ba8]">Connected Capacity</div>
+              <div className="text-lg font-bold text-[#f5f8fa] mt-0.5">
+                {selectedSubstation.connectedCapacityMw.toLocaleString()} MW
+              </div>
+              <div className="text-[10px] text-[#15b371] mt-0.5">Bulk Inflow/Outflow</div>
+            </div>
+
+            <div className="p-2.5 rounded bg-[#101418] border border-[#293742]">
+              <div className="text-[10px] uppercase text-[#8a9ba8]">Grid Substation Role</div>
+              <div className="text-sm font-bold text-[#f5f8fa] mt-0.5 capitalize">
+                {selectedSubstation.type.replace("_", " ")}
+              </div>
+              <div className="text-[10px] text-[#8a9ba8] mt-0.5">Switchyard / Bay Topology</div>
+            </div>
+
+            <div className="p-2.5 rounded bg-[#101418] border border-[#293742]">
+              <div className="text-[10px] uppercase text-[#8a9ba8]">Grid Utility Operator</div>
+              <div className="text-xs font-bold text-[#f5f8fa] mt-0.5 truncate" title={selectedSubstation.operator}>
+                {selectedSubstation.operator}
+              </div>
+              <div className="text-[10px] text-[#2b95d6] mt-0.5">{selectedSubstation.country} Regional System</div>
+            </div>
+          </div>
+
+          {/* Connected Generation Feeders Section */}
+          <div className="rounded border border-[#293742] bg-[#101418] p-3 space-y-2">
+            <div className="flex items-center justify-between text-[11px] font-bold text-[#f5f8fa]">
+              <span className="flex items-center gap-1.5">
+                <RadioTower className="h-3.5 w-3.5 text-[#ec4899]" />
+                Nearby Interconnected Generation Assets
+              </span>
+              <span className="text-[10px] text-[#8a9ba8]">{connectedPlants.length} Plants Detected</span>
+            </div>
+
+            {connectedPlants.length > 0 ? (
+              <div className="space-y-1.5 pt-1">
+                {connectedPlants.map((plant: PowerPlant) => {
+                  const fuel = FUEL_CONFIG[plant.fuelType] || FUEL_CONFIG.other;
+                  return (
+                    <div
+                      key={plant.id}
+                      onClick={() => setSelectedStation(plant)}
+                      className="p-2 rounded bg-[#182026] border border-[#293742] hover:border-[#2b95d6] cursor-pointer flex items-center justify-between transition-colors"
+                    >
+                      <div className="min-w-0 pr-2">
+                        <div className="text-xs font-semibold text-[#f5f8fa] truncate">{plant.name}</div>
+                        <div className="text-[10px] text-[#8a9ba8] flex items-center gap-1.5 mt-0.5">
+                          <span style={{ color: fuel.hex }} className="font-semibold capitalize">{plant.fuelType}</span>
+                          <span>•</span>
+                          <span>{plant.capacityMw} MW</span>
+                        </div>
+                      </div>
+                      <ArrowRight className="h-3.5 w-3.5 text-[#8a9ba8] shrink-0" />
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="text-[11px] text-[#8a9ba8] py-2">
+                Regional grid pooling node with distributed transmission interconnection.
+              </div>
+            )}
+          </div>
+        </div>
+      </aside>
+    );
+  }
 
   // 1. DATA CENTER INSPECTOR VIEW (Palantir Foundry Object Sheet)
   if (selectedDataCenter) {

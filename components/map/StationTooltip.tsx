@@ -1,16 +1,17 @@
 "use client";
 
 import { useGridStore } from "@/lib/store/useGridStore";
-import { FUEL_CONFIG } from "@/lib/types/power-plant";
+import { FUEL_CONFIG, getSubstationColor } from "@/lib/types/power-plant";
 import { OPERATOR_COLORS } from "@/lib/types/data-center";
-import { Zap, ArrowUpRight, Server, Sparkles } from "lucide-react";
+import { Zap, ArrowUpRight, Server, Sparkles, Activity } from "lucide-react";
 
 export function StationTooltip() {
   const hoveredStation = useGridStore((s) => s.hoveredStation);
   const hoveredDataCenter = useGridStore((s) => s.hoveredDataCenter);
+  const hoveredSubstation = useGridStore((s) => s.hoveredSubstation);
   const hoverCoordinates = useGridStore((s) => s.hoverCoordinates);
 
-  if ((!hoveredStation && !hoveredDataCenter) || !hoverCoordinates) return null;
+  if ((!hoveredStation && !hoveredDataCenter && !hoveredSubstation) || !hoverCoordinates) return null;
 
   if (hoveredDataCenter) {
     const opMeta = OPERATOR_COLORS[hoveredDataCenter.operator] || OPERATOR_COLORS.Other;
@@ -83,6 +84,82 @@ export function StationTooltip() {
             </span>
             <span className="shrink-0 text-[#2b95d6] font-semibold flex items-center gap-0.5">
               INSPECT & LINKS <ArrowUpRight className="h-3 w-3" />
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (hoveredSubstation) {
+    const voltColor = getSubstationColor(hoveredSubstation.voltageKv);
+    return (
+      <div
+        className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out font-sans"
+        style={{
+          left: `${hoverCoordinates.x}px`,
+          top: `${hoverCoordinates.y}px`,
+        }}
+      >
+        <div className="w-72 rounded border border-[#293742] bg-[#182026]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans">
+          {/* Header */}
+          <div className="flex items-start justify-between gap-2 border-b border-[#293742] pb-1.5">
+            <div className="min-w-0">
+              <h4 className="truncate text-xs font-semibold text-[#f5f8fa] flex items-center gap-1.5 font-sans">
+                <Zap className="h-3.5 w-3.5 shrink-0" style={{ color: voltColor.hex }} />
+                <span className="truncate">{hoveredSubstation.name}</span>
+              </h4>
+              <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                <span className="text-[#f5f8fa] font-medium">{hoveredSubstation.countryName || hoveredSubstation.country}</span>
+                <span>•</span>
+                <span className="text-[#2b95d6]">{hoveredSubstation.gridRegion || hoveredSubstation.region}</span>
+              </div>
+            </div>
+            <span
+              className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-mono font-bold"
+              style={{
+                backgroundColor: `rgba(${voltColor.rgb.join(",")}, 0.15)`,
+                color: voltColor.hex,
+                border: `1px solid rgba(${voltColor.rgb.join(",")}, 0.35)`,
+              }}
+            >
+              {hoveredSubstation.voltageKv} kV
+            </span>
+          </div>
+
+          {/* Metrics Grid */}
+          <div className="grid grid-cols-2 gap-1.5 pt-2 text-xs font-mono">
+            <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">
+              <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8]">
+                Grid Role
+              </div>
+              <div className="font-mono font-bold capitalize text-[#f5f8fa] mt-0.5 truncate">
+                {hoveredSubstation.type.replace("_", " ")}
+              </div>
+            </div>
+
+            <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">
+              <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8]">
+                Capacity
+              </div>
+              <div className="font-mono font-bold text-[#f5f8fa] mt-0.5" style={{ color: voltColor.hex }}>
+                {hoveredSubstation.connectedCapacityMw} MW
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-1.5 text-[10px] font-mono text-[#8a9ba8] flex items-center justify-between px-0.5">
+            <span className="truncate max-w-[180px]">{hoveredSubstation.operator}</span>
+            <span className="text-[#f5f8fa] font-semibold">{voltColor.label}</span>
+          </div>
+
+          {/* Quick Footer */}
+          <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-1.5 text-[10px] font-mono text-[#8a9ba8]">
+            <span>
+              {hoveredSubstation.latitude.toFixed(3)}°, {hoveredSubstation.longitude.toFixed(3)}°
+            </span>
+            <span className="shrink-0 text-[#2b95d6] font-semibold flex items-center gap-0.5">
+              CLICK TO INSPECT <ArrowUpRight className="h-3 w-3" />
             </span>
           </div>
         </div>

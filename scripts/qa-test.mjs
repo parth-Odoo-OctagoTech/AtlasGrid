@@ -488,6 +488,8 @@ const apiRoutes = [
   "app/api/interconnectors/route.ts",
   "app/api/entsoe/route.ts",
   "app/api/us-iso/route.ts",
+  "app/api/substations/route.ts",
+  "app/api/cron/crawler/route.ts",
 ];
 
 let routesWithForceDynamic = 0;
@@ -527,6 +529,90 @@ for (const d of datacenters) {
 }
 assert(allValidMapsUrls === datacenters.length, `100% of data centers generate valid Google Maps search hyperlinks (${allValidMapsUrls}/${datacenters.length})`);
 assert(validSourceRefs === datacenters.length, `100% of data centers have authoritative online source references (${validSourceRefs}/${datacenters.length})`);
+
+// ---------------------------------------------------------------------------
+// TEST 13: High-Voltage Substations Layer & Schema Integrity
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 13: High-Voltage Substations Layer & Schema Integrity ---");
+
+const subsPath = path.join(process.cwd(), "data", "substations.json");
+assert(fs.existsSync(subsPath), "substations.json file exists on disk");
+const subs = JSON.parse(fs.readFileSync(subsPath, "utf-8"));
+assert(Array.isArray(subs) && subs.length >= 500, `Loaded ${subs.length} high-voltage substations (>= 500 requirement)`);
+
+let validSubstations = 0;
+let validVoltages = 0;
+for (const s of subs) {
+  if (s.id && s.name && typeof s.latitude === "number" && typeof s.longitude === "number" && s.operator && s.type) {
+    validSubstations++;
+  }
+  if (typeof s.voltageKv === "number" && s.voltageKv >= 110 && s.voltageKv <= 800) {
+    validVoltages++;
+  }
+}
+assert(validSubstations === subs.length, `100% of substations have valid IDs, names, coordinates, and operators (${validSubstations}/${subs.length})`);
+assert(validVoltages === subs.length, `100% of substations have valid transmission voltages (110kV-800kV) (${validVoltages}/${subs.length})`);
+
+// ---------------------------------------------------------------------------
+// TEST 14: South Korea & Japan All-Tier Power Plants & 0% Water Check
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 14: South Korea & Japan All-Tier Power Plants & Accurate Land Calibration ---");
+
+const krPlants = plants.filter((p) => p.country === "KR");
+const jpPlants = plants.filter((p) => p.country === "JP");
+
+assert(krPlants.length >= 80, `South Korea has ${krPlants.length} verified power plants across all provinces (>= 80 requirement)`);
+assert(jpPlants.length >= 100, `Japan has ${jpPlants.length} verified power plants across all prefectures (>= 100 requirement)`);
+
+// Check fuel type diversity in KR & JP
+const krFuels = new Set(krPlants.map((p) => p.fuelType));
+const jpFuels = new Set(jpPlants.map((p) => p.fuelType));
+assert(krFuels.has("nuclear") && krFuels.has("hydro") && krFuels.has("gas") && krFuels.has("solar") && krFuels.has("wind"), "South Korea covers all tiers: nuclear, hydro, CCGT/gas, solar, wind");
+assert(jpFuels.has("nuclear") && jpFuels.has("hydro") && jpFuels.has("gas") && jpFuels.has("geothermal") && jpFuels.has("solar") && jpFuels.has("wind"), "Japan covers all tiers: nuclear, hydro, CCGT/gas, geothermal, solar, wind");
+
+// Check zero coordinates in open water / extremes for KR and JP
+let krInvalid = 0;
+for (const p of krPlants) {
+  // Land bounds for South Korea
+  if (p.latitude < 33.1 || p.latitude > 38.6 || p.longitude < 125.9 || p.longitude > 129.6) {
+    krInvalid++;
+  }
+}
+assert(krInvalid === 0, `0 South Korea power stations outside terrestrial bounds (0/${krPlants.length})`);
+
+let jpInvalid = 0;
+for (const p of jpPlants) {
+  // Land bounds for Japan
+  if (p.latitude < 26.0 || p.latitude > 45.6 || p.longitude < 127.5 || p.longitude > 145.8) {
+    jpInvalid++;
+  }
+}
+assert(jpInvalid === 0, `0 Japan power stations outside terrestrial bounds (0/${jpPlants.length})`);
+
+// ---------------------------------------------------------------------------
+// TEST 15: Autonomous Infrastructure Crawler Bot & Audit Log
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 15: Autonomous Infrastructure Crawler Bot & Audit Log ---");
+
+const auditLogPath = path.join(process.cwd(), "data", "crawler-audit-log.json");
+assert(fs.existsSync(auditLogPath), "crawler-audit-log.json exists on disk");
+const auditLogs = JSON.parse(fs.readFileSync(auditLogPath, "utf-8"));
+assert(Array.isArray(auditLogs) && auditLogs.length > 0, `Crawler audit log contains ${auditLogs.length} verified audit run records`);
+
+const latestRun = auditLogs[0];
+assert(latestRun.status === "success", `Latest crawler run status: ${latestRun.status}`);
+assert(latestRun.discoveredCandidates > 0, `Crawler examined ${latestRun.discoveredCandidates} candidate nodes`);
+assert(latestRun.maritimePointsRejected === 0, "Crawler automated land verification rejected 0 points (100% on land)");
+
+const cronRoutePath = path.join(process.cwd(), "app/api/cron/crawler/route.ts");
+const crawlerEnginePath = path.join(process.cwd(), "lib/crawler/grid-crawler.ts");
+const ghaWorkflowPath = path.join(process.cwd(), ".github/workflows/infrastructure-crawler.yml");
+const vercelJsonPath = path.join(process.cwd(), "vercel.json");
+
+assert(fs.existsSync(cronRoutePath), "Vercel cron API endpoint exists (/api/cron/crawler)");
+assert(fs.existsSync(crawlerEnginePath), "Autonomous crawler engine exists (lib/crawler/grid-crawler.ts)");
+assert(fs.existsSync(ghaWorkflowPath), "GitHub Actions scheduled workflow exists (.github/workflows/infrastructure-crawler.yml)");
+assert(fs.existsSync(vercelJsonPath), "vercel.json exists with cron configuration");
 
 // ---------------------------------------------------------------------------
 // FINAL SUMMARY

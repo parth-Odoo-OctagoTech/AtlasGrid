@@ -24,6 +24,7 @@ const DeckGLMap = dynamic(
 export default function PowerGridDashboard() {
   const setTelemetrySummary = useGridStore((s) => s.setTelemetrySummary);
   const setDataCenters = useGridStore((s) => s.setDataCenters);
+  const setSubstations = useGridStore((s) => s.setSubstations);
 
   // 1. Fetch Global Stations Dataset
   const { data: stationsData, isLoading: isStationsLoading } = useQuery({
@@ -69,7 +70,18 @@ export default function PowerGridDashboard() {
     staleTime: Infinity,
   });
 
-  // 5. Fetch Initial Telemetry Summary
+  // 5. Fetch High-Voltage Substations (765kV-154kV)
+  const { data: substationsData } = useQuery({
+    queryKey: ["substations"],
+    queryFn: async () => {
+      const res = await fetch("/api/substations");
+      if (!res.ok) return { data: [] };
+      return res.json();
+    },
+    staleTime: Infinity,
+  });
+
+  // 6. Fetch Initial Telemetry Summary
   const { data: summaryData } = useQuery({
     queryKey: ["telemetry-summary"],
     queryFn: async () => {
@@ -92,9 +104,16 @@ export default function PowerGridDashboard() {
     }
   }, [dataCentersData, setDataCenters]);
 
+  useEffect(() => {
+    if (Array.isArray(substationsData?.data)) {
+      setSubstations(substationsData.data);
+    }
+  }, [substationsData, setSubstations]);
+
   const plants = stationsData?.data || [];
   const interconnectors = interconnectorsData?.data || [];
   const dataCenters = Array.isArray(dataCentersData) ? dataCentersData : [];
+  const substations = substationsData?.data || [];
   const cables = cablesData?.features || [];
 
   return (
@@ -113,6 +132,7 @@ export default function PowerGridDashboard() {
         plants={plants}
         interconnectors={interconnectors}
         dataCenters={dataCenters}
+        substations={substations}
         cables={cables}
         isLoading={isStationsLoading || isDcLoading}
       />
