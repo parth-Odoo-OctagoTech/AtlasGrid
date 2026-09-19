@@ -43,6 +43,8 @@ import {
   getGoogleMapsUrl,
   getOfficialWebsite,
   getPrimarySourceReference,
+  getPeeringDbReference,
+  getOsmReference,
   getWebSearchUrl,
 } from "@/lib/utils/datacenter-links";
 
@@ -111,6 +113,8 @@ export function StationInspector() {
     const gMapsUrl = getGoogleMapsUrl(selectedDataCenter);
     const officialWeb = getOfficialWebsite(selectedDataCenter);
     const sourceRef = getPrimarySourceReference(selectedDataCenter);
+    const peeringDbRef = getPeeringDbReference(selectedDataCenter);
+    const osmRef = getOsmReference(selectedDataCenter);
     const webSearchUrl = getWebSearchUrl(selectedDataCenter);
 
     return (
@@ -282,12 +286,30 @@ export function StationInspector() {
                 {selectedDataCenter.ixpCount != null ? `${selectedDataCenter.ixpCount} IXPs` : "—"}
               </span>
             </div>
-            {selectedDataCenter.peeringDbId && (
+            {osmRef && (
               <div className="flex items-center justify-between p-2">
-                <span className="text-[#8a9ba8] text-[11px]">peeringdb_ref</span>
-                <span className="text-[#15b371]">#{selectedDataCenter.peeringDbId}</span>
+                <span className="text-[#8a9ba8] text-[11px]">osm_geometry</span>
+                <a
+                  href={osmRef.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#2b95d6] hover:underline flex items-center gap-1 font-mono text-[11px]"
+                >
+                  {osmRef.label} ↗
+                </a>
               </div>
             )}
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">peeringdb_ref</span>
+              <a
+                href={peeringDbRef.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#15b371] hover:underline flex items-center gap-1 font-mono text-[11px]"
+              >
+                {peeringDbRef.label} ↗
+              </a>
+            </div>
             {selectedDataCenter.address && (
               <div className="flex items-center justify-between p-2">
                 <span className="text-[#8a9ba8] text-[11px]">facility_address</span>
@@ -364,9 +386,37 @@ export function StationInspector() {
               </span>
             </a>
 
-            {/* 3. Authoritative Source Reference (PeeringDB / OpenStreetMap) */}
+            {/* 3. OpenStreetMap Physical Footprint (if available) */}
+            {osmRef && (
+              <a
+                href={osmRef.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start justify-between rounded border border-[#293742] bg-[#101418] p-2.5 hover:border-[#2b95d6] hover:bg-[#182026] transition-all group"
+              >
+                <div className="flex items-start gap-2 min-w-0">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[#202b33] text-[#2b95d6] group-hover:bg-[#2b95d6] group-hover:text-white transition-colors">
+                    <MapPin className="h-3.5 w-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-[#f5f8fa] group-hover:text-[#2b95d6] transition-colors">
+                      <span className="truncate max-w-[190px]">OpenStreetMap Footprint</span>
+                      <ExternalLink className="h-3 w-3 shrink-0 opacity-70 group-hover:opacity-100" />
+                    </div>
+                    <div className="mt-0.5 text-[10px] font-mono text-[#8a9ba8] truncate max-w-[220px]">
+                      {osmRef.label} • Physical building geometry & perimeter
+                    </div>
+                  </div>
+                </div>
+                <span className="shrink-0 text-[10px] font-mono text-[#2b95d6] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742] group-hover:border-[#2b95d6]">
+                  OSM ↗
+                </span>
+              </a>
+            )}
+
+            {/* 4. PeeringDB Directory & Interconnect Registry */}
             <a
-              href={sourceRef.url}
+              href={peeringDbRef.url}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start justify-between rounded border border-[#293742] bg-[#101418] p-2.5 hover:border-[#d9822b] hover:bg-[#182026] transition-all group"
@@ -377,16 +427,16 @@ export function StationInspector() {
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-[#f5f8fa] group-hover:text-[#d9822b] transition-colors">
-                    <span className="truncate max-w-[190px]">{sourceRef.sourceName}</span>
+                    <span className="truncate max-w-[190px]">{peeringDbRef.sourceName}</span>
                     <ExternalLink className="h-3 w-3 shrink-0 opacity-70 group-hover:opacity-100" />
                   </div>
                   <div className="mt-0.5 text-[10px] font-mono text-[#8a9ba8] truncate max-w-[220px]">
-                    {sourceRef.description}
+                    {peeringDbRef.label} • Public directory specs & exchange points
                   </div>
                 </div>
               </div>
               <span className="shrink-0 text-[10px] font-mono text-[#d9822b] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742] group-hover:border-[#d9822b]">
-                {sourceRef.badge.toUpperCase()} ↗
+                {peeringDbRef.badge.toUpperCase()} ↗
               </span>
             </a>
 

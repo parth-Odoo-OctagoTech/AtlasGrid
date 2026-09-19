@@ -1364,8 +1364,8 @@
     "city": "Anyang",
     "connectedNetworksCount": 126,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 112878
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 65122
   },
   {
     "id": "dc-aws-hyperscale-100057",
@@ -1388,8 +1388,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 139,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 105703
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 63693
   },
   {
     "id": "dc-aws-hyperscale-100058",
@@ -11084,8 +11084,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 41,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 35975
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 21677
   },
   {
     "id": "dc-aws-cloudfront-100462",
@@ -11108,8 +11108,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 52,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 23184
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 13970
   },
   {
     "id": "dc-aws-cloudfront-100463",
@@ -11132,8 +11132,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 63,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 12791
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 7707
   },
   {
     "id": "dc-aws-cloudfront-100464",
@@ -11156,8 +11156,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 74,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 18387
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 10608
   },
   {
     "id": "dc-aws-cloudfront-100465",
@@ -11180,8 +11180,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 85,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 23983
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 13836
   },
   {
     "id": "dc-aws-cloudfront-100466",
@@ -11204,8 +11204,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 36,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 13590
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 8189
   },
   {
     "id": "dc-aws-cloudfront-100467",
@@ -295621,7 +295621,7 @@
     "peeringDbId": 7768,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.1,
+    "localCleanEnergyPercent": 19.3,
     "estimatedAnnualCo2Tons": 66165
   },
   {
@@ -295665,8 +295665,8 @@
     "peeringDbId": 3182,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.1,
-    "estimatedAnnualCo2Tons": 170249
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 160536
   },
   {
     "id": "dc-1201847647",
@@ -295757,8 +295757,8 @@
     "peeringDbId": 6647,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 19.1,
-    "estimatedAnnualCo2Tons": 61909
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 58377
   },
   {
     "id": "dc-1009615405",
@@ -296106,8 +296106,8 @@
     "peeringDbId": 9283,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 23,
-    "estimatedAnnualCo2Tons": 196028
+    "localCleanEnergyPercent": 45,
+    "estimatedAnnualCo2Tons": 138743
   },
   {
     "id": "dc-11073240773",
@@ -296189,8 +296189,8 @@
     "peeringDbId": 1205,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 23,
-    "estimatedAnnualCo2Tons": 172795
+    "localCleanEnergyPercent": 29,
+    "estimatedAnnualCo2Tons": 147693
   },
   {
     "id": "dc-1489759025",
@@ -296878,8 +296878,8 @@
     "peeringDbId": 1359,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 26.1,
-    "estimatedAnnualCo2Tons": 59652
+    "localCleanEnergyPercent": 26.7,
+    "estimatedAnnualCo2Tons": 56316
   },
   {
     "id": "dc-10171383675",
@@ -296901,8 +296901,8 @@
     "peeringDbId": 7675,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 26.1,
-    "estimatedAnnualCo2Tons": 145775
+    "localCleanEnergyPercent": 25.5,
+    "estimatedAnnualCo2Tons": 138822
   },
   {
     "id": "dc-207890264",
@@ -296993,8 +296993,8 @@
     "peeringDbId": 9264,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 26.1,
-    "estimatedAnnualCo2Tons": 73819
+    "localCleanEnergyPercent": 26.7,
+    "estimatedAnnualCo2Tons": 69691
   },
   {
     "id": "dc-9536287665",
@@ -297016,8 +297016,8 @@
     "peeringDbId": 5665,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 26.1,
-    "estimatedAnnualCo2Tons": 170008
+    "localCleanEnergyPercent": 17.9,
+    "estimatedAnnualCo2Tons": 172525
   },
   {
     "id": "dc-1254818450",
@@ -297060,8 +297060,8 @@
     "peeringDbId": 3450,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.1,
-    "estimatedAnnualCo2Tons": 92863
+    "localCleanEnergyPercent": 23.8,
+    "estimatedAnnualCo2Tons": 87565
   },
   {
     "id": "dc-1254828630",
@@ -297104,8 +297104,8 @@
     "peeringDbId": 4630,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 19.1,
-    "estimatedAnnualCo2Tons": 154772
+    "localCleanEnergyPercent": 24,
+    "estimatedAnnualCo2Tons": 139810
   },
   {
     "id": "dc-1253903177",
@@ -297148,8 +297148,8 @@
     "peeringDbId": 6177,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.1,
-    "estimatedAnnualCo2Tons": 85511
+    "localCleanEnergyPercent": 24,
+    "estimatedAnnualCo2Tons": 77245
   },
   {
     "id": "dc-1253893668",
@@ -297200,8 +297200,8 @@
     "peeringDbId": 5668,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.1,
-    "estimatedAnnualCo2Tons": 181083
+    "localCleanEnergyPercent": 24,
+    "estimatedAnnualCo2Tons": 163577
   },
   {
     "id": "dc-957884276",
@@ -297244,8 +297244,8 @@
     "peeringDbId": 6276,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 26.1,
-    "estimatedAnnualCo2Tons": 99172
+    "localCleanEnergyPercent": 17.9,
+    "estimatedAnnualCo2Tons": 100640
   },
   {
     "id": "dc-1345688742",
@@ -297340,8 +297340,8 @@
     "peeringDbId": 7626,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 90.5,
-    "estimatedAnnualCo2Tons": 8389
+    "localCleanEnergyPercent": 97.3,
+    "estimatedAnnualCo2Tons": 3826
   },
   {
     "id": "dc-1222222038",
@@ -297412,8 +297412,8 @@
     "peeringDbId": 5038,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 92.3,
-    "estimatedAnnualCo2Tons": 13427
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 13135
   },
   {
     "id": "dc-770421867",
@@ -297504,8 +297504,8 @@
     "peeringDbId": 4867,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 91.9,
-    "estimatedAnnualCo2Tons": 8653
+    "localCleanEnergyPercent": 97.5,
+    "estimatedAnnualCo2Tons": 4062
   },
   {
     "id": "dc-1461701602",
@@ -297620,8 +297620,8 @@
     "peeringDbId": 3602,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 91.6,
-    "estimatedAnnualCo2Tons": 16556
+    "localCleanEnergyPercent": 97.8,
+    "estimatedAnnualCo2Tons": 7433
   },
   {
     "id": "dc-1413213983",
@@ -297664,8 +297664,8 @@
     "peeringDbId": 7983,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 16262
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 9382
   },
   {
     "id": "dc-1374553894",
@@ -297716,8 +297716,8 @@
     "peeringDbId": 2894,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 3826
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 2208
   },
   {
     "id": "dc-453640737",
@@ -297760,8 +297760,8 @@
     "peeringDbId": 5737,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 14636
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 8444
   },
   {
     "id": "dc-1236581232",
@@ -297808,8 +297808,8 @@
     "peeringDbId": 9232,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 5166
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 3113
   },
   {
     "id": "dc-1236581233",
@@ -297852,8 +297852,8 @@
     "peeringDbId": 9233,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 17266
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 10404
   },
   {
     "id": "dc-11497013685",
@@ -297875,8 +297875,8 @@
     "peeringDbId": 9685,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 6696
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 4035
   },
   {
     "id": "dc-11497013684",
@@ -297898,8 +297898,8 @@
     "peeringDbId": 9684,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 15305
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 9223
   },
   {
     "id": "dc-12514316390",
@@ -298211,8 +298211,8 @@
     "peeringDbId": 2255,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 83.6,
-    "estimatedAnnualCo2Tons": 19660
+    "localCleanEnergyPercent": 89.3,
+    "estimatedAnnualCo2Tons": 12468
   },
   {
     "id": "dc-475112270",
@@ -298287,8 +298287,8 @@
     "peeringDbId": 3270,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 83.6,
-    "estimatedAnnualCo2Tons": 9956
+    "localCleanEnergyPercent": 89.3,
+    "estimatedAnnualCo2Tons": 6314
   },
   {
     "id": "dc-1239264180",
@@ -299171,8 +299171,8 @@
     "peeringDbId": 5064,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 66.9,
-    "estimatedAnnualCo2Tons": 41550
+    "localCleanEnergyPercent": 50,
+    "estimatedAnnualCo2Tons": 56660
   },
   {
     "id": "dc-442479059",
@@ -304063,8 +304063,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 120941
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 72874
   },
   {
     "id": "dc-microsoft-azure-500090",
@@ -304087,8 +304087,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 120941
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 69773
   },
   {
     "id": "dc-microsoft-azure-500091",
@@ -304111,8 +304111,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 120941
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 72874
   },
   {
     "id": "dc-microsoft-azure-500092",
@@ -307063,8 +307063,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 110965
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 66863
   },
   {
     "id": "dc-google-cloud--gcp--500215",
@@ -307087,8 +307087,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 110965
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 64018
   },
   {
     "id": "dc-google-cloud--gcp--500216",
@@ -307111,8 +307111,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 110965
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 64018
   },
   {
     "id": "dc-google-cloud--gcp--500217",
@@ -313471,8 +313471,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 185,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 26019
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 15678
   },
   {
     "id": "dc-equinix-ibx-500482",
@@ -313495,8 +313495,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 190,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 31711
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 19108
   },
   {
     "id": "dc-equinix-ibx-500483",
@@ -317071,8 +317071,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 144,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 31445
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 18947
   },
   {
     "id": "dc-digital-realty-500632",
@@ -317095,8 +317095,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 148,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 38701
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 22327
   },
   {
     "id": "dc-digital-realty-500633",
@@ -317119,8 +317119,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 152,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 45957
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 26514
   },
   {
     "id": "dc-digital-realty-500634",
@@ -318535,8 +318535,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 72564
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 43725
   },
   {
     "id": "dc-oracle-cloud--oci--500693",
@@ -318559,8 +318559,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 72564
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 43725
   },
   {
     "id": "dc-oracle-cloud--oci--500694",
@@ -318583,8 +318583,8 @@
     "city": "Chuncheon",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 83.6,
-    "estimatedAnnualCo2Tons": 76286
+    "localCleanEnergyPercent": 89.3,
+    "estimatedAnnualCo2Tons": 48376
   },
   {
     "id": "dc-oracle-cloud--oci--500695",
@@ -318607,8 +318607,8 @@
     "city": "Chuncheon",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 83.6,
-    "estimatedAnnualCo2Tons": 76286
+    "localCleanEnergyPercent": 89.3,
+    "estimatedAnnualCo2Tons": 48376
   },
   {
     "id": "dc-oracle-cloud--oci--500696",
@@ -323647,8 +323647,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 14144
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 8523
   },
   {
     "id": "dc-other-500906",
@@ -329407,8 +329407,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 45,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 20157
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 12146
   },
   {
     "id": "dc-azure-frontdoor-700187",
@@ -329431,8 +329431,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 50,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 20157
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 11629
   },
   {
     "id": "dc-azure-frontdoor-700188",
@@ -329455,8 +329455,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 55,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 20157
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 12146
   },
   {
     "id": "dc-azure-frontdoor-700189",
@@ -335167,8 +335167,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 56,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 19815
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 11432
   },
   {
     "id": "dc-gcp-edge-pop-700427",
@@ -335191,8 +335191,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 62,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 19815
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 11940
   },
   {
     "id": "dc-gcp-edge-pop-700428",
@@ -335215,8 +335215,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 68,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 19815
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 11940
   },
   {
     "id": "dc-gcp-edge-pop-700429",
@@ -337951,8 +337951,8 @@
     "city": "Seoul",
     "connectedNetworksCount": 35,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 84.6,
-    "estimatedAnnualCo2Tons": 16125
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 9717
   },
   {
     "id": "dc-oci-fastconnect-700543",
@@ -340401,5 +340401,780 @@
     "polygonCoords": null,
     "localCleanEnergyPercent": 42.3,
     "estimatedAnnualCo2Tons": 1643573
+  },
+  {
+    "id": "dc-kr-kt-yongsan",
+    "name": "kt cloud Yongsan Hyperscale IDC",
+    "operator": "kt cloud / KT IDC",
+    "category": "hyperscale",
+    "latitude": 37.535381,
+    "longitude": 126.958805,
+    "estimatedPowerMw": 40,
+    "pue": 1.25,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Yongsan-gu)",
+    "coolingType": "Chilled Water & Cold Aisle Containment",
+    "tier": "Tier III+ / Hyperscale",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 12954,
+    "asn": 4766,
+    "address": "Wonhyo-ro, Yongsan-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 45,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 19710
+  },
+  {
+    "id": "dc-kr-kt-mokdong1",
+    "name": "kt cloud Mokdong (MD1) IDC",
+    "operator": "kt cloud / KT IDC",
+    "category": "colocation",
+    "latitude": 37.528685,
+    "longitude": 126.871883,
+    "estimatedPowerMw": 35,
+    "pue": 1.3,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Yangcheon-gu)",
+    "coolingType": "High-efficiency Chillers & Economizer",
+    "tier": "Tier III",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 12975,
+    "asn": 4766,
+    "address": "Mokdongseo-ro, Yangcheon-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 50,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 17936
+  },
+  {
+    "id": "dc-kr-kt-mokdong2",
+    "name": "kt cloud Mokdong (MD2) Mega IDC",
+    "operator": "kt cloud / KT IDC",
+    "category": "hyperscale",
+    "latitude": 37.530529,
+    "longitude": 126.876171,
+    "estimatedPowerMw": 45,
+    "pue": 1.28,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Yangcheon-gu)",
+    "coolingType": "Dual Chilled Water Loop & Free Cooling",
+    "tier": "Tier III+",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 2491,
+    "asn": 4766,
+    "address": "Mokdongjungang-ro, Yangcheon-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 60,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 22706
+  },
+  {
+    "id": "dc-kr-kt-gangnam",
+    "name": "kt cloud Gangnam IDC",
+    "operator": "kt cloud / KT IDC",
+    "category": "colocation",
+    "latitude": 37.504696,
+    "longitude": 127.041237,
+    "estimatedPowerMw": 25,
+    "pue": 1.32,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Gangnam-gu)",
+    "coolingType": "Precision Air Handling & CRAC",
+    "tier": "Tier III",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 12965,
+    "asn": 4766,
+    "address": "Teheran-ro, Gangnam-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 40,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 13009
+  },
+  {
+    "id": "dc-kr-kt-bundang",
+    "name": "kt cloud Bundang IDC",
+    "operator": "kt cloud / KT IDC",
+    "category": "colocation",
+    "latitude": 37.339055,
+    "longitude": 127.109381,
+    "estimatedPowerMw": 30,
+    "pue": 1.3,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Seongnam)",
+    "coolingType": "Free Air Cooling & Precision CRAC",
+    "tier": "Tier III",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 12964,
+    "asn": 4766,
+    "address": "Buljeong-ro, Bundang-gu, Seongnam",
+    "city": "Seongnam",
+    "connectedNetworksCount": 35,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 15374
+  },
+  {
+    "id": "dc-kr-kt-yeouido",
+    "name": "kt cloud Yeouido Financial IDC",
+    "operator": "kt cloud / KT IDC",
+    "category": "enterprise",
+    "latitude": 37.52158,
+    "longitude": 126.919139,
+    "estimatedPowerMw": 20,
+    "pue": 1.32,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Yeongdeungpo-gu)",
+    "coolingType": "Chilled Water with Hot Aisle Containment",
+    "tier": "Tier III+ Financial Grade",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 12966,
+    "asn": 4766,
+    "address": "Yeoui-daero, Yeongdeungpo-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 45,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 10407
+  },
+  {
+    "id": "dc-kr-kt-busan",
+    "name": "kt cloud Songjeong Global Gateway Subsea Hub",
+    "operator": "kt cloud / KT IDC",
+    "category": "telecom",
+    "latitude": 35.17779,
+    "longitude": 129.196554,
+    "estimatedPowerMw": 30,
+    "pue": 1.26,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Busan Metropolitan City (Haeundae-gu)",
+    "coolingType": "Seawater Free Cooling & Evaporative Towers",
+    "tier": "Tier IV / Subsea Cable Landing Hub",
+    "website": "https://cloud.kt.com",
+    "peeringDbId": 15004,
+    "asn": 4766,
+    "address": "Songjeong-dong, Haeundae-gu",
+    "city": "Busan",
+    "connectedNetworksCount": 75,
+    "ixpCount": 3,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 97.5,
+    "estimatedAnnualCo2Tons": 7616
+  },
+  {
+    "id": "dc-kr-lguplus-pyeongchon1",
+    "name": "LG Uplus Pyeongchon Mega Center",
+    "operator": "LG Uplus",
+    "category": "hyperscale",
+    "latitude": 37.394861,
+    "longitude": 126.97603,
+    "estimatedPowerMw": 85,
+    "pue": 1.2,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Anyang-si)",
+    "coolingType": "High-Efficiency Chilled Water & Eco-Economizer",
+    "tier": "Tier III+ / Mega Center",
+    "website": "https://www.lguplus.com",
+    "peeringDbId": 7573,
+    "asn": 3786,
+    "address": "Simin-daero, Dongan-gu, Anyang-si",
+    "city": "Anyang",
+    "connectedNetworksCount": 55,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 40208
+  },
+  {
+    "id": "dc-kr-lguplus-seocho",
+    "name": "LG Uplus Seocho IDC",
+    "operator": "LG Uplus",
+    "category": "colocation",
+    "latitude": 37.483293,
+    "longitude": 127.022099,
+    "estimatedPowerMw": 30,
+    "pue": 1.33,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Seocho-gu)",
+    "coolingType": "In-Row Precision CRAC",
+    "tier": "Tier III",
+    "website": "https://www.lguplus.com",
+    "peeringDbId": 7574,
+    "asn": 3786,
+    "address": "Nambusunhwan-ro, Seocho-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 40,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 15729
+  },
+  {
+    "id": "dc-kr-lguplus-nonhyun",
+    "name": "LG Uplus Nonhyun IDC",
+    "operator": "LG Uplus",
+    "category": "colocation",
+    "latitude": 37.51104,
+    "longitude": 127.036811,
+    "estimatedPowerMw": 25,
+    "pue": 1.34,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Gangnam-gu)",
+    "coolingType": "Precision Air Conditioning",
+    "tier": "Tier III",
+    "website": "https://www.lguplus.com",
+    "peeringDbId": 14767,
+    "asn": 3786,
+    "address": "Hakdong-ro, Gangnam-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 35,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 13206
+  },
+  {
+    "id": "dc-kr-lguplus-gasan",
+    "name": "LG Uplus Gasan IDC",
+    "operator": "LG Uplus",
+    "category": "colocation",
+    "latitude": 37.4812,
+    "longitude": 126.8835,
+    "estimatedPowerMw": 35,
+    "pue": 1.29,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Geumcheon-gu)",
+    "coolingType": "Chilled Water CRAC",
+    "tier": "Tier III",
+    "website": "https://www.lguplus.com",
+    "peeringDbId": 14766,
+    "asn": 3786,
+    "address": "Digital-ro 9-gil, Geumcheon-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 38,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 17798
+  },
+  {
+    "id": "dc-kr-skb-bundang",
+    "name": "SK Broadband Bundang IDC",
+    "operator": "SK Broadband",
+    "category": "hyperscale",
+    "latitude": 37.335214,
+    "longitude": 127.110549,
+    "estimatedPowerMw": 45,
+    "pue": 1.25,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Seongnam)",
+    "coolingType": "Chilled Water & Cold Aisle Enclosure",
+    "tier": "Tier III+",
+    "website": "https://www.skbroadband.com",
+    "peeringDbId": 15126,
+    "asn": 9318,
+    "address": "Hwangsaeul-ro, Bundang-gu, Seongnam",
+    "city": "Seongnam",
+    "connectedNetworksCount": 48,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 22174
+  },
+  {
+    "id": "dc-kr-skb-gasan",
+    "name": "SK Broadband Gasan Mega Data Center",
+    "operator": "SK Broadband",
+    "category": "hyperscale",
+    "latitude": 37.4782,
+    "longitude": 126.8831,
+    "estimatedPowerMw": 46,
+    "pue": 1.22,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Geumcheon-gu)",
+    "coolingType": "High-density In-Row Liquid & Free Cooling",
+    "tier": "Tier III+",
+    "website": "https://www.skbroadband.com",
+    "peeringDbId": 16879,
+    "asn": 9318,
+    "address": "Gasan Digital 1-ro, Geumcheon-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 42,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 22123
+  },
+  {
+    "id": "dc-kr-kinx-gwacheon",
+    "name": "KINX Gwacheon Mega IDC & Peering Hub",
+    "operator": "KINX",
+    "category": "colocation",
+    "latitude": 37.442,
+    "longitude": 126.991,
+    "estimatedPowerMw": 25,
+    "pue": 1.25,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Gwacheon-si)",
+    "coolingType": "High-efficiency Chilled Water & Economizers",
+    "tier": "Tier III+ Neutral Interconnect Hub",
+    "website": "https://www.kinx.net",
+    "peeringDbId": 16879,
+    "asn": 9286,
+    "address": "Gwacheon Knowledge Information Town",
+    "city": "Gwacheon",
+    "connectedNetworksCount": 65,
+    "ixpCount": 4,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 12319
+  },
+  {
+    "id": "dc-kr-kinx-dogok",
+    "name": "KINX Dogok IDC",
+    "operator": "KINX",
+    "category": "colocation",
+    "latitude": 37.488139,
+    "longitude": 127.051167,
+    "estimatedPowerMw": 15,
+    "pue": 1.34,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Gangnam-gu)",
+    "coolingType": "Precision CRAC",
+    "tier": "Tier III",
+    "website": "https://www.kinx.net",
+    "peeringDbId": 143,
+    "asn": 9286,
+    "address": "Eonju-ro, Gangnam-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 55,
+    "ixpCount": 3,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 7923
+  },
+  {
+    "id": "dc-kr-kinx-gasan",
+    "name": "KINX Gasan IDC",
+    "operator": "KINX",
+    "category": "colocation",
+    "latitude": 37.482096,
+    "longitude": 126.879733,
+    "estimatedPowerMw": 18,
+    "pue": 1.32,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Geumcheon-gu)",
+    "coolingType": "Precision Air Handling",
+    "tier": "Tier III",
+    "website": "https://www.kinx.net",
+    "peeringDbId": 7674,
+    "asn": 9286,
+    "address": "Digital-ro 9-gil, Geumcheon-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 50,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 9366
+  },
+  {
+    "id": "dc-kr-naver-gak-sejong",
+    "name": "Naver Data Center Gak Sejong (AI Supercomputing Hub)",
+    "operator": "Naver Cloud",
+    "category": "hyperscale",
+    "latitude": 36.52,
+    "longitude": 127.31,
+    "estimatedPowerMw": 270,
+    "pue": 1.12,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Chungcheong / Sejong Special Autonomous City",
+    "coolingType": "Natural Wind Free Cooling (NAMU III) & Liquid Cooling",
+    "tier": "Tier IV / AI Supercomputing Hyperscale",
+    "website": "https://www.navercloud.com",
+    "peeringDbId": 23576,
+    "asn": 23576,
+    "address": "Jiphyeon-dong, Sejong-si",
+    "city": "Sejong",
+    "connectedNetworksCount": 40,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 119206
+  },
+  {
+    "id": "dc-kr-naver-gak-chuncheon",
+    "name": "Naver Data Center Gak Chuncheon",
+    "operator": "Naver Cloud",
+    "category": "hyperscale",
+    "latitude": 37.885,
+    "longitude": 127.755,
+    "estimatedPowerMw": 40,
+    "pue": 1.15,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gangwon-do (Chuncheon)",
+    "coolingType": "Air-Side Economizer & Mountain Wind Cooling",
+    "tier": "Tier III+ Green Data Center",
+    "website": "https://www.navercloud.com",
+    "peeringDbId": 23576,
+    "asn": 23576,
+    "address": "Dong-myeon, Chuncheon-si, Gangwon-do",
+    "city": "Chuncheon",
+    "connectedNetworksCount": 30,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 89.3,
+    "estimatedAnnualCo2Tons": 20954
+  },
+  {
+    "id": "dc-kr-kakao-ansan",
+    "name": "Kakao Data Center Ansan (ERICA Campus)",
+    "operator": "Kakao Corp",
+    "category": "hyperscale",
+    "latitude": 37.2965,
+    "longitude": 126.834,
+    "estimatedPowerMw": 40,
+    "pue": 1.2,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Ansan-si)",
+    "coolingType": "Water Curtain Cooling & High-efficiency Chillers",
+    "tier": "Tier III (Earthquake & Disaster Resilient)",
+    "website": "https://www.kakaocorp.com",
+    "peeringDbId": 10158,
+    "asn": 10158,
+    "address": "Hanyang University ERICA Campus, Ansan",
+    "city": "Ansan",
+    "connectedNetworksCount": 35,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 18922
+  },
+  {
+    "id": "dc-kr-samsung-sangam",
+    "name": "Samsung SDS Sangam IT Center",
+    "operator": "Samsung SDS",
+    "category": "enterprise",
+    "latitude": 37.578,
+    "longitude": 126.89,
+    "estimatedPowerMw": 30,
+    "pue": 1.28,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Mapo-gu)",
+    "coolingType": "High-Efficiency CRAC & Economizer",
+    "tier": "Tier III+ Enterprise Cloud",
+    "website": "https://www.samsungsds.com",
+    "peeringDbId": 6619,
+    "asn": 6619,
+    "address": "World Cup buk-ro, Mapo-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 25,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 15810
+  },
+  {
+    "id": "dc-kr-samsung-suwon",
+    "name": "Samsung SDS Suwon Mega Data Center",
+    "operator": "Samsung SDS",
+    "category": "enterprise",
+    "latitude": 37.258,
+    "longitude": 127.055,
+    "estimatedPowerMw": 45,
+    "pue": 1.25,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Suwon-si)",
+    "coolingType": "Cold Aisle Containment & Water Economizer",
+    "tier": "Tier IV Enterprise Cloud",
+    "website": "https://www.samsungsds.com",
+    "peeringDbId": 6619,
+    "asn": 6619,
+    "address": "Samsung-ro, Yeongtong-gu, Suwon",
+    "city": "Suwon",
+    "connectedNetworksCount": 30,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 22174
+  },
+  {
+    "id": "dc-kr-equinix-sl1",
+    "name": "Equinix SL1 Seoul IBX Center",
+    "operator": "Equinix IBX",
+    "category": "colocation",
+    "latitude": 37.580228,
+    "longitude": 126.8907,
+    "estimatedPowerMw": 20,
+    "pue": 1.28,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Mapo-gu)",
+    "coolingType": "Chilled Water & Hot Aisle Containment",
+    "tier": "Tier III+ Carrier Neutral",
+    "website": "https://www.equinix.com/data-centers/asia-pacific/south-korea/seoul-data-centers",
+    "peeringDbId": 7354,
+    "asn": 24115,
+    "address": "Sangam Digital Media City (DMC), Mapo-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 85,
+    "ixpCount": 3,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 10540
+  },
+  {
+    "id": "dc-kr-equinix-sl4",
+    "name": "Equinix SL4 Seoul Center",
+    "operator": "Equinix IBX",
+    "category": "colocation",
+    "latitude": 37.599421,
+    "longitude": 126.893997,
+    "estimatedPowerMw": 25,
+    "pue": 1.27,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area",
+    "coolingType": "Evaporative Cooling",
+    "tier": "Tier III+",
+    "website": "https://www.equinix.com",
+    "peeringDbId": 15854,
+    "asn": 24115,
+    "address": "Goyang-daero, Deogyang-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 60,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 13072
+  },
+  {
+    "id": "dc-kr-digitalrealty-icn10",
+    "name": "Digital Realty ICN10 Seoul",
+    "operator": "Digital Realty",
+    "category": "colocation",
+    "latitude": 37.582162,
+    "longitude": 126.886128,
+    "estimatedPowerMw": 12,
+    "pue": 1.3,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Mapo-gu)",
+    "coolingType": "Chilled Water & Direct Evaporative",
+    "tier": "Tier III Carrier Neutral",
+    "website": "https://www.digitalrealty.com",
+    "peeringDbId": 9210,
+    "asn": 26347,
+    "address": "Sangam Digital Media City, Mapo-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 70,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 6423
+  },
+  {
+    "id": "dc-kr-azure-busan",
+    "name": "Microsoft Azure Korea South (Busan Mega Campus)",
+    "operator": "Microsoft Azure",
+    "category": "hyperscale",
+    "latitude": 35.148,
+    "longitude": 128.878,
+    "estimatedPowerMw": 100,
+    "pue": 1.15,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Busan Metropolitan City (Gangseo-gu)",
+    "coolingType": "Direct Evaporative Free Air & Seawater Cooling",
+    "tier": "Tier IV / Hyperscale",
+    "website": "https://azure.microsoft.com",
+    "peeringDbId": 8075,
+    "asn": 8075,
+    "address": "Mieum Industrial Complex, Gangseo-gu",
+    "city": "Busan",
+    "connectedNetworksCount": 90,
+    "ixpCount": 3,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 97.5,
+    "estimatedAnnualCo2Tons": 23170
+  },
+  {
+    "id": "dc-kr-stt-seoul1",
+    "name": "STT Seoul 1 Data Centre",
+    "operator": "STT GDC",
+    "category": "colocation",
+    "latitude": 37.5665,
+    "longitude": 126.978,
+    "estimatedPowerMw": 30,
+    "pue": 1.25,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area",
+    "coolingType": "Chilled Water CRAC",
+    "tier": "Tier III",
+    "website": "https://www.sttelemediagdc.com",
+    "peeringDbId": 4755,
+    "asn": 4755,
+    "address": "Jung-gu, Seoul",
+    "city": "Seoul",
+    "connectedNetworksCount": 40,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 15440
+  },
+  {
+    "id": "dc-kr-digitaledge-sel1",
+    "name": "Digital Edge SEL1 Data Center (Gangnam)",
+    "operator": "Other",
+    "category": "colocation",
+    "latitude": 37.498188,
+    "longitude": 127.037418,
+    "estimatedPowerMw": 18,
+    "pue": 1.29,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Gangnam-gu)",
+    "coolingType": "High efficiency In-Row CRAC",
+    "tier": "Tier III",
+    "website": "https://www.digitaledgedc.com",
+    "peeringDbId": 12430,
+    "asn": 139045,
+    "address": "Yeoksam-ro, Gangnam-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 35,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 9153
+  },
+  {
+    "id": "dc-kr-digitaledge-pus1",
+    "name": "Digital Edge PUS1 Subsea Gateway (Busan)",
+    "operator": "Other",
+    "category": "telecom",
+    "latitude": 35.174915,
+    "longitude": 129.127427,
+    "estimatedPowerMw": 22,
+    "pue": 1.28,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Busan Metropolitan City (Haeundae-gu)",
+    "coolingType": "Seawater Heat Exchange Chilled Water",
+    "tier": "Tier III+ Subsea Landing Facility",
+    "website": "https://www.digitaledgedc.com",
+    "peeringDbId": 12440,
+    "asn": 139045,
+    "address": "Centum seo-ro, Haeundae-gu",
+    "city": "Busan",
+    "connectedNetworksCount": 50,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 97.7,
+    "estimatedAnnualCo2Tons": 5427
+  },
+  {
+    "id": "dc-kr-lgcns-sangam",
+    "name": "LG CNS Sangam IT Center",
+    "operator": "Other",
+    "category": "enterprise",
+    "latitude": 37.581049,
+    "longitude": 126.886856,
+    "estimatedPowerMw": 25,
+    "pue": 1.3,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Mapo-gu)",
+    "coolingType": "Chilled Water & Outdoor Air Economizer",
+    "tier": "Tier III+",
+    "website": "https://www.lgcns.com",
+    "peeringDbId": 2997,
+    "asn": 3786,
+    "address": "Sangam Digital Media City, Mapo-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 30,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.3,
+    "estimatedAnnualCo2Tons": 13381
+  },
+  {
+    "id": "dc-kr-lgcns-jukjeon",
+    "name": "LG CNS Jukjeon Mega Data Center",
+    "operator": "Other",
+    "category": "hyperscale",
+    "latitude": 37.328559,
+    "longitude": 127.133777,
+    "estimatedPowerMw": 99,
+    "pue": 1.21,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Gyeonggi-do (Yongin-si)",
+    "coolingType": "Free Air Cooling & High-efficiency Liquid Chilled Water",
+    "tier": "Tier III+ / Hyperscale",
+    "website": "https://www.lgcns.com",
+    "peeringDbId": 16335,
+    "asn": 3786,
+    "address": "Jukjeon-ro, Suji-gu, Yongin-si",
+    "city": "Yongin",
+    "connectedNetworksCount": 45,
+    "ixpCount": 2,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 47221
+  },
+  {
+    "id": "dc-kr-stt-seoul2",
+    "name": "STT Seoul 2 Data Centre (Gasan)",
+    "operator": "STT GDC",
+    "category": "colocation",
+    "latitude": 37.4812,
+    "longitude": 126.8825,
+    "estimatedPowerMw": 30,
+    "pue": 1.25,
+    "country": "KR",
+    "countryName": "South Korea",
+    "region": "Seoul Capital Area (Geumcheon-gu)",
+    "coolingType": "High-density Precision CRAC",
+    "tier": "Tier III",
+    "website": "https://www.sttelemediagdc.com",
+    "peeringDbId": 4755,
+    "asn": 4755,
+    "address": "Gasan digital 1-ro, Geumcheon-gu",
+    "city": "Seoul",
+    "connectedNetworksCount": 35,
+    "ixpCount": 1,
+    "polygonCoords": null,
+    "localCleanEnergyPercent": 90.9,
+    "estimatedAnnualCo2Tons": 14783
   }
 ]

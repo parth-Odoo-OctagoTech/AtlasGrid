@@ -32,6 +32,7 @@ export type GridRegion =
   | "JAPAN_TEPCO"
   | "INDIA_NREB"
   | "NEPAL_NEA"
+  | "KOREA_KPX"
   | "NEM_AUSTRALIA"
   | "BRAZIL_ONS"
   | "GLOBAL_OTHER";

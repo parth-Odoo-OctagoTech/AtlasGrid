@@ -235,6 +235,10 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
         list = list.filter(
           (p) => p.gridRegion === "NEPAL_NEA" || p.country === "NP" || p.countryName === "Nepal"
         );
+      } else if (filters.region === "KOREA_KPX") {
+        list = list.filter(
+          (p) => p.gridRegion === "KOREA_KPX" || p.country === "KR" || p.countryName === "South Korea"
+        );
       } else {
         list = list.filter(
           (p) => p.gridRegion === filters.region || p.country === filters.region
@@ -298,6 +302,10 @@ export function DeckGLMap({ plants, interconnectors, dataCenters = [], cables = 
       } else if (filters.region === "NEPAL_NEA") {
         list = list.filter(
           (dc) => dc.country === "NP" || dc.country === "Nepal" || dc.countryName === "Nepal"
+        );
+      } else if (filters.region === "KOREA_KPX") {
+        list = list.filter(
+          (dc) => dc.country === "KR" || dc.country === "South Korea" || dc.countryName === "South Korea" || dc.region?.includes("Korea")
         );
       } else {
         const regLow = filters.region.toLowerCase();

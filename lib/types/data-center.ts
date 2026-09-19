@@ -62,5 +62,12 @@ export const OPERATOR_COLORS: Record<string, { hex: string; rgb: [number, number
   "Data Hub Nepal": { hex: "#059669", rgb: [5, 150, 105] },
   "DishHome (Datalaya)": { hex: "#E11D48", rgb: [225, 29, 72] },
   "Nepal Telecom": { hex: "#2563EB", rgb: [37, 99, 235] },
+  "kt cloud / KT IDC": { hex: "#E60012", rgb: [230, 0, 18] },
+  "LG Uplus": { hex: "#E6007E", rgb: [230, 0, 126] },
+  "SK Broadband": { hex: "#FF0033", rgb: [255, 0, 51] },
+  "KINX": { hex: "#0072CE", rgb: [0, 114, 206] },
+  "Naver Cloud": { hex: "#03C75A", rgb: [3, 199, 90] },
+  "Kakao Corp": { hex: "#FEE500", rgb: [254, 229, 0] },
+  "Samsung SDS": { hex: "#1428A0", rgb: [20, 40, 160] },
   "Other": { hex: "#06B6D4", rgb: [6, 182, 212] },
 };

@@ -28,6 +28,7 @@ import {
   getGoogleMapsUrl,
   getOfficialWebsite,
   getPrimarySourceReference,
+  getPeeringDbReference,
   OPERATOR_PORTALS,
 } from "@/lib/utils/datacenter-links";
 

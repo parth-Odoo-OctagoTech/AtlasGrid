@@ -169325,7 +169325,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.270Z",
     "climateTraceAssetId": "ct-np-5201",
-    "annualCo2EmissionsTons": 58
+    "annualCo2EmissionsTons": 58,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-02",
@@ -169354,7 +169355,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5202",
-    "annualCo2EmissionsTons": 18
+    "annualCo2EmissionsTons": 18,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-03",
@@ -169383,7 +169385,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5203",
-    "annualCo2EmissionsTons": 14
+    "annualCo2EmissionsTons": 14,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-04",
@@ -169412,7 +169415,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5204",
-    "annualCo2EmissionsTons": 11
+    "annualCo2EmissionsTons": 11,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-05",
@@ -169441,7 +169445,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5205",
-    "annualCo2EmissionsTons": 10
+    "annualCo2EmissionsTons": 10,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-06",
@@ -169470,7 +169475,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5206",
-    "annualCo2EmissionsTons": 10
+    "annualCo2EmissionsTons": 10,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-07",
@@ -169499,7 +169505,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5207",
-    "annualCo2EmissionsTons": 9
+    "annualCo2EmissionsTons": 9,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-08",
@@ -169528,7 +169535,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5208",
-    "annualCo2EmissionsTons": 9
+    "annualCo2EmissionsTons": 9,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-09",
@@ -169557,7 +169565,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5209",
-    "annualCo2EmissionsTons": 8
+    "annualCo2EmissionsTons": 8,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-10",
@@ -169586,7 +169595,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5210",
-    "annualCo2EmissionsTons": 8
+    "annualCo2EmissionsTons": 8,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-11",
@@ -169615,7 +169625,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5211",
-    "annualCo2EmissionsTons": 8
+    "annualCo2EmissionsTons": 8,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-12",
@@ -169644,7 +169655,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5212",
-    "annualCo2EmissionsTons": 7
+    "annualCo2EmissionsTons": 7,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-13",
@@ -169673,7 +169685,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5213",
-    "annualCo2EmissionsTons": 7
+    "annualCo2EmissionsTons": 7,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-14",
@@ -169702,7 +169715,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5214",
-    "annualCo2EmissionsTons": 6
+    "annualCo2EmissionsTons": 6,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-15",
@@ -169731,7 +169745,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5215",
-    "annualCo2EmissionsTons": 6
+    "annualCo2EmissionsTons": 6,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-16",
@@ -169760,7 +169775,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5216",
-    "annualCo2EmissionsTons": 5
+    "annualCo2EmissionsTons": 5,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-17",
@@ -169789,7 +169805,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5217",
-    "annualCo2EmissionsTons": 5
+    "annualCo2EmissionsTons": 5,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-18",
@@ -169818,7 +169835,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5218",
-    "annualCo2EmissionsTons": 4
+    "annualCo2EmissionsTons": 4,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-19",
@@ -169847,7 +169865,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5219",
-    "annualCo2EmissionsTons": 4
+    "annualCo2EmissionsTons": 4,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-20",
@@ -169876,7 +169895,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5220",
-    "annualCo2EmissionsTons": 4
+    "annualCo2EmissionsTons": 4,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-21",
@@ -169905,7 +169925,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5221",
-    "annualCo2EmissionsTons": 4
+    "annualCo2EmissionsTons": 4,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-22",
@@ -169934,7 +169955,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5222",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-23",
@@ -169963,7 +169985,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5223",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-24",
@@ -169992,7 +170015,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5224",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-25",
@@ -170021,7 +170045,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5225",
-    "annualCo2EmissionsTons": 6
+    "annualCo2EmissionsTons": 6,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-26",
@@ -170050,7 +170075,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5226",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-27",
@@ -170079,7 +170105,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5227",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-28",
@@ -170108,7 +170135,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5228",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-29",
@@ -170137,7 +170165,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5229",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-30",
@@ -170166,7 +170195,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5230",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-31",
@@ -170195,7 +170225,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5231",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-32",
@@ -170224,7 +170255,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5232",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-33",
@@ -170253,7 +170285,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5233",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-34",
@@ -170282,7 +170315,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5234",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-35",
@@ -170311,7 +170345,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5235",
-    "annualCo2EmissionsTons": 3
+    "annualCo2EmissionsTons": 3,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-36",
@@ -170340,7 +170375,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5236",
-    "annualCo2EmissionsTons": 2
+    "annualCo2EmissionsTons": 2,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-37",
@@ -170369,7 +170405,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5237",
-    "annualCo2EmissionsTons": 30
+    "annualCo2EmissionsTons": 30,
+    "satelliteTracked": true
   },
   {
     "id": "np-plant-38",
@@ -170398,7 +170435,8 @@
     },
     "lastUpdated": "2026-09-19T16:50:54.271Z",
     "climateTraceAssetId": "ct-np-5238",
-    "annualCo2EmissionsTons": 82
+    "annualCo2EmissionsTons": 82,
+    "satelliteTracked": true
   },
   {
     "id": "us-nuc-paloverde",
@@ -170425,7 +170463,10 @@
       "loss": 1.5,
       "total": 28.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.406Z"
+    "lastUpdated": "2026-09-19T22:30:01.406Z",
+    "climateTraceAssetId": "ct-us-nuc-paloverde",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-nuc-vogtle",
@@ -170452,7 +170493,10 @@
       "loss": 1.5,
       "total": 31.2
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-nuc-vogtle",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-hyd-grandcoulee",
@@ -170479,7 +170523,10 @@
       "loss": 1.2,
       "total": 22
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-hyd-grandcoulee",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-hyd-robertmoses",
@@ -170506,7 +170553,10 @@
       "loss": 1.3,
       "total": 24.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-hyd-robertmoses",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-nuc-diablocanyon",
@@ -170533,7 +170583,10 @@
       "loss": 1.4,
       "total": 32.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-nuc-diablocanyon",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-nuc-brownsferry",
@@ -170560,7 +170613,10 @@
       "loss": 1.5,
       "total": 29.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-nuc-brownsferry",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-sto-bathcounty",
@@ -170587,7 +170643,10 @@
       "loss": 2.5,
       "total": 45
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-sto-bathcounty",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-nuc-southtexas",
@@ -170614,7 +170673,10 @@
       "loss": 1.3,
       "total": 26.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-nuc-southtexas",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-sol-edwardssanono",
@@ -170641,7 +170703,10 @@
       "loss": 1,
       "total": 22.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-sol-edwardssanono",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "us-wnd-traverse",
@@ -170668,7 +170733,10 @@
       "loss": 1,
       "total": 18
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-us-wnd-traverse",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-ren-khavda",
@@ -170695,7 +170763,10 @@
       "loss": 1.5,
       "total": 26
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-ren-khavda",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-sol-bhadla",
@@ -170722,7 +170793,10 @@
       "loss": 1.3,
       "total": 24.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-sol-bhadla",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-sol-pavagada",
@@ -170749,7 +170823,10 @@
       "loss": 1.3,
       "total": 25
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-sol-pavagada",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-nuc-kudankulam",
@@ -170776,7 +170853,10 @@
       "loss": 1.5,
       "total": 30.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-nuc-kudankulam",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-nuc-kakrapar",
@@ -170803,7 +170883,10 @@
       "loss": 1.3,
       "total": 28
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-nuc-kakrapar",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-nuc-tarapur",
@@ -170830,7 +170913,10 @@
       "loss": 1.5,
       "total": 29
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-nuc-tarapur",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-hyd-tehri",
@@ -170857,7 +170943,10 @@
       "loss": 1.3,
       "total": 25.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-hyd-tehri",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-hyd-koyna",
@@ -170884,7 +170973,10 @@
       "loss": 1.2,
       "total": 26.5
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-hyd-koyna",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-hyd-sardarsarovar",
@@ -170911,7 +171003,10 @@
       "loss": 1.2,
       "total": 24.8
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-hyd-sardarsarovar",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
   },
   {
     "id": "in-wnd-muppandal",
@@ -170938,6 +171033,309 @@
       "loss": 1,
       "total": 22
     },
-    "lastUpdated": "2026-09-19T22:30:01.409Z"
+    "lastUpdated": "2026-09-19T22:30:01.409Z",
+    "climateTraceAssetId": "ct-in-wnd-muppandal",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-nuc-hanul",
+    "name": "Hanul Nuclear Power Plant (Ulchin Units 1-6)",
+    "operator": "Korea Hydro & Nuclear Power (KHNP)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "nuclear",
+    "capacityMw": 6216,
+    "commissioningYear": 1988,
+    "latitude": 37.0933,
+    "longitude": 129.3839,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 12,
+    "substationName": "Hanul 765kV / 345kV Switchyard",
+    "coolingType": "East Sea Seawater Once-through Cooling",
+    "status": "online",
+    "currentOutputMw": 6050,
+    "capacityFactor": 0.97,
+    "spotPriceMwh": 27.5,
+    "lmpBreakdown": {
+      "energy": 23.5,
+      "congestion": 2.5,
+      "loss": 1.5,
+      "total": 27.5
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-nuc-hanul",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-nuc-shinhanul",
+    "name": "Shin-Hanul Nuclear Power Plant (APR1400 Units 1-2)",
+    "operator": "Korea Hydro & Nuclear Power (KHNP)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "nuclear",
+    "capacityMw": 2800,
+    "commissioningYear": 2022,
+    "latitude": 37.1,
+    "longitude": 129.39,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 12,
+    "substationName": "Shin-Hanul 765kV Substation",
+    "coolingType": "Seawater Cooling",
+    "status": "online",
+    "currentOutputMw": 2750,
+    "capacityFactor": 0.98,
+    "spotPriceMwh": 27,
+    "lmpBreakdown": {
+      "energy": 23,
+      "congestion": 2.5,
+      "loss": 1.5,
+      "total": 27
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-nuc-shinhanul",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-nuc-hanbit",
+    "name": "Hanbit Nuclear Power Plant (Yeonggwang Units 1-6)",
+    "operator": "Korea Hydro & Nuclear Power (KHNP)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "nuclear",
+    "capacityMw": 5875,
+    "commissioningYear": 1986,
+    "latitude": 35.4147,
+    "longitude": 126.4217,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 12,
+    "substationName": "Hanbit 345kV Switchyard",
+    "coolingType": "Yellow Sea Once-through Seawater Cooling",
+    "status": "online",
+    "currentOutputMw": 5700,
+    "capacityFactor": 0.97,
+    "spotPriceMwh": 26.5,
+    "lmpBreakdown": {
+      "energy": 23,
+      "congestion": 2.2,
+      "loss": 1.3,
+      "total": 26.5
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-nuc-hanbit",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-nuc-wolsong",
+    "name": "Wolsong Nuclear Power Station (PHWR & APR1000)",
+    "operator": "Korea Hydro & Nuclear Power (KHNP)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "nuclear",
+    "capacityMw": 2779,
+    "commissioningYear": 1983,
+    "latitude": 35.7139,
+    "longitude": 129.4756,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 12,
+    "substationName": "Wolsong 345kV Switchyard",
+    "coolingType": "East Sea Seawater Once-through",
+    "status": "online",
+    "currentOutputMw": 2700,
+    "capacityFactor": 0.97,
+    "spotPriceMwh": 28,
+    "lmpBreakdown": {
+      "energy": 24.5,
+      "congestion": 2.2,
+      "loss": 1.3,
+      "total": 28
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-nuc-wolsong",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-nuc-kori",
+    "name": "Kori Nuclear Power Complex (Units 2-4)",
+    "operator": "Korea Hydro & Nuclear Power (KHNP)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "nuclear",
+    "capacityMw": 3250,
+    "commissioningYear": 1983,
+    "latitude": 35.32,
+    "longitude": 129.29,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 12,
+    "substationName": "Kori 345kV Switchyard",
+    "coolingType": "Seawater Once-Through",
+    "status": "online",
+    "currentOutputMw": 3150,
+    "capacityFactor": 0.97,
+    "spotPriceMwh": 27.2,
+    "lmpBreakdown": {
+      "energy": 23.5,
+      "congestion": 2.3,
+      "loss": 1.4,
+      "total": 27.2
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-nuc-kori",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-ren-sihwa",
+    "name": "Sihwa Lake Tidal Power Station",
+    "operator": "K-water (Korea Water Resources Corporation)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "hydro",
+    "capacityMw": 254,
+    "commissioningYear": 2011,
+    "latitude": 37.3117,
+    "longitude": 126.6067,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 10,
+    "substationName": "Sihwa 154kV Substation",
+    "coolingType": "Ocean Tidal Bulb Turbines",
+    "status": "online",
+    "currentOutputMw": 240,
+    "capacityFactor": 0.94,
+    "spotPriceMwh": 24,
+    "lmpBreakdown": {
+      "energy": 21,
+      "congestion": 1.8,
+      "loss": 1.2,
+      "total": 24
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-ren-sihwa",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-sto-yangyang",
+    "name": "Yangyang Pumped Storage Hydro Power Plant",
+    "operator": "Korea Hydro & Nuclear Power (KHNP)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "storage",
+    "capacityMw": 1000,
+    "commissioningYear": 2006,
+    "latitude": 38.0583,
+    "longitude": 128.53,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 18,
+    "substationName": "Yangyang 345kV Substation",
+    "coolingType": "Underground High-Head Reversible Turbines",
+    "status": "online",
+    "currentOutputMw": 850,
+    "capacityFactor": 0.85,
+    "spotPriceMwh": 36,
+    "lmpBreakdown": {
+      "energy": 30,
+      "congestion": 3.8,
+      "loss": 2.2,
+      "total": 36
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-sto-yangyang",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-hyd-chungju",
+    "name": "Chungju Hydroelectric Multi-purpose Dam",
+    "operator": "K-water",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "hydro",
+    "capacityMw": 412,
+    "commissioningYear": 1985,
+    "latitude": 37.0067,
+    "longitude": 127.9942,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 14,
+    "substationName": "Chungju 154kV Substation",
+    "coolingType": "Namhan River Gravity Concrete Dam",
+    "status": "online",
+    "currentOutputMw": 370,
+    "capacityFactor": 0.9,
+    "spotPriceMwh": 25.5,
+    "lmpBreakdown": {
+      "energy": 22,
+      "congestion": 2.2,
+      "loss": 1.3,
+      "total": 25.5
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-hyd-chungju",
+    "annualCo2EmissionsTons": 0,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-gas-seoul-eco",
+    "name": "Seoul Power Station (Dangin-ri Underground Eco-CCGT)",
+    "operator": "Korea Midland Power (KOMIPO)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "gas",
+    "capacityMw": 800,
+    "commissioningYear": 2019,
+    "latitude": 37.5492,
+    "longitude": 126.9208,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 360,
+    "substationName": "Dangin-ri 154kV Underground GIS",
+    "coolingType": "Han River Water Heat Exchange & District Heating",
+    "status": "online",
+    "currentOutputMw": 720,
+    "capacityFactor": 0.9,
+    "spotPriceMwh": 68.5,
+    "lmpBreakdown": {
+      "energy": 58.5,
+      "congestion": 6.2,
+      "loss": 3.8,
+      "total": 68.5
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-gas-seoul-eco",
+    "annualCo2EmissionsTons": 2271,
+    "satelliteTracked": true
+  },
+  {
+    "id": "kr-gas-incheon",
+    "name": "Incheon Combined Cycle Power Plant",
+    "operator": "Korea Midland Power (KOMIPO)",
+    "country": "KR",
+    "countryName": "South Korea",
+    "fuelType": "gas",
+    "capacityMw": 1462,
+    "commissioningYear": 2005,
+    "latitude": 37.5028,
+    "longitude": 126.6272,
+    "gridRegion": "KOREA_KPX",
+    "co2IntensityGPerKwh": 380,
+    "substationName": "Seoincheon 345kV Substation",
+    "coolingType": "Combined Cycle Gas Turbine Heat Recovery",
+    "status": "online",
+    "currentOutputMw": 1250,
+    "capacityFactor": 0.85,
+    "spotPriceMwh": 70,
+    "lmpBreakdown": {
+      "energy": 60,
+      "congestion": 6,
+      "loss": 4,
+      "total": 70
+    },
+    "lastUpdated": "2026-09-19T23:22:59.878Z",
+    "climateTraceAssetId": "ct-kr-gas-incheon",
+    "annualCo2EmissionsTons": 4137,
+    "satelliteTracked": true
   }
 ]
