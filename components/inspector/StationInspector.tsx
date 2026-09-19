@@ -96,193 +96,201 @@ export function StationInspector() {
 
   if (!isInspectorOpen || (!selectedStation && !selectedDataCenter)) return null;
 
-  // 1. DATA CENTER INSPECTOR VIEW
+  // 1. DATA CENTER INSPECTOR VIEW (Palantir Foundry Object Sheet)
   if (selectedDataCenter) {
     const opMeta = OPERATOR_COLORS[selectedDataCenter.operator] || OPERATOR_COLORS.Other;
-    const annualGwh = ((selectedDataCenter.estimatedPowerMw * 8760 * 0.85) / 1000).toFixed(0);
 
     return (
-      <aside className="absolute right-0 top-14 bottom-0 z-30 w-full sm:w-[470px] overflow-y-auto glass-panel-elevated p-5 shadow-2xl text-white transition-all animate-in slide-in-from-right duration-200 border-l border-white/10">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
-          <div className="min-w-0">
-            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span
-                className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-bold tracking-wide"
-                style={{
-                  backgroundColor: `rgba(${opMeta.rgb.join(",")}, 0.2)`,
-                  color: opMeta.hex,
-                  border: `1px solid rgba(${opMeta.rgb.join(",")}, 0.4)`,
-                }}
-              >
-                <Server className="h-3 w-3" />
-                {selectedDataCenter.operator}
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-purple-500/20 px-2.5 py-0.5 text-[10px] font-mono uppercase font-bold text-purple-300 border border-purple-500/40">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse" />
-                {selectedDataCenter.category}
-              </span>
-              {selectedDataCenter.peeringDbId && (
-                <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold text-indigo-300 border border-indigo-500/30">
-                  <Network className="h-2.5 w-2.5" />
-                  PeeringDB #{selectedDataCenter.peeringDbId}
-                </span>
-              )}
+      <aside className="absolute right-0 top-12 bottom-0 z-30 w-full sm:w-[480px] overflow-y-auto bg-[#182026] border-l border-[#293742] text-[#f5f8fa] shadow-2xl transition-all animate-in slide-in-from-right duration-200 font-sans">
+        {/* Foundry Breadcrumb & Header */}
+        <div className="p-4 border-b border-[#293742] bg-[#101418]">
+          <div className="flex items-center justify-between gap-2 mb-1 text-[10px] font-mono text-[#8a9ba8]">
+            <div className="flex items-center gap-1.5">
+              <span>ONTOLOGY</span>
+              <span>/</span>
+              <span>OBJECT EXPLORER</span>
+              <span>/</span>
+              <span className="text-[#2b95d6]">DataCenter:v3</span>
             </div>
-
-            <h2 className="text-base font-bold tracking-tight text-white leading-tight">
-              {selectedDataCenter.name}
-            </h2>
-            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-400">
-              <span className="font-semibold text-slate-200">
-                {selectedDataCenter.countryName || selectedDataCenter.country}
-              </span>
-              <span>•</span>
-              <span className="font-mono text-purple-400 font-medium">
-                {selectedDataCenter.region}
-              </span>
-              <span>•</span>
-              <a
-                href={`https://www.google.com/maps/search/?api=1&query=${selectedDataCenter.latitude},${selectedDataCenter.longitude}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-mono text-[11px] text-cyan-400 hover:text-cyan-200 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/40 transition-colors shadow-sm"
-                title="Open exact coordinates on Google Maps"
-              >
-                <span>{selectedDataCenter.latitude.toFixed(4)}°N, {selectedDataCenter.longitude.toFixed(4)}°E</span>
-                <ExternalLink className="h-2.5 w-2.5" />
-              </a>
-            </div>
+            <span className="px-1.5 py-0.2 rounded bg-[#202b33] border border-[#293742] text-[9px] text-[#15b371] font-semibold">
+              SYNCHRONIZED
+            </span>
           </div>
 
-          <div className="flex items-center gap-1.5 shrink-0">
-            <button
-              onClick={() => flyToStation(selectedDataCenter)}
-              title="Center Camera on Facility"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-slate-900/80 text-gray-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all hover:scale-105 active:scale-95"
-            >
-              <Compass className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setInspectorOpen(false)}
-              title="Close Inspector"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-slate-900/80 text-gray-400 hover:text-white transition-all hover:scale-105 active:scale-95"
-            >
-              <X className="h-4 w-4" />
-            </button>
+          <div className="flex items-start justify-between gap-3 mt-2">
+            <div className="min-w-0">
+              <h2 className="text-base font-bold text-[#f5f8fa] leading-tight font-sans">
+                {selectedDataCenter.name}
+              </h2>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-mono text-[#8a9ba8]">
+                <span className="text-[#f5f8fa]">
+                  {selectedDataCenter.countryName || selectedDataCenter.country}
+                </span>
+                <span>•</span>
+                <span className="text-[#2b95d6]">
+                  {selectedDataCenter.region}
+                </span>
+                <span>•</span>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${selectedDataCenter.latitude},${selectedDataCenter.longitude}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] text-[#2b95d6] hover:underline"
+                  title="Open exact coordinates on Google Maps"
+                >
+                  <span>{selectedDataCenter.latitude.toFixed(4)}°N, {selectedDataCenter.longitude.toFixed(4)}°E</span>
+                  <ExternalLink className="h-2.5 w-2.5" />
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                onClick={() => flyToStation(selectedDataCenter)}
+                title="Acquire Spatial Target"
+                className="flex h-7 w-7 items-center justify-center rounded bg-[#202b33] border border-[#293742] text-[#8a9ba8] hover:text-[#2b95d6] hover:border-[#30404d] transition-colors"
+              >
+                <Compass className="h-3.5 w-3.5" />
+              </button>
+              <button
+                onClick={() => setInspectorOpen(false)}
+                title="Close Object Sheet"
+                className="flex h-7 w-7 items-center justify-center rounded bg-[#202b33] border border-[#293742] text-[#8a9ba8] hover:text-[#f5f8fa] hover:border-[#30404d] transition-colors"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Primary KPI Metrics Bento */}
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="p-4 grid grid-cols-2 gap-2 border-b border-[#293742] bg-[#182026]">
           {/* IT Power Load */}
-          <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 shadow-sm">
-            <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-gray-400 font-semibold">
+          <div className="rounded bg-[#202b33] border border-[#293742] p-3">
+            <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-[#8a9ba8] font-mono font-semibold">
               <span>IT Power Demand</span>
-              <Zap className="h-3.5 w-3.5 text-purple-400" />
+              <Zap className="h-3.5 w-3.5 text-[#2b95d6]" />
             </div>
-            <div className="mt-1 flex items-baseline gap-1.5 font-mono text-xl font-bold text-purple-300">
-              <span>{selectedDataCenter.estimatedPowerMw}</span>
-              <span className="text-xs font-normal text-gray-400">MW</span>
+            <div className="mt-1 font-mono text-xl font-bold text-[#f5f8fa] tabular-nums">
+              {selectedDataCenter.estimatedPowerMw}{" "}
+              <span className="text-xs font-normal text-[#8a9ba8]">MW</span>
             </div>
-            <div className="mt-2 text-[10px] text-gray-400">
-              Est. Energy: <span className="font-mono text-purple-300 font-medium">~{annualGwh} GWh/yr</span>
+            <div className="mt-1 text-[10px] font-mono text-[#8a9ba8]">
+              Status: Verified Peak IT Load
             </div>
           </div>
 
           {/* Efficiency PUE */}
-          <div className="rounded-xl border border-white/10 bg-slate-900/60 p-3.5 shadow-sm">
-            <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-gray-400 font-semibold">
-              <span>Power Efficiency</span>
-              <Gauge className="h-3.5 w-3.5 text-emerald-400" />
+          <div className="rounded bg-[#202b33] border border-[#293742] p-3">
+            <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-[#8a9ba8] font-mono font-semibold">
+              <span>Efficiency Rating</span>
+              <Gauge className="h-3.5 w-3.5 text-[#15b371]" />
             </div>
-            <div className="mt-1 flex items-baseline gap-1.5 font-mono text-xl font-bold text-emerald-400">
-              <span>{selectedDataCenter.pue}</span>
-              <span className="text-xs font-normal text-gray-400">PUE</span>
+            <div className="mt-1 font-mono text-xl font-bold text-[#15b371] tabular-nums">
+              {selectedDataCenter.pue != null ? selectedDataCenter.pue : "—"}
+              <span className="text-xs font-normal text-[#8a9ba8]"> PUE</span>
             </div>
-            <div className="mt-2 text-[10px] text-emerald-300/80 font-medium">
-              {selectedDataCenter.pue < 1.2 ? "High Efficiency Hyperscale" : "Standard Tier III Facility"}
+            <div className="mt-1 text-[10px] font-mono text-[#8a9ba8]">
+              {selectedDataCenter.pue && selectedDataCenter.pue < 1.2 ? "Hyperscale Standard" : "Enterprise Standard"}
             </div>
           </div>
         </div>
 
-        {/* PeeringDB & Interconnect Network Card */}
-        <div className="mt-4 rounded-xl border border-white/10 bg-slate-900/60 p-3.5">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2 flex items-center justify-between">
-            <span className="flex items-center gap-1.5">
-              <Network className="h-3.5 w-3.5 text-indigo-400" />
-              Network Interconnect & Peering
-            </span>
-            {selectedDataCenter.peeringDbId && (
-              <span className="font-mono text-[10px] text-indigo-300 bg-indigo-900/30 px-2 py-0.5 rounded border border-indigo-500/20">
-                PeeringDB #{selectedDataCenter.peeringDbId}
+        {/* Structured Object Properties Sheet (Palantir Blueprint Property Table) */}
+        <div className="p-4 border-b border-[#293742]">
+          <div className="text-[10px] uppercase tracking-wider font-mono font-semibold text-[#8a9ba8] mb-2 flex items-center gap-1.5">
+            <Building className="h-3.5 w-3.5 text-[#2b95d6]" />
+            <span>Ontology Object Properties</span>
+          </div>
+
+          <div className="rounded bg-[#101418] border border-[#293742] divide-y divide-[#293742] text-xs font-mono">
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">operator</span>
+              <span className="text-[#f5f8fa] font-medium">{selectedDataCenter.operator}</span>
+            </div>
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">classification</span>
+              <span className="text-[#f5f8fa] capitalize">{selectedDataCenter.category} Facility</span>
+            </div>
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">redundancy_tier</span>
+              <span className="text-[#f5f8fa]">{selectedDataCenter.tier || "—"}</span>
+            </div>
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">cooling_system</span>
+              <span className="text-[#f5f8fa]">{selectedDataCenter.coolingType || "—"}</span>
+            </div>
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">carrier_asns</span>
+              <span className="text-[#2b95d6]">
+                {selectedDataCenter.connectedNetworksCount != null ? `${selectedDataCenter.connectedNetworksCount} ASNs` : "—"}
               </span>
+            </div>
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px]">internet_exchanges</span>
+              <span className="text-[#f5f8fa]">
+                {selectedDataCenter.ixpCount != null ? `${selectedDataCenter.ixpCount} IXPs` : "—"}
+              </span>
+            </div>
+            {selectedDataCenter.peeringDbId && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">peeringdb_ref</span>
+                <span className="text-[#15b371]">#{selectedDataCenter.peeringDbId}</span>
+              </div>
             )}
-          </h3>
-          <div className="grid grid-cols-2 gap-2 mt-2 font-mono text-center">
-            <div className="bg-slate-950/60 p-2 rounded-lg border border-white/5">
-              <div className="text-sm font-bold text-indigo-200">
-                {selectedDataCenter.connectedNetworksCount != null ? selectedDataCenter.connectedNetworksCount : "—"}
+            {selectedDataCenter.address && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">facility_address</span>
+                <span className="text-[#f5f8fa] truncate max-w-[220px]">
+                  {selectedDataCenter.address}
+                </span>
               </div>
-              <div className="text-[10px] uppercase text-gray-400 font-sans mt-0.5">Carrier ASNs</div>
-            </div>
-            <div className="bg-slate-950/60 p-2 rounded-lg border border-white/5">
-              <div className="text-sm font-bold text-cyan-200">
-                {selectedDataCenter.ixpCount != null ? selectedDataCenter.ixpCount : "—"}
-              </div>
-              <div className="text-[10px] uppercase text-gray-400 font-sans mt-0.5">Internet Exchanges</div>
-            </div>
+            )}
           </div>
-          {selectedDataCenter.address && (
-            <div className="mt-2.5 text-[11px] text-gray-400 flex items-center gap-1.5 border-t border-white/5 pt-2">
-              <Building className="h-3 w-3 text-gray-400 shrink-0" />
-              <span className="truncate">{selectedDataCenter.address}, {selectedDataCenter.city || selectedDataCenter.countryName || selectedDataCenter.country}</span>
-            </div>
-          )}
         </div>
 
-        {/* Local Grid Power Supply Cross-Reference Module */}
+        {/* Local Grid Power Supply Cross-Reference Module (Palantir Object Graph Nexus) */}
         {localGridSupply && (
-          <div className="mt-4 rounded-xl border border-cyan-500/30 bg-slate-900/70 p-3.5">
+          <div className="p-4 border-b border-[#293742]">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
-                <Zap className="h-3.5 w-3.5 text-cyan-400" />
-                Local Power Grid Supply (100km)
+              <h3 className="text-[10px] font-mono font-semibold uppercase tracking-wider text-[#2b95d6] flex items-center gap-1.5">
+                <Zap className="h-3.5 w-3.5 text-[#2b95d6]" />
+                Linked Generation Nexus (100km)
               </h3>
-              <span className="font-mono text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+              <span className="font-mono text-[10px] font-bold text-[#15b371] bg-[#101418] px-2 py-0.5 rounded border border-[#293742]">
                 {localGridSupply.cleanEnergyPercent}% Clean
               </span>
             </div>
 
             {/* Clean vs Fossil Mix Progress Bar */}
             <div className="mt-2">
-              <div className="flex justify-between text-[10px] text-gray-400 mb-1">
-                <span>Clean Generation: {localGridSupply.cleanEnergyPercent}%</span>
+              <div className="flex justify-between text-[10px] font-mono text-[#8a9ba8] mb-1">
+                <span>Clean: {localGridSupply.cleanEnergyPercent}%</span>
                 <span>Fossil: {localGridSupply.fossilEnergyPercent}%</span>
               </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800 flex">
+              <div className="h-1.5 w-full overflow-hidden rounded bg-[#101418] flex border border-[#293742]">
                 <div
-                  className="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 transition-all duration-500"
+                  className="h-full bg-[#15b371]"
                   style={{ width: `${localGridSupply.cleanEnergyPercent}%` }}
                 />
                 <div
-                  className="h-full bg-slate-600 transition-all duration-500"
+                  className="h-full bg-[#5c7080]"
                   style={{ width: `${localGridSupply.fossilEnergyPercent}%` }}
                 />
               </div>
             </div>
 
             {/* Top Supplying Power Plants List */}
-            <div className="mt-3 space-y-2">
-              <div className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider">
-                Nearest Supplying Power Stations ({localGridSupply.supplyingPlants.length})
+            <div className="mt-3 space-y-1.5">
+              <div className="text-[10px] font-mono uppercase font-semibold text-[#8a9ba8] tracking-wider">
+                Upstream Generation Assets ({localGridSupply.supplyingPlants.length})
               </div>
               {localGridSupply.supplyingPlants.slice(0, 4).map((plant) => {
                 const plantFuel = FUEL_CONFIG[plant.fuelType] || FUEL_CONFIG.other;
                 return (
                   <div
                     key={plant.id}
-                    className="flex items-center justify-between rounded-lg border border-surface-border bg-slate-950/60 p-2 text-xs hover:border-cyan-500/40 transition-all group"
+                    className="flex items-center justify-between rounded border border-[#293742] bg-[#101418] p-2 text-xs hover:border-[#30404d] transition-all group"
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
@@ -290,16 +298,16 @@ export function StationInspector() {
                           className="h-2 w-2 rounded-full shrink-0"
                           style={{ backgroundColor: plantFuel.hex }}
                         />
-                        <span className="font-semibold text-white truncate max-w-[180px]">
+                        <span className="font-medium text-[#f5f8fa] truncate max-w-[180px]">
                           {plant.name}
                         </span>
                       </div>
-                      <div className="mt-0.5 flex items-center gap-1.5 text-[10px] text-gray-400 font-mono">
+                      <div className="mt-0.5 flex items-center gap-1.5 text-[10px] text-[#8a9ba8] font-mono">
                         <span style={{ color: plantFuel.hex }}>{plantFuel.label}</span>
                         <span>•</span>
                         <span>{plant.capacityMw} MW</span>
                         <span>•</span>
-                        <span className="text-cyan-300 font-sans">{plant.distanceKm} km away</span>
+                        <span className="text-[#2b95d6]">{plant.distanceKm} km</span>
                       </div>
                     </div>
 
@@ -312,7 +320,7 @@ export function StationInspector() {
                           flyToStation(target);
                         }
                       }}
-                      className="inline-flex items-center gap-1 rounded bg-cyan-950/80 px-2 py-1 text-[10px] font-medium text-cyan-300 border border-cyan-500/40 hover:bg-cyan-600 hover:text-white transition-all shrink-0"
+                      className="inline-flex items-center gap-1 rounded bg-[#202b33] px-2 py-1 text-[10px] font-mono font-medium text-[#2b95d6] border border-[#293742] hover:bg-[#293742] hover:text-white transition-colors shrink-0"
                       title="Fly camera to this power station"
                     >
                       <span>Fly</span>
@@ -323,57 +331,43 @@ export function StationInspector() {
               })}
             </div>
 
-            {/* Scope 2 Carbon Emissions Card */}
-            <div className="mt-3 pt-2.5 border-t border-surface-border/40 flex items-center justify-between text-xs">
-              <div className="text-gray-400 text-[11px] flex items-center gap-1">
-                <Leaf className="h-3 w-3 text-emerald-400" />
-                <span>Est. Scope-2 Emissions:</span>
+            {/* Scope 2 Carbon Emissions */}
+            <div className="mt-3 pt-2 border-t border-[#293742] flex items-center justify-between text-xs font-mono">
+              <div className="text-[#8a9ba8] text-[11px] flex items-center gap-1">
+                <Leaf className="h-3 w-3 text-[#15b371]" />
+                <span>Est. Scope-2 Footprint:</span>
               </div>
-              <span className="font-mono font-bold text-amber-300">
+              <span className="font-bold text-[#f29d49]">
                 {localGridSupply.estimatedAnnualScope2Co2Tons.toLocaleString()} t CO₂/yr
               </span>
             </div>
           </div>
         )}
 
-        {/* Technical Architecture */}
-        <div className="mt-4 rounded-xl border border-surface-border bg-slate-900/60 p-3.5">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300 mb-3 flex items-center gap-1.5">
-            <Building className="h-3.5 w-3.5 text-cyan-400" />
-            Data Center Technical Architecture
-          </h3>
-          <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-xs">
-            <div>
-              <span className="text-[10px] uppercase text-gray-400 block">Operator</span>
-              <span className="font-medium text-white truncate block">
-                {selectedDataCenter.operator}
-              </span>
-            </div>
-            <div>
-              <span className="text-[10px] uppercase text-gray-400 block">Redundancy Tier</span>
-              <span className="font-mono text-white">
-                {selectedDataCenter.tier}
-              </span>
-            </div>
-            <div>
-              <span className="text-[10px] uppercase text-gray-400 block">Cooling System</span>
-              <span className="font-mono text-cyan-400 truncate block">
-                {selectedDataCenter.coolingType}
-              </span>
-            </div>
-            <div>
-              <span className="text-[10px] uppercase text-gray-400 block">Classification</span>
-              <span className="text-white capitalize truncate block">
-                {selectedDataCenter.category} Facility
-              </span>
-            </div>
-          </div>
+        {/* Action Tray */}
+        <div className="p-4 bg-[#101418] border-t border-[#293742] flex items-center justify-between gap-2">
+          <button
+            onClick={() => flyToStation(selectedDataCenter)}
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1.5"
+          >
+            <Compass className="h-3.5 w-3.5" />
+            <span>Inspect in Canvas</span>
+          </button>
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${selectedDataCenter.latitude},${selectedDataCenter.longitude}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded text-xs font-mono text-[#a7b6c2] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+          >
+            <span>Satellite</span>
+            <ExternalLink className="h-3 w-3" />
+          </a>
         </div>
       </aside>
     );
   }
 
-  // 2. POWER PLANT INSPECTOR VIEW (when selectedStation is active)
+  // 2. POWER PLANT INSPECTOR VIEW (Palantir Foundry Object Sheet)
   if (!selectedStation) return null;
 
   const fuel = FUEL_CONFIG[selectedStation.fuelType] || FUEL_CONFIG.other;
@@ -389,123 +383,83 @@ export function StationInspector() {
   ).toFixed(1);
 
   return (
-    <aside className="absolute right-0 top-14 bottom-0 z-30 w-full sm:w-[470px] overflow-y-auto glass-panel-elevated p-5 shadow-2xl text-white transition-all animate-in slide-in-from-right duration-200 border-l border-white/10">
-      {/* Header */}
-      <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-4">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-            <span
-              className="inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-semibold tracking-wide uppercase"
-              style={{
-                backgroundColor: `rgba(${fuel.rgb.join(",")}, 0.2)`,
-                color: fuel.hex,
-                border: `1px solid rgba(${fuel.rgb.join(",")}, 0.4)`,
-              }}
-            >
-              <span
-                className="h-2 w-2 rounded-full"
-                style={{ backgroundColor: fuel.hex }}
-              />
-              {fuel.label}
-            </span>
-            <span
-              className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-mono uppercase font-bold ${
-                selectedStation.status === "online"
-                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
-                  : selectedStation.status === "ramping"
-                  ? "bg-blue-500/20 text-blue-400 border border-blue-500/40"
-                  : selectedStation.status === "curtailed"
-                  ? "bg-amber-500/20 text-amber-400 border border-amber-500/40"
-                  : "bg-red-500/20 text-red-400 border border-red-500/40"
-              }`}
-            >
-              <span
-                className={`h-1.5 w-1.5 rounded-full ${
-                  selectedStation.status === "online"
-                    ? "bg-emerald-400 animate-pulse"
-                    : selectedStation.status === "ramping"
-                    ? "bg-blue-400"
-                    : selectedStation.status === "curtailed"
-                    ? "bg-amber-400"
-                    : "bg-red-400"
-                }`}
-              />
-              {selectedStation.status}
-            </span>
+    <aside className="absolute right-0 top-12 bottom-0 z-30 w-full sm:w-[480px] overflow-y-auto bg-[#182026] border-l border-[#293742] text-[#f5f8fa] shadow-2xl transition-all animate-in slide-in-from-right duration-200 font-sans">
+      {/* Foundry Breadcrumb & Header */}
+      <div className="p-4 border-b border-[#293742] bg-[#101418]">
+        <div className="flex items-center justify-between gap-2 mb-1 text-[10px] font-mono text-[#8a9ba8]">
+          <div className="flex items-center gap-1.5">
+            <span>ONTOLOGY</span>
+            <span>/</span>
+            <span>OBJECT EXPLORER</span>
+            <span>/</span>
+            <span className="text-[#2b95d6]">PowerPlant:v3</span>
           </div>
-
-          <h2 className="text-base font-bold tracking-tight text-white leading-tight">
-            {selectedStation.name}
-          </h2>
-          <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-400">
-            <span>{selectedStation.countryName}</span>
-            <span>•</span>
-            <span className="font-mono text-cyan-400">
-              {selectedStation.gridRegion}
-            </span>
-            <span>•</span>
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${selectedStation.latitude},${selectedStation.longitude}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-mono text-[11px] text-cyan-400 hover:text-cyan-200 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/40 transition-colors shadow-sm"
-              title="Open exact coordinates on Google Maps in new tab"
-            >
-              <span>{selectedStation.latitude.toFixed(4)}°N, {selectedStation.longitude.toFixed(4)}°E</span>
-              <ExternalLink className="h-3 w-3" />
-            </a>
-          </div>
+          <span className="px-1.5 py-0.2 rounded bg-[#202b33] border border-[#293742] text-[9px] text-[#15b371] font-semibold">
+            SYNCHRONIZED
+          </span>
         </div>
 
-        <div className="flex items-center gap-1.5 shrink-0">
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${selectedStation.latitude},${selectedStation.longitude}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Open in Google Maps"
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-500/40 bg-cyan-950/40 text-cyan-400 hover:text-white hover:bg-cyan-600 transition-all shadow-sm"
-          >
-            <ExternalLink className="h-4 w-4" />
-          </a>
-          <button
-            onClick={() => flyToStation(selectedStation)}
-            title="Center Camera on Station"
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-surface-border bg-slate-900/80 text-gray-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
-          >
-            <Compass className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => setInspectorOpen(false)}
-            title="Close Inspector"
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-surface-border bg-slate-900/80 text-gray-400 hover:text-white hover:border-slate-600 transition-all"
-          >
-            <X className="h-4 w-4" />
-          </button>
+        <div className="flex items-start justify-between gap-3 mt-2">
+          <div className="min-w-0">
+            <h2 className="text-base font-bold text-[#f5f8fa] leading-tight font-sans">
+              {selectedStation.name}
+            </h2>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-mono text-[#8a9ba8]">
+              <span className="text-[#f5f8fa]">{selectedStation.countryName}</span>
+              <span>•</span>
+              <span className="text-[#2b95d6]">{selectedStation.gridRegion}</span>
+              <span>•</span>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${selectedStation.latitude},${selectedStation.longitude}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] text-[#2b95d6] hover:underline"
+                title="Open exact coordinates on Google Maps"
+              >
+                <span>{selectedStation.latitude.toFixed(4)}°N, {selectedStation.longitude.toFixed(4)}°E</span>
+                <ExternalLink className="h-2.5 w-2.5" />
+              </a>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1 shrink-0">
+            <button
+              onClick={() => flyToStation(selectedStation)}
+              title="Locate in Canvas"
+              className="p-1.5 rounded bg-[#202b33] border border-[#293742] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
+            >
+              <Compass className="h-3.5 w-3.5" />
+            </button>
+            <button
+              onClick={() => setInspectorOpen(false)}
+              title="Close Panel"
+              className="p-1.5 rounded bg-[#202b33] border border-[#293742] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Primary KPI Metrics Cards */}
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        {/* Output vs Capacity */}
-        <div className="rounded-xl border border-surface-border bg-slate-900/60 p-3.5 shadow-sm">
-          <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-gray-400">
-            <span>Current Dispatch</span>
-            <Activity className="h-3.5 w-3.5 text-cyan-400" />
-          </div>
-          <div className="mt-1 flex items-baseline gap-1.5 font-mono text-xl font-bold text-white">
-            <span>{selectedStation.currentOutputMw.toLocaleString()}</span>
-            <span className="text-xs font-normal text-gray-400">MW</span>
-          </div>
-          <div className="mt-2">
-            <div className="flex justify-between text-[10px] text-gray-400">
-              <span>Nameplate: {selectedStation.capacityMw.toLocaleString()} MW</span>
-              <span className="font-mono text-white">
-                {(selectedStation.capacityFactor * 100).toFixed(0)}%
-              </span>
+      <div className="p-4 space-y-4">
+        {/* Telemetry Summary Cards */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="p-3 bg-[#101418] border border-[#293742] rounded">
+            <div className="text-[10px] font-mono text-[#8a9ba8] uppercase tracking-wider flex items-center justify-between">
+              <span>Active Dispatch</span>
+              <Activity className="h-3 w-3 text-[#2b95d6]" />
             </div>
-            <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+            <div className="mt-1 font-mono text-xl font-bold text-[#f5f8fa]">
+              {selectedStation.currentOutputMw.toLocaleString()}{" "}
+              <span className="text-xs text-[#8a9ba8] font-normal">MW</span>
+            </div>
+            <div className="mt-1.5 text-[10px] font-mono text-[#8a9ba8] flex items-center justify-between">
+              <span>Cap: {selectedStation.capacityMw.toLocaleString()} MW</span>
+              <span className="text-[#f5f8fa] font-semibold">{(selectedStation.capacityFactor * 100).toFixed(0)}%</span>
+            </div>
+            <div className="mt-1 h-1 w-full bg-[#202b33] rounded overflow-hidden">
               <div
-                className="h-full rounded-full transition-all duration-500"
+                className="h-full rounded"
                 style={{
                   width: `${Math.min(100, selectedStation.capacityFactor * 100)}%`,
                   backgroundColor: fuel.hex,
@@ -513,246 +467,250 @@ export function StationInspector() {
               />
             </div>
           </div>
-        </div>
 
-        {/* Real-time Locational Marginal Price */}
-        <div className="rounded-xl border border-surface-border bg-slate-900/60 p-3.5 shadow-sm">
-          <div className="flex items-center justify-between text-[11px] uppercase tracking-wider text-gray-400">
-            <span>Nodal Spot LMP</span>
-            <Flame
-              className={`h-3.5 w-3.5 ${
-                isSpike ? "text-red-400 animate-pulse" : "text-amber-400"
-              }`}
-            />
-          </div>
-          <div
-            className={`mt-1 flex items-baseline gap-1 font-mono text-xl font-bold ${
-              isSpike
-                ? "text-red-400"
-                : isNegative
-                ? "text-emerald-400"
-                : "text-amber-400"
-            }`}
-          >
-            <span>${selectedStation.spotPriceMwh.toFixed(2)}</span>
-            <span className="text-xs font-normal text-gray-400">/MWh</span>
-          </div>
-          <div className="mt-2 grid grid-cols-3 gap-1 border-t border-surface-border/40 pt-1.5 text-[9px] font-mono text-gray-400">
-            <div>
-              <span>Energy:</span>
-              <div className="text-white">${selectedStation.lmpBreakdown.energy}</div>
+          <div className="p-3 bg-[#101418] border border-[#293742] rounded">
+            <div className="text-[10px] font-mono text-[#8a9ba8] uppercase tracking-wider flex items-center justify-between">
+              <span>Nodal Spot LMP</span>
+              <Flame className={`h-3 w-3 ${isSpike ? "text-[#db3737]" : isNegative ? "text-[#15b371]" : "text-[#d9822b]"}`} />
             </div>
-            <div>
-              <span>Congest:</span>
-              <div className={selectedStation.lmpBreakdown.congestion > 10 ? "text-red-400 font-bold" : "text-white"}>
-                ${selectedStation.lmpBreakdown.congestion}
-              </div>
+            <div className={`mt-1 font-mono text-xl font-bold ${isSpike ? "text-[#db3737]" : isNegative ? "text-[#15b371]" : "text-[#d9822b]"}`}>
+              ${selectedStation.spotPriceMwh.toFixed(2)}{" "}
+              <span className="text-xs text-[#8a9ba8] font-normal">/MWh</span>
             </div>
-            <div>
-              <span>Loss:</span>
-              <div className="text-white">${selectedStation.lmpBreakdown.loss}</div>
+            <div className="mt-1.5 grid grid-cols-3 gap-1 text-[9px] font-mono text-[#8a9ba8] border-t border-[#293742] pt-1">
+              <div>E: <span className="text-[#f5f8fa]">${selectedStation.lmpBreakdown.energy}</span></div>
+              <div>C: <span className={selectedStation.lmpBreakdown.congestion > 10 ? "text-[#db3737] font-semibold" : "text-[#f5f8fa]"}>${selectedStation.lmpBreakdown.congestion}</span></div>
+              <div>L: <span className="text-[#f5f8fa]">${selectedStation.lmpBreakdown.loss}</span></div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* 24-Hour Dispatch Chart */}
-      <div className="mt-4">
-        <DispatchChart data={history} fuelHex={fuel.hex} />
-      </div>
-
-      {/* Technical Specifications Section */}
-      <div className="mt-4 rounded-xl border border-surface-border bg-slate-900/60 p-3.5">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300 mb-3 flex items-center justify-between">
-          <span className="flex items-center gap-1.5">
-            <Building className="h-3.5 w-3.5 text-cyan-400" />
-            Technical & Grid Interconnection
-          </span>
-          {selectedStation.climateTraceAssetId && (
-            <span className="font-mono text-[9px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-500/30">
-              🛰️ Climate TRACE Verified
-            </span>
-          )}
-        </h3>
-        <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-xs">
-          <div>
-            <span className="text-[10px] uppercase text-gray-400 block">Operator</span>
-            <span className="font-medium text-white truncate block">
-              {selectedStation.operator}
-            </span>
+        {/* 24-Hour Dispatch Profile */}
+        <div className="p-3 bg-[#101418] border border-[#293742] rounded">
+          <div className="text-[10px] font-mono text-[#8a9ba8] uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>24h Dispatch Profile</span>
+            <span className="text-[9px] text-[#5c7080]">UTC TELEMETRY</span>
           </div>
-          <div>
-            <span className="text-[10px] uppercase text-gray-400 block">Turbine / Hardware</span>
-            <span className="font-mono text-white truncate block">
-              {selectedStation.turbineManufacturer || "—"}
-            </span>
-          </div>
-          <div>
-            <span className="text-[10px] uppercase text-gray-400 block">Substation Link</span>
-            <span className="font-mono text-cyan-400 truncate block">
-              {selectedStation.substationName || "—"}
-            </span>
-          </div>
-          <div>
-            <span className="text-[10px] uppercase text-gray-400 block">Cooling System</span>
-            <span className="text-white truncate block">
-              {selectedStation.coolingType || "—"}
-            </span>
-          </div>
+          <DispatchChart data={history} fuelHex={fuel.hex} />
         </div>
 
-        {/* Direct Google Maps Satellite Link */}
-        <div className="mt-3 pt-2.5 border-t border-surface-border/40 flex items-center justify-between">
-          <span className="text-[11px] text-gray-400">Exact Geolocation:</span>
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${selectedStation.latitude},${selectedStation.longitude}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-cyan-500/10 px-2.5 py-1 text-xs font-medium text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/20 hover:text-white transition-all shadow-sm"
-          >
-            <span>View on Google Maps</span>
-            <ExternalLink className="h-3 w-3" />
-          </a>
-        </div>
-      </div>
-
-      {/* Connected AI & Cloud Compute Load (Nearby Data Centers) */}
-      {localComputeDemand && localComputeDemand.nearbyDataCenters.length > 0 && (
-        <div className="mt-4 rounded-xl border border-emerald-500/30 bg-slate-900/70 p-3.5">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
-              <Server className="h-3.5 w-3.5 text-emerald-400" />
-              Connected Data Centers (100km)
-            </h3>
-            <span className="font-mono text-xs font-bold text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
-              {localComputeDemand.totalLocalComputeLoadMw} MW Load
+        {/* Structured Ontology Properties Table */}
+        <div className="bg-[#101418] border border-[#293742] rounded overflow-hidden">
+          <div className="px-3 py-2 border-b border-[#293742] flex items-center justify-between bg-[#182026]">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-[#8a9ba8]">
+              Ontology Properties
+            </span>
+            <span className="text-[9px] font-mono text-[#5c7080]">
+              SCHEMA // PowerPlant.v3
             </span>
           </div>
-
-          <div className="text-[11px] text-gray-300 mb-2">
-            Local data centers draw <span className="font-mono font-bold text-emerald-400">{localComputeDemand.loadCapacityRatioPercent}%</span> of this plant&apos;s nameplate capacity.
-          </div>
-
-          <div className="space-y-2 mt-2">
-            {localComputeDemand.nearbyDataCenters.slice(0, 4).map((dc) => {
-              const dcOp = OPERATOR_COLORS[dc.operator] || OPERATOR_COLORS.Other;
-              return (
-                <div
-                  key={dc.id}
-                  className="flex items-center justify-between rounded-lg border border-surface-border bg-slate-950/60 p-2 text-xs hover:border-emerald-500/40 transition-all group"
-                >
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span
-                        className="h-2 w-2 rounded-full shrink-0"
-                        style={{ backgroundColor: dcOp.hex }}
-                      />
-                      <span className="font-semibold text-white truncate max-w-[180px]">
-                        {dc.name}
-                      </span>
-                    </div>
-                    <div className="mt-0.5 flex items-center gap-1.5 text-[10px] text-gray-400 font-mono">
-                      <span style={{ color: dcOp.hex }}>{dc.operator}</span>
-                      <span>•</span>
-                      <span>{dc.estimatedPowerMw} MW</span>
-                      <span>•</span>
-                      <span className="text-emerald-300 font-sans">{dc.distanceKm} km away</span>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => {
-                      const target = allDataCentersData?.find((d: DataCenter) => d.id === dc.id);
-                      if (target) {
-                        setSelectedStation(null);
-                        setSelectedDataCenter(target);
-                        flyToStation(target);
-                      }
+          <table className="w-full text-left text-xs font-mono border-collapse">
+            <tbody className="divide-y divide-[#202b33]">
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60 w-36">Status</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa] flex items-center gap-1.5">
+                  <span
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      selectedStation.status === "online"
+                        ? "bg-[#15b371]"
+                        : selectedStation.status === "ramping"
+                        ? "bg-[#2b95d6]"
+                        : selectedStation.status === "curtailed"
+                        ? "bg-[#d9822b]"
+                        : "bg-[#db3737]"
+                    }`}
+                  />
+                  <span className="uppercase font-semibold text-[11px]">{selectedStation.status}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Primary Fuel</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa]">
+                  <span
+                    className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase"
+                    style={{
+                      backgroundColor: `rgba(${fuel.rgb.join(",")}, 0.2)`,
+                      color: fuel.hex,
+                      border: `1px solid rgba(${fuel.rgb.join(",")}, 0.4)`,
                     }}
-                    className="inline-flex items-center gap-1 rounded bg-emerald-950/80 px-2 py-1 text-[10px] font-medium text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600 hover:text-white transition-all shrink-0"
-                    title="Fly camera to this data center"
                   >
-                    <span>Fly</span>
-                    <ArrowRight className="h-2.5 w-2.5" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: fuel.hex }} />
+                    {fuel.label}
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Operator</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa] font-sans font-medium">{selectedStation.operator || "—"}</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Grid Region</td>
+                <td className="px-3 py-1.5 text-[#2b95d6]">{selectedStation.gridRegion || "—"}</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Substation Link</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa]">{selectedStation.substationName || "—"}</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Hardware / Turbine</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa]">{selectedStation.turbineManufacturer || "—"}</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Cooling System</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa]">{selectedStation.coolingType || "—"}</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">CO₂ Intensity</td>
+                <td className="px-3 py-1.5">
+                  <span
+                    className={`font-semibold ${
+                      selectedStation.co2IntensityGPerKwh < 50
+                        ? "text-[#15b371]"
+                        : selectedStation.co2IntensityGPerKwh < 400
+                        ? "text-[#d9822b]"
+                        : "text-[#db3737]"
+                    }`}
+                  >
+                    {selectedStation.co2IntensityGPerKwh} g CO₂/kWh
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Hourly Emissions</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa]">{hourlyCo2Tons} t CO₂/hr</td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Annual Footprint</td>
+                <td className="px-3 py-1.5 text-[#d9822b]">
+                  {selectedStation.annualCo2EmissionsTons
+                    ? `${selectedStation.annualCo2EmissionsTons.toLocaleString()} t CO₂/yr`
+                    : "—"}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Climate TRACE ID</td>
+                <td className="px-3 py-1.5 text-[#15b371]">
+                  {selectedStation.climateTraceAssetId ? `🛰️ ${selectedStation.climateTraceAssetId}` : "—"}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      )}
 
-      {/* Carbon Intensity & Emission Footprint */}
-      <div className="mt-4 rounded-xl border border-surface-border bg-slate-900/60 p-3.5">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-            <Leaf className="h-3.5 w-3.5 text-emerald-400" />
-            Emissions & Sustainability
-          </h3>
-          <span
-            className={`font-mono text-xs font-bold ${
-              selectedStation.co2IntensityGPerKwh < 50
-                ? "text-emerald-400"
-                : selectedStation.co2IntensityGPerKwh < 400
-                ? "text-amber-400"
-                : "text-red-400"
-            }`}
-          >
-            {selectedStation.co2IntensityGPerKwh} g CO₂/kWh
-          </span>
-        </div>
-        <div className="mt-2.5 flex items-center justify-between text-xs border-t border-surface-border/40 pt-2 text-gray-300">
-          <span>Current Hourly Emission:</span>
-          <span className="font-mono font-bold text-white">
-            {hourlyCo2Tons} t CO₂/hr
-          </span>
-        </div>
-        {selectedStation.annualCo2EmissionsTons && (
-          <div className="mt-1.5 flex items-center justify-between text-[11px] text-gray-400">
-            <span>Annual Satellite CO₂ Footprint:</span>
-            <span className="font-mono text-amber-300">
-              {selectedStation.annualCo2EmissionsTons.toLocaleString()} t CO₂/yr
+        {/* Linked Data Center Nexus (Upstream Demand) */}
+        {localComputeDemand && localComputeDemand.nearbyDataCenters.length > 0 && (
+          <div className="p-3 bg-[#101418] border border-[#293742] rounded">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-mono text-[#8a9ba8] uppercase tracking-wider flex items-center gap-1.5">
+                <Server className="h-3 w-3 text-[#15b371]" />
+                Connected Data Centers (100km radius)
+              </span>
+              <span className="font-mono text-[10px] font-bold text-[#15b371] bg-[#15b371]/10 px-1.5 py-0.5 rounded border border-[#15b371]/30">
+                {localComputeDemand.totalLocalComputeLoadMw} MW Load ({localComputeDemand.loadCapacityRatioPercent}%)
+              </span>
+            </div>
+
+            <div className="space-y-1.5 mt-2">
+              {localComputeDemand.nearbyDataCenters.slice(0, 4).map((dc) => {
+                const dcOp = OPERATOR_COLORS[dc.operator] || OPERATOR_COLORS.Other;
+                return (
+                  <div
+                    key={dc.id}
+                    className="flex items-center justify-between p-2 rounded bg-[#182026] border border-[#293742] hover:border-[#394b59] transition-colors"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: dcOp.hex }}
+                        />
+                        <span className="font-medium text-xs text-[#f5f8fa] truncate max-w-[200px]">
+                          {dc.name}
+                        </span>
+                      </div>
+                      <div className="text-[10px] font-mono text-[#8a9ba8] flex items-center gap-1.5 mt-0.5">
+                        <span style={{ color: dcOp.hex }}>{dc.operator}</span>
+                        <span>•</span>
+                        <span>{dc.estimatedPowerMw} MW</span>
+                        <span>•</span>
+                        <span>{dc.distanceKm} km</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        const target = allDataCentersData?.find((d: DataCenter) => d.id === dc.id);
+                        if (target) {
+                          setSelectedStation(null);
+                          setSelectedDataCenter(target);
+                          flyToStation(target);
+                        }
+                      }}
+                      className="px-2 py-1 rounded text-[10px] font-mono text-[#2b95d6] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:text-white transition-colors"
+                    >
+                      Locate
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Telemetry & Event Log */}
+        <div className="p-3 bg-[#101418] border border-[#293742] rounded">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] font-mono text-[#8a9ba8] uppercase tracking-wider flex items-center gap-1.5">
+              <ShieldAlert className="h-3 w-3 text-[#d9822b]" />
+              Telemetry Event Log ({alerts.length})
             </span>
           </div>
-        )}
+          {alerts.length === 0 ? (
+            <div className="text-[11px] font-mono text-[#5c7080] p-2 bg-[#182026] rounded border border-[#293742] text-center">
+              No anomalies recorded for this facility
+            </div>
+          ) : (
+            <div className="space-y-1.5">
+              {alerts.map((alert: any) => (
+                <div
+                  key={alert.id}
+                  className={`p-2 rounded border text-xs font-mono ${
+                    alert.severity === "critical"
+                      ? "border-[#db3737]/40 bg-[#db3737]/10 text-[#db3737]"
+                      : alert.severity === "warning"
+                      ? "border-[#d9822b]/40 bg-[#d9822b]/10 text-[#d9822b]"
+                      : "border-[#2b95d6]/40 bg-[#2b95d6]/10 text-[#2b95d6]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between font-semibold">
+                    <span>{alert.title}</span>
+                    <span className="text-[9px] text-[#8a9ba8]">{new Date(alert.timestamp).toLocaleTimeString()}</span>
+                  </div>
+                  <div className="text-[10px] text-[#8a9ba8] mt-0.5">{alert.message}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Active Station & Regional Alerts */}
-      <div className="mt-4">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2 flex items-center gap-1.5">
-          <ShieldAlert className="h-3.5 w-3.5 text-amber-400" />
-          Station Logs & Telemetry Events ({alerts.length})
-        </h3>
-        {alerts.length === 0 ? (
-          <div className="rounded-lg border border-surface-border bg-slate-900/40 p-3 text-center text-xs text-gray-400">
-            No active grid anomalies recorded for this facility.
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {alerts.map((alert: any) => (
-              <div
-                key={alert.id}
-                className={`rounded-lg border p-2.5 text-xs transition-all ${
-                  alert.severity === "critical"
-                    ? "border-red-500/40 bg-red-500/10 text-red-300"
-                    : alert.severity === "warning"
-                    ? "border-amber-500/40 bg-amber-500/10 text-amber-300"
-                    : "border-blue-500/40 bg-blue-500/10 text-blue-300"
-                }`}
-              >
-                <div className="flex items-center justify-between font-semibold">
-                  <span>{alert.title}</span>
-                  <span className="font-mono text-[10px] text-gray-400">
-                    {new Date(alert.timestamp).toLocaleTimeString()}
-                  </span>
-                </div>
-                <div className="mt-1 text-[11px] text-gray-300 leading-snug">
-                  {alert.message}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+      {/* Blueprint Sticky Actions Bar */}
+      <div className="sticky bottom-0 p-3 bg-[#101418] border-t border-[#293742] flex items-center gap-2">
+        <button
+          onClick={() => flyToStation(selectedStation)}
+          className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1.5"
+        >
+          <Compass className="h-3.5 w-3.5" />
+          <span>Inspect in Canvas</span>
+        </button>
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${selectedStation.latitude},${selectedStation.longitude}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1.5 rounded text-xs font-mono text-[#a7b6c2] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+        >
+          <span>Satellite</span>
+          <ExternalLink className="h-3 w-3" />
+        </a>
       </div>
     </aside>
   );

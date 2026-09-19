@@ -16,28 +16,28 @@ export function StationTooltip() {
     const opMeta = OPERATOR_COLORS[hoveredDataCenter.operator] || OPERATOR_COLORS.Other;
     return (
       <div
-        className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out"
+        className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out font-sans"
         style={{
           left: `${hoverCoordinates.x}px`,
           top: `${hoverCoordinates.y}px`,
         }}
       >
-        <div className="w-72 rounded-xl glass-panel-elevated p-3 text-white border border-white/10 shadow-lg">
+        <div className="w-72 rounded border border-[#293742] bg-[#182026]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans">
           {/* Header */}
-          <div className="flex items-start justify-between gap-2 border-b border-white/8 pb-2">
+          <div className="flex items-start justify-between gap-2 border-b border-[#293742] pb-1.5">
             <div className="min-w-0">
-              <h4 className="truncate text-xs font-semibold text-white flex items-center gap-1.5">
-                <Server className="h-3.5 w-3.5 text-purple-400 shrink-0" />
+              <h4 className="truncate text-xs font-semibold text-[#f5f8fa] flex items-center gap-1.5 font-sans">
+                <Server className="h-3 w-3 text-[#15b371] shrink-0" />
                 <span className="truncate">{hoveredDataCenter.name}</span>
               </h4>
-              <div className="flex items-center gap-1.5 text-[11px] text-gray-400 mt-0.5">
-                <span className="text-gray-300 font-medium">{hoveredDataCenter.countryName || hoveredDataCenter.country}</span>
+              <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                <span className="text-[#f5f8fa] font-medium">{hoveredDataCenter.countryName || hoveredDataCenter.country}</span>
                 <span>•</span>
-                <span className="font-mono text-gray-300">{hoveredDataCenter.region}</span>
+                <span className="text-[#2b95d6]">{hoveredDataCenter.region}</span>
               </div>
             </div>
             <span
-              className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium"
+              className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-mono font-semibold"
               style={{
                 backgroundColor: `rgba(${opMeta.rgb.join(",")}, 0.15)`,
                 color: opMeta.hex,
@@ -49,40 +49,40 @@ export function StationTooltip() {
           </div>
 
           {/* Metrics Grid */}
-          <div className="grid grid-cols-2 gap-2 pt-2 text-xs">
-            <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
-              <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
+          <div className="grid grid-cols-2 gap-1.5 pt-2 text-xs font-mono">
+            <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">
+              <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8]">
                 IT Load
               </div>
-              <div className="font-mono font-bold text-purple-200 mt-0.5">
+              <div className="font-mono font-bold text-[#f5f8fa] mt-0.5">
                 {hoveredDataCenter.estimatedPowerMw} MW
               </div>
             </div>
 
-            <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
-              <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
+            <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">
+              <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8]">
                 PUE
               </div>
-              <div className="font-mono font-bold text-emerald-300 mt-0.5">
+              <div className="font-mono font-bold text-[#15b371] mt-0.5">
                 {hoveredDataCenter.pue != null ? hoveredDataCenter.pue : "—"}
               </div>
             </div>
           </div>
 
           {(hoveredDataCenter.coolingType || hoveredDataCenter.tier) && (
-            <div className="mt-2 text-[11px] text-gray-400 flex items-center justify-between px-0.5">
+            <div className="mt-1.5 text-[10px] font-mono text-[#8a9ba8] flex items-center justify-between px-0.5">
               <span className="truncate max-w-[150px]">{hoveredDataCenter.coolingType || "—"}</span>
-              <span className="font-mono text-gray-300">{hoveredDataCenter.tier || "—"}</span>
+              <span className="text-[#f5f8fa]">{hoveredDataCenter.tier || "—"}</span>
             </div>
           )}
 
           {/* Quick Footer */}
-          <div className="mt-2 flex items-center justify-between border-t border-white/8 pt-2 text-[11px] text-gray-400">
-            <span className="font-mono text-gray-400">
+          <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-1.5 text-[10px] font-mono text-[#8a9ba8]">
+            <span>
               {hoveredDataCenter.latitude.toFixed(3)}°, {hoveredDataCenter.longitude.toFixed(3)}°
             </span>
-            <span className="shrink-0 text-cyan-300 font-medium flex items-center gap-0.5">
-              Inspect <ArrowUpRight className="h-3 w-3" />
+            <span className="shrink-0 text-[#2b95d6] font-semibold flex items-center gap-0.5">
+              INSPECT <ArrowUpRight className="h-3 w-3" />
             </span>
           </div>
         </div>
@@ -98,28 +98,28 @@ export function StationTooltip() {
 
   return (
     <div
-      className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out"
+      className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out font-sans"
       style={{
         left: `${hoverCoordinates.x}px`,
         top: `${hoverCoordinates.y}px`,
       }}
     >
-      <div className="w-72 rounded-xl glass-panel-elevated p-3 text-white border border-white/10 shadow-lg">
+      <div className="w-72 rounded border border-[#293742] bg-[#182026]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans">
         {/* Header */}
-        <div className="flex items-start justify-between gap-2 border-b border-white/8 pb-2">
+        <div className="flex items-start justify-between gap-2 border-b border-[#293742] pb-1.5">
           <div className="min-w-0">
-            <h4 className="truncate text-xs font-semibold text-white flex items-center gap-1.5">
-              <Zap className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+            <h4 className="truncate text-xs font-semibold text-[#f5f8fa] flex items-center gap-1.5 font-sans">
+              <Zap className="h-3 w-3 text-[#2b95d6] shrink-0" />
               <span className="truncate">{hoveredStation.name}</span>
             </h4>
-            <div className="flex items-center gap-1.5 text-[11px] text-gray-400 mt-0.5">
-              <span className="text-gray-300 font-medium">{hoveredStation.countryName}</span>
+            <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+              <span className="text-[#f5f8fa] font-medium">{hoveredStation.countryName}</span>
               <span>•</span>
-              <span className="font-mono text-gray-300">{hoveredStation.gridRegion}</span>
+              <span className="text-[#2b95d6]">{hoveredStation.gridRegion}</span>
             </div>
           </div>
           <span
-            className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium"
+            className="inline-flex shrink-0 items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-mono font-semibold uppercase"
             style={{
               backgroundColor: `rgba(${fuel.rgb.join(",")}, 0.15)`,
               color: fuel.hex,
@@ -135,49 +135,49 @@ export function StationTooltip() {
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-2 gap-2 pt-2 text-xs">
-          <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
-            <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
-              Generation
+        <div className="grid grid-cols-2 gap-1.5 pt-2 text-xs font-mono">
+          <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">
+            <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8]">
+              Dispatch
             </div>
-            <div className="font-mono font-bold text-white mt-0.5">
+            <div className="font-mono font-bold text-[#f5f8fa] mt-0.5">
               <span>{hoveredStation.currentOutputMw.toLocaleString()}</span>
-              <span className="text-[10px] font-normal text-gray-400">
+              <span className="text-[9px] font-normal text-[#8a9ba8]">
                 {" "}/ {hoveredStation.capacityMw.toLocaleString()} MW
               </span>
             </div>
           </div>
 
-          <div className="rounded-lg bg-slate-900/60 p-2 border border-white/5">
-            <div className="text-[10px] uppercase tracking-wider text-gray-400 font-medium">
-              Spot Price
+          <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">
+            <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8]">
+              Spot LMP
             </div>
             <div
               className={`font-mono font-bold mt-0.5 ${
                 isSpike
-                  ? "text-red-400"
+                  ? "text-[#db3737]"
                   : isNegative
-                  ? "text-emerald-400"
-                  : "text-amber-300"
+                  ? "text-[#15b371]"
+                  : "text-[#d9822b]"
               }`}
             >
               <span>${hoveredStation.spotPriceMwh.toFixed(1)}</span>
-              <span className="text-[10px] font-normal text-gray-400">/MWh</span>
+              <span className="text-[9px] font-normal text-[#8a9ba8]">/MWh</span>
             </div>
           </div>
         </div>
 
         {/* Capacity Factor Bar */}
-        <div className="mt-2 px-0.5">
-          <div className="flex justify-between text-[10px] text-gray-400">
+        <div className="mt-1.5 px-0.5 font-mono">
+          <div className="flex justify-between text-[9px] text-[#8a9ba8]">
             <span>Capacity Factor</span>
-            <span className="font-mono text-white font-medium">
+            <span className="text-[#f5f8fa] font-semibold">
               {(hoveredStation.capacityFactor * 100).toFixed(0)}%
             </span>
           </div>
-          <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="mt-1 h-1 w-full overflow-hidden rounded bg-[#101418]">
             <div
-              className="h-full rounded-full transition-all duration-300"
+              className="h-full rounded transition-all duration-300"
               style={{
                 width: `${Math.min(100, hoveredStation.capacityFactor * 100)}%`,
                 backgroundColor: fuel.hex,
@@ -187,12 +187,12 @@ export function StationTooltip() {
         </div>
 
         {/* Quick Footer */}
-        <div className="mt-2 flex items-center justify-between border-t border-white/8 pt-2 text-[11px] text-gray-400">
-          <span className="truncate max-w-[130px] text-gray-400">
+        <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-1.5 text-[10px] font-mono text-[#8a9ba8]">
+          <span className="truncate max-w-[130px]">
             {hoveredStation.operator || "—"}
           </span>
-          <span className="shrink-0 text-cyan-300 font-medium flex items-center gap-0.5">
-            Inspect <ArrowUpRight className="h-3 w-3" />
+          <span className="shrink-0 text-[#2b95d6] font-semibold flex items-center gap-0.5">
+            INSPECT <ArrowUpRight className="h-3 w-3" />
           </span>
         </div>
       </div>

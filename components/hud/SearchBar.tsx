@@ -112,33 +112,33 @@ export function SearchBar({ plants }: SearchBarProps) {
   return (
     <div
       onClick={() => setSearchOpen(false)}
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/75 p-4 pt-20 backdrop-blur-xl transition-all animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 p-4 pt-16 backdrop-blur-md transition-all animate-in fade-in duration-150 font-sans"
     >
       <div
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleModalKeyDown}
-        className="w-full max-w-2xl rounded-2xl bg-surface-card overflow-hidden text-white shadow-2xl animate-in zoom-in-95 duration-150 border border-white/15"
+        className="w-full max-w-2xl rounded border border-[#293742] bg-[#101418] overflow-hidden text-[#f5f8fa] shadow-2xl animate-in zoom-in-95 duration-150"
       >
         {/* Search Input Header */}
-        <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3.5 bg-slate-950/60">
-          <Search className="h-4 w-4 text-cyan-400 shrink-0" />
+        <div className="flex items-center gap-3 border-b border-[#293742] px-4 py-2.5 bg-[#182026]">
+          <Search className="h-4 w-4 text-[#2b95d6] shrink-0" />
           <input
             type="text"
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search 5,200+ power stations & 4,382 AI data centers..."
-            className="w-full bg-transparent text-sm text-white placeholder-gray-400 outline-none font-sans"
+            placeholder="Omnisearch: Search 5,200+ power stations & 4,382 AI data centers..."
+            className="w-full bg-transparent text-xs text-[#f5f8fa] placeholder-[#5c7080] outline-none font-mono"
           />
           {query && (
             <button
               onClick={() => setQuery("")}
-              className="text-gray-400 hover:text-white p-1 rounded hover:bg-slate-800"
+              className="text-[#8a9ba8] hover:text-[#f5f8fa] p-1 rounded hover:bg-[#202b33]"
             >
-              <X className="h-3.5 w-3.5" />
+              <X className="h-3 w-3" />
             </button>
           )}
-          <kbd className="rounded bg-slate-800/80 px-2 py-0.5 text-[10px] font-mono text-gray-400 border border-slate-700 shadow-inner">
+          <kbd className="rounded bg-[#202b33] px-1.5 py-0.5 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
             ESC
           </kbd>
         </div>
@@ -146,11 +146,11 @@ export function SearchBar({ plants }: SearchBarProps) {
         {/* Results List */}
         <div
           ref={listRef}
-          className="max-h-[420px] overflow-y-auto p-2 space-y-1"
+          className="max-h-[400px] overflow-y-auto p-1.5 space-y-1 font-mono"
         >
           {results.length === 0 ? (
-            <div className="py-12 text-center text-xs text-gray-400">
-              No matching power stations or data centers found for &ldquo;{query}&rdquo;
+            <div className="py-10 text-center text-xs text-[#5c7080]">
+              No ontology objects found for &ldquo;{query}&rdquo;
             </div>
           ) : (
             results.map((res, index) => {
@@ -165,42 +165,40 @@ export function SearchBar({ plants }: SearchBarProps) {
                     onMouseEnter={() => setSelectedIndex(index)}
                     role="button"
                     tabIndex={0}
-                    className={`flex w-full items-center justify-between gap-3 rounded-xl p-3 text-left transition-all cursor-pointer ${
+                    className={`flex w-full items-center justify-between gap-3 rounded p-2 text-left transition-colors cursor-pointer border ${
                       isSelected
-                        ? "bg-cyan-500/15 border border-cyan-500/40 shadow-glow-sm"
-                        : "hover:bg-slate-800/60 border border-transparent"
+                        ? "bg-[#202b33] border-[#2b95d6]/60 text-[#f5f8fa]"
+                        : "hover:bg-[#182026] border-transparent text-[#8a9ba8]"
                     }`}
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span
-                          className="h-2 w-2 rounded-full shrink-0 shadow-sm"
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
                           style={{ backgroundColor: fuel.hex }}
                         />
-                        <h4 className={`truncate text-xs font-semibold ${isSelected ? "text-cyan-300" : "text-white"}`}>
+                        <h4 className={`truncate text-xs font-semibold ${isSelected ? "text-[#f5f8fa]" : "text-[#d8e1e8]"}`}>
                           {plant.name}
                         </h4>
-                        <span className="rounded border border-cyan-500/30 bg-cyan-500/10 px-1.5 py-0.2 text-[9px] font-mono text-cyan-400 font-medium">
+                        <span className="rounded border border-[#2b95d6]/40 bg-[#2b95d6]/10 px-1 py-0.2 text-[8px] font-mono text-[#2b95d6] font-semibold">
                           PLANT
                         </span>
                       </div>
-                      <div className="mt-1 flex items-center gap-2 text-[11px] text-gray-400">
-                        <span className="text-gray-300">{plant.countryName}</span>
+                      <div className="mt-0.5 flex items-center gap-2 text-[10px] text-[#8a9ba8]">
+                        <span className="text-[#f5f8fa]">{plant.countryName}</span>
                         <span>•</span>
-                        <span className="font-mono text-cyan-400">
-                          {plant.gridRegion}
-                        </span>
+                        <span className="text-[#2b95d6]">{plant.gridRegion}</span>
                         <span>•</span>
                         <span className="truncate">Op: {plant.operator}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
+                    <div className="flex items-center gap-2.5 shrink-0">
                       <div className="text-right">
-                        <div className="font-mono text-xs font-bold text-white">
+                        <div className="font-mono text-xs font-bold text-[#f5f8fa]">
                           {plant.capacityMw.toLocaleString()} MW
                         </div>
-                        <div className="font-mono text-[10px] text-amber-400">
+                        <div className="font-mono text-[9px] text-[#d9822b]">
                           ${plant.spotPriceMwh.toFixed(1)}/MWh
                         </div>
                       </div>
@@ -209,12 +207,12 @@ export function SearchBar({ plants }: SearchBarProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        title="Open location in Google Maps"
-                        className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-slate-900/80 text-gray-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
+                        title="Open in Google Maps"
+                        className="p-1 rounded border border-[#293742] bg-[#182026] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#202b33] transition-colors"
                       >
                         <ExternalLink className="h-3 w-3" />
                       </a>
-                      <ArrowRight className={`h-4 w-4 transition-transform ${isSelected ? "text-cyan-400 translate-x-0.5" : "text-gray-600"}`} />
+                      <ArrowRight className={`h-3.5 w-3.5 transition-transform ${isSelected ? "text-[#2b95d6] translate-x-0.5" : "text-[#5c7080]"}`} />
                     </div>
                   </div>
                 );
@@ -228,44 +226,37 @@ export function SearchBar({ plants }: SearchBarProps) {
                     onMouseEnter={() => setSelectedIndex(index)}
                     role="button"
                     tabIndex={0}
-                    className={`flex w-full items-center justify-between gap-3 rounded-xl p-3 text-left transition-all cursor-pointer ${
+                    className={`flex w-full items-center justify-between gap-3 rounded p-2 text-left transition-colors cursor-pointer border ${
                       isSelected
-                        ? "bg-purple-500/15 border border-purple-500/40 shadow-glow-sm"
-                        : "hover:bg-slate-800/60 border border-transparent"
+                        ? "bg-[#202b33] border-[#15b371]/60 text-[#f5f8fa]"
+                        : "hover:bg-[#182026] border-transparent text-[#8a9ba8]"
                     }`}
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <Server className="h-3.5 w-3.5 text-purple-400 shrink-0" />
-                        <h4 className={`truncate text-xs font-semibold ${isSelected ? "text-purple-300" : "text-white"}`}>
+                        <Server className="h-3 w-3 text-[#15b371] shrink-0" />
+                        <h4 className={`truncate text-xs font-semibold ${isSelected ? "text-[#f5f8fa]" : "text-[#d8e1e8]"}`}>
                           {dc.name}
                         </h4>
-                        <span className="rounded border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.2 text-[9px] font-mono text-purple-300 font-medium">
+                        <span className="rounded border border-[#15b371]/40 bg-[#15b371]/10 px-1 py-0.2 text-[8px] font-mono text-[#15b371] font-semibold">
                           DC
                         </span>
                       </div>
-                      <div className="mt-1 flex items-center gap-2 text-[11px] text-gray-400">
-                        <span className="text-gray-300">{dc.countryName || dc.country}</span>
+                      <div className="mt-0.5 flex items-center gap-2 text-[10px] text-[#8a9ba8]">
+                        <span className="text-[#f5f8fa]">{dc.countryName || dc.country}</span>
                         <span>•</span>
-                        <span className="font-mono text-purple-400">
-                          {dc.region}
-                        </span>
+                        <span className="text-[#2b95d6]">{dc.region}</span>
                         <span>•</span>
-                        <span
-                          className="font-medium"
-                          style={{ color: opMeta.hex }}
-                        >
-                          {dc.operator}
-                        </span>
+                        <span style={{ color: opMeta.hex }}>{dc.operator}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
+                    <div className="flex items-center gap-2.5 shrink-0">
                       <div className="text-right">
-                        <div className="font-mono text-xs font-bold text-purple-300">
+                        <div className="font-mono text-xs font-bold text-[#15b371]">
                           {dc.estimatedPowerMw} MW
                         </div>
-                        <div className="font-mono text-[10px] text-emerald-400">
+                        <div className="font-mono text-[9px] text-[#8a9ba8]">
                           PUE {dc.pue}
                         </div>
                       </div>
@@ -274,12 +265,12 @@ export function SearchBar({ plants }: SearchBarProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        title="Open location in Google Maps"
-                        className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-slate-900/80 text-gray-400 hover:text-purple-400 hover:border-purple-500/40 transition-all"
+                        title="Open in Google Maps"
+                        className="p-1 rounded border border-[#293742] bg-[#182026] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#202b33] transition-colors"
                       >
                         <ExternalLink className="h-3 w-3" />
                       </a>
-                      <ArrowRight className={`h-4 w-4 transition-transform ${isSelected ? "text-purple-400 translate-x-0.5" : "text-gray-600"}`} />
+                      <ArrowRight className={`h-3.5 w-3.5 transition-transform ${isSelected ? "text-[#15b371] translate-x-0.5" : "text-[#5c7080]"}`} />
                     </div>
                   </div>
                 );
@@ -289,19 +280,17 @@ export function SearchBar({ plants }: SearchBarProps) {
         </div>
 
         {/* Footer Shortcut Bar */}
-        <div className="flex items-center justify-between border-t border-white/10 bg-slate-950/80 px-4 py-2 text-[10px] text-gray-400">
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between border-t border-[#293742] bg-[#182026] px-4 py-1.5 text-[9px] font-mono text-[#8a9ba8]">
+          <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
-              <kbd className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-gray-300">↑↓</kbd> to navigate
+              <kbd className="rounded bg-[#202b33] px-1 py-0.2 text-[#f5f8fa] border border-[#293742]">↑↓</kbd> navigate
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-gray-300 flex items-center gap-0.5">
-                <CornerDownLeft className="h-2.5 w-2.5" /> Enter
-              </kbd> to fly to facility
+              <kbd className="rounded bg-[#202b33] px-1 py-0.2 text-[#f5f8fa] border border-[#293742]">ENTER</kbd> inspect
             </span>
           </div>
-          <span className="font-mono text-cyan-400">
-            {results.length} results
+          <span className="text-[#2b95d6]">
+            {results.length} MATCHES
           </span>
         </div>
       </div>

@@ -100,23 +100,23 @@ export function FloatingFilters() {
     filters.priceFilter !== "all";
 
   return (
-    <div className="absolute left-4 top-16 z-20 transition-all duration-200">
-      <div className="rounded-xl glass-panel p-2.5 shadow-lg text-white text-xs max-w-sm sm:max-w-md border border-white/10 bg-slate-950/90">
+    <div className="absolute left-4 top-14 z-20 transition-all duration-200">
+      <div className="rounded border border-[#293742] bg-[#182026]/95 backdrop-blur-md p-2.5 shadow-2xl text-[#f5f8fa] text-xs max-w-sm sm:max-w-md font-sans">
         {/* Header Bar */}
         <div className="flex items-center justify-between gap-2">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2 text-left hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2 text-left hover:text-white transition-colors"
           >
-            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-white/5 border border-white/10">
-              <SlidersHorizontal className="h-3.5 w-3.5 text-cyan-400" />
+            <div className="flex h-5 w-5 items-center justify-center rounded bg-[#202b33] border border-[#293742]">
+              <SlidersHorizontal className="h-3 w-3 text-[#2b95d6]" />
             </div>
-            <span className="font-semibold text-xs text-white">
-              Filters & Layers
+            <span className="font-mono text-xs font-semibold text-[#f5f8fa] uppercase tracking-wider">
+              Ontology Facets
             </span>
             {isFiltered && (
-              <span className="rounded-full bg-cyan-500/20 px-2 py-0.5 text-[10px] font-mono text-cyan-300 border border-cyan-500/30 font-medium">
-                Active
+              <span className="rounded px-1.5 py-0.2 text-[9px] font-mono text-[#2b95d6] bg-[#2b95d6]/15 border border-[#2b95d6]/30 font-semibold">
+                FILTERED
               </span>
             )}
           </button>
@@ -124,19 +124,19 @@ export function FloatingFilters() {
             {isFiltered && (
               <button
                 onClick={resetFilters}
-                className="flex items-center gap-1 text-[11px] text-gray-400 hover:text-white transition-colors px-1.5 py-0.5 rounded hover:bg-white/5"
+                className="flex items-center gap-1 text-[10px] font-mono text-[#8a9ba8] hover:text-[#f5f8fa] transition-colors px-1.5 py-0.5 rounded hover:bg-[#202b33]"
                 title="Reset all filters"
               >
-                <RotateCcw className="h-3 w-3" />
-                <span>Reset</span>
+                <RotateCcw className="h-2.5 w-2.5" />
+                <span>RESET</span>
               </button>
             )}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-white/5 transition-colors"
+              className="text-[#8a9ba8] hover:text-[#f5f8fa] p-1 rounded hover:bg-[#202b33] transition-colors"
             >
               <ChevronDown
-                className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                className={`h-3 w-3 transition-transform duration-200 ${
                   isOpen ? "rotate-180" : ""
                 }`}
               />
@@ -145,13 +145,13 @@ export function FloatingFilters() {
         </div>
 
         {isOpen && (
-          <div className="pt-3 space-y-3">
+          <div className="pt-3 space-y-3 border-t border-[#293742] mt-2">
             {/* 1. Primary Infrastructure Mode Switcher */}
             <div>
-              <label className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider block mb-1.5">
+              <label className="text-[10px] font-mono uppercase font-semibold text-[#8a9ba8] tracking-wider block mb-1.5">
                 Infrastructure Layer Focus
               </label>
-              <div className="grid grid-cols-3 gap-1 rounded-lg bg-slate-900/90 p-1 border border-surface-border/80">
+              <div className="grid grid-cols-3 gap-1 rounded bg-[#101418] p-1 border border-[#293742]">
                 {[
                   { id: "all", label: "All Layers", icon: Layers },
                   { id: "plants", label: "Power Plants", icon: Zap },
@@ -163,17 +163,17 @@ export function FloatingFilters() {
                     <button
                       key={item.id}
                       onClick={() => setInfrastructureType(item.id as InfrastructureType)}
-                      className={`flex items-center justify-center gap-1.5 rounded py-1.5 text-[11px] font-medium transition-all ${
+                      className={`flex items-center justify-center gap-1.5 rounded py-1 text-[10px] font-mono transition-all ${
                         isActive
                           ? item.id === "datacenters"
-                            ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 shadow-sm font-semibold"
+                            ? "bg-[#15b371]/20 text-[#15b371] border border-[#15b371]/50 font-semibold"
                             : item.id === "plants"
-                            ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-sm font-semibold"
-                            : "bg-slate-800 text-white border border-slate-600 shadow-sm font-semibold"
-                          : "text-gray-400 hover:text-white hover:bg-slate-800/50"
+                            ? "bg-[#2b95d6]/20 text-[#2b95d6] border border-[#2b95d6]/50 font-semibold"
+                            : "bg-[#202b33] text-[#f5f8fa] border border-[#394b59] font-semibold"
+                          : "text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#202b33]/60 border border-transparent"
                       }`}
                     >
-                      <Icon className="h-3.5 w-3.5 shrink-0" />
+                      <Icon className="h-3 w-3 shrink-0" />
                       <span>{item.label}</span>
                     </button>
                   );
@@ -183,40 +183,40 @@ export function FloatingFilters() {
 
             {/* 2. Balancing Authority / Geographic Region */}
             <div>
-              <label className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider block mb-1.5">
+              <label className="text-[10px] font-mono uppercase font-semibold text-[#8a9ba8] tracking-wider block mb-1.5">
                 Balancing Authority / Region
               </label>
               <div className="relative">
                 <select
                   value={filters.region}
                   onChange={(e) => handleRegionChange(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/80 px-3 py-2 text-xs text-white outline-none focus:border-cyan-400/60 appearance-none cursor-pointer backdrop-blur-md shadow-inner transition-colors"
+                  className="w-full rounded border border-[#293742] bg-[#101418] px-2.5 py-1.5 text-xs font-mono text-[#f5f8fa] outline-none focus:border-[#2b95d6] appearance-none cursor-pointer shadow-inner transition-colors"
                 >
                   {REGIONS.map((r) => (
-                    <option key={r.id} value={r.id} className="bg-slate-950 text-white">
+                    <option key={r.id} value={r.id} className="bg-[#101418] text-[#f5f8fa]">
                       {r.label}
                     </option>
                   ))}
                 </select>
-                <Globe className="pointer-events-none absolute right-3 top-2.5 h-3.5 w-3.5 text-cyan-400" />
+                <Globe className="pointer-events-none absolute right-2.5 top-2.5 h-3 w-3 text-[#2b95d6]" />
               </div>
             </div>
 
             {/* 3. Power Plants Fuel Types (Visible if All or Plants) */}
             {showPlants && (
-              <div className="border-t border-white/10 pt-2.5">
+              <div className="border-t border-[#293742] pt-2.5">
                 <div className="flex justify-between items-center mb-1.5">
-                  <label className="text-[10px] uppercase font-semibold text-cyan-400 tracking-wider flex items-center gap-1">
+                  <label className="text-[10px] font-mono uppercase font-semibold text-[#2b95d6] tracking-wider flex items-center gap-1">
                     <Zap className="h-3 w-3" />
                     Generation Fuels
                   </label>
-                  <span className="text-[10px] text-gray-400 font-mono">
+                  <span className="text-[9px] text-[#8a9ba8] font-mono">
                     {filters.fuelTypes.length === 0
                       ? "All Fuels (11)"
                       : `${filters.fuelTypes.length} Active`}
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1">
+                <div className="flex flex-wrap gap-1 max-h-28 overflow-y-auto pr-1">
                   {(Object.keys(FUEL_CONFIG) as FuelType[]).map((fuelKey) => {
                     const meta = FUEL_CONFIG[fuelKey];
                     const isSelected =
@@ -227,14 +227,14 @@ export function FloatingFilters() {
                       <button
                         key={fuelKey}
                         onClick={() => toggleFuelType(fuelKey)}
-                        className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-medium transition-all ${
+                        className={`flex items-center gap-1.5 rounded px-2 py-0.5 text-[10px] font-mono transition-all ${
                           isSelected
-                            ? "bg-slate-800/90 text-white border border-white/15 shadow-sm"
-                            : "bg-slate-900/40 text-gray-500 border border-white/5 opacity-35 hover:opacity-75"
+                            ? "bg-[#202b33] text-[#f5f8fa] border border-[#394b59]"
+                            : "bg-[#101418]/60 text-[#5c7080] border border-[#293742]/40 opacity-40 hover:opacity-75"
                         }`}
                       >
                         <span
-                          className="h-1.5 w-1.5 rounded-full shrink-0 shadow-sm"
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
                           style={{ backgroundColor: meta.hex }}
                         />
                         <span>{meta.label}</span>
@@ -247,19 +247,19 @@ export function FloatingFilters() {
 
             {/* 4. Data Center Cloud Operators (Visible if All or Data Centers) */}
             {showDatacenters && (
-              <div className="border-t border-white/10 pt-2.5">
+              <div className="border-t border-[#293742] pt-2.5">
                 <div className="flex justify-between items-center mb-1.5">
-                  <label className="text-[10px] uppercase font-semibold text-purple-300 tracking-wider flex items-center gap-1">
-                    <Server className="h-3 w-3 text-purple-400" />
+                  <label className="text-[10px] font-mono uppercase font-semibold text-[#15b371] tracking-wider flex items-center gap-1">
+                    <Server className="h-3 w-3 text-[#15b371]" />
                     Data Center Operators
                   </label>
-                  <span className="text-[10px] text-gray-400 font-mono">
+                  <span className="text-[9px] text-[#8a9ba8] font-mono">
                     {filters.dcOperators.length === 0
                       ? "All Operators (10+)"
                       : `${filters.dcOperators.length} Active`}
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1">
+                <div className="flex flex-wrap gap-1 max-h-28 overflow-y-auto pr-1">
                   {DC_OPERATORS.map((opName) => {
                     const opMeta = OPERATOR_COLORS[opName] || OPERATOR_COLORS.Other;
                     const isSelected =
@@ -270,14 +270,14 @@ export function FloatingFilters() {
                       <button
                         key={opName}
                         onClick={() => toggleDcOperator(opName)}
-                        className={`flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-medium transition-all ${
+                        className={`flex items-center gap-1.5 rounded px-2 py-0.5 text-[10px] font-mono transition-all ${
                           isSelected
-                            ? "bg-slate-800/90 text-white border border-white/15 shadow-sm"
-                            : "bg-slate-900/40 text-gray-500 border border-white/5 opacity-35 hover:opacity-75"
+                            ? "bg-[#202b33] text-[#f5f8fa] border border-[#394b59]"
+                            : "bg-[#101418]/60 text-[#5c7080] border border-[#293742]/40 opacity-40 hover:opacity-75"
                         }`}
                       >
                         <span
-                          className="h-1.5 w-1.5 rounded-full shrink-0 shadow-sm"
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
                           style={{ backgroundColor: opMeta.hex }}
                         />
                         <span>{opName.replace(" (AWS)", "").replace(" (GCP)", "").replace(" (OCI)", "")}</span>
@@ -287,7 +287,7 @@ export function FloatingFilters() {
                 </div>
 
                 {/* Facility Category Badges */}
-                <div className="mt-2 flex items-center gap-1.5">
+                <div className="mt-2 flex items-center gap-1">
                   {DC_CATEGORIES.map((cat) => {
                     const isCatSelected =
                       filters.dcCategories.length === 0 ||
@@ -296,10 +296,10 @@ export function FloatingFilters() {
                       <button
                         key={cat.id}
                         onClick={() => toggleDcCategory(cat.id)}
-                        className={`rounded-lg px-2 py-0.5 text-[9px] font-mono uppercase transition-all ${
+                        className={`rounded px-1.5 py-0.5 text-[9px] font-mono uppercase transition-all ${
                           isCatSelected
-                            ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 font-bold shadow-glow-sm"
-                            : "bg-slate-900/60 text-gray-400 border border-white/5 opacity-40 hover:opacity-75"
+                            ? "bg-[#15b371]/15 text-[#15b371] border border-[#15b371]/40 font-semibold"
+                            : "bg-[#101418]/60 text-[#5c7080] border border-[#293742]/40 opacity-40 hover:opacity-75"
                         }`}
                       >
                         {cat.label}
@@ -311,16 +311,16 @@ export function FloatingFilters() {
             )}
 
             {/* 5. Capacity / IT Power Scale */}
-            <div className="border-t border-white/10 pt-2.5">
+            <div className="border-t border-[#293742] pt-2.5">
               <div className="flex justify-between items-center mb-1.5">
-                <label className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider">
+                <label className="text-[10px] font-mono uppercase font-semibold text-[#8a9ba8] tracking-wider">
                   {filters.infrastructureType === "datacenters" ? "IT Power Load Threshold" : "Capacity / Load Scale"}
                 </label>
-                <span className="font-mono text-[10px] text-cyan-400 font-bold">
+                <span className="font-mono text-[10px] text-[#2b95d6] font-semibold">
                   &gt; {filters.minCapacityMw} MW
                 </span>
               </div>
-              <div className="grid grid-cols-4 gap-1.5">
+              <div className="grid grid-cols-4 gap-1">
                 {[
                   { label: "All Sizes", min: 0 },
                   { label: "> 50 MW", min: 50 },
@@ -330,10 +330,10 @@ export function FloatingFilters() {
                   <button
                     key={cap.min}
                     onClick={() => setFilter("minCapacityMw", cap.min)}
-                    className={`rounded-lg px-1.5 py-1 text-center font-mono text-[10px] transition-all ${
+                    className={`rounded px-1 py-1 text-center font-mono text-[9px] transition-all ${
                       filters.minCapacityMw === cap.min
-                        ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 font-bold shadow-glow-sm"
-                        : "bg-slate-900/60 text-gray-400 hover:text-white border border-white/5"
+                        ? "bg-[#2b95d6]/20 text-[#2b95d6] border border-[#2b95d6]/50 font-semibold"
+                        : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
                     }`}
                   >
                     {cap.label}
@@ -344,11 +344,11 @@ export function FloatingFilters() {
 
             {/* 6. Pricing Extreme Filter (Power Plants only) */}
             {showPlants && (
-              <div className="border-t border-white/10 pt-2.5">
-                <label className="text-[10px] uppercase font-semibold text-gray-400 tracking-wider block mb-1.5">
+              <div className="border-t border-[#293742] pt-2.5">
+                <label className="text-[10px] font-mono uppercase font-semibold text-[#8a9ba8] tracking-wider block mb-1.5">
                   LMP Nodal Pricing Filter
                 </label>
-                <div className="grid grid-cols-3 gap-1.5">
+                <div className="grid grid-cols-3 gap-1">
                   {[
                     { id: "all", label: "All Prices" },
                     { id: "spikes", label: "Spikes >$150" },
@@ -357,14 +357,14 @@ export function FloatingFilters() {
                     <button
                       key={p.id}
                       onClick={() => setFilter("priceFilter", p.id as PriceFilter)}
-                      className={`rounded-lg px-2 py-1 text-center text-[10px] transition-all ${
+                      className={`rounded px-1.5 py-1 text-center font-mono text-[9px] transition-all ${
                         filters.priceFilter === p.id
                           ? p.id === "spikes"
-                            ? "bg-red-500/20 text-red-300 border border-red-500/50 font-bold shadow-glow-sm"
+                            ? "bg-[#db3737]/20 text-[#db3737] border border-[#db3737]/50 font-semibold"
                             : p.id === "negative"
-                            ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 font-bold shadow-glow-sm"
-                            : "bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 font-bold shadow-glow-sm"
-                          : "bg-slate-900/60 text-gray-400 hover:text-white border border-white/5"
+                            ? "bg-[#15b371]/20 text-[#15b371] border border-[#15b371]/50 font-semibold"
+                            : "bg-[#2b95d6]/20 text-[#2b95d6] border border-[#2b95d6]/50 font-semibold"
+                          : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
                       }`}
                     >
                       {p.label}

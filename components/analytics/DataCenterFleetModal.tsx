@@ -227,25 +227,25 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-xl transition-all animate-in fade-in duration-150">
-      <div className="flex h-[92vh] w-full max-w-7xl flex-col rounded-3xl glass-panel-elevated shadow-2xl text-white overflow-hidden animate-in zoom-in-95 duration-150 border border-white/15">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md transition-all animate-in fade-in duration-150 font-sans">
+      <div className="flex h-[92vh] w-full max-w-7xl flex-col rounded border border-[#293742] bg-[#101418] shadow-2xl text-[#f5f8fa] overflow-hidden animate-in zoom-in-95 duration-150">
         {/* Modal Header */}
-        <div className="flex items-center justify-between border-b border-white/10 px-6 py-4 bg-slate-950/70">
+        <div className="flex items-center justify-between border-b border-[#293742] px-5 py-3 bg-[#182026]">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-500/20 text-purple-400 border border-purple-500/40 shadow-glow-sm">
-              <Server className="h-5 w-5" />
+            <div className="flex h-8 w-8 items-center justify-center rounded bg-[#202b33] text-[#2b95d6] border border-[#293742]">
+              <Server className="h-4 w-4" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold uppercase tracking-wider text-white">
-                  Global Data Center Fleet Directory
-                </h2>
-                <span className="rounded-full bg-purple-500/20 px-2.5 py-0.5 text-[10px] font-mono font-bold text-purple-300 border border-purple-500/40 shadow-sm">
-                  {fleetTotals.count.toLocaleString()} FACILITIES MONITORED
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#f5f8fa]">
+                  Foundry // Object Explorer : DataCenter Fleet
+                </span>
+                <span className="rounded bg-[#202b33] px-2 py-0.5 text-[9px] font-mono font-semibold text-[#15b371] border border-[#293742]">
+                  {fleetTotals.count.toLocaleString()} OBJECTS
                 </span>
               </div>
-              <div className="text-[11px] text-gray-400">
-                Verified IT power capacity, efficiency ratings, and interconnection analytics across 80+ nations
+              <div className="text-[10px] font-mono text-[#8a9ba8]">
+                Verified IT load, operational PUE metrics, and carrier interconnections across 80+ jurisdictions
               </div>
             </div>
           </div>
@@ -253,130 +253,130 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
           <div className="flex items-center gap-2">
             <button
               onClick={handleExportCsv}
-              className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-slate-900/80 px-3 py-1.5 text-xs text-gray-300 hover:text-white hover:border-purple-500/40 transition-all hover:scale-105 active:scale-95 shadow-sm"
+              className="flex items-center gap-1.5 rounded border border-[#293742] bg-[#202b33] px-3 py-1 text-xs font-mono text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
               title="Export filtered data center directory to CSV"
             >
-              <Download className="h-3.5 w-3.5 text-purple-400" />
-              <span>Export CSV</span>
+              <Download className="h-3 w-3 text-[#2b95d6]" />
+              <span>EXPORT CSV</span>
             </button>
             <button
               onClick={() => setDcFleetOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-slate-900/80 text-gray-400 hover:text-white transition-all hover:scale-105 active:scale-95"
+              className="flex h-7 w-7 items-center justify-center rounded border border-[#293742] bg-[#202b33] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
             >
-              <X className="h-4 w-4" />
+              <X className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Hero KPI Summary Bento Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 px-6 py-3.5 bg-slate-950/40 border-b border-white/10">
+        {/* Hero KPI Summary Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 px-5 py-2.5 bg-[#101418] border-b border-[#293742]">
           {/* 1. Total IT Power Capacity */}
-          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-3 shadow-sm">
-            <div className="flex items-center justify-between text-[10px] uppercase text-gray-400 font-semibold tracking-wider">
+          <div className="rounded border border-[#293742] bg-[#182026] p-2.5">
+            <div className="flex items-center justify-between text-[9px] uppercase font-mono text-[#8a9ba8] tracking-wider">
               <span>Total IT Power Load</span>
-              <Zap className="h-3.5 w-3.5 text-purple-400" />
+              <Zap className="h-3 w-3 text-[#2b95d6]" />
             </div>
-            <div className="mt-1 font-mono text-lg font-bold text-purple-300">
-              {fleetTotals.totalPowerGw} <span className="text-xs font-normal text-gray-400">GW</span>
+            <div className="mt-1 font-mono text-base font-bold text-[#f5f8fa]">
+              {fleetTotals.totalPowerGw} <span className="text-xs font-normal text-[#8a9ba8]">GW</span>
             </div>
-            <div className="text-[9px] text-gray-400 mt-0.5">Sum of IT Demand</div>
+            <div className="text-[9px] font-mono text-[#5c7080] mt-0.5">Sum of IT Demand</div>
           </div>
 
           {/* 2. Hyperscale Facilities */}
-          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-3 shadow-sm">
-            <div className="flex items-center justify-between text-[10px] uppercase text-gray-400 font-semibold tracking-wider">
+          <div className="rounded border border-[#293742] bg-[#182026] p-2.5">
+            <div className="flex items-center justify-between text-[9px] uppercase font-mono text-[#8a9ba8] tracking-wider">
               <span>Hyperscale Campuses</span>
-              <Building className="h-3.5 w-3.5 text-cyan-400" />
+              <Building className="h-3 w-3 text-[#2b95d6]" />
             </div>
-            <div className="mt-1 font-mono text-lg font-bold text-cyan-300">
+            <div className="mt-1 font-mono text-base font-bold text-[#f5f8fa]">
               {fleetTotals.hyperscaleCount.toLocaleString()}
             </div>
-            <div className="text-[9px] text-cyan-300/80 mt-0.5">AWS, Azure, GCP, Meta</div>
+            <div className="text-[9px] font-mono text-[#5c7080] mt-0.5">AWS, Azure, GCP, Meta</div>
           </div>
 
           {/* 3. Colocation & Enterprise Facilities */}
-          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-3 shadow-sm">
-            <div className="flex items-center justify-between text-[10px] uppercase text-gray-400 font-semibold tracking-wider">
+          <div className="rounded border border-[#293742] bg-[#182026] p-2.5">
+            <div className="flex items-center justify-between text-[9px] uppercase font-mono text-[#8a9ba8] tracking-wider">
               <span>Colocation & Retail</span>
-              <Layers className="h-3.5 w-3.5 text-emerald-400" />
+              <Layers className="h-3 w-3 text-[#15b371]" />
             </div>
-            <div className="mt-1 font-mono text-lg font-bold text-emerald-400">
+            <div className="mt-1 font-mono text-base font-bold text-[#15b371]">
               {fleetTotals.colocationCount.toLocaleString()}
             </div>
-            <div className="text-[9px] text-emerald-400/80 mt-0.5">Equinix, Digital Realty</div>
+            <div className="text-[9px] font-mono text-[#5c7080] mt-0.5">Equinix, Digital Realty</div>
           </div>
 
           {/* 4. Average PUE Efficiency */}
-          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-3 shadow-sm">
-            <div className="flex items-center justify-between text-[10px] uppercase text-gray-400 font-semibold tracking-wider">
+          <div className="rounded border border-[#293742] bg-[#182026] p-2.5">
+            <div className="flex items-center justify-between text-[9px] uppercase font-mono text-[#8a9ba8] tracking-wider">
               <span>Fleet Average PUE</span>
-              <Gauge className="h-3.5 w-3.5 text-emerald-400" />
+              <Gauge className="h-3 w-3 text-[#15b371]" />
             </div>
-            <div className="mt-1 font-mono text-lg font-bold text-emerald-400">
+            <div className="mt-1 font-mono text-base font-bold text-[#15b371]">
               {fleetTotals.avgPue}
             </div>
-            <div className="text-[9px] text-gray-400 mt-0.5">Efficiency Benchmark</div>
+            <div className="text-[9px] font-mono text-[#5c7080] mt-0.5">Efficiency Benchmark</div>
           </div>
 
           {/* 5. Verified Carrier ASNs */}
-          <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-3 shadow-sm">
-            <div className="flex items-center justify-between text-[10px] uppercase text-gray-400 font-semibold tracking-wider">
-              <span>PeeringDB Interconnects</span>
-              <Network className="h-3.5 w-3.5 text-indigo-400" />
+          <div className="rounded border border-[#293742] bg-[#182026] p-2.5">
+            <div className="flex items-center justify-between text-[9px] uppercase font-mono text-[#8a9ba8] tracking-wider">
+              <span>Interconnects</span>
+              <Network className="h-3 w-3 text-[#2b95d6]" />
             </div>
-            <div className="mt-1 font-mono text-lg font-bold text-indigo-300">
+            <div className="mt-1 font-mono text-base font-bold text-[#2b95d6]">
               {fleetTotals.totalAsns.toLocaleString()}
             </div>
-            <div className="text-[9px] text-gray-400 mt-0.5">Carrier ASNs Linked</div>
+            <div className="text-[9px] font-mono text-[#5c7080] mt-0.5">Carrier ASNs Linked</div>
           </div>
         </div>
 
         {/* View Switcher & Navigation Tabs */}
-        <div className="flex items-center justify-between px-6 pt-3 pb-2 border-b border-white/10 bg-slate-950/30">
-          <div className="flex items-center gap-1 rounded-xl bg-slate-900/80 p-1 border border-white/10 text-xs">
+        <div className="flex items-center justify-between px-5 pt-2 pb-2 border-b border-[#293742] bg-[#101418]">
+          <div className="flex items-center gap-1 text-xs font-mono">
             <button
               onClick={() => setActiveTab("grid")}
-              className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1 font-mono text-xs transition-colors rounded ${
                 activeTab === "grid"
-                  ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm font-semibold"
-                  : "text-gray-400 hover:text-white"
+                  ? "bg-[#202b33] text-[#2b95d6] border border-[#293742] font-semibold"
+                  : "text-[#8a9ba8] hover:text-[#f5f8fa]"
               }`}
             >
-              <Server className="h-3.5 w-3.5" />
-              <span>All Facilities Directory</span>
+              <Server className="h-3 w-3" />
+              <span>ALL FACILITIES ({filteredDataCenters.length})</span>
             </button>
             <button
               onClick={() => setActiveTab("operators")}
-              className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1 font-mono text-xs transition-colors rounded ${
                 activeTab === "operators"
-                  ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm font-semibold"
-                  : "text-gray-400 hover:text-white"
+                  ? "bg-[#202b33] text-[#2b95d6] border border-[#293742] font-semibold"
+                  : "text-[#8a9ba8] hover:text-[#f5f8fa]"
               }`}
             >
-              <Building className="h-3.5 w-3.5" />
-              <span>Operator Fleet Capacity</span>
+              <Building className="h-3 w-3" />
+              <span>OPERATOR FLEETS</span>
             </button>
             <button
               onClick={() => setActiveTab("countries")}
-              className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1 font-mono text-xs transition-colors rounded ${
                 activeTab === "countries"
-                  ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm font-semibold"
-                  : "text-gray-400 hover:text-white"
+                  ? "bg-[#202b33] text-[#2b95d6] border border-[#293742] font-semibold"
+                  : "text-[#8a9ba8] hover:text-[#f5f8fa]"
               }`}
             >
-              <Globe className="h-3.5 w-3.5" />
-              <span>Country & Regional Rankings</span>
+              <Globe className="h-3 w-3" />
+              <span>COUNTRY RANKINGS</span>
             </button>
           </div>
 
-          <div className="text-xs text-gray-400 font-mono">
+          <div className="text-[11px] text-[#8a9ba8] font-mono">
             Showing {paginatedData.length} of {filteredDataCenters.length.toLocaleString()} facilities
           </div>
         </div>
 
         {/* Multi-Dimensional Filter Controls Bar */}
         {activeTab === "grid" && (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 px-6 py-3 bg-slate-900/50 border-b border-white/10 text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2 px-5 py-2 bg-[#182026] border-b border-[#293742] text-xs font-mono">
             {/* 1. Instant Text Search */}
             <div className="relative">
               <input
@@ -387,9 +387,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full rounded-xl border border-white/10 bg-slate-950/80 pl-8 pr-3 py-1.5 text-xs text-white placeholder-gray-500 outline-none focus:border-purple-400/60 shadow-inner"
+                className="w-full rounded border border-[#293742] bg-[#101418] pl-7 pr-2.5 py-1 text-xs text-[#f5f8fa] placeholder-[#5c7080] outline-none focus:border-[#2b95d6] shadow-inner font-mono"
               />
-              <Search className="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-gray-400" />
+              <Search className="pointer-events-none absolute left-2 top-2 h-3 w-3 text-[#5c7080]" />
             </div>
 
             {/* 2. Country / Jurisdiction */}
@@ -400,9 +400,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                   setSelectedCountry(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-2.5 py-1.5 text-xs text-white outline-none focus:border-purple-400/60 appearance-none cursor-pointer"
+                className="w-full rounded border border-[#293742] bg-[#101418] px-2 py-1 text-xs text-[#f5f8fa] outline-none focus:border-[#2b95d6] appearance-none cursor-pointer font-mono"
               >
-                <option value="ALL">🌍 All Countries ({countryList.length})</option>
+                <option value="ALL">All Jurisdictions ({countryList.length})</option>
                 {countryList.map((c) => (
                   <option key={c.name} value={c.name}>
                     {c.name} ({c.count})
@@ -419,9 +419,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                   setSelectedOperator(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-2.5 py-1.5 text-xs text-white outline-none focus:border-purple-400/60 appearance-none cursor-pointer"
+                className="w-full rounded border border-[#293742] bg-[#101418] px-2 py-1 text-xs text-[#f5f8fa] outline-none focus:border-[#2b95d6] appearance-none cursor-pointer font-mono"
               >
-                <option value="ALL">🏢 All Operators ({operatorList.length})</option>
+                <option value="ALL">All Operators ({operatorList.length})</option>
                 {operatorList.map((op) => (
                   <option key={op.operator} value={op.operator}>
                     {op.operator} ({op.count})
@@ -438,9 +438,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                   setSelectedScale(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-2.5 py-1.5 text-xs text-white outline-none focus:border-purple-400/60 appearance-none cursor-pointer"
+                className="w-full rounded border border-[#293742] bg-[#101418] px-2 py-1 text-xs text-[#f5f8fa] outline-none focus:border-[#2b95d6] appearance-none cursor-pointer font-mono"
               >
-                <option value="ALL">⚡ All Power Scales</option>
+                <option value="ALL">All Power Scales</option>
                 <option value="mega">Megacampus (&gt; 200 MW)</option>
                 <option value="hyper">Hyperscale (50–200 MW)</option>
                 <option value="mid">Mid-Tier (15–50 MW)</option>
@@ -453,14 +453,14 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="w-full rounded-xl border border-white/10 bg-slate-950/80 px-2.5 py-1.5 text-xs text-white outline-none focus:border-purple-400/60 appearance-none cursor-pointer font-medium text-purple-300"
+                className="w-full rounded border border-[#293742] bg-[#101418] px-2 py-1 text-xs text-[#2b95d6] outline-none focus:border-[#2b95d6] appearance-none cursor-pointer font-mono font-semibold"
               >
-                <option value="power_desc">Sort: IT Power (Highest First)</option>
-                <option value="power_asc">Sort: IT Power (Lowest First)</option>
-                <option value="pue_asc">Sort: PUE Rating (Most Efficient)</option>
-                <option value="pue_desc">Sort: PUE Rating (Least Efficient)</option>
-                <option value="asns_desc">Sort: Carrier ASNs (Most Connected)</option>
-                <option value="name_asc">Sort: Facility Name (A to Z)</option>
+                <option value="power_desc">Sort: IT Power (Desc)</option>
+                <option value="power_asc">Sort: IT Power (Asc)</option>
+                <option value="pue_asc">Sort: PUE (Most Efficient)</option>
+                <option value="pue_desc">Sort: PUE (Least Efficient)</option>
+                <option value="asns_desc">Sort: Carrier ASNs (Desc)</option>
+                <option value="name_asc">Sort: Facility Name (A-Z)</option>
               </select>
             </div>
           </div>
@@ -468,27 +468,27 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
 
         {/* Content Area: TAB 1 (Facilities Directory Data Grid) */}
         {activeTab === "grid" && (
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-slate-950/60">
-              <table className="w-full text-left text-xs border-collapse">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="overflow-x-auto rounded border border-[#293742] bg-[#101418]">
+              <table className="w-full text-left text-xs font-mono border-collapse">
                 <thead>
-                  <tr className="border-b border-white/10 bg-slate-900/80 text-[10px] uppercase font-semibold text-gray-400 tracking-wider">
-                    <th className="py-3 px-4">Facility & Location</th>
-                    <th className="py-3 px-3">Operator & Classification</th>
-                    <th className="py-3 px-3 font-mono text-right text-purple-300">IT Power Capacity</th>
-                    <th className="py-3 px-3 font-mono text-center text-emerald-300">PUE</th>
-                    <th className="py-3 px-3">Cooling Architecture</th>
-                    <th className="py-3 px-3">Redundancy Tier</th>
-                    <th className="py-3 px-3 font-mono text-center">Interconnects</th>
-                    <th className="py-3 px-4 text-right">Actions</th>
+                  <tr className="border-b border-[#293742] bg-[#182026] text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+                    <th className="py-2.5 px-3">Facility & Location</th>
+                    <th className="py-2.5 px-3">Operator</th>
+                    <th className="py-2.5 px-3 font-mono text-right text-[#2b95d6]">IT Power</th>
+                    <th className="py-2.5 px-3 font-mono text-center text-[#15b371]">PUE</th>
+                    <th className="py-2.5 px-3">Cooling</th>
+                    <th className="py-2.5 px-3">Tier</th>
+                    <th className="py-2.5 px-3 font-mono text-center">Interconnects</th>
+                    <th className="py-2.5 px-3 text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 font-sans">
+                <tbody className="divide-y divide-[#202b33]">
                   {paginatedData.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="py-12 text-center text-gray-400">
-                        <Server className="mx-auto h-8 w-8 text-gray-600 mb-2" />
-                        No data centers match the specified filter criteria.
+                      <td colSpan={8} className="py-12 text-center text-[#5c7080]">
+                        <Server className="mx-auto h-6 w-6 text-[#394b59] mb-2" />
+                        No facilities match the specified filter criteria.
                       </td>
                     </tr>
                   ) : (
@@ -498,21 +498,21 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                       return (
                         <tr
                           key={dc.id}
-                          className="hover:bg-slate-900/60 transition-colors group"
+                          className="hover:bg-[#202b33]/40 transition-colors"
                         >
                           {/* Facility Name & Location */}
-                          <td className="py-3 px-4">
-                            <div className="font-bold text-white text-xs flex items-center gap-1.5">
+                          <td className="py-2 px-3">
+                            <div className="font-semibold text-[#f5f8fa] text-xs flex items-center gap-1.5 font-sans">
                               <span
-                                className="h-2 w-2 rounded-full shrink-0 shadow-sm"
+                                className="h-1.5 w-1.5 rounded-full shrink-0"
                                 style={{ backgroundColor: opMeta.hex }}
                               />
                               <span className="truncate max-w-[240px]">{dc.name}</span>
                             </div>
-                            <div className="mt-0.5 text-[11px] text-gray-400 flex items-center gap-1.5">
-                              <span className="text-gray-300">{dc.countryName || dc.country}</span>
+                            <div className="mt-0.5 text-[10px] text-[#8a9ba8] font-mono flex items-center gap-1.5">
+                              <span className="text-[#f5f8fa]">{dc.countryName || dc.country}</span>
                               <span>•</span>
-                              <span className="font-mono text-purple-400">{dc.region}</span>
+                              <span className="text-[#2b95d6]">{dc.region}</span>
                               {dc.city && (
                                 <>
                                   <span>•</span>
@@ -523,70 +523,69 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                           </td>
 
                           {/* Operator & Category */}
-                          <td className="py-3 px-3">
+                          <td className="py-2 px-3">
                             <span
-                              className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold"
+                              className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-mono uppercase font-semibold"
                               style={{
-                                backgroundColor: `rgba(${opMeta.rgb.join(",")}, 0.2)`,
+                                backgroundColor: `rgba(${opMeta.rgb.join(",")}, 0.15)`,
                                 color: opMeta.hex,
-                                border: `1px solid rgba(${opMeta.rgb.join(",")}, 0.4)`,
+                                border: `1px solid rgba(${opMeta.rgb.join(",")}, 0.3)`,
                               }}
                             >
                               {dc.operator.replace(" (AWS)", "").replace(" (GCP)", "").replace(" (OCI)", "")}
                             </span>
-                            <div className="mt-1 text-[10px] text-gray-400 flex items-center gap-1 font-mono">
-                              <span className="capitalize">{dc.category} Facility</span>
+                            <div className="mt-0.5 text-[9px] text-[#8a9ba8] font-mono">
+                              <span className="capitalize">{dc.category}</span>
                             </div>
                           </td>
 
                           {/* IT Power Capacity */}
-                          <td className="py-3 px-3 text-right font-mono font-bold text-purple-300 text-sm">
-                            {dc.estimatedPowerMw} <span className="text-[10px] font-normal text-gray-400">MW</span>
+                          <td className="py-2 px-3 text-right font-mono font-bold text-[#f5f8fa]">
+                            {dc.estimatedPowerMw} <span className="text-[10px] font-normal text-[#8a9ba8]">MW</span>
                           </td>
 
                           {/* PUE */}
-                          <td className="py-3 px-3 text-center font-mono font-bold text-emerald-300">
+                          <td className="py-2 px-3 text-center font-mono font-bold text-[#15b371]">
                             {dc.pue}
                           </td>
 
                           {/* Cooling Architecture */}
-                          <td className="py-3 px-3 text-gray-300 text-[11px]">
+                          <td className="py-2 px-3 text-[#8a9ba8] text-[11px]">
                             {dc.coolingType || "—"}
                           </td>
 
                           {/* Redundancy Tier */}
-                          <td className="py-3 px-3 font-mono text-gray-300 text-[11px]">
+                          <td className="py-2 px-3 font-mono text-[#8a9ba8] text-[11px]">
                             {dc.tier || "—"}
                           </td>
 
                           {/* Interconnects */}
-                          <td className="py-3 px-3 text-center font-mono text-[11px] text-indigo-300">
+                          <td className="py-2 px-3 text-center font-mono text-[11px] text-[#2b95d6]">
                             {dc.connectedNetworksCount ? (
                               <span>{dc.connectedNetworksCount} ASNs</span>
                             ) : (
-                              <span className="text-gray-500">—</span>
+                              <span className="text-[#5c7080]">—</span>
                             )}
                           </td>
 
                           {/* Actions */}
-                          <td className="py-3 px-4 text-right">
-                            <div className="flex items-center justify-end gap-1.5">
+                          <td className="py-2 px-3 text-right">
+                            <div className="flex items-center justify-end gap-1 font-mono">
                               <a
                                 href={`https://www.google.com/maps/search/?api=1&query=${dc.latitude},${dc.longitude}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 title="Open in Google Maps Satellite View"
-                                className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-slate-900 text-gray-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all"
+                                className="p-1 rounded border border-[#293742] bg-[#202b33] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
                               >
                                 <ExternalLink className="h-3 w-3" />
                               </a>
                               <button
                                 onClick={() => handleFlyTo(dc)}
-                                className="inline-flex items-center gap-1 rounded-lg bg-purple-500/10 px-2.5 py-1 text-[10px] font-semibold text-purple-300 border border-purple-500/30 hover:bg-purple-600 hover:text-white transition-all shadow-sm"
-                                title="Fly camera to this data center on the 3D map"
+                                className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors"
+                                title="Locate in Foundry Canvas"
                               >
-                                <span>Fly</span>
-                                <Compass className="h-3 w-3" />
+                                LOCATE
                               </button>
                             </div>
                           </td>
@@ -600,21 +599,20 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-between border-t border-white/10 pt-4 text-xs">
-                <div className="text-gray-400 font-mono text-[11px]">
-                  Page {currentPage} of {totalPages} ({filteredDataCenters.length.toLocaleString()} total facilities)
+              <div className="flex items-center justify-between border-t border-[#293742] pt-2 text-xs font-mono">
+                <div className="text-[#8a9ba8] text-[10px]">
+                  PAGE {currentPage} OF {totalPages} ({filteredDataCenters.length.toLocaleString()} OBJECTS)
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
                   <button
                     onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                     disabled={currentPage === 1}
-                    className="flex items-center gap-1 rounded-xl border border-white/10 bg-slate-900/80 px-3 py-1.5 text-xs text-gray-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    className="flex items-center gap-1 rounded border border-[#293742] bg-[#182026] px-2.5 py-1 text-[11px] text-[#8a9ba8] hover:text-[#f5f8fa] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
-                    <ChevronLeft className="h-3.5 w-3.5" />
-                    <span>Previous</span>
+                    <ChevronLeft className="h-3 w-3" />
+                    <span>PREV</span>
                   </button>
 
-                  {/* Quick page numbers */}
                   <div className="flex items-center gap-1">
                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                       const pageNum = i + 1;
@@ -622,26 +620,26 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                         <button
                           key={pageNum}
                           onClick={() => setCurrentPage(pageNum)}
-                          className={`flex h-7 w-7 items-center justify-center rounded-lg font-mono text-xs transition-all ${
+                          className={`flex h-6 w-6 items-center justify-center rounded text-[11px] font-mono transition-colors ${
                             currentPage === pageNum
-                              ? "bg-purple-500/20 text-purple-300 border border-purple-500/40 font-bold"
-                              : "text-gray-400 hover:text-white hover:bg-slate-800"
+                              ? "bg-[#202b33] text-[#2b95d6] border border-[#293742] font-semibold"
+                              : "text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#182026]"
                           }`}
                         >
                           {pageNum}
                         </button>
                       );
                     })}
-                    {totalPages > 5 && <span className="text-gray-500">...</span>}
+                    {totalPages > 5 && <span className="text-[#5c7080] px-1">...</span>}
                   </div>
 
                   <button
                     onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                     disabled={currentPage === totalPages}
-                    className="flex items-center gap-1 rounded-xl border border-white/10 bg-slate-900/80 px-3 py-1.5 text-xs text-gray-300 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                    className="flex items-center gap-1 rounded border border-[#293742] bg-[#182026] px-2.5 py-1 text-[11px] text-[#8a9ba8] hover:text-[#f5f8fa] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
-                    <span>Next</span>
-                    <ChevronRight className="h-3.5 w-3.5" />
+                    <span>NEXT</span>
+                    <ChevronRight className="h-3 w-3" />
                   </button>
                 </div>
               </div>
@@ -651,8 +649,8 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
 
         {/* Content Area: TAB 2 (Operator Fleet Capacity Breakdown) */}
         {activeTab === "operators" && (
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 font-mono">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {operatorList.map((op) => {
                 const opDcs = dataCenters.filter((d) => d.operator === op.operator);
                 const totalLoad = opDcs.reduce((sum, d) => sum + d.estimatedPowerMw, 0);
@@ -664,35 +662,35 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                 return (
                   <div
                     key={op.operator}
-                    className="rounded-2xl border border-white/10 bg-slate-900/60 p-4 shadow-sm space-y-3"
+                    className="rounded border border-[#293742] bg-[#182026] p-3 space-y-2.5"
                   >
-                    <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                    <div className="flex items-center justify-between border-b border-[#293742] pb-2">
                       <div className="flex items-center gap-2">
                         <span
-                          className="h-3 w-3 rounded-full shadow-sm"
+                          className="h-2 w-2 rounded-full shrink-0"
                           style={{ backgroundColor: opMeta.hex }}
                         />
-                        <h3 className="font-bold text-xs text-white truncate max-w-[180px]">
+                        <h3 className="font-semibold text-xs text-[#f5f8fa] truncate max-w-[180px] font-sans">
                           {op.operator}
                         </h3>
                       </div>
-                      <span className="font-mono text-[10px] text-purple-300 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/30">
-                        {op.count} Facilities
+                      <span className="font-mono text-[9px] text-[#2b95d6] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742]">
+                        {op.count} OBJECTS
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 font-mono text-center">
-                      <div className="rounded-xl bg-slate-950/60 p-2.5 border border-white/5">
-                        <div className="text-sm font-bold text-purple-300">
+                    <div className="grid grid-cols-2 gap-2 text-center">
+                      <div className="rounded bg-[#101418] p-2 border border-[#293742]">
+                        <div className="text-xs font-bold text-[#f5f8fa]">
                           {(totalLoad / 1000).toFixed(1)} GW
                         </div>
-                        <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Total IT Load</div>
+                        <div className="text-[9px] uppercase text-[#8a9ba8] mt-0.5">Total IT Load</div>
                       </div>
-                      <div className="rounded-xl bg-slate-950/60 p-2.5 border border-white/5">
-                        <div className="text-sm font-bold text-emerald-400">
+                      <div className="rounded bg-[#101418] p-2 border border-[#293742]">
+                        <div className="text-xs font-bold text-[#15b371]">
                           {avgPue} PUE
                         </div>
-                        <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Avg Efficiency</div>
+                        <div className="text-[9px] uppercase text-[#8a9ba8] mt-0.5">Avg Efficiency</div>
                       </div>
                     </div>
 
@@ -702,9 +700,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                         setActiveTab("grid");
                         setCurrentPage(1);
                       }}
-                      className="w-full text-center text-[10px] font-semibold text-purple-300 hover:text-white py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 transition-colors"
+                      className="w-full text-center text-[10px] font-mono text-[#2b95d6] hover:text-[#f5f8fa] py-1 rounded bg-[#202b33] border border-[#293742] hover:bg-[#293742] transition-colors"
                     >
-                      View All {op.count} Facilities →
+                      FILTER {op.count} OBJECTS →
                     </button>
                   </div>
                 );
@@ -715,8 +713,8 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
 
         {/* Content Area: TAB 3 (Country & Regional Rankings) */}
         {activeTab === "countries" && (
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 font-mono">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {countryList.map((c) => {
                 const cDcs = dataCenters.filter((d) => (d.countryName || d.country) === c.name);
                 const totalLoad = cDcs.reduce((sum, d) => sum + d.estimatedPowerMw, 0);
@@ -727,32 +725,32 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                 return (
                   <div
                     key={c.name}
-                    className="rounded-2xl border border-white/10 bg-slate-900/60 p-4 shadow-sm space-y-3"
+                    className="rounded border border-[#293742] bg-[#182026] p-3 space-y-2.5"
                   >
-                    <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                      <div className="flex items-center gap-2">
-                        <Globe className="h-4 w-4 text-cyan-400" />
-                        <h3 className="font-bold text-xs text-white truncate max-w-[180px]">
+                    <div className="flex items-center justify-between border-b border-[#293742] pb-2">
+                      <div className="flex items-center gap-1.5">
+                        <Globe className="h-3.5 w-3.5 text-[#2b95d6]" />
+                        <h3 className="font-semibold text-xs text-[#f5f8fa] truncate max-w-[180px] font-sans">
                           {c.name}
                         </h3>
                       </div>
-                      <span className="font-mono text-[10px] text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
-                        {c.count} Facilities
+                      <span className="font-mono text-[9px] text-[#2b95d6] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742]">
+                        {c.count} OBJECTS
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 font-mono text-center">
-                      <div className="rounded-xl bg-slate-950/60 p-2.5 border border-white/5">
-                        <div className="text-sm font-bold text-purple-300">
+                    <div className="grid grid-cols-2 gap-2 text-center">
+                      <div className="rounded bg-[#101418] p-2 border border-[#293742]">
+                        <div className="text-xs font-bold text-[#f5f8fa]">
                           {(totalLoad / 1000).toFixed(1)} GW
                         </div>
-                        <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Total IT Power</div>
+                        <div className="text-[9px] uppercase text-[#8a9ba8] mt-0.5">Total IT Load</div>
                       </div>
-                      <div className="rounded-xl bg-slate-950/60 p-2.5 border border-white/5">
-                        <div className="text-sm font-bold text-emerald-400">
+                      <div className="rounded bg-[#101418] p-2 border border-[#293742]">
+                        <div className="text-xs font-bold text-[#15b371]">
                           {avgPue} PUE
                         </div>
-                        <div className="text-[9px] uppercase text-gray-400 font-sans mt-0.5">Avg Efficiency</div>
+                        <div className="text-[9px] uppercase text-[#8a9ba8] mt-0.5">Avg Efficiency</div>
                       </div>
                     </div>
 
@@ -762,9 +760,9 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                         setActiveTab("grid");
                         setCurrentPage(1);
                       }}
-                      className="w-full text-center text-[10px] font-semibold text-cyan-300 hover:text-white py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 transition-colors"
+                      className="w-full text-center text-[10px] font-mono text-[#2b95d6] hover:text-[#f5f8fa] py-1 rounded bg-[#202b33] border border-[#293742] hover:bg-[#293742] transition-colors"
                     >
-                      Filter {c.name} Data Centers →
+                      FILTER {c.name} OBJECTS →
                     </button>
                   </div>
                 );

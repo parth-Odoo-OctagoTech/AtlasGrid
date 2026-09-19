@@ -14,49 +14,49 @@ export function MapLegend() {
   const isLmpMode = visualizationMode === "heatmap_lmp";
 
   return (
-    <div className="absolute bottom-4 left-4 z-20 transition-all duration-300 animate-in fade-in slide-in-from-bottom-3 duration-200">
-      <div className="w-68 rounded-2xl glass-panel shadow-2xl text-white text-xs overflow-hidden">
+    <div className="absolute bottom-4 left-4 z-20 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2 duration-200 font-sans">
+      <div className="w-68 rounded border border-[#293742] bg-[#182026]/95 backdrop-blur-md shadow-2xl text-[#f5f8fa] text-xs overflow-hidden">
         {/* Header */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="flex w-full items-center justify-between px-3.5 py-2.5 font-medium text-gray-200 hover:text-white transition-colors border-b border-white/5"
+          className="flex w-full items-center justify-between px-3 py-2 font-mono text-[10px] text-[#8a9ba8] hover:text-[#f5f8fa] transition-colors border-b border-[#293742] bg-[#101418]"
         >
           <div className="flex items-center gap-2">
-            <div className="flex h-5 w-5 items-center justify-center rounded bg-cyan-500/10 border border-cyan-500/30">
-              <Layers className="h-3 w-3 text-cyan-400" />
+            <div className="flex h-4 w-4 items-center justify-center rounded bg-[#202b33] border border-[#293742]">
+              <Layers className="h-2.5 w-2.5 text-[#2b95d6]" />
             </div>
-            <span className="text-[11px] font-bold tracking-wide uppercase">
-              {isLmpMode ? "LMP Price Ramp" : "Fuels & Load Scale"}
+            <span className="font-semibold uppercase tracking-wider">
+              {isLmpMode ? "Legend // LMP Ramp" : "Legend // Fuel Matrix"}
             </span>
           </div>
           {isCollapsed ? (
-            <ChevronUp className="h-3.5 w-3.5 text-gray-400" />
+            <ChevronUp className="h-3 w-3 text-[#8a9ba8]" />
           ) : (
-            <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
+            <ChevronDown className="h-3 w-3 text-[#8a9ba8]" />
           )}
         </button>
 
         {!isCollapsed && (
-          <div className="p-3 pt-2.5 space-y-3">
+          <div className="p-2.5 space-y-2.5 font-mono text-xs">
             {isLmpMode ? (
               /* LMP Heatmap Color Legend */
               <div>
-                <div className="mb-1.5 flex justify-between text-[10px] text-gray-400">
-                  <span>Negative / Surplus</span>
+                <div className="mb-1 flex justify-between text-[9px] text-[#8a9ba8]">
+                  <span>Surplus &lt;$0</span>
                   <span>Nominal</span>
-                  <span className="text-red-400 font-semibold">Spike &gt;$150</span>
+                  <span className="text-[#db3737] font-semibold">Spike &gt;$150</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-gradient-to-r from-emerald-500 via-amber-400 to-red-600 shadow-inner" />
-                <div className="mt-1 flex justify-between font-mono text-[10px] text-gray-300">
-                  <span>&lt; $0</span>
-                  <span>$35 - $60</span>
-                  <span className="text-red-400 font-bold">&gt; $150/MWh</span>
+                <div className="h-1.5 w-full rounded bg-gradient-to-r from-[#15b371] via-[#d9822b] to-[#db3737] shadow-inner" />
+                <div className="mt-1 flex justify-between text-[9px] text-[#8a9ba8]">
+                  <span>-$50</span>
+                  <span>$45</span>
+                  <span className="text-[#db3737]">&gt;$150/MWh</span>
                 </div>
               </div>
             ) : (
               /* Fuel Types Grid */
               <div>
-                <div className="grid grid-cols-2 gap-1.5">
+                <div className="grid grid-cols-2 gap-1">
                   {(Object.keys(FUEL_CONFIG) as FuelType[]).slice(0, 8).map((fuelKey) => {
                     const meta = FUEL_CONFIG[fuelKey];
                     const isSelected =
@@ -67,38 +67,38 @@ export function MapLegend() {
                       <button
                         key={fuelKey}
                         onClick={() => toggleFuelType(fuelKey)}
-                        className={`flex items-center gap-1.5 rounded-lg px-2 py-1 text-left transition-all ${
+                        className={`flex items-center gap-1.5 rounded px-2 py-1 text-left transition-colors ${
                           isSelected
-                            ? "bg-slate-800/80 text-white border border-white/10 shadow-sm"
-                            : "opacity-35 hover:opacity-75"
+                            ? "bg-[#101418] text-[#f5f8fa] border border-[#293742]"
+                            : "opacity-35 hover:opacity-75 border border-transparent"
                         }`}
                       >
                         <span
-                          className="h-2 w-2 rounded-full shrink-0 shadow-sm"
+                          className="h-1.5 w-1.5 rounded-full shrink-0"
                           style={{ backgroundColor: meta.hex }}
                         />
-                        <span className="truncate text-[11px] font-medium">{meta.label}</span>
+                        <span className="truncate text-[10px]">{meta.label}</span>
                       </button>
                     );
                   })}
                 </div>
 
                 {/* Capacity Scale Size Indicator */}
-                <div className="mt-3 border-t border-white/10 pt-2">
-                  <div className="text-[9px] uppercase tracking-wider text-gray-400 mb-1.5 font-semibold">
-                    Infrastructure & Load Scale
+                <div className="mt-2.5 border-t border-[#293742] pt-2">
+                  <div className="text-[9px] uppercase tracking-wider text-[#8a9ba8] mb-1">
+                    Symbol Diameter Scale
                   </div>
-                  <div className="flex items-center justify-between text-[10px] font-mono text-gray-300">
+                  <div className="flex items-center justify-between text-[9px] text-[#8a9ba8]">
                     <div className="flex items-center gap-1">
-                      <span className="h-2 w-2 rounded-full bg-purple-400 border border-white/60 shadow-glow-sm" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#15b371]" />
                       <span>Data Center</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#2b95d6]" />
                       <span>1 GW Plant</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="h-3 w-3 rounded-full bg-cyan-400 shadow-glow" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#2b95d6]" />
                       <span>10+ GW</span>
                     </div>
                   </div>

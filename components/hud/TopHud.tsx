@@ -6,20 +6,33 @@ import {
   Activity,
   AlertTriangle,
   BarChart3,
-  Flame,
-  Radio,
   Search,
-  Zap,
-  RotateCcw,
   Server,
+  Zap,
+  Globe,
+  Clock,
+  ShieldCheck,
+  Radio,
+  RotateCcw,
+  Cpu,
   Layers,
   Sparkles,
 } from "lucide-react";
 
 export function TopHud() {
   const [mounted, setMounted] = useState(false);
+  const [utcTime, setUtcTime] = useState<string>("");
+
   useEffect(() => {
     setMounted(true);
+    const updateClock = () => {
+      const now = new Date();
+      const iso = now.toISOString().replace("T", " ").replace(/\..+/, "") + " UTC";
+      setUtcTime(iso);
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const telemetrySummary = useGridStore((s) => s.telemetrySummary);
@@ -33,21 +46,20 @@ export function TopHud() {
   const setSearchOpen = useGridStore((s) => s.setSearchOpen);
   const setDcFleetOpen = useGridStore((s) => s.setDcFleetOpen);
 
-  // Global Hotkey listener (Cmd+K / A for Alerts / D for Analytics / C for Compute Fleet)
+  // Global Hotkeys (Palantir Command shortcuts)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't trigger if user is in an input field
       if (["INPUT", "TEXTAREA", "SELECT"].includes((e.target as HTMLElement)?.tagName)) {
         return;
       }
       if (e.key === "a" || e.key === "A") {
-        setAlertsOpen(!useGridStore.getState().isAlertsOpen);
-      }
-      if (e.key === "d" || e.key === "D") {
         setAnalyticsOpen(!useGridStore.getState().isAnalyticsOpen);
       }
-      if (e.key === "c" || e.key === "C") {
+      if (e.key === "o" || e.key === "O" || e.key === "c" || e.key === "C") {
         setDcFleetOpen(!useGridStore.getState().isDcFleetOpen);
+      }
+      if (e.key === "l" || e.key === "L") {
+        setAlertsOpen(!useGridStore.getState().isAlertsOpen);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -72,174 +84,183 @@ export function TopHud() {
     ? telemetrySummary.averageSpotPrice.toFixed(1)
     : "42.6";
 
-  const freqUs = telemetrySummary?.frequencyUsHz ?? 60.002;
-  const freqEu = telemetrySummary?.frequencyEuHz ?? 50.001;
-
   const criticalAlertsCount = liveAlerts.filter(
     (a) => a.severity === "critical"
   ).length;
 
   return (
-    <header className="absolute left-0 right-0 top-0 z-30 flex h-14 items-center justify-between glass-panel px-4 text-white select-none border-b border-white/8 bg-slate-950/85">
-      {/* Brand & Status */}
+    <header className="absolute left-0 right-0 top-0 z-30 flex h-12 items-center justify-between px-3 text-white select-none border-b border-[#293742] bg-[#182026] shadow-sm">
+      {/* 1. Left Branding & Palantir Ontology Emblem */}
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5">
-            <Zap className="h-4 w-4 text-cyan-400" />
+        <div className="flex items-center gap-2">
+          {/* Palantir Industrial Monogram Icon */}
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#101418] border border-[#293742] text-[#2b95d6]">
+            <svg
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+            >
+              <circle cx="12" cy="12" r="9" stroke="#293742" strokeWidth="1.5" />
+              <polygon points="12 4 15 12 12 20 9 12" fill="#137cbd" stroke="#2b95d6" strokeWidth="1" />
+              <circle cx="12" cy="12" r="2" fill="#f5f8fa" />
+            </svg>
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold tracking-tight text-white">
-                AtlasGrid
+              <span className="text-xs font-mono font-bold tracking-wider text-[#f5f8fa]">
+                ATLASGRID
               </span>
-            </div>
-            <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
-              <span
-                className={`inline-block h-1.5 w-1.5 rounded-full ${
-                  !mounted
-                    ? "bg-gray-400"
-                    : realtimeConnected
-                    ? "bg-emerald-400"
-                    : isReplayMode
-                    ? "bg-amber-400"
-                    : "bg-cyan-400"
-                }`}
-              />
-              <span className="text-[11px] text-gray-300 font-medium">
-                {!mounted
-                  ? "Connecting"
-                  : isReplayMode
-                  ? "24H Replay"
-                  : "Live Grid"}
+              <span className="text-[10px] font-mono text-[#8a9ba8]">
+                // FOUNDRY
               </span>
             </div>
           </div>
+        </div>
+
+        {/* System Environment & Status Tag */}
+        <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-[#293742]">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#101418] border border-[#293742] text-[#a7b6c2]">
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${
+                !mounted
+                  ? "bg-[#5c7080]"
+                  : realtimeConnected
+                  ? "bg-[#0f9960]"
+                  : isReplayMode
+                  ? "bg-[#d9822b]"
+                  : "bg-[#137cbd]"
+              }`}
+            />
+            {!mounted
+              ? "CONNECTING..."
+              : isReplayMode
+              ? "SCENARIO REPLAY"
+              : "ONTOLOGY SYNCED"}
+          </span>
+
+          {/* Live UTC Master Clock */}
+          {mounted && utcTime && (
+            <span className="hidden xl:inline-flex items-center gap-1 text-[10px] font-mono text-[#8a9ba8] px-1.5 py-0.5">
+              <Clock className="h-3 w-3 text-[#5c7080]" />
+              <span className="tabular-nums">{utcTime}</span>
+            </span>
+          )}
         </div>
       </div>
 
-      {/* Primary Key Metrics - Clean, Spaced, Legible */}
-      <div className="hidden lg:flex items-center gap-6 text-xs">
-        {/* Total Generation */}
+      {/* 2. Center Ontology Asset Counters (Foundry High-Density Ticker) */}
+      <div className="hidden lg:flex items-center gap-5 text-xs font-mono">
+        {/* Total Generation Node Load */}
         <div className="flex items-center gap-2">
-          <Activity className="h-3.5 w-3.5 text-cyan-400/80" />
-          <div>
-            <div className="text-[10px] uppercase font-medium text-gray-400 tracking-wider">
-              Generation
-            </div>
-            <div className="font-mono text-xs font-semibold text-white">
-              {totalGenGw} <span className="text-gray-400 font-normal">GW</span>
-            </div>
+          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+            GEN:
+          </div>
+          <div className="text-xs font-bold text-[#f5f8fa] tabular-nums">
+            {totalGenGw} <span className="text-[#8a9ba8] font-normal text-[10px]">GW</span>
+          </div>
+          <span className="text-[10px] text-[#5c7080]">/ {totalCapGw} GW</span>
+        </div>
+
+        <div className="h-3.5 w-[1px] bg-[#293742]" />
+
+        {/* Clean Energy Share */}
+        <div className="flex items-center gap-1.5">
+          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+            CLEAN:
+          </div>
+          <div className="text-xs font-bold text-[#15b371] tabular-nums">
+            {cleanPct}%
           </div>
         </div>
 
-        <div className="h-4 w-[1px] bg-white/10" />
+        <div className="h-3.5 w-[1px] bg-[#293742]" />
 
-        {/* Total Capacity */}
-        <div>
-          <div className="text-[10px] uppercase font-medium text-gray-400 tracking-wider">
-            Capacity
-          </div>
-          <div className="font-mono text-xs font-semibold text-gray-200">
-            {totalCapGw} <span className="text-gray-400 font-normal">GW</span>
-          </div>
-        </div>
-
-        <div className="h-4 w-[1px] bg-white/10" />
-
-        {/* Clean Energy */}
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-3.5 w-3.5 text-emerald-400/80" />
-          <div>
-            <div className="text-[10px] uppercase font-medium text-gray-400 tracking-wider">
-              Clean Energy
-            </div>
-            <div className="font-mono text-xs font-semibold text-emerald-300">
-              {cleanPct}%
-            </div>
-          </div>
-        </div>
-
-        <div className="h-4 w-[1px] bg-white/10" />
-
-        {/* Data Centers Load */}
+        {/* Global Data Center Compute Power Demand (Clickable to open Data Center Fleet Directory) */}
         <button
           onClick={() => setDcFleetOpen(true)}
-          className="flex items-center gap-2 text-left hover:opacity-80 transition-opacity cursor-pointer"
-          title="Open Data Center Fleet Directory"
+          className="flex items-center gap-2 text-left hover:text-[#2b95d6] transition-colors cursor-pointer group"
+          title="Open Data Center Object Explorer (Hotkey: O)"
         >
-          <Server className="h-3.5 w-3.5 text-purple-400/80" />
-          <div>
-            <div className="text-[10px] uppercase font-medium text-gray-400 tracking-wider flex items-center gap-1">
-              <span>DC Load</span>
-            </div>
-            <div className="font-mono text-xs font-semibold text-purple-200">
-              {(totalDcPowerMw / 1000).toFixed(1)} <span className="text-gray-400 font-normal">GW</span>
-            </div>
+          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] group-hover:text-[#2b95d6] tracking-wider">
+            DC LOAD:
+          </div>
+          <div className="text-xs font-bold text-[#a7b6c2] group-hover:text-white tabular-nums">
+            {(totalDcPowerMw / 1000).toFixed(1)} <span className="text-[#8a9ba8] font-normal text-[10px]">GW ({dataCenters.length.toLocaleString()} DCs)</span>
           </div>
         </button>
 
-        <div className="h-4 w-[1px] bg-white/10" />
+        <div className="h-3.5 w-[1px] bg-[#293742]" />
 
         {/* Average Spot Price */}
-        <div>
-          <div className="text-[10px] uppercase font-medium text-gray-400 tracking-wider">
-            Avg Price
+        <div className="flex items-center gap-1.5">
+          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+            SPOT:
           </div>
-          <div className="font-mono text-xs font-semibold text-amber-200">
-            ${avgPrice} <span className="text-gray-400 font-normal">/MWh</span>
+          <div className="text-xs font-bold text-[#f29d49] tabular-nums">
+            ${avgPrice} <span className="text-[#8a9ba8] font-normal text-[10px]">/MWh</span>
           </div>
         </div>
       </div>
 
-      {/* Right Actions */}
-      <div className="flex items-center gap-2">
-        {/* Search */}
+      {/* 3. Right Palantir Action Group & Omnibar Trigger */}
+      <div className="flex items-center gap-1.5">
+        {/* Omnibar Spotlight Search */}
         <button
           onClick={() => setSearchOpen(true)}
-          className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-          title="Search (⌘K)"
+          className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs text-[#a7b6c2] bg-[#101418] border border-[#293742] hover:border-[#30404d] hover:text-white transition-colors"
+          title="Search Entities & Objects (⌘K)"
         >
-          <Search className="h-3.5 w-3.5 text-gray-400" />
-          <span className="hidden md:inline text-xs text-gray-300">Search</span>
-          <kbd className="hidden md:inline rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-mono text-gray-400 border border-white/10">
+          <Search className="h-3.5 w-3.5 text-[#8a9ba8]" />
+          <span className="hidden md:inline text-[11px] font-mono">Omnibar</span>
+          <kbd className="hidden md:inline rounded bg-[#202b33] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
             ⌘K
           </kbd>
         </button>
 
-        {/* Data Center Fleet Directory */}
+        {/* Object Explorer (Foundry Catalog) */}
         <button
           onClick={() => setDcFleetOpen(true)}
-          className="flex items-center gap-1.5 rounded-lg border border-purple-500/20 bg-purple-500/10 px-2.5 py-1.5 text-xs text-purple-200 hover:bg-purple-500/20 transition-colors"
-          title="Open Data Center Directory (C)"
+          className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs text-[#f5f8fa] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:border-[#30404d] transition-colors"
+          title="Open Object Explorer (O)"
         >
-          <Server className="h-3.5 w-3.5 text-purple-400" />
-          <span className="hidden sm:inline font-medium">Data Centers</span>
+          <Server className="h-3.5 w-3.5 text-[#2b95d6]" />
+          <span className="hidden sm:inline text-[11px] font-mono font-medium">Objects</span>
+          <kbd className="hidden md:inline rounded bg-[#101418] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+            O
+          </kbd>
         </button>
 
-        {/* Analytics Modal */}
+        {/* Analytics Nexus */}
         <button
           onClick={() => setAnalyticsOpen(true)}
-          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1.5 text-xs text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-          title="Analytics (D)"
+          className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs text-[#f5f8fa] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:border-[#30404d] transition-colors"
+          title="Open Grid Analytics (A)"
         >
-          <BarChart3 className="h-3.5 w-3.5 text-gray-400" />
-          <span className="hidden sm:inline">Analytics</span>
+          <BarChart3 className="h-3.5 w-3.5 text-[#8a9ba8]" />
+          <span className="hidden sm:inline text-[11px] font-mono">Analytics</span>
+          <kbd className="hidden md:inline rounded bg-[#101418] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+            A
+          </kbd>
         </button>
 
-        {/* Alerts */}
+        {/* Anomaly Alerts */}
         <button
           onClick={() => setAlertsOpen(true)}
-          className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs transition-colors ${
+          className={`flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors ${
             criticalAlertsCount > 0
-              ? "border-red-500/30 bg-red-500/15 text-red-300"
-              : "border-white/10 bg-white/5 text-gray-300 hover:text-white hover:bg-white/10"
+              ? "bg-[#db3737]/20 border border-[#db3737]/40 text-[#f55656]"
+              : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742]"
           }`}
-          title="Alerts (A)"
+          title="Open Alert Center (L)"
         >
-          <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
-          <span>Alerts</span>
+          <AlertTriangle className="h-3.5 w-3.5 text-[#d9822b]" />
+          <span className="hidden sm:inline text-[11px] font-mono">Alerts</span>
           {liveAlerts.length > 0 && (
-            <span className="rounded-full bg-red-500/30 px-1.5 py-0.2 text-[10px] font-mono font-bold text-red-300">
+            <span className="rounded bg-[#db3737]/30 px-1 py-0.2 text-[9px] font-mono font-bold text-[#f55656]">
               {liveAlerts.length}
             </span>
           )}

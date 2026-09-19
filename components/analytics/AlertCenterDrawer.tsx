@@ -45,37 +45,37 @@ export function AlertCenterDrawer() {
   };
 
   return (
-    <aside className="fixed right-0 top-14 bottom-0 z-40 w-full sm:w-[420px] overflow-y-auto glass-panel-elevated p-5 shadow-2xl text-white animate-in slide-in-from-right duration-200 border-l border-white/10">
+    <aside className="fixed right-0 top-12 bottom-0 z-40 w-full sm:w-[440px] overflow-y-auto bg-[#182026] text-[#f5f8fa] shadow-2xl animate-in slide-in-from-right duration-200 border-l border-[#293742] font-sans">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+      <div className="flex items-center justify-between border-b border-[#293742] p-4 bg-[#101418]">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/30">
-            <ShieldAlert className="h-4 w-4 text-red-400" />
+          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#202b33] border border-[#293742]">
+            <ShieldAlert className="h-4 w-4 text-[#db3737]" />
           </div>
           <div>
-            <h3 className="font-bold text-xs tracking-wide text-white uppercase">
-              Grid Anomaly & Alert Center
-            </h3>
-            <span className="text-[10px] text-gray-400 font-mono">
-              {liveAlerts.length} Active Incidents
+            <span className="font-mono font-bold text-xs tracking-wider text-[#f5f8fa] uppercase">
+              Alerts // Telemetry Events
+            </span>
+            <span className="block text-[10px] text-[#8a9ba8] font-mono">
+              {liveAlerts.length} Active Anomaly Signals
             </span>
           </div>
         </div>
         <button
           onClick={() => setAlertsOpen(false)}
-          className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-slate-900/80 text-gray-400 hover:text-white transition-colors"
+          className="flex h-7 w-7 items-center justify-center rounded border border-[#293742] bg-[#202b33] text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#293742] transition-colors"
         >
-          <X className="h-4 w-4" />
+          <X className="h-3.5 w-3.5" />
         </button>
       </div>
 
       {/* Alert Feed */}
-      <div className="mt-4 space-y-3">
+      <div className="p-4 space-y-2.5 font-mono">
         {liveAlerts.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-8 text-center text-xs text-gray-400">
-            <CheckCircle2 className="mx-auto mb-2 h-7 w-7 text-emerald-400 animate-pulse" />
-            <span className="font-medium text-white block mb-1">Nominal Balancing Conditions</span>
-            <span>All global power grid balancing zones operating within nominal frequency and voltage limits.</span>
+          <div className="rounded border border-[#293742] bg-[#101418] p-6 text-center text-xs text-[#8a9ba8]">
+            <CheckCircle2 className="mx-auto mb-2 h-6 w-6 text-[#15b371]" />
+            <span className="font-semibold text-[#f5f8fa] block mb-1 font-mono uppercase text-xs">Nominal Grid Operations</span>
+            <span className="text-[11px] text-[#8a9ba8] font-sans">All monitored balancing authorities operating within standard frequency and reserve thresholds.</span>
           </div>
         ) : (
           liveAlerts.map((alert) => {
@@ -85,55 +85,55 @@ export function AlertCenterDrawer() {
             return (
               <div
                 key={alert.id}
-                className={`rounded-2xl border p-3.5 shadow-sm transition-all ${
+                className={`rounded border p-3 shadow-sm transition-colors ${
                   isCritical
-                    ? "border-red-500/40 bg-red-950/20 text-red-200 shadow-glow-red/20"
+                    ? "border-[#db3737]/40 bg-[#db3737]/10 text-[#db3737]"
                     : isWarning
-                    ? "border-amber-500/40 bg-amber-950/20 text-amber-200"
-                    : "border-blue-500/40 bg-blue-950/20 text-blue-200"
+                    ? "border-[#d9822b]/40 bg-[#d9822b]/10 text-[#d9822b]"
+                    : "border-[#2b95d6]/40 bg-[#2b95d6]/10 text-[#2b95d6]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span
-                      className={`h-2 w-2 rounded-full ${
+                      className={`h-1.5 w-1.5 rounded-full ${
                         isCritical
-                          ? "bg-red-400 animate-ping"
+                          ? "bg-[#db3737]"
                           : isWarning
-                          ? "bg-amber-400"
-                          : "bg-blue-400"
+                          ? "bg-[#d9822b]"
+                          : "bg-[#2b95d6]"
                       }`}
                     />
-                    <h4 className="font-bold text-xs text-white">
+                    <h4 className="font-bold text-xs text-[#f5f8fa] font-mono">
                       {alert.title}
                     </h4>
                   </div>
                   <button
                     onClick={() => dismissAlert(alert.id)}
                     title="Dismiss alert"
-                    className="text-gray-500 hover:text-gray-300 p-1 rounded hover:bg-slate-800/60 transition-colors"
+                    className="text-[#8a9ba8] hover:text-[#f5f8fa] p-0.5 rounded hover:bg-[#202b33] transition-colors"
                   >
                     <Trash2 className="h-3 w-3" />
                   </button>
                 </div>
 
-                <p className="mt-1.5 text-[11px] text-gray-300 leading-relaxed font-sans">
+                <p className="mt-1.5 text-[11px] text-[#8a9ba8] leading-relaxed font-sans">
                   {alert.message}
                 </p>
 
-                <div className="mt-2.5 flex items-center justify-between border-t border-white/10 pt-2 text-[10px]">
-                  <span className="font-mono text-gray-400">
+                <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-2 text-[10px]">
+                  <span className="text-[#5c7080]">
                     {alert.region} • {formatAlertTime(alert.timestamp)}
                   </span>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                     {alert.coordinates && (
                       <a
                         href={`https://www.google.com/maps/search/?api=1&query=${alert.coordinates[1]},${alert.coordinates[0]}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         title="View anomaly coordinates on Google Maps"
-                        className="flex h-6 w-6 items-center justify-center rounded border border-white/10 bg-slate-900/80 text-gray-400 hover:text-cyan-400 transition-colors"
+                        className="p-1 rounded border border-[#293742] bg-[#202b33] text-[#8a9ba8] hover:text-[#f5f8fa] transition-colors"
                       >
                         <ExternalLink className="h-3 w-3" />
                       </a>
@@ -141,9 +141,9 @@ export function AlertCenterDrawer() {
                     {alert.coordinates && (
                       <button
                         onClick={() => handleLocateAlert(alert)}
-                        className="flex items-center gap-1 font-semibold text-cyan-400 hover:text-cyan-300 transition-colors px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30"
+                        className="flex items-center gap-1 font-semibold text-[#2b95d6] hover:text-white px-2 py-0.5 rounded bg-[#202b33] border border-[#293742] transition-colors"
                       >
-                        <span>Locate</span>
+                        <span>LOCATE</span>
                         <ArrowUpRight className="h-3 w-3" />
                       </button>
                     )}

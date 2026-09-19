@@ -32,13 +32,31 @@ const config: Config = {
           oil: "#ef4444",        // Red
           other: "#8b5cf6"
         },
+        blueprint: {
+          dark1: "#101418",
+          dark2: "#182026",
+          dark3: "#202b33",
+          dark4: "#293742",
+          dark5: "#30404d",
+          primary: "#137cbd",
+          primaryLight: "#2b95d6",
+          success: "#0f9960",
+          successLight: "#15b371",
+          warning: "#d9822b",
+          warningLight: "#f29d49",
+          danger: "#db3737",
+          dangerLight: "#f55656",
+          text: "#f5f8fa",
+          muted: "#8a9ba8",
+          dimmed: "#5c7080",
+        },
         grid: {
-          accent: "#38bdf8",
-          spike: "#ef4444",
-          negative: "#10b981",
-          warning: "#f59e0b",
-          normal: "#3b82f6"
-        }
+          accent: "#2b95d6",
+          spike: "#db3737",
+          negative: "#0f9960",
+          warning: "#d9822b",
+          normal: "#137cbd",
+        },
       },
       fontFamily: {
         mono: [
