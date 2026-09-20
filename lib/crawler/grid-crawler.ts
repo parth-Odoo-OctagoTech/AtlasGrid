@@ -72,7 +72,11 @@ export class GridCrawler {
       history.unshift(record);
       // Keep latest 100 audit entries
       const trimmed = history.slice(0, 100);
-      fs.writeFileSync(this.auditLogPath, JSON.stringify(trimmed, null, 2), "utf-8");
+      try {
+        fs.writeFileSync(this.auditLogPath, JSON.stringify(trimmed, null, 2), "utf-8");
+      } catch (fsErr) {
+        console.warn("[Crawler] Audit log file write skipped (read-only environment)");
+      }
     } catch (e) {
       console.error("Failed to save audit record:", e);
     }
@@ -109,7 +113,11 @@ export class GridCrawler {
         }
 
         if (modified) {
-          fs.writeFileSync(this.dcsPath, JSON.stringify(dcs, null, 2), "utf-8");
+          try {
+            fs.writeFileSync(this.dcsPath, JSON.stringify(dcs, null, 2), "utf-8");
+          } catch (writeErr) {
+            console.warn("[Crawler] Datacenters file update skipped (read-only environment)");
+          }
         }
       }
 
@@ -158,7 +166,11 @@ export class GridCrawler {
           }
         }
 
-        fs.writeFileSync(this.subsPath, JSON.stringify(subs, null, 2), "utf-8");
+        try {
+          fs.writeFileSync(this.subsPath, JSON.stringify(subs, null, 2), "utf-8");
+        } catch (writeErr) {
+          console.warn("[Crawler] Substations file update skipped (read-only environment)");
+        }
       }
 
       const durationMs = Date.now() - startTime;
