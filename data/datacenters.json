@@ -1345,8 +1345,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 87,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 638352,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 674933,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -1370,8 +1370,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 100,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 562532,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 594769,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -1396,7 +1396,7 @@
     "connectedNetworksCount": 113,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 438515,
+    "estimatedAnnualCo2Tons": 462412,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -1420,8 +1420,8 @@
     "city": "Anyang",
     "connectedNetworksCount": 126,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 3.2,
-    "estimatedAnnualCo2Tons": 512292,
+    "localCleanEnergyPercent": 0.8,
+    "estimatedAnnualCo2Tons": 525316,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -11370,8 +11370,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 41,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 105618,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 189098,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -11395,8 +11395,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 52,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 68065,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 121863,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -11420,8 +11420,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 63,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 37553,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 59855,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -11445,8 +11445,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 74,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 53983,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 70719,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12146,7 +12146,7 @@
     "connectedNetworksCount": 41,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 169266,
+    "estimatedAnnualCo2Tons": 178490,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12171,7 +12171,7 @@
     "connectedNetworksCount": 52,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 109082,
+    "estimatedAnnualCo2Tons": 115621,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12196,7 +12196,7 @@
     "connectedNetworksCount": 63,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 60183,
+    "estimatedAnnualCo2Tons": 63791,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12221,7 +12221,7 @@
     "connectedNetworksCount": 74,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 86513,
+    "estimatedAnnualCo2Tons": 91700,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12246,7 +12246,7 @@
     "connectedNetworksCount": 85,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 112844,
+    "estimatedAnnualCo2Tons": 119608,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12271,7 +12271,7 @@
     "connectedNetworksCount": 36,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 63945,
+    "estimatedAnnualCo2Tons": 67778,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12296,7 +12296,7 @@
     "connectedNetworksCount": 47,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 90275,
+    "estimatedAnnualCo2Tons": 95687,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -12321,7 +12321,7 @@
     "connectedNetworksCount": 58,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 116605,
+    "estimatedAnnualCo2Tons": 122960,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -34359,8 +34359,8 @@
     "city": "Japan",
     "connectedNetworksCount": 146,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 671370,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 709844,
     "peeringDbUrl": "https://www.peeringdb.com/fac/538"
   },
   {
@@ -287159,8 +287159,8 @@
     "peeringDbId": 8113,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 48.4,
-    "estimatedAnnualCo2Tons": 34025,
+    "localCleanEnergyPercent": 56.4,
+    "estimatedAnnualCo2Tons": 27937,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8113"
   },
   {
@@ -287231,8 +287231,8 @@
     "peeringDbId": 6161,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 48.4,
-    "estimatedAnnualCo2Tons": 110082,
+    "localCleanEnergyPercent": 56.4,
+    "estimatedAnnualCo2Tons": 90386,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6161"
   },
   {
@@ -287255,8 +287255,8 @@
     "peeringDbId": 3553,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 48.4,
-    "estimatedAnnualCo2Tons": 40030,
+    "localCleanEnergyPercent": 56.4,
+    "estimatedAnnualCo2Tons": 32868,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3553"
   },
   {
@@ -287279,8 +287279,8 @@
     "peeringDbId": 9605,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 48.4,
-    "estimatedAnnualCo2Tons": 97823,
+    "localCleanEnergyPercent": 56.4,
+    "estimatedAnnualCo2Tons": 80320,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9605"
   },
   {
@@ -291224,8 +291224,8 @@
     "peeringDbId": 6384,
     "connectedNetworksCount": 49,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 32.3,
-    "estimatedAnnualCo2Tons": 186226,
+    "localCleanEnergyPercent": 3.3,
+    "estimatedAnnualCo2Tons": 281856,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6384"
   },
   {
@@ -291248,8 +291248,8 @@
     "peeringDbId": 5889,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 32.3,
-    "estimatedAnnualCo2Tons": 98014,
+    "localCleanEnergyPercent": 3.3,
+    "estimatedAnnualCo2Tons": 148345,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5889"
   },
   {
@@ -291272,8 +291272,8 @@
     "peeringDbId": 6279,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 32.3,
-    "estimatedAnnualCo2Tons": 43562,
+    "localCleanEnergyPercent": 3.3,
+    "estimatedAnnualCo2Tons": 65931,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6279"
   },
   {
@@ -291320,8 +291320,8 @@
     "peeringDbId": 2100,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 48.4,
-    "estimatedAnnualCo2Tons": 72053,
+    "localCleanEnergyPercent": 56.4,
+    "estimatedAnnualCo2Tons": 59162,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2100"
   },
   {
@@ -292667,8 +292667,8 @@
     "peeringDbId": 6884,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 41.4,
-    "estimatedAnnualCo2Tons": 43856,
+    "localCleanEnergyPercent": 32,
+    "estimatedAnnualCo2Tons": 49007,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6884"
   },
   {
@@ -292736,8 +292736,8 @@
     "peeringDbId": 4487,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 39.2,
-    "estimatedAnnualCo2Tons": 55806,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 64460,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4487"
   },
   {
@@ -292760,8 +292760,8 @@
     "peeringDbId": 1423,
     "connectedNetworksCount": 19,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 57.6,
-    "estimatedAnnualCo2Tons": 158369,
+    "localCleanEnergyPercent": 23.6,
+    "estimatedAnnualCo2Tons": 293425,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1423"
   },
   {
@@ -292784,8 +292784,8 @@
     "peeringDbId": 6088,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 47744,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 85480,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6088"
   },
   {
@@ -292808,8 +292808,8 @@
     "peeringDbId": 2229,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 11234,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 20113,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2229"
   },
   {
@@ -292832,8 +292832,8 @@
     "peeringDbId": 6896,
     "connectedNetworksCount": 58,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 150393,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 197021,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6896"
   },
   {
@@ -292856,8 +292856,8 @@
     "peeringDbId": 9426,
     "connectedNetworksCount": 71,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 217374,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 389186,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9426"
   },
   {
@@ -292880,8 +292880,8 @@
     "peeringDbId": 9704,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 50693,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 90760,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9704"
   },
   {
@@ -294301,8 +294301,8 @@
     "peeringDbId": 2231,
     "connectedNetworksCount": 80,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 44935,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 80452,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2231"
   },
   {
@@ -294325,8 +294325,8 @@
     "peeringDbId": 6381,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 54905,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 71928,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6381"
   },
   {
@@ -294349,8 +294349,8 @@
     "peeringDbId": 8318,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 27804,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 36424,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8318"
   },
   {
@@ -294373,8 +294373,8 @@
     "peeringDbId": 9708,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 57.6,
-    "estimatedAnnualCo2Tons": 55085,
+    "localCleanEnergyPercent": 30.6,
+    "estimatedAnnualCo2Tons": 101502,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9708"
   },
   {
@@ -294397,8 +294397,8 @@
     "peeringDbId": 5601,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 60.4,
-    "estimatedAnnualCo2Tons": 27226,
+    "localCleanEnergyPercent": 30.6,
+    "estimatedAnnualCo2Tons": 53422,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5601"
   },
   {
@@ -294442,8 +294442,8 @@
     "peeringDbId": 6223,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 60.4,
-    "estimatedAnnualCo2Tons": 45377,
+    "localCleanEnergyPercent": 48.6,
+    "estimatedAnnualCo2Tons": 70150,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6223"
   },
   {
@@ -294519,8 +294519,8 @@
     "peeringDbId": 6057,
     "connectedNetworksCount": 18,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 60.4,
-    "estimatedAnnualCo2Tons": 160067,
+    "localCleanEnergyPercent": 48.6,
+    "estimatedAnnualCo2Tons": 247454,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6057"
   },
   {
@@ -294543,8 +294543,8 @@
     "peeringDbId": 5902,
     "connectedNetworksCount": 31,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 72.2,
-    "estimatedAnnualCo2Tons": 50641,
+    "localCleanEnergyPercent": 52.6,
+    "estimatedAnnualCo2Tons": 95464,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5902"
   },
   {
@@ -294620,8 +294620,8 @@
     "peeringDbId": 8071,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 37352,
+    "localCleanEnergyPercent": 10.7,
+    "estimatedAnnualCo2Tons": 65734,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8071"
   },
   {
@@ -294644,8 +294644,8 @@
     "peeringDbId": 3638,
     "connectedNetworksCount": 57,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 216251,
+    "localCleanEnergyPercent": 10.7,
+    "estimatedAnnualCo2Tons": 380564,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3638"
   },
   {
@@ -294709,8 +294709,8 @@
     "peeringDbId": 6913,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 33701,
+    "localCleanEnergyPercent": 39.6,
+    "estimatedAnnualCo2Tons": 44150,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6913"
   },
   {
@@ -294778,8 +294778,8 @@
     "peeringDbId": 8811,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 44.1,
-    "estimatedAnnualCo2Tons": 68301,
+    "localCleanEnergyPercent": 10.7,
+    "estimatedAnnualCo2Tons": 117629,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8811"
   },
   {
@@ -294839,8 +294839,8 @@
     "peeringDbId": 8813,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 44.1,
-    "estimatedAnnualCo2Tons": 41325,
+    "localCleanEnergyPercent": 10.7,
+    "estimatedAnnualCo2Tons": 71170,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8813"
   },
   {
@@ -294863,8 +294863,8 @@
     "peeringDbId": 1315,
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 56.1,
-    "estimatedAnnualCo2Tons": 42945,
+    "localCleanEnergyPercent": 47.4,
+    "estimatedAnnualCo2Tons": 67295,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1315"
   },
   {
@@ -294887,8 +294887,8 @@
     "peeringDbId": 9831,
     "connectedNetworksCount": 52,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 56.1,
-    "estimatedAnnualCo2Tons": 99927,
+    "localCleanEnergyPercent": 44.6,
+    "estimatedAnnualCo2Tons": 172039,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9831"
   },
   {
@@ -295887,8 +295887,8 @@
     "peeringDbId": 6900,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 16.4,
-    "estimatedAnnualCo2Tons": 127484,
+    "localCleanEnergyPercent": 1.6,
+    "estimatedAnnualCo2Tons": 149339,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6900"
   },
   {
@@ -295911,8 +295911,8 @@
     "peeringDbId": 3584,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 55.2,
-    "estimatedAnnualCo2Tons": 41501,
+    "localCleanEnergyPercent": 98.1,
+    "estimatedAnnualCo2Tons": 4121,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3584"
   },
   {
@@ -295981,7 +295981,7 @@
     "connectedNetworksCount": 8,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 107121,
+    "estimatedAnnualCo2Tons": 112959,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8098"
   },
   {
@@ -297180,8 +297180,8 @@
     "peeringDbId": 8540,
     "connectedNetworksCount": 64,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 322145,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 339632,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8540"
   },
   {
@@ -297204,8 +297204,8 @@
     "peeringDbId": 4456,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 115895,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 122186,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4456"
   },
   {
@@ -297228,8 +297228,8 @@
     "peeringDbId": 6487,
     "connectedNetworksCount": 20,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 6.9,
-    "estimatedAnnualCo2Tons": 170715,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 181017,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6487"
   },
   {
@@ -297281,8 +297281,8 @@
     "peeringDbId": 2126,
     "connectedNetworksCount": 33,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 266343,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 280802,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2126"
   },
   {
@@ -297326,8 +297326,8 @@
     "peeringDbId": 3055,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 61811,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 65166,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3055"
   },
   {
@@ -297371,8 +297371,8 @@
     "peeringDbId": 3056,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 118256,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 124675,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3056"
   },
   {
@@ -297420,8 +297420,8 @@
     "peeringDbId": 6684,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 72971,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 76932,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6684"
   },
   {
@@ -297489,8 +297489,8 @@
     "peeringDbId": 7096,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 17170,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 18102,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7096"
   },
   {
@@ -297534,8 +297534,8 @@
     "peeringDbId": 7515,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 65674,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 69239,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7515"
   },
   {
@@ -297603,8 +297603,8 @@
     "peeringDbId": 9557,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 23179,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 24437,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9557"
   },
   {
@@ -297648,8 +297648,8 @@
     "peeringDbId": 6840,
     "connectedNetworksCount": 54,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 6.9,
-    "estimatedAnnualCo2Tons": 340576,
+    "localCleanEnergyPercent": 7.5,
+    "estimatedAnnualCo2Tons": 360150,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6840"
   },
   {
@@ -297693,8 +297693,8 @@
     "peeringDbId": 5070,
     "connectedNetworksCount": 67,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 22.3,
-    "estimatedAnnualCo2Tons": 119304,
+    "localCleanEnergyPercent": 28.7,
+    "estimatedAnnualCo2Tons": 120482,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5070"
   },
   {
@@ -297754,8 +297754,8 @@
     "peeringDbId": 2727,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 22.3,
-    "estimatedAnnualCo2Tons": 59652,
+    "localCleanEnergyPercent": 28.7,
+    "estimatedAnnualCo2Tons": 60241,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2727"
   },
   {
@@ -297799,8 +297799,8 @@
     "peeringDbId": 8520,
     "connectedNetworksCount": 23,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 74.1,
-    "estimatedAnnualCo2Tons": 174004,
+    "localCleanEnergyPercent": 61.1,
+    "estimatedAnnualCo2Tons": 187827,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8520"
   },
   {
@@ -297844,8 +297844,8 @@
     "peeringDbId": 3239,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 57.5,
-    "estimatedAnnualCo2Tons": 77650,
+    "localCleanEnergyPercent": 62.8,
+    "estimatedAnnualCo2Tons": 70232,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3239"
   },
   {
@@ -297897,8 +297897,8 @@
     "peeringDbId": 1337,
     "connectedNetworksCount": 49,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 24.4,
-    "estimatedAnnualCo2Tons": 269460,
+    "localCleanEnergyPercent": 62.8,
+    "estimatedAnnualCo2Tons": 172979,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1337"
   },
   {
@@ -297921,8 +297921,8 @@
     "peeringDbId": 1154,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 24.4,
-    "estimatedAnnualCo2Tons": 127349,
+    "localCleanEnergyPercent": 62.8,
+    "estimatedAnnualCo2Tons": 81752,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1154"
   },
   {
@@ -297990,8 +297990,8 @@
     "peeringDbId": 5656,
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 24.4,
-    "estimatedAnnualCo2Tons": 92618,
+    "localCleanEnergyPercent": 62.8,
+    "estimatedAnnualCo2Tons": 59456,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5656"
   },
   {
@@ -298043,8 +298043,8 @@
     "peeringDbId": 6857,
     "connectedNetworksCount": 18,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 24.4,
-    "estimatedAnnualCo2Tons": 211574,
+    "localCleanEnergyPercent": 100,
+    "estimatedAnnualCo2Tons": 6724,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6857"
   },
   {
@@ -298104,8 +298104,8 @@
     "peeringDbId": 9315,
     "connectedNetworksCount": 31,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 24.4,
-    "estimatedAnnualCo2Tons": 343843,
+    "localCleanEnergyPercent": 100,
+    "estimatedAnnualCo2Tons": 10927,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9315"
   },
   {
@@ -298149,8 +298149,8 @@
     "peeringDbId": 6674,
     "connectedNetworksCount": 44,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 24.4,
-    "estimatedAnnualCo2Tons": 489427,
+    "localCleanEnergyPercent": 62.8,
+    "estimatedAnnualCo2Tons": 314187,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6674"
   },
   {
@@ -298242,8 +298242,8 @@
     "peeringDbId": 8104,
     "connectedNetworksCount": 57,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 29.1,
-    "estimatedAnnualCo2Tons": 221893,
+    "localCleanEnergyPercent": 42.5,
+    "estimatedAnnualCo2Tons": 205557,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8104"
   },
   {
@@ -298287,8 +298287,8 @@
     "peeringDbId": 2728,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 22.3,
-    "estimatedAnnualCo2Tons": 74565,
+    "localCleanEnergyPercent": 28.7,
+    "estimatedAnnualCo2Tons": 75301,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2728"
   },
   {
@@ -298340,8 +298340,8 @@
     "peeringDbId": 8971,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 22.3,
-    "estimatedAnnualCo2Tons": 41197,
+    "localCleanEnergyPercent": 28.7,
+    "estimatedAnnualCo2Tons": 41604,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8971"
   },
   {
@@ -298386,7 +298386,7 @@
     "connectedNetworksCount": 13,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 105321,
+    "estimatedAnnualCo2Tons": 111634,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8642"
   },
   {
@@ -298431,7 +298431,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 59862,
+    "estimatedAnnualCo2Tons": 63450,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7568"
   },
   {
@@ -298476,7 +298476,7 @@
     "connectedNetworksCount": 52,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 346568,
+    "estimatedAnnualCo2Tons": 365455,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4536"
   },
   {
@@ -298500,7 +298500,7 @@
     "connectedNetworksCount": 13,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 54011,
+    "estimatedAnnualCo2Tons": 57248,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6894"
   },
   {
@@ -298524,7 +298524,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 107121,
+    "estimatedAnnualCo2Tons": 113543,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5202"
   },
   {
@@ -298548,7 +298548,7 @@
     "connectedNetworksCount": 8,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 64813,
+    "estimatedAnnualCo2Tons": 68345,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6465"
   },
   {
@@ -298572,7 +298572,7 @@
     "connectedNetworksCount": 34,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 81241,
+    "estimatedAnnualCo2Tons": 85668,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6704"
   },
   {
@@ -298596,7 +298596,7 @@
     "connectedNetworksCount": 47,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 189037,
+    "estimatedAnnualCo2Tons": 199339,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9401"
   },
   {
@@ -298620,7 +298620,7 @@
     "connectedNetworksCount": 8,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 18004,
+    "estimatedAnnualCo2Tons": 18985,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6892"
   },
   {
@@ -298665,7 +298665,7 @@
     "connectedNetworksCount": 13,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 68864,
+    "estimatedAnnualCo2Tons": 72616,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3722"
   },
   {
@@ -298710,7 +298710,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 24305,
+    "estimatedAnnualCo2Tons": 25629,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9766"
   },
   {
@@ -298734,7 +298734,7 @@
     "connectedNetworksCount": 8,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 81241,
+    "estimatedAnnualCo2Tons": 85668,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2384"
   },
   {
@@ -298787,7 +298787,7 @@
     "connectedNetworksCount": 42,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 369073,
+    "estimatedAnnualCo2Tons": 389186,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9187"
   },
   {
@@ -298868,7 +298868,7 @@
     "connectedNetworksCount": 55,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 108021,
+    "estimatedAnnualCo2Tons": 113908,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9778"
   },
   {
@@ -298953,7 +298953,7 @@
     "connectedNetworksCount": 68,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 202765,
+    "estimatedAnnualCo2Tons": 213815,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4303"
   },
   {
@@ -299078,7 +299078,7 @@
     "connectedNetworksCount": 81,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 307861,
+    "estimatedAnnualCo2Tons": 324638,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6393"
   },
   {
@@ -299102,7 +299102,7 @@
     "connectedNetworksCount": 24,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 102620,
+    "estimatedAnnualCo2Tons": 108213,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6895"
   },
   {
@@ -299126,7 +299126,7 @@
     "connectedNetworksCount": 37,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 211542,
+    "estimatedAnnualCo2Tons": 223070,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8002"
   },
   {
@@ -299150,7 +299150,7 @@
     "connectedNetworksCount": 50,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 252050,
+    "estimatedAnnualCo2Tons": 265785,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6708"
   },
   {
@@ -299207,7 +299207,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 87992,
+    "estimatedAnnualCo2Tons": 92788,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8386"
   },
   {
@@ -299231,7 +299231,7 @@
     "connectedNetworksCount": 8,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 44559,
+    "estimatedAnnualCo2Tons": 46987,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6890"
   },
   {
@@ -299255,7 +299255,7 @@
     "connectedNetworksCount": 13,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 102620,
+    "estimatedAnnualCo2Tons": 108213,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6891"
   },
   {
@@ -299316,7 +299316,7 @@
     "connectedNetworksCount": 3,
     "ixpCount": 0,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 54011,
+    "estimatedAnnualCo2Tons": 56954,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3518"
   },
   {
@@ -299393,7 +299393,7 @@
     "connectedNetworksCount": 45,
     "ixpCount": 1,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 126025,
+    "estimatedAnnualCo2Tons": 132893,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4704"
   },
   {
@@ -299534,7 +299534,7 @@
     "connectedNetworksCount": 58,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 221894,
+    "estimatedAnnualCo2Tons": 233986,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1726"
   },
   {
@@ -299558,7 +299558,7 @@
     "connectedNetworksCount": 71,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 328115,
+    "estimatedAnnualCo2Tons": 345996,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7504"
   },
   {
@@ -299602,8 +299602,8 @@
     "peeringDbId": 1189,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 56926,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 60188,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1189"
   },
   {
@@ -299626,8 +299626,8 @@
     "peeringDbId": 6377,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 29.1,
-    "estimatedAnnualCo2Tons": 161922,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 159935,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6377"
   },
   {
@@ -299650,8 +299650,8 @@
     "peeringDbId": 2385,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 64165,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 71082,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2385"
   },
   {
@@ -299674,8 +299674,8 @@
     "peeringDbId": 6376,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 127261,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 140980,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6376"
   },
   {
@@ -299698,8 +299698,8 @@
     "peeringDbId": 3968,
     "connectedNetworksCount": 66,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 221370,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 283313,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3968"
   },
   {
@@ -299899,8 +299899,8 @@
     "peeringDbId": 1460,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 14.3,
-    "estimatedAnnualCo2Tons": 138528,
+    "localCleanEnergyPercent": 24.3,
+    "estimatedAnnualCo2Tons": 136163,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1460"
   },
   {
@@ -301230,8 +301230,8 @@
     "peeringDbId": 9749,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 72762,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 76932,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9749"
   },
   {
@@ -301299,8 +301299,8 @@
     "peeringDbId": 1193,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 17121,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 18102,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1193"
   },
   {
@@ -301344,8 +301344,8 @@
     "peeringDbId": 1206,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 65486,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 69239,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1206"
   },
   {
@@ -301389,8 +301389,8 @@
     "peeringDbId": 5030,
     "connectedNetworksCount": 36,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 234979,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 248445,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5030"
   },
   {
@@ -301498,8 +301498,8 @@
     "peeringDbId": 1187,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 77256,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 81684,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1187"
   },
   {
@@ -301559,8 +301559,8 @@
     "peeringDbId": 1530,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 29961,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 31678,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1530"
   },
   {
@@ -301604,8 +301604,8 @@
     "peeringDbId": 1531,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 68482,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 72407,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1531"
   },
   {
@@ -301649,8 +301649,8 @@
     "peeringDbId": 4531,
     "connectedNetworksCount": 72,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 898615,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 950111,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4531"
   },
   {
@@ -301673,8 +301673,8 @@
     "peeringDbId": 3327,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 86.3,
-    "estimatedAnnualCo2Tons": 15530,
+    "localCleanEnergyPercent": 72.6,
+    "estimatedAnnualCo2Tons": 29437,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3327"
   },
   {
@@ -301697,8 +301697,8 @@
     "peeringDbId": 7896,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 86.3,
-    "estimatedAnnualCo2Tons": 7025,
+    "localCleanEnergyPercent": 72.6,
+    "estimatedAnnualCo2Tons": 13317,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7896"
   },
   {
@@ -301721,8 +301721,8 @@
     "peeringDbId": 7892,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 86.3,
-    "estimatedAnnualCo2Tons": 18077,
+    "localCleanEnergyPercent": 72.6,
+    "estimatedAnnualCo2Tons": 34266,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7892"
   },
   {
@@ -302238,8 +302238,8 @@
     "peeringDbId": 7626,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 34.4,
-    "estimatedAnnualCo2Tons": 61811,
+    "localCleanEnergyPercent": 22,
+    "estimatedAnnualCo2Tons": 70935,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7626"
   },
   {
@@ -302311,8 +302311,8 @@
     "peeringDbId": 5038,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 8,
-    "estimatedAnnualCo2Tons": 158201,
+    "localCleanEnergyPercent": 5.3,
+    "estimatedAnnualCo2Tons": 161411,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5038"
   },
   {
@@ -302404,8 +302404,8 @@
     "peeringDbId": 4867,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 59.9,
-    "estimatedAnnualCo2Tons": 27373,
+    "localCleanEnergyPercent": 54.6,
+    "estimatedAnnualCo2Tons": 30552,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4867"
   },
   {
@@ -302521,8 +302521,8 @@
     "peeringDbId": 3602,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 79.1,
-    "estimatedAnnualCo2Tons": 30409,
+    "localCleanEnergyPercent": 70.9,
+    "estimatedAnnualCo2Tons": 41221,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3602"
   },
   {
@@ -302619,8 +302619,8 @@
     "peeringDbId": 2894,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 1.5,
-    "estimatedAnnualCo2Tons": 17660,
+    "localCleanEnergyPercent": 3.7,
+    "estimatedAnnualCo2Tons": 17268,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2894"
   },
   {
@@ -302713,8 +302713,8 @@
     "peeringDbId": 9232,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 4.3,
-    "estimatedAnnualCo2Tons": 23179,
+    "localCleanEnergyPercent": 7.6,
+    "estimatedAnnualCo2Tons": 22450,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9232"
   },
   {
@@ -302758,8 +302758,8 @@
     "peeringDbId": 9233,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 4.3,
-    "estimatedAnnualCo2Tons": 77478,
+    "localCleanEnergyPercent": 7.6,
+    "estimatedAnnualCo2Tons": 75043,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9233"
   },
   {
@@ -302782,8 +302782,8 @@
     "peeringDbId": 9685,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 4.3,
-    "estimatedAnnualCo2Tons": 30047,
+    "localCleanEnergyPercent": 7.6,
+    "estimatedAnnualCo2Tons": 29102,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9685"
   },
   {
@@ -302806,8 +302806,8 @@
     "peeringDbId": 9684,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 4.3,
-    "estimatedAnnualCo2Tons": 68678,
+    "localCleanEnergyPercent": 7.6,
+    "estimatedAnnualCo2Tons": 66520,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9684"
   },
   {
@@ -302830,8 +302830,8 @@
     "peeringDbId": 6390,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 57,
-    "estimatedAnnualCo2Tons": 23601,
+    "localCleanEnergyPercent": 37.2,
+    "estimatedAnnualCo2Tons": 30272,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6390"
   },
   {
@@ -302891,8 +302891,8 @@
     "peeringDbId": 4076,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 18.1,
-    "estimatedAnnualCo2Tons": 147650,
+    "localCleanEnergyPercent": 34.7,
+    "estimatedAnnualCo2Tons": 55630,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4076"
   },
   {
@@ -302936,8 +302936,8 @@
     "peeringDbId": 9684,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 18.1,
-    "estimatedAnnualCo2Tons": 66794,
+    "localCleanEnergyPercent": 34.7,
+    "estimatedAnnualCo2Tons": 25166,
     "peeringDbUrl": "https://www.peeringdb.com/fac/9684"
   },
   {
@@ -302960,8 +302960,8 @@
     "peeringDbId": 4824,
     "connectedNetworksCount": 32,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 18.1,
-    "estimatedAnnualCo2Tons": 367172,
+    "localCleanEnergyPercent": 34.7,
+    "estimatedAnnualCo2Tons": 138338,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4824"
   },
   {
@@ -302984,8 +302984,8 @@
     "peeringDbId": 1768,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 60.8,
-    "estimatedAnnualCo2Tons": 24037,
+    "localCleanEnergyPercent": 52.1,
+    "estimatedAnnualCo2Tons": 30120,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1768"
   },
   {
@@ -303125,8 +303125,8 @@
     "peeringDbId": 2255,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 31.2,
-    "estimatedAnnualCo2Tons": 62338,
+    "localCleanEnergyPercent": 16.3,
+    "estimatedAnnualCo2Tons": 73846,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2255"
   },
   {
@@ -303202,8 +303202,8 @@
     "peeringDbId": 3270,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 31.2,
-    "estimatedAnnualCo2Tons": 31568,
+    "localCleanEnergyPercent": 16.3,
+    "estimatedAnnualCo2Tons": 37395,
     "peeringDbUrl": "https://www.peeringdb.com/fac/3270"
   },
   {
@@ -303247,8 +303247,8 @@
     "peeringDbId": 1180,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 121914,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 168051,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1180"
   },
   {
@@ -303292,8 +303292,8 @@
     "peeringDbId": 1181,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 64165,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 88448,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1181"
   },
   {
@@ -303337,8 +303337,8 @@
     "peeringDbId": 1179,
     "connectedNetworksCount": 8,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 106942,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 147413,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1179"
   },
   {
@@ -303382,8 +303382,8 @@
     "peeringDbId": 2323,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 59085,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 81446,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2323"
   },
   {
@@ -303427,8 +303427,8 @@
     "peeringDbId": 1183,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 125122,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 172474,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1183"
   },
   {
@@ -303472,8 +303472,8 @@
     "peeringDbId": 2322,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 71116,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 98030,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2322"
   },
   {
@@ -303517,8 +303517,8 @@
     "peeringDbId": 1177,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 144372,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 199008,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1177"
   },
   {
@@ -303562,8 +303562,8 @@
     "peeringDbId": 1178,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 64165,
+    "localCleanEnergyPercent": 3.9,
+    "estimatedAnnualCo2Tons": 88448,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1178"
   },
   {
@@ -303607,8 +303607,8 @@
     "peeringDbId": 5933,
     "connectedNetworksCount": 48,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 21.4,
-    "estimatedAnnualCo2Tons": 109571,
+    "localCleanEnergyPercent": 19,
+    "estimatedAnnualCo2Tons": 113167,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5933"
   },
   {
@@ -303631,8 +303631,8 @@
     "peeringDbId": 1153,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 19.3,
-    "estimatedAnnualCo2Tons": 69051,
+    "localCleanEnergyPercent": 24,
+    "estimatedAnnualCo2Tons": 53687,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1153"
   },
   {
@@ -303655,8 +303655,8 @@
     "peeringDbId": 6890,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 29.6,
-    "estimatedAnnualCo2Tons": 119607,
+    "localCleanEnergyPercent": 19.4,
+    "estimatedAnnualCo2Tons": 133460,
     "peeringDbUrl": "https://www.peeringdb.com/fac/6890"
   },
   {
@@ -303716,8 +303716,8 @@
     "peeringDbId": 1836,
     "connectedNetworksCount": 8,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 28.5,
-    "estimatedAnnualCo2Tons": 75681,
+    "localCleanEnergyPercent": 5.8,
+    "estimatedAnnualCo2Tons": 78808,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1836"
   },
   {
@@ -303761,8 +303761,8 @@
     "peeringDbId": 5177,
     "connectedNetworksCount": 13,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 28.5,
-    "estimatedAnnualCo2Tons": 17807,
+    "localCleanEnergyPercent": 5.8,
+    "estimatedAnnualCo2Tons": 18543,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5177"
   },
   {
@@ -303785,8 +303785,8 @@
     "peeringDbId": 1696,
     "connectedNetworksCount": 43,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 24.6,
-    "estimatedAnnualCo2Tons": 237082,
+    "localCleanEnergyPercent": 4,
+    "estimatedAnnualCo2Tons": 247590,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1696"
   },
   {
@@ -303809,8 +303809,8 @@
     "peeringDbId": 2747,
     "connectedNetworksCount": 56,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 24.6,
-    "estimatedAnnualCo2Tons": 342673,
+    "localCleanEnergyPercent": 21.9,
+    "estimatedAnnualCo2Tons": 299009,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2747"
   },
   {
@@ -303833,8 +303833,8 @@
     "peeringDbId": 1771,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 60.8,
-    "estimatedAnnualCo2Tons": 54234,
+    "localCleanEnergyPercent": 52.1,
+    "estimatedAnnualCo2Tons": 67959,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1771"
   },
   {
@@ -303857,8 +303857,8 @@
     "peeringDbId": 1767,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 60.8,
-    "estimatedAnnualCo2Tons": 21033,
+    "localCleanEnergyPercent": 52.1,
+    "estimatedAnnualCo2Tons": 26355,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1767"
   },
   {
@@ -303950,8 +303950,8 @@
     "peeringDbId": 7505,
     "connectedNetworksCount": 25,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 24.6,
-    "estimatedAnnualCo2Tons": 283347,
+    "localCleanEnergyPercent": 21.9,
+    "estimatedAnnualCo2Tons": 247242,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7505"
   },
   {
@@ -303974,8 +303974,8 @@
     "peeringDbId": 1059,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 24.6,
-    "estimatedAnnualCo2Tons": 30106,
+    "localCleanEnergyPercent": 21.9,
+    "estimatedAnnualCo2Tons": 26269,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1059"
   },
   {
@@ -303998,8 +303998,8 @@
     "peeringDbId": 1058,
     "connectedNetworksCount": 3,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 24.6,
-    "estimatedAnnualCo2Tons": 83676,
+    "localCleanEnergyPercent": 21.9,
+    "estimatedAnnualCo2Tons": 73014,
     "peeringDbUrl": "https://www.peeringdb.com/fac/1058"
   },
   {
@@ -304108,8 +304108,8 @@
     "peeringDbId": 5064,
     "connectedNetworksCount": 13,
     "ixpCount": 0,
-    "localCleanEnergyPercent": 20.6,
-    "estimatedAnnualCo2Tons": 79863,
+    "localCleanEnergyPercent": 19.6,
+    "estimatedAnnualCo2Tons": 80942,
     "peeringDbUrl": "https://www.peeringdb.com/fac/5064"
   },
   {
@@ -304153,8 +304153,8 @@
     "peeringDbId": 4059,
     "connectedNetworksCount": 3,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 60.3,
-    "estimatedAnnualCo2Tons": 24332,
+    "localCleanEnergyPercent": 70.6,
+    "estimatedAnnualCo2Tons": 11675,
     "peeringDbUrl": "https://www.peeringdb.com/fac/4059"
   },
   {
@@ -306628,8 +306628,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 107248,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 118809,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306653,8 +306653,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 29.1,
-    "estimatedAnnualCo2Tons": 165391,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 163362,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306678,8 +306678,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 46,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 75967,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 84156,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306703,8 +306703,8 @@
     "city": "Nagoya",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 22.8,
-    "estimatedAnnualCo2Tons": 87815,
+    "localCleanEnergyPercent": 1.6,
+    "estimatedAnnualCo2Tons": 110937,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306728,8 +306728,8 @@
     "city": "Nagoya",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 16.4,
-    "estimatedAnnualCo2Tons": 130216,
+    "localCleanEnergyPercent": 1.6,
+    "estimatedAnnualCo2Tons": 152539,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306753,8 +306753,8 @@
     "city": "Nagoya",
     "connectedNetworksCount": 46,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 22.8,
-    "estimatedAnnualCo2Tons": 62202,
+    "localCleanEnergyPercent": 1.6,
+    "estimatedAnnualCo2Tons": 78581,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306878,8 +306878,8 @@
     "city": "Sapporo",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 60.8,
-    "estimatedAnnualCo2Tons": 60265,
+    "localCleanEnergyPercent": 52.1,
+    "estimatedAnnualCo2Tons": 75516,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306903,8 +306903,8 @@
     "city": "Sapporo",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 60.8,
-    "estimatedAnnualCo2Tons": 82865,
+    "localCleanEnergyPercent": 52.1,
+    "estimatedAnnualCo2Tons": 103835,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306928,8 +306928,8 @@
     "city": "Sendai",
     "connectedNetworksCount": 32,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 57,
-    "estimatedAnnualCo2Tons": 69613,
+    "localCleanEnergyPercent": 37.2,
+    "estimatedAnnualCo2Tons": 89291,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -306953,8 +306953,8 @@
     "city": "Sendai",
     "connectedNetworksCount": 39,
     "ixpCount": 1,
-    "localCleanEnergyPercent": 57,
-    "estimatedAnnualCo2Tons": 95717,
+    "localCleanEnergyPercent": 37.2,
+    "estimatedAnnualCo2Tons": 122775,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16509"
   },
   {
@@ -309054,7 +309054,7 @@
     "connectedNetworksCount": 95,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 633982,
+    "estimatedAnnualCo2Tons": 671987,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -309079,7 +309079,7 @@
     "connectedNetworksCount": 95,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 633982,
+    "estimatedAnnualCo2Tons": 671987,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -309104,7 +309104,7 @@
     "connectedNetworksCount": 95,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 633982,
+    "estimatedAnnualCo2Tons": 668532,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -309128,8 +309128,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 328589,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 588304,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -309153,8 +309153,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 328589,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 523734,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -309178,8 +309178,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 95,
     "ixpCount": 4,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 328589,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 430466,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -312178,8 +312178,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 592493,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 626447,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -312203,8 +312203,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 592493,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 626447,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -312228,8 +312228,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 592493,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 626447,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -312253,8 +312253,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 299903,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 536944,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -312278,8 +312278,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 299903,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 536944,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -312303,8 +312303,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 110,
     "ixpCount": 5,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 299903,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 392886,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -318104,7 +318104,7 @@
     "connectedNetworksCount": 185,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 122424,
+    "estimatedAnnualCo2Tons": 129763,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318129,7 +318129,7 @@
     "connectedNetworksCount": 190,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 149204,
+    "estimatedAnnualCo2Tons": 158149,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318154,7 +318154,7 @@
     "connectedNetworksCount": 195,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 175985,
+    "estimatedAnnualCo2Tons": 186534,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318179,7 +318179,7 @@
     "connectedNetworksCount": 200,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 202765,
+    "estimatedAnnualCo2Tons": 213815,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318204,7 +318204,7 @@
     "connectedNetworksCount": 205,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 95644,
+    "estimatedAnnualCo2Tons": 101377,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318229,7 +318229,7 @@
     "connectedNetworksCount": 210,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 122424,
+    "estimatedAnnualCo2Tons": 129763,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318254,7 +318254,7 @@
     "connectedNetworksCount": 215,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 149204,
+    "estimatedAnnualCo2Tons": 158149,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318279,7 +318279,7 @@
     "connectedNetworksCount": 220,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 175985,
+    "estimatedAnnualCo2Tons": 186534,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318304,7 +318304,7 @@
     "connectedNetworksCount": 225,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 202765,
+    "estimatedAnnualCo2Tons": 213815,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318329,7 +318329,7 @@
     "connectedNetworksCount": 230,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 95644,
+    "estimatedAnnualCo2Tons": 101377,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318354,7 +318354,7 @@
     "connectedNetworksCount": 235,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 122424,
+    "estimatedAnnualCo2Tons": 129763,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318379,7 +318379,7 @@
     "connectedNetworksCount": 240,
     "ixpCount": 6,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 149204,
+    "estimatedAnnualCo2Tons": 158149,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318403,8 +318403,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 185,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 76390,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 136768,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318428,8 +318428,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 190,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 93100,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 166686,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -318453,8 +318453,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 195,
     "ixpCount": 6,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 109811,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 196604,
     "peeringDbUrl": "https://www.peeringdb.com/fac/24115"
   },
   {
@@ -322329,7 +322329,7 @@
     "connectedNetworksCount": 144,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 147951,
+    "estimatedAnnualCo2Tons": 156820,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -322354,7 +322354,7 @@
     "connectedNetworksCount": 148,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 182093,
+    "estimatedAnnualCo2Tons": 193009,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -322379,7 +322379,7 @@
     "connectedNetworksCount": 152,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 216236,
+    "estimatedAnnualCo2Tons": 229198,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -322404,7 +322404,7 @@
     "connectedNetworksCount": 156,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 250378,
+    "estimatedAnnualCo2Tons": 264023,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -322429,7 +322429,7 @@
     "connectedNetworksCount": 160,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 113808,
+    "estimatedAnnualCo2Tons": 120630,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -322454,7 +322454,7 @@
     "connectedNetworksCount": 164,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 147951,
+    "estimatedAnnualCo2Tons": 156820,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -322479,7 +322479,7 @@
     "connectedNetworksCount": 168,
     "ixpCount": 4,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 182093,
+    "estimatedAnnualCo2Tons": 193009,
     "peeringDbUrl": "https://www.peeringdb.com/fac/26347"
   },
   {
@@ -324179,7 +324179,7 @@
     "connectedNetworksCount": 75,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 341425,
+    "estimatedAnnualCo2Tons": 360031,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -324204,7 +324204,7 @@
     "connectedNetworksCount": 75,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 341425,
+    "estimatedAnnualCo2Tons": 360031,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -324228,8 +324228,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 213041,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 279094,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -324253,8 +324253,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 213041,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 279094,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -324328,8 +324328,8 @@
     "city": "Chuncheon",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 31.2,
-    "estimatedAnnualCo2Tons": 241881,
+    "localCleanEnergyPercent": 16.3,
+    "estimatedAnnualCo2Tons": 286536,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -324353,8 +324353,8 @@
     "city": "Chuncheon",
     "connectedNetworksCount": 75,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 31.2,
-    "estimatedAnnualCo2Tons": 241881,
+    "localCleanEnergyPercent": 16.3,
+    "estimatedAnnualCo2Tons": 286536,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -326479,7 +326479,7 @@
     "connectedNetworksCount": 115,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 125189,
+    "estimatedAnnualCo2Tons": 132694,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326504,7 +326504,7 @@
     "connectedNetworksCount": 120,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 155538,
+    "estimatedAnnualCo2Tons": 164862,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326529,7 +326529,7 @@
     "connectedNetworksCount": 125,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 185887,
+    "estimatedAnnualCo2Tons": 197030,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326554,7 +326554,7 @@
     "connectedNetworksCount": 130,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 216236,
+    "estimatedAnnualCo2Tons": 228019,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326579,7 +326579,7 @@
     "connectedNetworksCount": 135,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 94840,
+    "estimatedAnnualCo2Tons": 100525,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326604,7 +326604,7 @@
     "connectedNetworksCount": 140,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 125189,
+    "estimatedAnnualCo2Tons": 132694,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326629,7 +326629,7 @@
     "connectedNetworksCount": 145,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 155538,
+    "estimatedAnnualCo2Tons": 164862,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326654,7 +326654,7 @@
     "connectedNetworksCount": 150,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 185887,
+    "estimatedAnnualCo2Tons": 196017,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326679,7 +326679,7 @@
     "connectedNetworksCount": 155,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 216236,
+    "estimatedAnnualCo2Tons": 229198,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326704,7 +326704,7 @@
     "connectedNetworksCount": 160,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 94840,
+    "estimatedAnnualCo2Tons": 100525,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326729,7 +326729,7 @@
     "connectedNetworksCount": 165,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 125189,
+    "estimatedAnnualCo2Tons": 132694,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326754,7 +326754,7 @@
     "connectedNetworksCount": 170,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 155538,
+    "estimatedAnnualCo2Tons": 164014,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326778,8 +326778,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 115,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 78115,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 139857,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326803,8 +326803,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 120,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 97052,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 173762,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326828,8 +326828,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 125,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 115989,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 207666,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326853,8 +326853,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 130,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 134926,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 176759,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326878,8 +326878,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 135,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 59178,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 105952,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -326903,8 +326903,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 140,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 78115,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 139857,
     "peeringDbUrl": "https://www.peeringdb.com/fac/2914"
   },
   {
@@ -329529,7 +329529,7 @@
     "connectedNetworksCount": 220,
     "ixpCount": 8,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 66549,
+    "estimatedAnnualCo2Tons": 70538,
     "peeringDbUrl": "https://www.peeringdb.com/fac/13335"
   },
   {
@@ -329553,8 +329553,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 41525,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 54400,
     "peeringDbUrl": "https://www.peeringdb.com/fac/13335"
   },
   {
@@ -329578,8 +329578,8 @@
     "city": "Fukuoka",
     "connectedNetworksCount": 220,
     "ixpCount": 8,
-    "localCleanEnergyPercent": 27.1,
-    "estimatedAnnualCo2Tons": 79061,
+    "localCleanEnergyPercent": 28.8,
+    "estimatedAnnualCo2Tons": 87583,
     "peeringDbUrl": "https://www.peeringdb.com/fac/13335"
   },
   {
@@ -330853,8 +330853,8 @@
     "city": "Inzai",
     "connectedNetworksCount": 95,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 1045576,
+    "localCleanEnergyPercent": 0.1,
+    "estimatedAnnualCo2Tons": 1105494,
     "peeringDbUrl": "https://www.peeringdb.com/fac/20000"
   },
   {
@@ -330878,8 +330878,8 @@
     "city": "Fuchu",
     "connectedNetworksCount": 95,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 775698,
+    "localCleanEnergyPercent": 6.4,
+    "estimatedAnnualCo2Tons": 817807,
     "peeringDbUrl": "https://www.peeringdb.com/fac/20000"
   },
   {
@@ -335453,8 +335453,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 45,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 59178,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 105952,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -335478,8 +335478,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 50,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 59178,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 105952,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -335503,8 +335503,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 55,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 59178,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 77526,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -335904,7 +335904,7 @@
     "connectedNetworksCount": 45,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 94840,
+    "estimatedAnnualCo2Tons": 100525,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -335929,7 +335929,7 @@
     "connectedNetworksCount": 50,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 94840,
+    "estimatedAnnualCo2Tons": 100525,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -335954,7 +335954,7 @@
     "connectedNetworksCount": 55,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 94840,
+    "estimatedAnnualCo2Tons": 100009,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -341453,8 +341453,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 56,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 58175,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 104156,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -341478,8 +341478,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 62,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 58175,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 104156,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -341503,8 +341503,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 68,
     "ixpCount": 3,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 58175,
+    "localCleanEnergyPercent": 38.1,
+    "estimatedAnnualCo2Tons": 76212,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -341904,7 +341904,7 @@
     "connectedNetworksCount": 56,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 93233,
+    "estimatedAnnualCo2Tons": 98822,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -341929,7 +341929,7 @@
     "connectedNetworksCount": 62,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 93233,
+    "estimatedAnnualCo2Tons": 98822,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -341954,7 +341954,7 @@
     "connectedNetworksCount": 68,
     "ixpCount": 3,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 93233,
+    "estimatedAnnualCo2Tons": 98313,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15169"
   },
   {
@@ -344453,8 +344453,8 @@
     "city": "Osaka",
     "connectedNetworksCount": 35,
     "ixpCount": 2,
-    "localCleanEnergyPercent": 46,
-    "estimatedAnnualCo2Tons": 47343,
+    "localCleanEnergyPercent": 21.7,
+    "estimatedAnnualCo2Tons": 84762,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -344604,7 +344604,7 @@
     "connectedNetworksCount": 35,
     "ixpCount": 2,
     "localCleanEnergyPercent": 0,
-    "estimatedAnnualCo2Tons": 75872,
+    "estimatedAnnualCo2Tons": 80420,
     "peeringDbUrl": "https://www.peeringdb.com/fac/31898"
   },
   {
@@ -347157,8 +347157,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.3,
-    "estimatedAnnualCo2Tons": 104069,
+    "localCleanEnergyPercent": 2.4,
+    "estimatedAnnualCo2Tons": 103202,
     "peeringDbUrl": "https://www.peeringdb.com/fac/12965"
   },
   {
@@ -347183,8 +347183,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 12.4,
-    "estimatedAnnualCo2Tons": 110008,
+    "localCleanEnergyPercent": 7,
+    "estimatedAnnualCo2Tons": 116841,
     "peeringDbUrl": "https://www.peeringdb.com/fac/12964"
   },
   {
@@ -347235,8 +347235,8 @@
     "connectedNetworksCount": 75,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 74.3,
-    "estimatedAnnualCo2Tons": 34437,
+    "localCleanEnergyPercent": 70.8,
+    "estimatedAnnualCo2Tons": 38411,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15004"
   },
   {
@@ -347261,8 +347261,8 @@
     "connectedNetworksCount": 55,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.5,
-    "estimatedAnnualCo2Tons": 321667,
+    "localCleanEnergyPercent": 4.4,
+    "estimatedAnnualCo2Tons": 312732,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7573"
   },
   {
@@ -347287,8 +347287,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.5,
-    "estimatedAnnualCo2Tons": 125829,
+    "localCleanEnergyPercent": 2.4,
+    "estimatedAnnualCo2Tons": 124780,
     "peeringDbUrl": "https://www.peeringdb.com/fac/7574"
   },
   {
@@ -347313,8 +347313,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.3,
-    "estimatedAnnualCo2Tons": 105646,
+    "localCleanEnergyPercent": 2.4,
+    "estimatedAnnualCo2Tons": 104765,
     "peeringDbUrl": "https://www.peeringdb.com/fac/14767"
   },
   {
@@ -347365,8 +347365,8 @@
     "connectedNetworksCount": 48,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 12.4,
-    "estimatedAnnualCo2Tons": 158666,
+    "localCleanEnergyPercent": 7,
+    "estimatedAnnualCo2Tons": 168521,
     "peeringDbUrl": "https://www.peeringdb.com/fac/15126"
   },
   {
@@ -347417,8 +347417,8 @@
     "connectedNetworksCount": 65,
     "ixpCount": 4,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.5,
-    "estimatedAnnualCo2Tons": 98550,
+    "localCleanEnergyPercent": 4.2,
+    "estimatedAnnualCo2Tons": 96086,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16879"
   },
   {
@@ -347443,8 +347443,8 @@
     "connectedNetworksCount": 55,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.5,
-    "estimatedAnnualCo2Tons": 63387,
+    "localCleanEnergyPercent": 3.7,
+    "estimatedAnnualCo2Tons": 61979,
     "peeringDbUrl": "https://www.peeringdb.com/fac/143"
   },
   {
@@ -347495,8 +347495,8 @@
     "connectedNetworksCount": 40,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 5.8,
-    "estimatedAnnualCo2Tons": 1470208,
+    "localCleanEnergyPercent": 5.3,
+    "estimatedAnnualCo2Tons": 1464910,
     "peeringDbUrl": "https://www.peeringdb.com/fac/23576"
   },
   {
@@ -347521,8 +347521,8 @@
     "connectedNetworksCount": 30,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 31.2,
-    "estimatedAnnualCo2Tons": 104770,
+    "localCleanEnergyPercent": 16.3,
+    "estimatedAnnualCo2Tons": 124112,
     "peeringDbUrl": "https://www.peeringdb.com/fac/23576"
   },
   {
@@ -347547,8 +347547,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 2.6,
-    "estimatedAnnualCo2Tons": 149691,
+    "localCleanEnergyPercent": 3,
+    "estimatedAnnualCo2Tons": 149270,
     "peeringDbUrl": "https://www.peeringdb.com/fac/10158"
   },
   {
@@ -347703,8 +347703,8 @@
     "connectedNetworksCount": 90,
     "ixpCount": 3,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 61.6,
-    "estimatedAnnualCo2Tons": 150103,
+    "localCleanEnergyPercent": 54.6,
+    "estimatedAnnualCo2Tons": 174280,
     "peeringDbUrl": "https://www.peeringdb.com/fac/8075"
   },
   {
@@ -347755,8 +347755,8 @@
     "connectedNetworksCount": 35,
     "ixpCount": 1,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 1.5,
-    "estimatedAnnualCo2Tons": 73227,
+    "localCleanEnergyPercent": 2.4,
+    "estimatedAnnualCo2Tons": 72616,
     "peeringDbUrl": "https://www.peeringdb.com/fac/12430"
   },
   {
@@ -347781,8 +347781,8 @@
     "connectedNetworksCount": 50,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 74.3,
-    "estimatedAnnualCo2Tons": 25655,
+    "localCleanEnergyPercent": 70.8,
+    "estimatedAnnualCo2Tons": 28615,
     "peeringDbUrl": "https://www.peeringdb.com/fac/12440"
   },
   {
@@ -347833,8 +347833,8 @@
     "connectedNetworksCount": 45,
     "ixpCount": 2,
     "polygonCoords": null,
-    "localCleanEnergyPercent": 4.8,
-    "estimatedAnnualCo2Tons": 366227,
+    "localCleanEnergyPercent": 7,
+    "estimatedAnnualCo2Tons": 358881,
     "peeringDbUrl": "https://www.peeringdb.com/fac/16335"
   },
   {

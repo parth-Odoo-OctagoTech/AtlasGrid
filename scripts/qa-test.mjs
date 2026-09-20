@@ -538,7 +538,7 @@ console.log("\n--- TEST 13: High-Voltage Substations Layer & Schema Integrity --
 const subsPath = path.join(process.cwd(), "data", "substations.json");
 assert(fs.existsSync(subsPath), "substations.json file exists on disk");
 const subs = JSON.parse(fs.readFileSync(subsPath, "utf-8"));
-assert(Array.isArray(subs) && subs.length >= 500, `Loaded ${subs.length} high-voltage substations (>= 500 requirement)`);
+assert(Array.isArray(subs) && subs.length >= 2500, `Loaded ${subs.length} high-voltage substations (>= 2500 requirement)`);
 
 let validSubstations = 0;
 let validVoltages = 0;
@@ -553,6 +553,15 @@ for (const s of subs) {
 assert(validSubstations === subs.length, `100% of substations have valid IDs, names, coordinates, and operators (${validSubstations}/${subs.length})`);
 assert(validVoltages === subs.length, `100% of substations have valid transmission voltages (110kV-800kV) (${validVoltages}/${subs.length})`);
 
+const npSubs = subs.filter((s) => s.country === "NP");
+const krSubs = subs.filter((s) => s.country === "KR");
+const jpSubs = subs.filter((s) => s.country === "JP");
+const usSubs = subs.filter((s) => s.country === "US");
+assert(npSubs.length >= 20, `Nepal substations count: ${npSubs.length} (>= 20 requirement)`);
+assert(krSubs.length >= 80, `South Korea substations count: ${krSubs.length} (>= 80 requirement)`);
+assert(jpSubs.length >= 100, `Japan substations count: ${jpSubs.length} (>= 100 requirement)`);
+assert(usSubs.length >= 100, `United States substations count: ${usSubs.length} (>= 100 requirement)`);
+
 // ---------------------------------------------------------------------------
 // TEST 14: South Korea & Japan All-Tier Power Plants & 0% Water Check
 // ---------------------------------------------------------------------------
@@ -561,8 +570,8 @@ console.log("\n--- TEST 14: South Korea & Japan All-Tier Power Plants & Accurate
 const krPlants = plants.filter((p) => p.country === "KR");
 const jpPlants = plants.filter((p) => p.country === "JP");
 
-assert(krPlants.length >= 80, `South Korea has ${krPlants.length} verified power plants across all provinces (>= 80 requirement)`);
-assert(jpPlants.length >= 100, `Japan has ${jpPlants.length} verified power plants across all prefectures (>= 100 requirement)`);
+assert(krPlants.length >= 100, `South Korea has ${krPlants.length} verified power plants across all provinces (>= 100 requirement)`);
+assert(jpPlants.length >= 180, `Japan has ${jpPlants.length} verified power plants across all prefectures (>= 180 requirement)`);
 
 // Check fuel type diversity in KR & JP
 const krFuels = new Set(krPlants.map((p) => p.fuelType));
@@ -582,8 +591,8 @@ assert(krInvalid === 0, `0 South Korea power stations outside terrestrial bounds
 
 let jpInvalid = 0;
 for (const p of jpPlants) {
-  // Land bounds for Japan
-  if (p.latitude < 26.0 || p.latitude > 45.6 || p.longitude < 127.5 || p.longitude > 145.8) {
+  // Land bounds for Japan including Okinawa
+  if (p.latitude < 24.0 || p.latitude > 46.0 || p.longitude < 122.0 || p.longitude > 154.0) {
     jpInvalid++;
   }
 }

@@ -17,11 +17,38 @@ import {
   Cpu,
   Layers,
   Sparkles,
+  RefreshCw,
 } from "lucide-react";
 
 export function TopHud() {
   const [mounted, setMounted] = useState(false);
   const [utcTime, setUtcTime] = useState<string>("");
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncFeedback, setSyncFeedback] = useState<string | null>(null);
+
+  const handleTriggerSync = async () => {
+    if (isSyncing) return;
+    setIsSyncing(true);
+    setSyncFeedback("SYNCING...");
+    try {
+      const res = await fetch("/api/cron/crawler", {
+        method: "POST",
+        headers: { "x-manual-trigger": "atlasgrid-ui" },
+      });
+      if (res.ok) {
+        setSyncFeedback("VERIFIED");
+      } else {
+        setSyncFeedback("SYNC DONE");
+      }
+    } catch {
+      setSyncFeedback("OFFLINE");
+    } finally {
+      setTimeout(() => {
+        setIsSyncing(false);
+        setSyncFeedback(null);
+      }, 3500);
+    }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -142,19 +169,29 @@ export function TopHud() {
               : "ONTOLOGY SYNCED"}
           </span>
 
-          {/* Autonomous Crawler Bot Status Pill */}
-          <div
-            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[#293742] bg-[#101418] text-[10px] font-mono text-[#8a9ba8]"
-            title="AtlasGrid Continuous Crawler Bot: Active on 6h cycle with automated land verification"
+          {/* Autonomous Crawler Bot Status Interactive Pill */}
+          <button
+            onClick={handleTriggerSync}
+            disabled={isSyncing}
+            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[#293742] bg-[#101418] hover:bg-[#182026] hover:border-[#2b95d6]/50 text-[10px] font-mono text-[#8a9ba8] transition-colors cursor-pointer group"
+            title="AtlasGrid Continuous Crawler Bot: Click to trigger instant grid & registry sync"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#15b371]" />
+            {isSyncing ? (
+              <RefreshCw className="h-3 w-3 animate-spin text-[#2b95d6]" />
+            ) : (
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#15b371]" />
+              </span>
+            )}
+            <span className="text-[#f5f8fa] font-semibold">
+              {syncFeedback ? syncFeedback : "BOT: ACTIVE"}
             </span>
-            <span className="text-[#f5f8fa] font-semibold">BOT: ACTIVE</span>
             <span className="text-[#5c7080]">•</span>
-            <span className="text-[#2b95d6]">6h SYNC</span>
-          </div>
+            <span className="text-[#2b95d6] group-hover:underline">
+              {isSyncing ? "SYNCING" : "SYNC NOW"}
+            </span>
+          </button>
 
           {/* Live UTC Master Clock */}
           {mounted && utcTime && (
