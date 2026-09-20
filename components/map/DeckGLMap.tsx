@@ -212,7 +212,11 @@ export function DeckGLMap({
 
   // Filter plants according to active filters in memory for instantaneous 60fps responsiveness
   const filteredPlants = useMemo(() => {
-    if (filters.infrastructureType === "datacenters" || !layerVisibility.plants) {
+    if (
+      filters.infrastructureType === "datacenters" ||
+      filters.infrastructureType === "substations" ||
+      !layerVisibility.plants
+    ) {
       return [];
     }
 
@@ -283,7 +287,11 @@ export function DeckGLMap({
 
   // Filter data centers in memory
   const filteredDataCenters = useMemo(() => {
-    if (filters.infrastructureType === "plants" || !layerVisibility.datacenters) {
+    if (
+      filters.infrastructureType === "plants" ||
+      filters.infrastructureType === "substations" ||
+      !layerVisibility.datacenters
+    ) {
       return [];
     }
 
@@ -341,6 +349,71 @@ export function DeckGLMap({
 
     return list;
   }, [dataCenters, filters, layerVisibility.datacenters]);
+
+  // Filter substations in memory according to active filters and visibility
+  const filteredSubstations = useMemo(() => {
+    if (
+      filters.infrastructureType === "datacenters" ||
+      filters.infrastructureType === "plants" ||
+      !layerVisibility.substations
+    ) {
+      return [];
+    }
+
+    let list = substations;
+
+    if (filters.region && filters.region !== "GLOBAL") {
+      if (filters.region === "GUJARAT") {
+        list = list.filter(
+          (s) =>
+            s.country === "IN" &&
+            s.latitude >= 20.0 &&
+            s.latitude <= 24.8 &&
+            s.longitude >= 68.0 &&
+            s.longitude <= 74.8
+        );
+      } else if (filters.region === "NEPAL_NEA") {
+        list = list.filter(
+          (s) =>
+            s.gridRegion === "NEPAL_NEA" ||
+            s.country === "NP" ||
+            s.countryName === "Nepal"
+        );
+      } else if (filters.region === "KOREA_KPX") {
+        list = list.filter(
+          (s) =>
+            s.gridRegion === "KOREA_KPX" ||
+            s.country === "KR" ||
+            s.countryName === "South Korea"
+        );
+      } else if (filters.region === "JAPAN_TEPCO") {
+        list = list.filter(
+          (s) =>
+            s.country === "JP" ||
+            s.countryName === "Japan" ||
+            s.gridRegion?.includes("TEPCO")
+        );
+      } else {
+        list = list.filter(
+          (s) => s.gridRegion === filters.region || s.country === filters.region
+        );
+      }
+    }
+
+    if (filters.searchQuery.trim().length > 0) {
+      const q = filters.searchQuery.toLowerCase().trim();
+      list = list.filter(
+        (s) =>
+          s.name.toLowerCase().includes(q) ||
+          s.operator.toLowerCase().includes(q) ||
+          s.countryName.toLowerCase().includes(q) ||
+          s.gridRegion.toLowerCase().includes(q) ||
+          String(s.voltageKv).includes(q)
+      );
+    }
+
+    return list;
+  }, [substations, filters, layerVisibility.substations]);
 
   // Initialize MapLibre GL Basemap (Mercator mode)
   useEffect(() => {
@@ -561,7 +634,7 @@ export function DeckGLMap({
     }
 
     // 5. High-Voltage Transmission Interconnector Arcs
-    if (layerVisibility.interconnectors && interconnectors.length > 0) {
+    if (filters.infrastructureType !== "datacenters" && layerVisibility.interconnectors && interconnectors.length > 0) {
       activeLayers.push(
         new ArcLayer<Interconnector>({
           id: "transmission-interties-arc",
@@ -581,7 +654,6 @@ export function DeckGLMap({
       );
     }
 
-    // 6. Submarine Fiber-Optic Cables Layer (TeleGeography Global Dataset from GE view)
     // 6. Submarine Fiber-Optic Cables Layer (TeleGeography Global Dataset from GE view)
     if (layerVisibility.subseaCables && cables && cables.length > 0) {
       activeLayers.push(
@@ -680,11 +752,11 @@ export function DeckGLMap({
     }
 
     // 9. High-Voltage Substations Layer (765kV, 500kV, 400kV, 345kV, 275kV, etc.)
-    if (layerVisibility.substations && substations && substations.length > 0) {
+    if (layerVisibility.substations && filteredSubstations && filteredSubstations.length > 0) {
       activeLayers.push(
         new ScatterplotLayer<Substation>({
           id: "substations-nodes",
-          data: substations,
+          data: filteredSubstations,
           getPosition: (d) => [d.longitude, d.latitude],
           getRadius: (d) => Math.max(1200, Math.sqrt(d.voltageKv) * 160),
           getFillColor: (d) => {
@@ -703,9 +775,9 @@ export function DeckGLMap({
           autoHighlight: true,
           highlightColor: [255, 255, 255, 255],
           updateTriggers: {
-            getFillColor: [substations],
-            getLineColor: [substations],
-            getRadius: [substations],
+            getFillColor: [filteredSubstations],
+            getLineColor: [filteredSubstations],
+            getRadius: [filteredSubstations],
           },
         })
       );
@@ -718,7 +790,7 @@ export function DeckGLMap({
     filteredPlants,
     interconnectors,
     filteredDataCenters,
-    substations,
+    filteredSubstations,
     cables,
     isGlobe,
     basemapStyle,
@@ -728,6 +800,7 @@ export function DeckGLMap({
     selectedSubstation,
     plants,
     dataCenters,
+    filters.infrastructureType,
   ]);
 
   // Click handler on map features

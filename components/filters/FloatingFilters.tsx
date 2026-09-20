@@ -16,6 +16,7 @@ import {
   Server,
   Cpu,
   Layers,
+  GitFork,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -103,6 +104,7 @@ export function FloatingFilters() {
 
   const showPlants = filters.infrastructureType === "all" || filters.infrastructureType === "plants";
   const showDatacenters = filters.infrastructureType === "all" || filters.infrastructureType === "datacenters";
+  const showSubstations = filters.infrastructureType === "all" || filters.infrastructureType === "substations";
 
   const isFiltered =
     filters.infrastructureType !== "all" ||
@@ -166,11 +168,12 @@ export function FloatingFilters() {
               <label className="text-[10px] font-mono uppercase font-semibold text-[#8a9ba8] tracking-wider block mb-1.5">
                 Infrastructure Layer Focus
               </label>
-              <div className="grid grid-cols-3 gap-1 rounded bg-[#101418] p-1 border border-[#293742]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 rounded bg-[#101418] p-1 border border-[#293742]">
                 {[
                   { id: "all", label: "All Layers", icon: Layers },
-                  { id: "plants", label: "Power Plants", icon: Zap },
                   { id: "datacenters", label: "Data Centers", icon: Server },
+                  { id: "plants", label: "Power Plants", icon: Zap },
+                  { id: "substations", label: "Substations", icon: GitFork },
                 ].map((item) => {
                   const Icon = item.icon;
                   const isActive = filters.infrastructureType === item.id;
@@ -178,18 +181,20 @@ export function FloatingFilters() {
                     <button
                       key={item.id}
                       onClick={() => setInfrastructureType(item.id as InfrastructureType)}
-                      className={`flex items-center justify-center gap-1.5 rounded py-1 text-[10px] font-mono transition-all ${
+                      className={`flex items-center justify-center gap-1 rounded py-1 px-1 text-[10px] font-mono transition-all ${
                         isActive
                           ? item.id === "datacenters"
                             ? "bg-[#15b371]/20 text-[#15b371] border border-[#15b371]/50 font-semibold"
                             : item.id === "plants"
                             ? "bg-[#2b95d6]/20 text-[#2b95d6] border border-[#2b95d6]/50 font-semibold"
+                            : item.id === "substations"
+                            ? "bg-[#ec4899]/20 text-[#ec4899] border border-[#ec4899]/50 font-semibold"
                             : "bg-[#202b33] text-[#f5f8fa] border border-[#394b59] font-semibold"
                           : "text-[#8a9ba8] hover:text-[#f5f8fa] hover:bg-[#202b33]/60 border border-transparent"
                       }`}
                     >
                       <Icon className="h-3 w-3 shrink-0" />
-                      <span>{item.label}</span>
+                      <span className="truncate">{item.label}</span>
                     </button>
                   );
                 })}

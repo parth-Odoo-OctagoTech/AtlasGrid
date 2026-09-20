@@ -333,6 +333,8 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
         ...state.layerVisibility,
         plants: type === "all" || type === "plants",
         datacenters: type === "all" || type === "datacenters",
+        substations: type === "all" || type === "substations",
+        interconnectors: type === "all" || type === "plants" || type === "substations",
       },
     })),
 

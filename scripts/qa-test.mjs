@@ -562,6 +562,17 @@ assert(krSubs.length >= 80, `South Korea substations count: ${krSubs.length} (>=
 assert(jpSubs.length >= 100, `Japan substations count: ${jpSubs.length} (>= 100 requirement)`);
 assert(usSubs.length >= 100, `United States substations count: ${usSubs.length} (>= 100 requirement)`);
 
+// Substation Layer Filtering & Data Center Isolation Verification
+const deckGlMapSrc = fs.readFileSync(path.join(process.cwd(), "components", "map", "DeckGLMap.tsx"), "utf-8");
+assert(deckGlMapSrc.includes('filters.infrastructureType === "datacenters"'), "DeckGLMap checks datacenters filter mode before rendering substations");
+assert(deckGlMapSrc.includes("filteredSubstations"), "DeckGLMap uses filteredSubstations layer data");
+
+const storeSrc = fs.readFileSync(path.join(process.cwd(), "lib", "store", "useGridStore.ts"), "utf-8");
+assert(storeSrc.includes('substations: type === "all" || type === "substations"'), "useGridStore excludes substations when focusing on datacenters");
+
+const filtersSrc = fs.readFileSync(path.join(process.cwd(), "components", "filters", "FloatingFilters.tsx"), "utf-8");
+assert(filtersSrc.includes('"substations"'), "FloatingFilters includes dedicated substations focus option");
+
 // ---------------------------------------------------------------------------
 // TEST 14: South Korea & Japan All-Tier Power Plants & 0% Water Check
 // ---------------------------------------------------------------------------

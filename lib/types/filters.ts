@@ -7,7 +7,7 @@ export type VisualizationMode =
   | "interconnect_flow"
   | "hex_density";
 
-export type InfrastructureType = "all" | "plants" | "datacenters";
+export type InfrastructureType = "all" | "plants" | "datacenters" | "substations";
 export type PriceFilter = "all" | "spikes" | "negative" | "normal";
 
 export interface FilterState {
