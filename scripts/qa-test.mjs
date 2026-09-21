@@ -728,6 +728,13 @@ assert(chatModalSrc.includes("How many data centres are in India?"), "AI Copilot
 assert(chatModalSrc.includes("How many were there in 2025?"), "AI Copilot includes prompt pill for 2025 DC count");
 assert(chatModalSrc.includes("atlasgrid_gemini_key"), "AI Copilot provides user Gemini API key integration");
 
+const chatRouteSrc = fs.readFileSync(aiChatRoute, "utf-8");
+assert(chatRouteSrc.includes("gemini-3.6-flash"), "AI Chat route supports Gemini 3.6 Flash");
+
+const testKeyRoutePath = path.join(process.cwd(), "app/api/ai/test-key/route.ts");
+const testKeySrc = fs.readFileSync(testKeyRoutePath, "utf-8");
+assert(testKeySrc.includes("gemini-3.6-flash"), "AI Test Key route validates Gemini 3.6 Flash connectivity");
+
 // ---------------------------------------------------------------------------
 // TEST 19: Authoritative Historical Database (Earthquakes, Severe Storms, Climate & DC Growth)
 // ---------------------------------------------------------------------------

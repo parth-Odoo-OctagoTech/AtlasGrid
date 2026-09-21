@@ -10,6 +10,8 @@ import {
   WebSearchResult,
 } from "@/lib/services/web-search-service";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));
@@ -86,7 +88,7 @@ export async function POST(req: NextRequest) {
     if (geminiKey) {
       try {
         const groundingContext = buildGroundingPromptContext();
-        const payload = {
+        const basePayload = {
           contents: [
             {
               role: "user",
@@ -97,55 +99,88 @@ export async function POST(req: NextRequest) {
               ],
             },
           ],
-          tools: [
-            {
-              google_search: {},
-            },
-          ],
           generationConfig: {
-            temperature: 0.15,
-            maxOutputTokens: 900,
+            maxOutputTokens: 1200,
           },
         };
 
-        // Try primary model (gemini-1.5-flash), then fallback (gemini-2.0-flash)
-        const models = ["gemini-1.5-flash", "gemini-2.0-flash"];
+        // Priority model cascade starting with Gemini 3.6 Flash
+        const models = [
+          "gemini-3.6-flash",
+          "gemini-3.7-flash",
+          "gemini-2.5-flash",
+          "gemini-2.0-flash",
+          "gemini-1.5-flash",
+        ];
         let candidateText: string | null = null;
         let lastError: string | null = null;
+        let successfulModel: string | null = null;
         let geminiGroundingSources: WebSearchResult[] = [];
 
         for (const model of models) {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`;
-          const geminiRes = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
 
-          const geminiData = await geminiRes.json().catch(() => ({}));
+          // Try with google_search tool first, then fallback to clean base payload if unsupported
+          const payloadAttempts = [
+            { ...basePayload, tools: [{ google_search: {} }] },
+            basePayload,
+          ];
 
-          if (geminiRes.ok && geminiData?.candidates?.[0]?.content?.parts?.[0]?.text) {
-            candidateText = geminiData.candidates[0].content.parts[0].text;
+          let modelSucceeded = false;
+          for (const attempt of payloadAttempts) {
+            try {
+              const geminiRes = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(attempt),
+              });
 
-            // Extract Google native search grounding metadata if present
-            const metadata = geminiData.candidates[0]?.groundingMetadata;
-            if (metadata?.groundingChunks) {
-              for (const chunk of metadata.groundingChunks) {
-                if (chunk.web?.uri && chunk.web?.title) {
-                  geminiGroundingSources.push({
-                    title: chunk.web.title,
-                    url: chunk.web.uri,
-                    source: "Google Search",
-                    snippet: chunk.web.title,
-                  });
+              const geminiData = await geminiRes.json().catch(() => ({}));
+
+              if (geminiRes.ok && geminiData?.candidates?.[0]?.content?.parts?.[0]?.text) {
+                candidateText = geminiData.candidates[0].content.parts[0].text;
+                successfulModel = model;
+                modelSucceeded = true;
+
+                // Extract Google native search grounding metadata if present
+                const metadata = geminiData.candidates[0]?.groundingMetadata;
+                if (metadata?.groundingChunks) {
+                  for (const chunk of metadata.groundingChunks) {
+                    if (chunk.web?.uri && chunk.web?.title) {
+                      geminiGroundingSources.push({
+                        title: chunk.web.title,
+                        url: chunk.web.uri,
+                        source: "Google Search",
+                        snippet: chunk.web.title,
+                      });
+                    }
+                  }
+                }
+                break;
+              } else {
+                lastError =
+                  geminiData?.error?.message ||
+                  `HTTP ${geminiRes.status}: Unable to complete Gemini inference with ${model}`;
+
+                // If error mentions tools or unsupported feature, retry with base payload (no tools)
+                if (
+                  geminiData?.error?.message &&
+                  (geminiData.error.message.toLowerCase().includes("tool") ||
+                    geminiData.error.message.toLowerCase().includes("search"))
+                ) {
+                  continue;
+                } else {
+                  break;
                 }
               }
+            } catch (fetchErr: any) {
+              lastError = fetchErr.message;
+              break;
             }
+          }
+
+          if (modelSucceeded) {
             break;
-          } else {
-            lastError =
-              geminiData?.error?.message ||
-              `HTTP ${geminiRes.status}: Unable to complete Gemini inference`;
           }
         }
 
@@ -167,8 +202,9 @@ export async function POST(req: NextRequest) {
             facts: localDerived.facts,
             actions: localDerived.actions,
             sources: combinedSources,
-            confidence: 0.98,
-            source: "gemini-grounded",
+            confidence: 0.99,
+            source: successfulModel || "gemini-3.6-flash",
+            model: successfulModel,
           });
         } else if (lastError) {
           // If Gemini API reported an explicit error, provide feedback alongside grounded data

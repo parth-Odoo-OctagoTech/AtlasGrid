@@ -63,6 +63,7 @@ export function AtlasAIChatModal() {
 
   // Key testing state
   const [isTestingKey, setIsTestingKey] = useState(false);
+  const [connectedModel, setConnectedModel] = useState<string>("gemini-3.6-flash");
   const [keyTestResult, setKeyTestResult] = useState<{
     valid: boolean;
     model?: string;
@@ -159,6 +160,9 @@ export function AtlasAIChatModal() {
       setKeyTestResult(data);
       if (data.valid) {
         saveApiKey(key);
+        if (data.model) {
+          setConnectedModel(data.model);
+        }
       }
     } catch (err: any) {
       setKeyTestResult({
@@ -288,10 +292,36 @@ export function AtlasAIChatModal() {
     }
   };
 
-  if (!isChatOpen) return null;
+  if (!isChatOpen) {
+    return (
+      <aside className="fixed bottom-5 right-5 z-40 animate-in fade-in zoom-in-95 duration-200 select-none">
+        <button
+          onClick={() => setChatOpen(true)}
+          className="group relative flex items-center gap-2.5 rounded-full bg-[#137cbd] hover:bg-[#2b95d6] text-white px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.6)] border border-[#2b95d6]/70 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+          title="Open AtlasGrid AI Copilot (⌘J)"
+        >
+          {/* Glowing status indicator */}
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#15b371]" />
+          </span>
+
+          <Sparkles className="h-4 w-4 text-white animate-pulse" />
+
+          <span className="font-mono text-xs font-bold tracking-wider text-white">
+            AI COPILOT
+          </span>
+
+          <kbd className="hidden sm:inline-flex items-center justify-center rounded bg-black/30 px-1.5 py-0.5 text-[9px] font-mono border border-white/20 text-white/90">
+            ⌘J
+          </kbd>
+        </button>
+      </aside>
+    );
+  }
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex h-[650px] w-[580px] max-w-[calc(100vw-2rem)] flex-col rounded-lg border border-[#293742] bg-[#182026] text-white shadow-2xl font-sans overflow-hidden">
+    <aside className="fixed bottom-5 right-5 z-40 flex h-[650px] w-[580px] max-w-[calc(100vw-2rem)] flex-col rounded-xl border border-[#293742] bg-[#182026] text-white shadow-[0_12px_45px_rgba(0,0,0,0.7)] font-sans overflow-hidden animate-in fade-in zoom-in-95 duration-200">
       {/* 1. Header */}
       <div className="flex items-center justify-between border-b border-[#293742] bg-[#101418] px-4 py-2.5">
         <div className="flex items-center gap-2.5">
@@ -314,7 +344,9 @@ export function AtlasAIChatModal() {
                   title="Gemini API Key Active - Click to Manage"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-[#15b371] animate-pulse" />
-                  GEMINI ACTIVE
+                  {connectedModel
+                    ? connectedModel.replace("gemini-", "GEMINI ").toUpperCase()
+                    : "GEMINI 3.6 ACTIVE"}
                 </button>
               ) : (
                 <button
@@ -369,7 +401,7 @@ export function AtlasAIChatModal() {
             )}
           </div>
           <p className="text-[11px] text-[#8a9ba8] mb-2.5 leading-relaxed">
-            AtlasGrid connects directly to your Google Gemini API key (supports Gemini 1.5 Flash & 2.0 Flash).
+            AtlasGrid connects directly to your Google Gemini API key (supports Gemini 3.6 Flash, 3.7 Flash, 2.0 Flash & 1.5 Flash).
             Enter your key below and click <strong>Test Key</strong> to verify instant connectivity.
           </p>
 
@@ -606,6 +638,6 @@ export function AtlasAIChatModal() {
           <span>Zero-Hallucination Policy Enforced</span>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
