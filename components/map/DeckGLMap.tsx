@@ -199,6 +199,7 @@ export function DeckGLMap({
   const setHoveredStation = useGridStore((s) => s.setHoveredStation);
   const setHoveredDataCenter = useGridStore((s) => s.setHoveredDataCenter);
   const setHoveredSubstation = useGridStore((s) => s.setHoveredSubstation);
+  const setHoveredFloodZone = useGridStore((s) => s.setHoveredFloodZone);
   const filters = useGridStore((s) => s.filters);
 
   const isGlobe = projectionMode === "globe";
@@ -415,6 +416,106 @@ export function DeckGLMap({
     return list;
   }, [substations, filters, layerVisibility.substations]);
 
+  // Memoized Flood Hazard Overlay: identifies low-elevation coastal storm surge & riverine inundation zones
+  const floodHazardZones = useMemo(() => {
+    if (!layerVisibility.floodOverlay) return [];
+
+    const zones: {
+      id: string;
+      name: string;
+      coordinates: [number, number];
+      riskLevel: "High" | "Moderate";
+      hazardType: string;
+      elevationMeters: number;
+      zoneCode: string;
+    }[] = [];
+
+    // Low-elevation coastal / tidal / riverine basin corridors for Data Centers
+    for (const dc of dataCenters) {
+      const isDutchLowland = dc.country === "NL";
+      const isMidAtlanticCoastal =
+        dc.country === "US" &&
+        dc.latitude >= 38.0 &&
+        dc.latitude <= 40.0 &&
+        dc.longitude >= -78.0 &&
+        dc.longitude <= -76.0;
+      const isSfBayCoastal =
+        dc.country === "US" &&
+        dc.latitude >= 37.2 &&
+        dc.latitude <= 37.8 &&
+        dc.longitude >= -122.5 &&
+        dc.longitude <= -121.8;
+      const isThames =
+        dc.country === "GB" &&
+        dc.latitude >= 51.3 &&
+        dc.latitude <= 51.7 &&
+        dc.longitude >= -0.5 &&
+        dc.longitude <= 0.6;
+      const isTokyoBay =
+        dc.country === "JP" &&
+        dc.latitude >= 35.2 &&
+        dc.latitude <= 35.8 &&
+        dc.longitude >= 139.5 &&
+        dc.longitude <= 140.2;
+      const isSingaporeStrait = dc.country === "SG";
+      const isMumbaiCreek =
+        dc.country === "IN" &&
+        dc.latitude >= 18.8 &&
+        dc.latitude <= 19.3 &&
+        dc.longitude >= 72.7 &&
+        dc.longitude <= 73.1;
+      const isBusanPort =
+        dc.country === "KR" &&
+        dc.latitude >= 35.0 &&
+        dc.latitude <= 35.3 &&
+        dc.longitude >= 128.9 &&
+        dc.longitude <= 129.2;
+
+      if (
+        isDutchLowland ||
+        isMidAtlanticCoastal ||
+        isSfBayCoastal ||
+        isThames ||
+        isTokyoBay ||
+        isSingaporeStrait ||
+        isMumbaiCreek ||
+        isBusanPort
+      ) {
+        zones.push({
+          id: `flood-zone-dc-${dc.id}`,
+          name: dc.name,
+          coordinates: [dc.longitude, dc.latitude],
+          riskLevel: isDutchLowland || isSingaporeStrait || isMumbaiCreek ? "High" : "Moderate",
+          hazardType: isDutchLowland
+            ? "Below-Sea-Level Polder Surge Inundation Zone"
+            : "Coastal Storm Surge & Estuarine Overflow Basin",
+          elevationMeters: isDutchLowland ? -2 : isSingaporeStrait ? 4 : isMumbaiCreek ? 5 : 12,
+          zoneCode: isDutchLowland || isSingaporeStrait || isMumbaiCreek ? "FEMA Zone AE (High Risk)" : "FEMA Zone Shaded X (500-Yr Buffer)",
+        });
+      }
+    }
+
+    // Power stations with coastal seawater or riverine cooling
+    for (const p of plants) {
+      if (p.coolingType === "seawater" || p.coolingType === "river") {
+        zones.push({
+          id: `flood-zone-plant-${p.id}`,
+          name: p.name,
+          coordinates: [p.longitude, p.latitude],
+          riskLevel: p.coolingType === "seawater" ? "High" : "Moderate",
+          hazardType:
+            p.coolingType === "seawater"
+              ? "Coastal Tidal Surge & Estuarine Overflow"
+              : "Riverine 100-Year Floodplain Corridor",
+          elevationMeters: p.coolingType === "seawater" ? 3 : 15,
+          zoneCode: "FEMA Zone AE (Riparian / Coastal)",
+        });
+      }
+    }
+
+    return zones;
+  }, [layerVisibility.floodOverlay, dataCenters, plants]);
+
   // Initialize MapLibre GL Basemap (Mercator mode)
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -500,7 +601,7 @@ export function DeckGLMap({
 
       activeLayers.push(
         new TileLayer({
-          id: "globe-basemap-surface",
+          id: `globe-basemap-surface-${basemapStyle}`,
           data: globeTileUrl,
           minZoom: 0,
           maxZoom: 19,
@@ -634,7 +735,7 @@ export function DeckGLMap({
     }
 
     // 5. High-Voltage Transmission Interconnector Arcs
-    if (filters.infrastructureType !== "datacenters" && layerVisibility.interconnectors && interconnectors.length > 0) {
+    if (layerVisibility.interconnectors && interconnectors.length > 0) {
       activeLayers.push(
         new ArcLayer<Interconnector>({
           id: "transmission-interties-arc",
@@ -668,6 +769,41 @@ export function DeckGLMap({
           pickable: true,
           autoHighlight: true,
           highlightColor: [255, 255, 255, 255],
+        })
+      );
+    }
+
+    // 6b. Flood Hazard Inundation Risk Overlay (Coastal Storm Surge & 100-Yr Inundation Buffers)
+    if (layerVisibility.floodOverlay && floodHazardZones && floodHazardZones.length > 0) {
+      activeLayers.push(
+        new ScatterplotLayer({
+          id: "flood-hazard-zones-outer",
+          data: floodHazardZones,
+          getPosition: (d: any) => d.coordinates,
+          getRadius: (d: any) => (d.riskLevel === "High" ? 24000 : 16000),
+          getFillColor: (d: any) =>
+            d.riskLevel === "High" ? [6, 182, 212, 65] : [14, 165, 233, 40],
+          getLineColor: (d: any) =>
+            d.riskLevel === "High" ? [34, 211, 238, 220] : [56, 189, 248, 180],
+          stroked: true,
+          lineWidthMinPixels: 1.5,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+        })
+      );
+
+      activeLayers.push(
+        new ScatterplotLayer({
+          id: "flood-hazard-zones-core",
+          data: floodHazardZones.filter((z) => z.riskLevel === "High"),
+          getPosition: (d: any) => d.coordinates,
+          getRadius: 8000,
+          getFillColor: [6, 182, 212, 95],
+          getLineColor: [255, 255, 255, 240],
+          stroked: true,
+          lineWidthMinPixels: 2,
+          pickable: true,
         })
       );
     }
@@ -801,6 +937,7 @@ export function DeckGLMap({
     plants,
     dataCenters,
     filters.infrastructureType,
+    floodHazardZones,
   ]);
 
   // Click handler on map features
@@ -823,26 +960,35 @@ export function DeckGLMap({
   const handleDeckHover = useCallback(
     (info: any) => {
       if (info.object) {
-        if ("fuelType" in info.object) {
+        if ("hazardType" in info.object) {
+          setHoveredFloodZone(info.object, { x: info.x, y: info.y });
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
+        } else if ("fuelType" in info.object) {
           setHoveredStation(info.object as PowerPlant, { x: info.x, y: info.y });
           setHoveredDataCenter(null, null);
           setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
         } else if ("estimatedPowerMw" in info.object) {
           setHoveredDataCenter(info.object as DataCenter, { x: info.x, y: info.y });
           setHoveredStation(null, null);
           setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
         } else if ("voltageKv" in info.object) {
           setHoveredSubstation(info.object as Substation, { x: info.x, y: info.y });
           setHoveredStation(null, null);
           setHoveredDataCenter(null, null);
+          setHoveredFloodZone(null, null);
         }
       } else {
         setHoveredStation(null, null);
         setHoveredDataCenter(null, null);
         setHoveredSubstation(null, null);
+        setHoveredFloodZone(null, null);
       }
     },
-    [setHoveredStation, setHoveredDataCenter, setHoveredSubstation]
+    [setHoveredStation, setHoveredDataCenter, setHoveredSubstation, setHoveredFloodZone]
   );
 
   return (

@@ -635,6 +635,30 @@ assert(fs.existsSync(ghaWorkflowPath), "GitHub Actions scheduled workflow exists
 assert(fs.existsSync(vercelJsonPath), "vercel.json exists with cron configuration");
 
 // ---------------------------------------------------------------------------
+// TEST 16: Satellite Mode & Dual Overlay Engine (Grid & Flood Hazard)
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 16: Satellite Mode & Dual Overlay Engine (Grid & Flood Hazard) ---");
+
+const controlsSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapControls.tsx"), "utf-8");
+assert(controlsSrc.includes('basemapStyle === "satellite" ? "positron" : "satellite"'), "MapControls has dedicated Satellite imagery direct toggle button");
+assert(controlsSrc.includes('toggleLayer("interconnectors")'), "MapControls has dedicated Grid Transmission Overlay button");
+assert(controlsSrc.includes('toggleLayer("floodOverlay")'), "MapControls has dedicated Flood Hazard Overlay button");
+
+const deckGlCode = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlCode.includes("globe-basemap-surface-${basemapStyle}"), "DeckGLMap dynamically updates globe tile layer ID for instant satellite reload");
+assert(deckGlCode.includes("flood-hazard-zones-outer"), "DeckGLMap renders coastal & riverine flood hazard zones");
+assert(!deckGlCode.includes('filters.infrastructureType !== "datacenters" && layerVisibility.interconnectors'), "Grid overlay remains accessible across data centers view");
+
+const storeCode = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(storeCode.includes("floodOverlay: boolean"), "useGridStore LayerVisibility includes floodOverlay");
+assert(storeCode.includes("setHoveredFloodZone"), "useGridStore implements setHoveredFloodZone action");
+
+const inspectorCode = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(inspectorCode.includes('setBasemapStyle("satellite")'), "StationInspector triggers in-app satellite mode on facility inspection");
+assert(inspectorCode.includes("data=!3m1!1e3"), "StationInspector links to Google Maps 3D satellite imagery");
+assert(inspectorCode.includes("flood_overlay_risk"), "StationInspector displays flood hazard assessment for facilities");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");

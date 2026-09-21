@@ -13,6 +13,7 @@ export interface LayerVisibility {
   interconnectors: boolean;
   densityHex: boolean;
   labels: boolean;
+  floodOverlay: boolean;
 }
 
 export const INITIAL_FILTERS: FilterState = {
@@ -59,6 +60,7 @@ interface GridStoreState {
   hoveredStation: PowerPlant | null;
   hoveredDataCenter: DataCenter | null;
   hoveredSubstation: Substation | null;
+  hoveredFloodZone: any | null;
   hoverCoordinates: { x: number; y: number } | null;
 
   // Filters
@@ -104,6 +106,10 @@ interface GridStoreState {
   ) => void;
   setHoveredSubstation: (
     sub: Substation | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredFloodZone: (
+    zone: any | null,
     coords?: { x: number; y: number } | null
   ) => void;
   setVisualizationMode: (mode: VisualizationMode) => void;
@@ -165,11 +171,13 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
     interconnectors: true,
     densityHex: false,
     labels: true,
+    floodOverlay: false,
   },
 
   hoveredStation: null,
   hoveredDataCenter: null,
   hoveredSubstation: null,
+  hoveredFloodZone: null,
   hoverCoordinates: null,
 
   filters: INITIAL_FILTERS,
@@ -271,6 +279,12 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
       hoverCoordinates: coords || null,
     }),
 
+  setHoveredFloodZone: (zone, coords) =>
+    set({
+      hoveredFloodZone: zone,
+      hoverCoordinates: coords || null,
+    }),
+
   setVisualizationMode: (mode) => {
     const is3D = mode === "3d_column";
     const isHeatmap = mode === "heatmap_lmp";
@@ -334,7 +348,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
         plants: type === "all" || type === "plants",
         datacenters: type === "all" || type === "datacenters",
         substations: type === "all" || type === "substations",
-        interconnectors: type === "all" || type === "plants" || type === "substations",
+        interconnectors: state.layerVisibility.interconnectors,
       },
     })),
 

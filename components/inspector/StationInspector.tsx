@@ -38,6 +38,8 @@ import {
   MapPin,
   Database,
   Search,
+  Satellite,
+  Waves,
 } from "lucide-react";
 import {
   getGoogleMapsUrl,
@@ -58,6 +60,10 @@ export function StationInspector() {
   const setSelectedDataCenter = useGridStore((s) => s.setSelectedDataCenter);
   const setSelectedSubstation = useGridStore((s) => s.setSelectedSubstation);
   const flyToStation = useGridStore((s) => s.flyToStation);
+  const flyToCoordinates = useGridStore((s) => s.flyToCoordinates);
+  const setBasemapStyle = useGridStore((s) => s.setBasemapStyle);
+  const layerVisibility = useGridStore((s) => s.layerVisibility);
+  const toggleLayer = useGridStore((s) => s.toggleLayer);
 
   // Fetch stations for cross-referencing
   const { data: allStationsData } = useQuery({
@@ -288,6 +294,38 @@ export function StationInspector() {
             )}
           </div>
         </div>
+
+        {/* Blueprint Sticky Actions Bar for Substation */}
+        <div className="sticky bottom-0 p-3 bg-[#101418] border-t border-[#293742] flex items-center gap-2">
+          <button
+            onClick={() => flyToCoordinates(selectedSubstation.longitude, selectedSubstation.latitude, 14, 40, 0)}
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1.5"
+            title="Inspect substation in 3D canvas"
+          >
+            <Compass className="h-3.5 w-3.5" />
+            <span>Canvas</span>
+          </button>
+          <button
+            onClick={() => {
+              setBasemapStyle("satellite");
+              flyToCoordinates(selectedSubstation.longitude, selectedSubstation.latitude, 17, 45, 0);
+            }}
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#2b95d6] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1.5"
+            title="Switch map to high-resolution satellite imagery focused on this substation"
+          >
+            <Satellite className="h-3.5 w-3.5 text-[#2b95d6]" />
+            <span>Satellite</span>
+          </button>
+          <a
+            href={`https://www.google.com/maps/@${selectedSubstation.latitude},${selectedSubstation.longitude},18z/data=!3m1!1e3`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 rounded text-xs font-mono text-[#a7b6c2] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+            title="Open Google Maps 3D Satellite view in new tab"
+          >
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
       </aside>
     );
   }
@@ -503,6 +541,29 @@ export function StationInspector() {
                 </span>
               </div>
             )}
+            <div className="flex items-center justify-between p-2">
+              <span className="text-[#8a9ba8] text-[11px] flex items-center gap-1">
+                <Waves className="h-3 w-3 text-[#06b6d4]" />
+                flood_overlay_risk
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] font-mono text-[#06b6d4]">
+                  {selectedDataCenter.country === "NL" || selectedDataCenter.country === "SG"
+                    ? "Zone AE (100-Yr Surge)"
+                    : "Zone X (Nominal Inundation)"}
+                </span>
+                <button
+                  onClick={() => {
+                    if (!layerVisibility.floodOverlay) toggleLayer("floodOverlay");
+                    flyToCoordinates(selectedDataCenter.longitude, selectedDataCenter.latitude, 12, 45, 0);
+                  }}
+                  className="px-1.5 py-0.5 rounded bg-[#202b33] border border-[#293742] hover:border-[#06b6d4] text-[9px] text-[#06b6d4] transition-colors"
+                  title="Enable Flood Hazard Overlay and inspect surrounding surge zones"
+                >
+                  Overlay ↗
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -739,46 +800,45 @@ export function StationInspector() {
         )}
 
         {/* Action Tray */}
-        <div className="p-3 bg-[#101418] border-t border-[#293742] flex items-center gap-2">
+        <div className="sticky bottom-0 p-3 bg-[#101418] border-t border-[#293742] flex items-center gap-1.5">
           <button
             onClick={() => flyToStation(selectedDataCenter)}
-            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1.5"
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1"
             title="Inspect in 3D Foundry Canvas"
           >
             <Compass className="h-3.5 w-3.5" />
             <span>Canvas</span>
           </button>
+          <button
+            onClick={() => {
+              setBasemapStyle("satellite");
+              flyToCoordinates(selectedDataCenter.longitude, selectedDataCenter.latitude, 17, 45, 0);
+            }}
+            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#2b95d6] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1"
+            title="Switch canvas to satellite imagery and zoom to facility footprint"
+          >
+            <Satellite className="h-3.5 w-3.5 text-[#2b95d6]" />
+            <span>Satellite</span>
+          </button>
           <a
             href={gMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#2b95d6] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1.5"
+            className="px-2.5 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#2b95d6] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1"
             title="Open exact coordinates on Google Maps"
           >
             <MapPin className="h-3.5 w-3.5 text-[#2b95d6]" />
-            <span>Google Maps</span>
-            <ExternalLink className="h-2.5 w-2.5 opacity-70" />
+            <span>Maps ↗</span>
           </a>
           <a
             href={officialWeb.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#15b371] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1.5"
+            className="px-2.5 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#15b371] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1"
             title={`Open website: ${officialWeb.domain}`}
           >
             <Globe className="h-3.5 w-3.5 text-[#15b371]" />
-            <span>Website</span>
-            <ExternalLink className="h-2.5 w-2.5 opacity-70" />
-          </a>
-          <a
-            href={sourceRef.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded text-xs font-mono text-[#8a9ba8] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
-            title={`${sourceRef.sourceName}: ${sourceRef.label}`}
-          >
-            <Database className="h-3 w-3 text-[#d9822b]" />
-            <span>Source</span>
+            <span>Web ↗</span>
           </a>
         </div>
       </aside>
@@ -1011,6 +1071,35 @@ export function StationInspector() {
                   {selectedStation.climateTraceAssetId ? `🛰️ ${selectedStation.climateTraceAssetId}` : "—"}
                 </td>
               </tr>
+              <tr>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">
+                  <span className="flex items-center gap-1">
+                    <Waves className="h-3 w-3 text-[#06b6d4]" />
+                    <span>Flood Hazard Zone</span>
+                  </span>
+                </td>
+                <td className="px-3 py-1.5 text-[#06b6d4]">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px]">
+                      {selectedStation.coolingType === "seawater"
+                        ? "Zone AE (Coastal Surge Buffer)"
+                        : selectedStation.coolingType === "river"
+                        ? "Zone AE (Riverine Floodplain)"
+                        : "Zone X (Minimal Inundation)"}
+                    </span>
+                    <button
+                      onClick={() => {
+                        if (!layerVisibility.floodOverlay) toggleLayer("floodOverlay");
+                        flyToCoordinates(selectedStation.longitude, selectedStation.latitude, 11, 40, 0);
+                      }}
+                      className="px-1.5 py-0.5 rounded bg-[#202b33] border border-[#293742] hover:border-[#06b6d4] text-[9px] text-[#06b6d4] transition-colors"
+                      title="Toggle Flood Hazard Overlay and view surge buffer around plant"
+                    >
+                      Overlay ↗
+                    </button>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -1116,17 +1205,29 @@ export function StationInspector() {
         <button
           onClick={() => flyToStation(selectedStation)}
           className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#137cbd] hover:bg-[#2b95d6] text-white transition-colors flex items-center justify-center gap-1.5"
+          title="Inspect plant in 3D canvas"
         >
           <Compass className="h-3.5 w-3.5" />
-          <span>Inspect in Canvas</span>
+          <span>Canvas</span>
+        </button>
+        <button
+          onClick={() => {
+            setBasemapStyle("satellite");
+            flyToCoordinates(selectedStation.longitude, selectedStation.latitude, 17, 45, 0);
+          }}
+          className="flex-1 py-1.5 rounded text-xs font-mono font-semibold bg-[#202b33] hover:bg-[#2b95d6] text-[#f5f8fa] hover:text-white border border-[#293742] transition-colors flex items-center justify-center gap-1.5"
+          title="Switch map to high-resolution satellite imagery focused on this power plant"
+        >
+          <Satellite className="h-3.5 w-3.5 text-[#2b95d6]" />
+          <span>Satellite</span>
         </button>
         <a
-          href={`https://www.google.com/maps/search/?api=1&query=${selectedStation.latitude},${selectedStation.longitude}`}
+          href={`https://www.google.com/maps/@${selectedStation.latitude},${selectedStation.longitude},18z/data=!3m1!1e3`}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-1.5 rounded text-xs font-mono text-[#a7b6c2] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+          className="px-2.5 py-1.5 rounded text-xs font-mono text-[#a7b6c2] bg-[#202b33] hover:bg-[#293742] border border-[#293742] hover:text-white transition-colors flex items-center gap-1"
+          title="Open Google Maps 3D Satellite view in new tab"
         >
-          <span>Satellite</span>
           <ExternalLink className="h-3 w-3" />
         </a>
       </div>

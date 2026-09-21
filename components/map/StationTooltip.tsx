@@ -3,15 +3,64 @@
 import { useGridStore } from "@/lib/store/useGridStore";
 import { FUEL_CONFIG, getSubstationColor } from "@/lib/types/power-plant";
 import { OPERATOR_COLORS } from "@/lib/types/data-center";
-import { Zap, ArrowUpRight, Server, Sparkles, Activity } from "lucide-react";
+import { Zap, ArrowUpRight, Server, Sparkles, Activity, Waves } from "lucide-react";
 
 export function StationTooltip() {
   const hoveredStation = useGridStore((s) => s.hoveredStation);
   const hoveredDataCenter = useGridStore((s) => s.hoveredDataCenter);
   const hoveredSubstation = useGridStore((s) => s.hoveredSubstation);
+  const hoveredFloodZone = useGridStore((s) => s.hoveredFloodZone);
   const hoverCoordinates = useGridStore((s) => s.hoverCoordinates);
 
-  if ((!hoveredStation && !hoveredDataCenter && !hoveredSubstation) || !hoverCoordinates) return null;
+  if ((!hoveredStation && !hoveredDataCenter && !hoveredSubstation && !hoveredFloodZone) || !hoverCoordinates) return null;
+
+  if (hoveredFloodZone) {
+    return (
+      <div
+        className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out font-sans"
+        style={{
+          left: `${hoverCoordinates.x}px`,
+          top: `${hoverCoordinates.y}px`,
+        }}
+      >
+        <div className="w-72 rounded border border-[#06b6d4]/50 bg-[#101418]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans">
+          <div className="flex items-center justify-between border-b border-[#293742] pb-1.5">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-[#06b6d4]">
+              <Waves className="h-3.5 w-3.5 text-[#06b6d4]" />
+              <span>FLOOD HAZARD ZONE</span>
+            </div>
+            <span className="rounded px-1.5 py-0.2 text-[9px] font-mono font-bold bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/40">
+              {hoveredFloodZone.riskLevel ? hoveredFloodZone.riskLevel.toUpperCase() : "HIGH"} RISK
+            </span>
+          </div>
+
+          <div className="mt-2 space-y-1 text-xs font-mono">
+            <div className="text-[11px] text-[#f5f8fa] font-semibold truncate">
+              {hoveredFloodZone.name}
+            </div>
+            <div className="text-[10px] text-[#8a9ba8]">
+              {hoveredFloodZone.hazardType}
+            </div>
+          </div>
+
+          <div className="mt-2 grid grid-cols-2 gap-1 text-[10px] font-mono">
+            <div className="rounded bg-[#182026] p-1.5 border border-[#293742]">
+              <div className="text-[#8a9ba8]">Classification</div>
+              <div className="text-[#f5f8fa] font-bold mt-0.5 truncate">{hoveredFloodZone.zoneCode}</div>
+            </div>
+            <div className="rounded bg-[#182026] p-1.5 border border-[#293742]">
+              <div className="text-[#8a9ba8]">Elevation Above MSL</div>
+              <div className="text-[#06b6d4] font-bold mt-0.5">{hoveredFloodZone.elevationMeters}m</div>
+            </div>
+          </div>
+
+          <div className="mt-2 border-t border-[#293742] pt-1 text-[9px] font-mono text-[#5c7080]">
+            Coastal Storm Surge & 100-Yr Inundation Buffer
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (hoveredDataCenter) {
     const opMeta = OPERATOR_COLORS[hoveredDataCenter.operator] || OPERATOR_COLORS.Other;

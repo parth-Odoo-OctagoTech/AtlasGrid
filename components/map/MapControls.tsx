@@ -19,6 +19,8 @@ import {
   Server,
   Cable,
   Zap,
+  Satellite,
+  Waves,
 } from "lucide-react";
 
 export function MapControls() {
@@ -135,18 +137,35 @@ export function MapControls() {
           </span>
         </button>
 
-        {/* High-Voltage Interconnectors Toggle */}
+        {/* High-Voltage Grid Transmission Overlay Toggle */}
         <button
           onClick={() => toggleLayer("interconnectors")}
           className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
             layerVisibility.interconnectors
-              ? "bg-[#2b95d6]/15 text-[#2b95d6] border border-[#2b95d6]/40"
+              ? "bg-[#2b95d6]/20 text-[#2b95d6] border border-[#2b95d6]/60 shadow-[0_0_8px_rgba(43,149,214,0.35)]"
               : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
           }`}
+          title="Toggle Grid Transmission Overlay"
         >
           <GitFork className="h-3.5 w-3.5" />
           <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
-            {layerVisibility.interconnectors ? "Layer: Hide Interties" : "Layer: Show Interties"}
+            {layerVisibility.interconnectors ? "Grid Overlay: Active (Hide Transmission)" : "Grid Overlay: Show Transmission Grid"}
+          </span>
+        </button>
+
+        {/* Flood Hazard Inundation Overlay Toggle */}
+        <button
+          onClick={() => toggleLayer("floodOverlay")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.floodOverlay
+              ? "bg-[#06b6d4]/25 text-[#06b6d4] border border-[#06b6d4]/60 shadow-[0_0_8px_rgba(6,182,212,0.4)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Flood Hazard Overlay (100-Yr Coastal & Riverine Surge Risk)"
+        >
+          <Waves className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.floodOverlay ? "Flood Overlay: Active (100-Yr Risk Zones)" : "Flood Overlay: Show Hazard Zones"}
           </span>
         </button>
 
@@ -180,7 +199,23 @@ export function MapControls() {
           </span>
         </button>
 
-        {/* Basemap Style Toggle */}
+        {/* Dedicated Satellite Imagery Mode Direct Toggle */}
+        <button
+          onClick={() => setBasemapStyle(basemapStyle === "satellite" ? "positron" : "satellite")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            basemapStyle === "satellite"
+              ? "bg-[#2b95d6]/25 text-[#2b95d6] border border-[#2b95d6]/70 shadow-[0_0_8px_rgba(43,149,214,0.45)]"
+              : "text-[#8a9ba8] hover:bg-[#202b33] hover:text-[#f5f8fa]"
+          }`}
+          title="Toggle High-Resolution Satellite View (ESRI World Imagery)"
+        >
+          <Satellite className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {basemapStyle === "satellite" ? "Satellite: Active (ESRI World Imagery)" : "Satellite: Enable Satellite View"}
+          </span>
+        </button>
+
+        {/* Basemap Style Cycler */}
         <button
           onClick={() =>
             setBasemapStyle(
@@ -199,7 +234,7 @@ export function MapControls() {
         >
           <MapIcon className="h-3.5 w-3.5" />
           <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
-            Basemap: {basemapStyle}
+            Basemap: {basemapStyle.toUpperCase()}
           </span>
         </button>
       </div>

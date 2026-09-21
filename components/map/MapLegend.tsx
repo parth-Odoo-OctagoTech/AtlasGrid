@@ -8,6 +8,7 @@ import { ChevronDown, ChevronUp, Layers, Flame, Server, Zap } from "lucide-react
 export function MapLegend() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const visualizationMode = useGridStore((s) => s.visualizationMode);
+  const layerVisibility = useGridStore((s) => s.layerVisibility);
   const filters = useGridStore((s) => s.filters);
   const toggleFuelType = useGridStore((s) => s.toggleFuelType);
 
@@ -103,6 +104,16 @@ export function MapLegend() {
                     </div>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {layerVisibility.floodOverlay && (
+              <div className="border-t border-[#293742] pt-2 flex items-center justify-between text-[9px] text-[#06b6d4]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full border border-[#22d3ee] bg-[#06b6d4]/40 animate-pulse" />
+                  <span>Flood Hazard (100-Yr Surge)</span>
+                </div>
+                <span className="font-bold font-mono">ACTIVE</span>
               </div>
             )}
           </div>
