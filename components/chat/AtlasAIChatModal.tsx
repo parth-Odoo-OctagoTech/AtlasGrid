@@ -21,6 +21,10 @@ import {
   CheckCircle2,
   XCircle,
   Globe,
+  Eye,
+  EyeOff,
+  Trash2,
+  Lock,
 } from "lucide-react";
 import { AIQueryAction } from "@/lib/services/ai-query-engine";
 import { MarkdownContent } from "./MarkdownContent";
@@ -60,6 +64,7 @@ export function AtlasAIChatModal() {
   const [geminiApiKey, setGeminiApiKey] = useState("");
   const [showSettings, setShowSettings] = useState(false);
   const [keySaved, setKeySaved] = useState(false);
+  const [showKey, setShowKey] = useState(false);
 
   // Key testing state
   const [isTestingKey, setIsTestingKey] = useState(false);
@@ -346,7 +351,7 @@ export function AtlasAIChatModal() {
                   <span className="h-1.5 w-1.5 rounded-full bg-[#15b371] animate-pulse" />
                   {connectedModel
                     ? connectedModel.replace("gemini-", "GEMINI ").toUpperCase()
-                    : "GEMINI 3.6 ACTIVE"}
+                    : "GEMINI ACTIVE"}
                 </button>
               ) : (
                 <button
@@ -389,39 +394,103 @@ export function AtlasAIChatModal() {
       {/* Settings Panel Drawer */}
       {showSettings && (
         <div className="border-b border-[#293742] bg-[#101418] p-3.5 text-xs font-mono">
-          <div className="flex items-center justify-between mb-1.5">
+          <div className="flex items-center justify-between mb-2">
             <span className="flex items-center gap-1.5 font-bold text-[#f5f8fa]">
-              <Key className="h-3.5 w-3.5 text-[#2b95d6]" />
-              GOOGLE GEMINI API KEY INTEGRATION
+              <Lock className="h-3.5 w-3.5 text-[#2b95d6]" />
+              SECURE GEMINI API CREDENTIALS
             </span>
-            {keySaved && (
-              <span className="flex items-center gap-1 text-[10px] text-[#15b371]">
-                <Check className="h-3 w-3" /> SAVED
-              </span>
-            )}
+            <div className="flex items-center gap-2">
+              {keySaved && (
+                <span className="flex items-center gap-1 text-[10px] text-[#15b371]">
+                  <Check className="h-3 w-3" /> SAVED
+                </span>
+              )}
+              {geminiApiKey ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      localStorage.removeItem("atlasgrid_gemini_key");
+                    } catch {
+                      // ignore
+                    }
+                    setGeminiApiKey("");
+                    setKeyTestResult(null);
+                  }}
+                  className="flex items-center gap-1 rounded bg-[#db3737]/15 border border-[#db3737]/30 px-2 py-0.5 text-[10px] font-semibold text-[#f55656] hover:bg-[#db3737]/30 hover:border-[#db3737]/50 transition-colors cursor-pointer"
+                  title="Purge API Key from Browser Storage"
+                >
+                  <Trash2 className="h-3 w-3" />
+                  <span>Purge Key</span>
+                </button>
+              ) : null}
+            </div>
           </div>
+
           <p className="text-[11px] text-[#8a9ba8] mb-2.5 leading-relaxed">
-            AtlasGrid connects directly to your Google Gemini API key (supports Gemini 3.6 Flash, 3.7 Flash, 2.0 Flash & 1.5 Flash).
-            Enter your key below and click <strong>Test Key</strong> to verify instant connectivity.
+            AtlasGrid connects directly to your Google Gemini API key with automatic model discovery (Gemini 2.5 Flash, 3.6 Flash, 2.0 Flash &amp; Pro).
+            Your key is stored securely in your browser&apos;s isolated memory and masked to protect against shoulder surfing.
           </p>
 
+          {/* Masked Active Key Display Card */}
+          {geminiApiKey ? (
+            <div className="mb-2.5 rounded border border-[#293742] bg-[#141b22] px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-2 min-w-0">
+                <ShieldCheck className="h-4 w-4 text-[#15b371] shrink-0" />
+                <div className="truncate text-[11px]">
+                  <span className="text-[#8a9ba8]">Active Key: </span>
+                  <span className="font-mono text-[#f5f8fa] font-semibold tracking-wider">
+                    {showKey
+                      ? geminiApiKey
+                      : geminiApiKey.length > 8
+                        ? `${geminiApiKey.slice(0, 6)}••••••••••••••••${geminiApiKey.slice(-4)}`
+                        : "••••••••••••••••"}
+                  </span>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowKey(!showKey)}
+                className="p-1 text-[#8a9ba8] hover:text-[#f5f8fa] rounded transition-colors ml-2 shrink-0 cursor-pointer"
+                title={showKey ? "Mask API Key" : "Show API Key"}
+                aria-label={showKey ? "Mask API Key" : "Show API Key"}
+              >
+                {showKey ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+              </button>
+            </div>
+          ) : null}
+
           <div className="flex gap-2 mb-2">
-            <input
-              type="text"
-              value={geminiApiKey}
-              onChange={(e) => {
-                const val = e.target.value;
-                setGeminiApiKey(val);
-                saveApiKey(val);
-                setKeyTestResult(null);
-              }}
-              placeholder="Paste Google AI Studio Key (AIzaSy...)"
-              className="flex-1 rounded border border-[#293742] bg-[#182026] px-2.5 py-1.5 text-xs text-[#f5f8fa] placeholder-[#5c7080] focus:border-[#2b95d6] focus:outline-none font-mono"
-            />
+            <div className="relative flex-1">
+              <input
+                type={showKey ? "text" : "password"}
+                autoComplete="new-password"
+                spellCheck={false}
+                value={geminiApiKey}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setGeminiApiKey(val);
+                  saveApiKey(val);
+                  setKeyTestResult(null);
+                }}
+                placeholder="Paste Google AI Studio Key (AIzaSy...)"
+                className="w-full rounded border border-[#293742] bg-[#182026] pl-2.5 pr-8 py-1.5 text-xs text-[#f5f8fa] placeholder-[#5c7080] focus:border-[#2b95d6] focus:outline-none font-mono tracking-wider"
+              />
+              <button
+                type="button"
+                onClick={() => setShowKey(!showKey)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-[#8a9ba8] hover:text-[#f5f8fa] transition-colors p-0.5 cursor-pointer"
+                title={showKey ? "Mask API Key" : "Show API Key"}
+                aria-label={showKey ? "Mask API Key" : "Show API Key"}
+              >
+                {showKey ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+              </button>
+            </div>
             <button
+              type="button"
               onClick={() => testApiKey()}
               disabled={isTestingKey || !geminiApiKey.trim()}
-              className="flex items-center gap-1 rounded bg-[#137cbd] px-3 py-1.5 font-mono text-xs font-semibold text-white hover:bg-[#2b95d6] transition-colors disabled:opacity-50 cursor-pointer"
+              className="flex items-center gap-1 rounded bg-[#137cbd] px-3 py-1.5 font-mono text-xs font-semibold text-white hover:bg-[#2b95d6] transition-colors disabled:opacity-50 cursor-pointer shrink-0"
             >
               {isTestingKey ? (
                 <>
@@ -458,7 +527,10 @@ export function AtlasAIChatModal() {
           )}
 
           <div className="mt-2 flex items-center justify-between text-[10px] text-[#5c7080]">
-            <span>Keys are stored strictly on client localStorage</span>
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="h-3 w-3 text-[#15b371]" />
+              Client isolated storage • Masked against shoulder surfing
+            </span>
             <a
               href="https://aistudio.google.com/app/apikey"
               target="_blank"

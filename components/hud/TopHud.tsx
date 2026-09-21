@@ -128,10 +128,10 @@ export function TopHud() {
   return (
     <header className="absolute left-0 right-0 top-0 z-30 flex h-12 items-center justify-between px-3 text-white select-none border-b border-[#293742] bg-[#182026] shadow-sm">
       {/* 1. Left Branding & Palantir Ontology Emblem */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2.5">
         <div className="flex items-center gap-2">
           {/* Palantir Industrial Monogram Icon */}
-          <div className="flex h-7 w-7 items-center justify-center rounded bg-[#101418] border border-[#293742] text-[#2b95d6]">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded bg-[#101418] border border-[#293742] text-[#2b95d6]">
             <svg
               className="h-4 w-4"
               viewBox="0 0 24 24"
@@ -146,23 +146,21 @@ export function TopHud() {
               <circle cx="12" cy="12" r="2" fill="#f5f8fa" />
             </svg>
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold tracking-wider text-[#f5f8fa]">
-                ATLASGRID
-              </span>
-              <span className="text-[10px] font-mono text-[#8a9ba8]">
-                // FOUNDRY
-              </span>
-            </div>
+          <div className="flex items-baseline gap-1.5 leading-none">
+            <span className="text-xs font-mono font-bold tracking-wider text-[#f5f8fa]">
+              ATLASGRID
+            </span>
+            <span className="text-[10px] font-mono text-[#8a9ba8]">
+              // FOUNDRY
+            </span>
           </div>
         </div>
 
         {/* System Environment & Status Tag */}
         <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-[#293742]">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#101418] border border-[#293742] text-[#a7b6c2]">
+          <span className="h-7 inline-flex items-center gap-1.5 px-2.5 rounded text-[10px] font-mono font-semibold bg-[#101418] border border-[#293742] text-[#a7b6c2] leading-none">
             <span
-              className={`h-1.5 w-1.5 rounded-full ${
+              className={`h-1.5 w-1.5 shrink-0 rounded-full ${
                 !mounted
                   ? "bg-[#5c7080]"
                   : realtimeConnected
@@ -172,24 +170,26 @@ export function TopHud() {
                   : "bg-[#137cbd]"
               }`}
             />
-            {!mounted
-              ? "CONNECTING..."
-              : isReplayMode
-              ? "SCENARIO REPLAY"
-              : "ONTOLOGY SYNCED"}
+            <span>
+              {!mounted
+                ? "CONNECTING..."
+                : isReplayMode
+                ? "SCENARIO REPLAY"
+                : "ONTOLOGY SYNCED"}
+            </span>
           </span>
 
           {/* Autonomous Crawler Bot Status Interactive Pill */}
           <button
             onClick={handleTriggerSync}
             disabled={isSyncing}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[#293742] bg-[#101418] hover:bg-[#182026] hover:border-[#2b95d6]/50 text-[10px] font-mono text-[#8a9ba8] transition-colors cursor-pointer group"
+            className="h-7 hidden sm:inline-flex items-center gap-1.5 px-2.5 rounded border border-[#293742] bg-[#101418] hover:bg-[#182026] hover:border-[#2b95d6]/50 text-[10px] font-mono text-[#8a9ba8] transition-colors cursor-pointer group leading-none"
             title="AtlasGrid Continuous Crawler Bot: Click to trigger instant grid & registry sync"
           >
             {isSyncing ? (
-              <RefreshCw className="h-3 w-3 animate-spin text-[#2b95d6]" />
+              <RefreshCw className="h-3 w-3 shrink-0 animate-spin text-[#2b95d6]" />
             ) : (
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#15b371]" />
               </span>
@@ -205,79 +205,85 @@ export function TopHud() {
 
           {/* Live UTC Master Clock */}
           {mounted && utcTime && (
-            <span className="hidden xl:inline-flex items-center gap-1 text-[10px] font-mono text-[#8a9ba8] px-1.5 py-0.5">
-              <Clock className="h-3 w-3 text-[#5c7080]" />
+            <span className="h-7 hidden xl:inline-flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] px-2 leading-none">
+              <Clock className="h-3 w-3 shrink-0 text-[#5c7080]" />
               <span className="tabular-nums">{utcTime}</span>
             </span>
           )}
         </div>
       </div>
 
-      {/* 2. Center Ontology Asset Counters (Foundry High-Density Ticker) */}
-      <div className="hidden lg:flex items-center gap-5 text-xs font-mono">
+      {/* 2. Center Ontology Asset Counters (Foundry High-Density Ticker - Crisp Baseline Alignment) */}
+      <div className="hidden lg:flex items-center gap-4 font-mono">
         {/* Total Generation Node Load */}
-        <div className="flex items-center gap-2">
-          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+        <div className="flex items-baseline gap-1.5 leading-none">
+          <span className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
             GEN:
-          </div>
-          <div className="text-xs font-bold text-[#f5f8fa] tabular-nums">
-            {totalGenGw} <span className="text-[#8a9ba8] font-normal text-[10px]">GW</span>
-          </div>
+          </span>
+          <span className="text-xs font-bold text-[#f5f8fa] tabular-nums">
+            {totalGenGw}
+          </span>
+          <span className="text-[10px] text-[#8a9ba8]">GW</span>
           <span className="text-[10px] text-[#5c7080]">/ {totalCapGw} GW</span>
         </div>
 
-        <div className="h-3.5 w-[1px] bg-[#293742]" />
+        <div className="h-3.5 w-[1px] bg-[#293742] self-center" />
 
         {/* Clean Energy Share */}
-        <div className="flex items-center gap-1.5">
-          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+        <div className="flex items-baseline gap-1.5 leading-none">
+          <span className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
             CLEAN:
-          </div>
-          <div className="text-xs font-bold text-[#15b371] tabular-nums">
+          </span>
+          <span className="text-xs font-bold text-[#15b371] tabular-nums">
             {cleanPct}%
-          </div>
+          </span>
         </div>
 
-        <div className="h-3.5 w-[1px] bg-[#293742]" />
+        <div className="h-3.5 w-[1px] bg-[#293742] self-center" />
 
-        {/* Global Data Center Compute Power Demand (Clickable to open Data Center Fleet Directory) */}
+        {/* Global Data Center Compute Power Demand */}
         <button
           onClick={() => setDcFleetOpen(true)}
-          className="flex items-center gap-2 text-left hover:text-[#2b95d6] transition-colors cursor-pointer group"
+          className="flex items-baseline gap-1.5 leading-none text-left hover:text-[#2b95d6] transition-colors cursor-pointer group"
           title="Open Data Center Object Explorer (Hotkey: O)"
         >
-          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] group-hover:text-[#2b95d6] tracking-wider">
+          <span className="text-[10px] uppercase font-semibold text-[#8a9ba8] group-hover:text-[#2b95d6] tracking-wider">
             DC LOAD:
-          </div>
-          <div className="text-xs font-bold text-[#a7b6c2] group-hover:text-white tabular-nums">
-            {(totalDcPowerMw / 1000).toFixed(1)} <span className="text-[#8a9ba8] font-normal text-[10px]">GW ({dataCenters.length.toLocaleString()} DCs)</span>
-          </div>
+          </span>
+          <span className="text-xs font-bold text-[#a7b6c2] group-hover:text-white tabular-nums">
+            {(totalDcPowerMw / 1000).toFixed(1)}
+          </span>
+          <span className="text-[10px] text-[#8a9ba8]">GW</span>
+          <span className="text-[10px] text-[#5c7080]">
+            ({dataCenters.length.toLocaleString()} DCs)
+          </span>
         </button>
 
-        <div className="h-3.5 w-[1px] bg-[#293742]" />
+        <div className="h-3.5 w-[1px] bg-[#293742] self-center" />
 
         {/* Average Spot Price */}
-        <div className="flex items-center gap-1.5">
-          <div className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
+        <div className="flex items-baseline gap-1.5 leading-none">
+          <span className="text-[10px] uppercase font-semibold text-[#8a9ba8] tracking-wider">
             SPOT:
-          </div>
-          <div className="text-xs font-bold text-[#f29d49] tabular-nums">
-            ${avgPrice} <span className="text-[#8a9ba8] font-normal text-[10px]">/MWh</span>
-          </div>
+          </span>
+          <span className="text-xs font-bold text-[#f29d49] tabular-nums">
+            ${avgPrice}
+          </span>
+          <span className="text-[10px] text-[#8a9ba8]">/MWh</span>
         </div>
       </div>
 
-      {/* 3. Right Palantir Action Group & Omnibar Trigger */}
+      {/* 3. Right Palantir Action Group & Omnibar Trigger - Unified Centerline */}
       <div className="flex items-center gap-1.5">
         {/* Omnibar Spotlight Search */}
         <button
           onClick={() => setSearchOpen(true)}
-          className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs text-[#a7b6c2] bg-[#101418] border border-[#293742] hover:border-[#30404d] hover:text-white transition-colors"
+          className="h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none text-[#a7b6c2] bg-[#101418] border border-[#293742] hover:border-[#30404d] hover:text-white transition-colors"
           title="Search Entities & Objects (⌘K)"
         >
-          <Search className="h-3.5 w-3.5 text-[#8a9ba8]" />
-          <span className="hidden md:inline text-[11px] font-mono">Omnibar</span>
-          <kbd className="hidden md:inline rounded bg-[#202b33] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+          <Search className="h-3.5 w-3.5 shrink-0 text-[#8a9ba8]" />
+          <span className="hidden md:inline">Omnibar</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#202b33] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             ⌘K
           </kbd>
         </button>
@@ -285,12 +291,12 @@ export function TopHud() {
         {/* Object Explorer (Foundry Catalog) */}
         <button
           onClick={() => setDcFleetOpen(true)}
-          className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs text-[#f5f8fa] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:border-[#30404d] transition-colors"
+          className="h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none text-[#f5f8fa] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:border-[#30404d] transition-colors"
           title="Open Object Explorer (O)"
         >
-          <Server className="h-3.5 w-3.5 text-[#2b95d6]" />
-          <span className="hidden sm:inline text-[11px] font-mono font-medium">Objects</span>
-          <kbd className="hidden md:inline rounded bg-[#101418] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+          <Server className="h-3.5 w-3.5 shrink-0 text-[#2b95d6]" />
+          <span className="hidden sm:inline font-medium">Objects</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             O
           </kbd>
         </button>
@@ -298,12 +304,12 @@ export function TopHud() {
         {/* Analytics Nexus */}
         <button
           onClick={() => setAnalyticsOpen(true)}
-          className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs text-[#f5f8fa] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:border-[#30404d] transition-colors"
+          className="h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none text-[#f5f8fa] bg-[#202b33] border border-[#293742] hover:bg-[#293742] hover:border-[#30404d] transition-colors"
           title="Open Grid Analytics (A)"
         >
-          <BarChart3 className="h-3.5 w-3.5 text-[#8a9ba8]" />
-          <span className="hidden sm:inline text-[11px] font-mono">Analytics</span>
-          <kbd className="hidden md:inline rounded bg-[#101418] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+          <BarChart3 className="h-3.5 w-3.5 shrink-0 text-[#8a9ba8]" />
+          <span className="hidden sm:inline">Analytics</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             A
           </kbd>
         </button>
@@ -311,17 +317,17 @@ export function TopHud() {
         {/* Anomaly Alerts */}
         <button
           onClick={() => setAlertsOpen(true)}
-          className={`flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors ${
+          className={`h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none transition-colors ${
             criticalAlertsCount > 0
               ? "bg-[#db3737]/20 border border-[#db3737]/40 text-[#f55656]"
               : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742]"
           }`}
           title="Open Alert Center (L)"
         >
-          <AlertTriangle className="h-3.5 w-3.5 text-[#d9822b]" />
-          <span className="hidden sm:inline text-[11px] font-mono">Alerts</span>
+          <AlertTriangle className="h-3.5 w-3.5 shrink-0 text-[#d9822b]" />
+          <span className="hidden sm:inline">Alerts</span>
           {liveAlerts.length > 0 && (
-            <span className="rounded bg-[#db3737]/30 px-1 py-0.2 text-[9px] font-mono font-bold text-[#f55656]">
+            <span className="h-4 min-w-[18px] px-1 inline-flex items-center justify-center rounded bg-[#db3737]/30 text-[9px] font-mono font-bold text-[#f55656] leading-none">
               {liveAlerts.length}
             </span>
           )}
@@ -330,16 +336,16 @@ export function TopHud() {
         {/* AI Copilot Trigger */}
         <button
           onClick={() => setChatOpen(!isChatOpen)}
-          className={`flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors cursor-pointer ${
+          className={`h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none transition-colors cursor-pointer ${
             isChatOpen
               ? "bg-[#137cbd] text-white border border-[#2b95d6] shadow-sm"
               : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742] hover:border-[#2b95d6]/50"
           }`}
           title="Open AtlasGrid AI Copilot (⌘J)"
         >
-          <Sparkles className={`h-3.5 w-3.5 ${isChatOpen ? "text-white" : "text-[#2b95d6]"}`} />
-          <span className="hidden sm:inline text-[11px] font-mono font-medium">Copilot</span>
-          <kbd className="hidden md:inline rounded bg-[#101418] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+          <Sparkles className={`h-3.5 w-3.5 shrink-0 ${isChatOpen ? "text-white" : "text-[#2b95d6]"}`} />
+          <span className="hidden sm:inline font-medium">Copilot</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             ⌘J
           </kbd>
         </button>
@@ -347,20 +353,20 @@ export function TopHud() {
         {/* Security Clearance Perimeter & Terminal Lock */}
         <div className="flex items-center gap-1.5 pl-1.5 border-l border-[#293742]">
           <div
-            className="hidden xl:flex items-center gap-1 px-2 py-0.5 rounded bg-[#101418] border border-[#293742] text-[10px] font-mono text-[#15b371]"
+            className="h-7 hidden xl:flex items-center gap-1 px-2.5 rounded bg-[#101418] border border-[#293742] text-[10px] font-mono leading-none text-[#15b371]"
             title="Authenticated with Level-5 Top Secret Clearance"
           >
-            <ShieldCheck className="h-3 w-3 text-[#15b371]" />
+            <ShieldCheck className="h-3 w-3 shrink-0 text-[#15b371]" />
             <span className="font-semibold text-[#f5f8fa]">{user?.username || "ADMIN"}</span>
             <span className="text-[#5c7080]">// LVL-5</span>
           </div>
 
           <button
             onClick={lockTerminal}
-            className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono text-[#8a9ba8] bg-[#101418] border border-[#293742] hover:bg-[#db3737]/20 hover:text-[#f55656] hover:border-[#db3737]/40 transition-colors cursor-pointer"
+            className="h-7 flex items-center gap-1 rounded px-2 text-[11px] font-mono leading-none text-[#8a9ba8] bg-[#101418] border border-[#293742] hover:bg-[#db3737]/20 hover:text-[#f55656] hover:border-[#db3737]/40 transition-colors cursor-pointer"
             title="Lock Terminal & Terminate Session"
           >
-            <Lock className="h-3 w-3" />
+            <Lock className="h-3 w-3 shrink-0" />
             <span className="hidden md:inline">Lock</span>
           </button>
         </div>

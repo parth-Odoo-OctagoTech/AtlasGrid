@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
     if (geminiKey) {
       try {
         const groundingContext = buildGroundingPromptContext();
-        const basePayload = {
+        const payload = {
           contents: [
             {
               role: "user",
@@ -100,100 +100,105 @@ export async function POST(req: NextRequest) {
             },
           ],
           generationConfig: {
-            maxOutputTokens: 1200,
+            maxOutputTokens: 1000,
           },
         };
 
-        // Priority model cascade starting with Gemini 3.6 Flash
-        const models = [
-          "gemini-3.6-flash",
-          "gemini-3.7-flash",
-          "gemini-2.5-flash",
-          "gemini-2.0-flash",
-          "gemini-1.5-flash",
-        ];
+        // Dynamic model discovery for the user's key
+        let candidateModels: string[] = [];
+        try {
+          const modelsListUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${geminiKey}`;
+          const listRes = await fetch(modelsListUrl, { method: "GET" });
+          if (listRes.ok) {
+            const listData = await listRes.json().catch(() => ({}));
+            if (Array.isArray(listData.models)) {
+              const validModels = listData.models
+                .filter((m: any) => {
+                  const name = (m.name || "").replace(/^models\//, "");
+                  const isGenerateContent =
+                    Array.isArray(m.supportedGenerationMethods) &&
+                    m.supportedGenerationMethods.includes("generateContent");
+                  const isTextModel =
+                    !name.includes("embedding") &&
+                    !name.includes("aqa") &&
+                    !name.includes("imagen") &&
+                    !name.includes("bison");
+                  return isGenerateContent && isTextModel;
+                })
+                .map((m: any) => (m.name || "").replace(/^models\//, ""));
+
+              validModels.sort((a: string, b: string) => {
+                const score = (modelName: string) => {
+                  if (modelName === "gemini-3.6-flash") return 110;
+                  if (modelName === "gemini-2.5-flash") return 105;
+                  if (modelName === "gemini-2.0-flash") return 100;
+                  if (modelName === "gemini-2.0-flash-lite") return 95;
+                  if (modelName.includes("2.5-flash")) return 90;
+                  if (modelName.includes("2.0-flash")) return 85;
+                  if (modelName.includes("flash")) return 70;
+                  if (modelName.includes("pro")) return 60;
+                  return 10;
+                };
+                return score(b) - score(a);
+              });
+
+              if (validModels.length > 0) {
+                candidateModels = validModels;
+              }
+            }
+          }
+        } catch {
+          // fallback to static models list
+        }
+
+        if (candidateModels.length === 0) {
+          candidateModels = [
+            "gemini-2.5-flash",
+            "gemini-3.6-flash",
+            "gemini-2.0-flash",
+            "gemini-2.0-flash-lite",
+            "gemini-pro",
+          ];
+        }
+
         let candidateText: string | null = null;
         let lastError: string | null = null;
-        let successfulModel: string | null = null;
-        let geminiGroundingSources: WebSearchResult[] = [];
 
-        for (const model of models) {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`;
-
-          // Try with google_search tool first, then fallback to clean base payload if unsupported
-          const payloadAttempts = [
-            { ...basePayload, tools: [{ google_search: {} }] },
-            basePayload,
+        for (const model of candidateModels) {
+          const endpoints = [
+            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`,
+            `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${geminiKey}`,
           ];
 
-          let modelSucceeded = false;
-          for (const attempt of payloadAttempts) {
+          let succeeded = false;
+          for (const url of endpoints) {
             try {
               const geminiRes = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(attempt),
+                body: JSON.stringify(payload),
               });
 
               const geminiData = await geminiRes.json().catch(() => ({}));
 
               if (geminiRes.ok && geminiData?.candidates?.[0]?.content?.parts?.[0]?.text) {
                 candidateText = geminiData.candidates[0].content.parts[0].text;
-                successfulModel = model;
-                modelSucceeded = true;
-
-                // Extract Google native search grounding metadata if present
-                const metadata = geminiData.candidates[0]?.groundingMetadata;
-                if (metadata?.groundingChunks) {
-                  for (const chunk of metadata.groundingChunks) {
-                    if (chunk.web?.uri && chunk.web?.title) {
-                      geminiGroundingSources.push({
-                        title: chunk.web.title,
-                        url: chunk.web.uri,
-                        source: "Google Search",
-                        snippet: chunk.web.title,
-                      });
-                    }
-                  }
-                }
+                succeeded = true;
                 break;
-              } else {
-                lastError =
-                  geminiData?.error?.message ||
-                  `HTTP ${geminiRes.status}: Unable to complete Gemini inference with ${model}`;
-
-                // If error mentions tools or unsupported feature, retry with base payload (no tools)
-                if (
-                  geminiData?.error?.message &&
-                  (geminiData.error.message.toLowerCase().includes("tool") ||
-                    geminiData.error.message.toLowerCase().includes("search"))
-                ) {
-                  continue;
-                } else {
-                  break;
-                }
+              } else if (geminiData?.error?.message) {
+                lastError = geminiData.error.message;
               }
-            } catch (fetchErr: any) {
-              lastError = fetchErr.message;
-              break;
+            } catch (err: any) {
+              lastError = err.message || lastError;
             }
           }
 
-          if (modelSucceeded) {
+          if (succeeded) {
             break;
           }
         }
 
-        const combinedSources = [
-          ...geminiGroundingSources,
-          ...liveWebSources,
-        ].filter(
-          (s, idx, self) =>
-            idx === self.findIndex((other) => other.url === s.url)
-        ).slice(0, 4);
-
         if (candidateText) {
-          // Derive deterministic map actions & facts from local engine
           const localDerived = executeDatasetQuery(prompt);
 
           return NextResponse.json({
@@ -201,27 +206,27 @@ export async function POST(req: NextRequest) {
             answer: candidateText,
             facts: localDerived.facts,
             actions: localDerived.actions,
-            sources: combinedSources,
-            confidence: 0.99,
-            source: successfulModel || "gemini-3.6-flash",
-            model: successfulModel,
+            sources: liveWebSources.slice(0, 4),
+            confidence: 0.98,
+            source: "gemini-grounded",
           });
         } else if (lastError) {
-          // If Gemini API reported an explicit error, provide feedback alongside grounded data
+          // Return clean grounded answer without ugly error banners, but pass error in metadata
+          const sanitizedError = geminiKey ? lastError.replaceAll(geminiKey, "[REDACTED_API_KEY]") : lastError;
           const localDerived = executeDatasetQuery(prompt);
           return NextResponse.json({
             success: true,
-            answer: `> ⚠️ **Gemini API Notice**: Google returned: *"${lastError}"*.\n> Displaying verified AtlasGrid ground truth ontology below:\n\n${localDerived.answer}`,
+            answer: localDerived.answer,
             facts: localDerived.facts,
             actions: localDerived.actions,
             sources: liveWebSources.slice(0, 3),
             confidence: 1.0,
             source: "grounded-dataset",
-            geminiError: lastError,
+            geminiError: sanitizedError,
           });
         }
       } catch (geminiError: any) {
-        console.warn("[Gemini API] Error, falling back to local grounded engine:", geminiError);
+        console.warn("[Gemini API] Error, falling back to local grounded engine:", geminiError?.message || "Unknown");
       }
     }
 

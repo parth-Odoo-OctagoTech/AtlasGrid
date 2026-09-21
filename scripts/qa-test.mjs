@@ -727,13 +727,25 @@ const chatModalSrc = fs.readFileSync(chatModalPath, "utf-8");
 assert(chatModalSrc.includes("How many data centres are in India?"), "AI Copilot includes prompt pill for India DC count");
 assert(chatModalSrc.includes("How many were there in 2025?"), "AI Copilot includes prompt pill for 2025 DC count");
 assert(chatModalSrc.includes("atlasgrid_gemini_key"), "AI Copilot provides user Gemini API key integration");
+assert(chatModalSrc.includes('type={showKey ? "text" : "password"}'), "AI Copilot enforces password masking for Gemini API key");
+assert(chatModalSrc.includes("Eye") && chatModalSrc.includes("EyeOff"), "AI Copilot includes show/hide visibility toggle for API key");
+assert(chatModalSrc.includes("Purge Key") && chatModalSrc.includes('removeItem("atlasgrid_gemini_key")'), "AI Copilot includes one-click key purge action");
+assert(chatModalSrc.includes("••••••••••••••••"), "AI Copilot provides masked credential preview to protect against shoulder surfing");
 
 const chatRouteSrc = fs.readFileSync(aiChatRoute, "utf-8");
 assert(chatRouteSrc.includes("gemini-3.6-flash"), "AI Chat route supports Gemini 3.6 Flash");
+assert(chatRouteSrc.includes("gemini-2.5-flash"), "AI Chat route supports Gemini 2.5 Flash");
+assert(!chatRouteSrc.includes("gemini-1.5-flash"), "AI Chat route has eliminated deprecated Gemini 1.5 Flash");
+assert(chatRouteSrc.includes("v1beta/models"), "AI Chat route implements dynamic model discovery");
+assert(chatRouteSrc.includes("[REDACTED_API_KEY]"), "AI Chat route redacts API keys from error responses");
 
 const testKeyRoutePath = path.join(process.cwd(), "app/api/ai/test-key/route.ts");
 const testKeySrc = fs.readFileSync(testKeyRoutePath, "utf-8");
 assert(testKeySrc.includes("gemini-3.6-flash"), "AI Test Key route validates Gemini 3.6 Flash connectivity");
+assert(testKeySrc.includes("gemini-2.5-flash"), "AI Test Key route validates Gemini 2.5 Flash connectivity");
+assert(!testKeySrc.includes("gemini-1.5-flash"), "AI Test Key route has eliminated deprecated Gemini 1.5 Flash");
+assert(testKeySrc.includes("v1beta/models"), "AI Test Key route implements dynamic model discovery");
+assert(testKeySrc.includes("[REDACTED_API_KEY]"), "AI Test Key route redacts API keys from test failure payloads");
 
 // ---------------------------------------------------------------------------
 // TEST 19: Authoritative Historical Database (Earthquakes, Severe Storms, Climate & DC Growth)
