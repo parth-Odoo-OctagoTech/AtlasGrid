@@ -94,6 +94,31 @@ export default function PowerGridDashboard() {
     staleTime: 10000,
   });
 
+  // 7. Fetch Siting Hazard & Telecom Layers (Sections 2 - 6)
+  const { data: sitingData } = useQuery({
+    queryKey: ["siting-layers"],
+    queryFn: async () => {
+      const res = await fetch("/api/siting");
+      if (!res.ok) return { darkFiberCorridors: [], seismicFaults: [], flightCorridors: [], hazardCorridors: [] };
+      return res.json();
+    },
+    staleTime: Infinity,
+  });
+
+  const setDarkFiberCorridors = useGridStore((s) => s.setDarkFiberCorridors);
+  const setSeismicFaults = useGridStore((s) => s.setSeismicFaults);
+  const setFlightCorridors = useGridStore((s) => s.setFlightCorridors);
+  const setHazardCorridors = useGridStore((s) => s.setHazardCorridors);
+
+  useEffect(() => {
+    if (sitingData?.darkFiberCorridors) {
+      setDarkFiberCorridors(sitingData.darkFiberCorridors);
+      setSeismicFaults(sitingData.seismicFaults);
+      setFlightCorridors(sitingData.flightCorridors);
+      setHazardCorridors(sitingData.hazardCorridors);
+    }
+  }, [sitingData, setDarkFiberCorridors, setSeismicFaults, setFlightCorridors, setHazardCorridors]);
+
   useEffect(() => {
     if (summaryData?.data) {
       setTelemetrySummary(summaryData.data);

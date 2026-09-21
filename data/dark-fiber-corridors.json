@@ -1,0 +1,330 @@
+[
+  {
+    "id": "df-ashburn-atlanta",
+    "name": "Mid-Atlantic to Southeast Express (Ashburn - Charlotte - Atlanta)",
+    "operator": "Zayo / Lumen Dark Fiber",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 432,
+    "coordinates": [
+      [
+        -77.4875,
+        39.0438
+      ],
+      [
+        -77.46,
+        38.75
+      ],
+      [
+        -77.5,
+        38.3
+      ],
+      [
+        -77.436,
+        37.5407
+      ],
+      [
+        -78.8986,
+        35.994
+      ],
+      [
+        -80.8431,
+        35.2271
+      ],
+      [
+        -82.394,
+        34.8526
+      ],
+      [
+        -84.388,
+        33.749
+      ]
+    ]
+  },
+  {
+    "id": "df-chicago-ashburn",
+    "name": "Low-Latency Financial Trunk (Chicago 350 E Cermak - Ashburn)",
+    "operator": "Lumen / Bandwidth IG",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 864,
+    "coordinates": [
+      [
+        -87.6298,
+        41.8781
+      ],
+      [
+        -85.1394,
+        41.0793
+      ],
+      [
+        -83.5552,
+        41.6528
+      ],
+      [
+        -81.6944,
+        41.4993
+      ],
+      [
+        -79.9959,
+        40.4406
+      ],
+      [
+        -78,
+        39.75
+      ],
+      [
+        -77.4875,
+        39.0438
+      ]
+    ]
+  },
+  {
+    "id": "df-silicon-valley-seattle",
+    "name": "Pacific Northwest West Coast Corridor (San Jose - Portland - Seattle)",
+    "operator": "Zayo / Electric Lightwave",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 576,
+    "coordinates": [
+      [
+        -121.8863,
+        37.3382
+      ],
+      [
+        -122.4194,
+        37.7749
+      ],
+      [
+        -122.2711,
+        37.8044
+      ],
+      [
+        -121.4944,
+        38.5816
+      ],
+      [
+        -122.3917,
+        40.5865
+      ],
+      [
+        -122.8756,
+        42.3265
+      ],
+      [
+        -123.0868,
+        44.0521
+      ],
+      [
+        -122.6784,
+        45.5152
+      ],
+      [
+        -122.9007,
+        47.0379
+      ],
+      [
+        -122.3321,
+        47.6062
+      ]
+    ]
+  },
+  {
+    "id": "df-dallas-phoenix-la",
+    "name": "Southern Transcon (Dallas Infomart - Phoenix - Los Angeles One Wilshire)",
+    "operator": "Lumen / Crown Castle",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 432,
+    "coordinates": [
+      [
+        -96.815,
+        32.798
+      ],
+      [
+        -97.3308,
+        32.7555
+      ],
+      [
+        -101.8552,
+        33.5779
+      ],
+      [
+        -106.485,
+        31.7619
+      ],
+      [
+        -110.9747,
+        32.2226
+      ],
+      [
+        -112.074,
+        33.4484
+      ],
+      [
+        -115.1398,
+        36.1699
+      ],
+      [
+        -117.3961,
+        33.9533
+      ],
+      [
+        -118.257,
+        34.0498
+      ]
+    ]
+  },
+  {
+    "id": "df-trans-europe-flap",
+    "name": "Europe FLAP Interconnect (Frankfurt - London - Amsterdam - Paris)",
+    "operator": "Arelion (Telia Carrier) / EXA Infrastructure",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 864,
+    "coordinates": [
+      [
+        8.6821,
+        50.1109
+      ],
+      [
+        6.1296,
+        49.6116
+      ],
+      [
+        4.3517,
+        50.8503
+      ],
+      [
+        4.9041,
+        52.3676
+      ],
+      [
+        1.8587,
+        50.9513
+      ],
+      [
+        0.1278,
+        51.5074
+      ],
+      [
+        2.3522,
+        48.8566
+      ],
+      [
+        7.7521,
+        48.5734
+      ],
+      [
+        8.6821,
+        50.1109
+      ]
+    ]
+  },
+  {
+    "id": "df-japan-tokyo-osaka",
+    "name": "Japan Tokaido Bullet Dark Fiber (Tokyo - Nagoya - Osaka)",
+    "operator": "NTT Communications / Arteria",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 576,
+    "coordinates": [
+      [
+        139.7671,
+        35.6812
+      ],
+      [
+        139.638,
+        35.4437
+      ],
+      [
+        138.3831,
+        34.9756
+      ],
+      [
+        136.9066,
+        35.1815
+      ],
+      [
+        135.8686,
+        35.0116
+      ],
+      [
+        135.5023,
+        34.6937
+      ]
+    ]
+  },
+  {
+    "id": "df-korea-seoul-busan",
+    "name": "South Korea Gyeongbu Backbone (Seoul - Daejeon - Daegu - Busan)",
+    "operator": "KT / LG Uplus / SK Broadband",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 576,
+    "coordinates": [
+      [
+        126.978,
+        37.5665
+      ],
+      [
+        127.1054,
+        37.3595
+      ],
+      [
+        127.3845,
+        36.3504
+      ],
+      [
+        128.6014,
+        35.8714
+      ],
+      [
+        129.0756,
+        35.1796
+      ]
+    ]
+  },
+  {
+    "id": "df-india-mumbai-delhi",
+    "name": "India Golden Quadrilateral Fiber (Mumbai - Gujarat - Delhi NCR)",
+    "operator": "Tata Communications / Reliance Jio",
+    "type": "long_haul",
+    "status": "active",
+    "fiberPairs": 432,
+    "coordinates": [
+      [
+        72.8777,
+        19.076
+      ],
+      [
+        72.9982,
+        19.1828
+      ],
+      [
+        73.1812,
+        22.3072
+      ],
+      [
+        72.5714,
+        23.0225
+      ],
+      [
+        75.7873,
+        26.9124
+      ],
+      [
+        77.0266,
+        28.4595
+      ],
+      [
+        77.209,
+        28.6139
+      ],
+      [
+        77.391,
+        28.5355
+      ]
+    ]
+  }
+]

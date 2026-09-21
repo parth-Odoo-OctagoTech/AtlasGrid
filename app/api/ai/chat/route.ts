@@ -8,14 +8,19 @@ import {
 
 export async function POST(req: NextRequest) {
   try {
-    // 1. Authenticate clearance
+    const body = await req.json().catch(() => ({}));
+    let { prompt, apiKey: clientApiKey } = body;
+
+    // 1. Authenticate clearance (allow if valid session OR if user provided their own key)
     const cookieToken = req.cookies.get("atlasgrid_session")?.value;
     const authHeader = req.headers.get("authorization");
     const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : null;
     const token = cookieToken || bearerToken;
 
     const auth = verifySessionToken(token);
-    if (!auth.valid) {
+    const hasOwnKey = typeof clientApiKey === "string" && clientApiKey.trim().length > 15;
+
+    if (!auth.valid && !hasOwnKey) {
       return NextResponse.json(
         {
           error: "Unauthorized: Level-5 Clearance Required to query AtlasGrid Intelligence Copilot.",
@@ -24,10 +29,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Parse request
-    const body = await req.json().catch(() => ({}));
-    const { prompt, apiKey: clientApiKey } = body;
-
+    // 2. Validate prompt
     if (!prompt || typeof prompt !== "string") {
       return NextResponse.json(
         { error: "A prompt query is required." },
@@ -35,14 +37,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const geminiKey = clientApiKey || process.env.GEMINI_API_KEY;
+    const geminiKey = (clientApiKey || process.env.GEMINI_API_KEY || "")
+      .trim()
+      .replace(/['"]/g, "");
 
     // 3. If Gemini key is available, call Gemini with grounded context
     if (geminiKey) {
       try {
         const groundingContext = buildGroundingPromptContext();
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`;
-
         const payload = {
           contents: [
             {
@@ -60,33 +62,58 @@ export async function POST(req: NextRequest) {
           },
         };
 
-        const geminiRes = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+        // Try primary model (gemini-1.5-flash), then fallback (gemini-2.0-flash)
+        const models = ["gemini-1.5-flash", "gemini-2.0-flash"];
+        let candidateText: string | null = null;
+        let lastError: string | null = null;
 
-        if (geminiRes.ok) {
-          const geminiData = await geminiRes.json();
-          const candidateText =
-            geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
+        for (const model of models) {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`;
+          const geminiRes = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
 
-          if (candidateText) {
-            // Also derive deterministic actions from local engine
-            const localDerived = executeDatasetQuery(prompt);
+          const geminiData = await geminiRes.json().catch(() => ({}));
 
-            return NextResponse.json({
-              success: true,
-              answer: candidateText,
-              facts: localDerived.facts,
-              actions: localDerived.actions,
-              confidence: 0.98,
-              source: "gemini-grounded",
-            });
+          if (geminiRes.ok && geminiData?.candidates?.[0]?.content?.parts?.[0]?.text) {
+            candidateText = geminiData.candidates[0].content.parts[0].text;
+            break;
+          } else {
+            lastError =
+              geminiData?.error?.message ||
+              `HTTP ${geminiRes.status}: Unable to complete Gemini inference`;
           }
         }
-      } catch (geminiError) {
-        console.warn("[Gemini API] Fallback to local grounded engine:", geminiError);
+
+        if (candidateText) {
+          // Derive deterministic map actions & facts from local engine
+          const localDerived = executeDatasetQuery(prompt);
+
+          return NextResponse.json({
+            success: true,
+            answer: candidateText,
+            facts: localDerived.facts,
+            actions: localDerived.actions,
+            confidence: 0.98,
+            source: "gemini-grounded",
+          });
+        } else if (lastError) {
+          // If Gemini API reported an explicit error, provide feedback alongside grounded data
+          const localDerived = executeDatasetQuery(prompt);
+          return NextResponse.json({
+            success: true,
+            answer: `> ⚠️ **Gemini API Notice**: Google returned: *"${lastError}"*.\n> Displaying verified AtlasGrid ground truth ontology below:\n\n${localDerived.answer}`,
+            facts: localDerived.facts,
+            actions: localDerived.actions,
+            confidence: 1.0,
+            source: "grounded-dataset",
+            geminiError: lastError,
+          });
+        }
+      } catch (geminiError: any) {
+        console.warn("[Gemini API] Error, falling back to local grounded engine:", geminiError);
       }
     }
 

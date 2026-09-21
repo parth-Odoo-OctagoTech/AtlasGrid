@@ -21,6 +21,10 @@ import {
   Zap,
   Satellite,
   Waves,
+  Network,
+  Activity,
+  Plane,
+  ShieldAlert,
 } from "lucide-react";
 
 export function MapControls() {
@@ -76,6 +80,7 @@ export function MapControls() {
     { id: "3d_column", label: "3D Extrusion (Generation MW)", icon: Box },
     { id: "heatmap_lmp", label: "LMP Nodal Price Heatmap", icon: Flame },
     { id: "hex_density", label: "Hexagon Density Aggregation", icon: Hexagon },
+    { id: "siting_score", label: "Site Suitability Siting Score (0-100)", icon: ShieldAlert },
   ];
 
   return (
@@ -181,6 +186,70 @@ export function MapControls() {
           <Cable className="h-3.5 w-3.5" />
           <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
             {layerVisibility.subseaCables ? "Layer: Hide Subsea Cables" : "Layer: Show Subsea Cables"}
+          </span>
+        </button>
+
+        {/* Terrestrial Dark Fiber Conduits Toggle */}
+        <button
+          onClick={() => toggleLayer("fiberConduits")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.fiberConduits
+              ? "bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/50 shadow-[0_0_8px_rgba(6,182,212,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Terrestrial Dark Fiber Conduits"
+        >
+          <Network className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.fiberConduits ? "Fiber: Hide Dark Fiber Conduits" : "Fiber: Show Dark Fiber Conduits"}
+          </span>
+        </button>
+
+        {/* Quaternary Active Seismic Fault Lines Toggle */}
+        <button
+          onClick={() => toggleLayer("seismicFaults")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.seismicFaults
+              ? "bg-[#ef4444]/20 text-[#ef4444] border border-[#ef4444]/50 shadow-[0_0_8px_rgba(239,68,68,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Quaternary Active Fault Lines (USGS & GEM)"
+        >
+          <Activity className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.seismicFaults ? "Seismic: Hide Fault Lines" : "Seismic: Show Fault Lines"}
+          </span>
+        </button>
+
+        {/* Airport Runway Approach Obstacle Cones Toggle */}
+        <button
+          onClick={() => toggleLayer("flightCorridors")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.flightCorridors
+              ? "bg-[#f43f5e]/20 text-[#f43f5e] border border-[#f43f5e]/50 shadow-[0_0_8px_rgba(244,63,94,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Airport Flight Approach Corridors (FAA Part 77)"
+        >
+          <Plane className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.flightCorridors ? "Airspace: Hide Flight Cones" : "Airspace: Show Flight Cones"}
+          </span>
+        </button>
+
+        {/* Gas Pipeline & Hazmat Rail Hazard Buffers Toggle */}
+        <button
+          onClick={() => toggleLayer("hazardBuffers")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.hazardBuffers
+              ? "bg-[#e11d48]/20 text-[#e11d48] border border-[#e11d48]/50 shadow-[0_0_8px_rgba(225,29,72,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle High-Pressure Gas Pipelines & Hazmat Rail Blast Buffers"
+        >
+          <ShieldAlert className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.hazardBuffers ? "Hazards: Hide Pipeline & Rail Buffers" : "Hazards: Show Pipeline & Rail Buffers"}
           </span>
         </button>
 

@@ -2,7 +2,7 @@
 
 import React, { useCallback, useMemo, useRef, useEffect } from "react";
 import DeckGL from "@deck.gl/react";
-import { ScatterplotLayer, ColumnLayer, ArcLayer, BitmapLayer, GeoJsonLayer } from "@deck.gl/layers";
+import { ScatterplotLayer, ColumnLayer, ArcLayer, BitmapLayer, GeoJsonLayer, PathLayer, PolygonLayer } from "@deck.gl/layers";
 import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
 import { TileLayer } from "@deck.gl/geo-layers";
 import { MapView, _GlobeView as GlobeView, FlyToInterpolator } from "@deck.gl/core";
@@ -12,6 +12,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useGridStore } from "@/lib/store/useGridStore";
 import { FUEL_CONFIG, FuelType, Interconnector, PowerPlant, Substation, getSubstationColor } from "@/lib/types/power-plant";
 import { DataCenter, OPERATOR_COLORS } from "@/lib/types/data-center";
+import { getSitingScoreColor } from "@/lib/services/siting-suitability-service";
 import {
   findLocalGridSupply,
   findSuppliedDataCenters,
@@ -202,6 +203,11 @@ export function DeckGLMap({
   const setHoveredFloodZone = useGridStore((s) => s.setHoveredFloodZone);
   const filters = useGridStore((s) => s.filters);
 
+  const darkFiberCorridors = useGridStore((s) => s.darkFiberCorridors);
+  const seismicFaults = useGridStore((s) => s.seismicFaults);
+  const flightCorridors = useGridStore((s) => s.flightCorridors);
+  const hazardCorridors = useGridStore((s) => s.hazardCorridors);
+
   const isGlobe = projectionMode === "globe";
 
   // Views Configuration (3D Globe vs 2D Mercator)
@@ -346,6 +352,31 @@ export function DeckGLMap({
           dc.country.toLowerCase().includes(q) ||
           dc.region.toLowerCase().includes(q)
       );
+    }
+
+    // Sections 2-6 Siting & Hazards Filtering
+    if (filters.minSitingScore && filters.minSitingScore > 0) {
+      list = list.filter((dc) => (dc.sitingSuitabilityScore || 50) >= filters.minSitingScore!);
+    }
+    if (filters.carrierNeutralOnly) {
+      list = list.filter((dc) => dc.carrierNeutral);
+    }
+    if (filters.maxIxpLatencyMs && filters.maxIxpLatencyMs > 0) {
+      list = list.filter((dc) => (dc.ixpLatencyMs || 5) <= filters.maxIxpLatencyMs!);
+    }
+    if (filters.floodRiskFilter === "no_high_flood") {
+      list = list.filter((dc) => dc.floodZone !== "AE" && dc.floodZone !== "VE");
+    } else if (filters.floodRiskFilter === "zero_flood_only") {
+      list = list.filter((dc) => dc.floodZone === "X");
+    }
+    if (filters.minFreeCoolingPct && filters.minFreeCoolingPct > 0) {
+      list = list.filter((dc) => (dc.freeCoolingHoursPct || 70) >= filters.minFreeCoolingPct!);
+    }
+    if (filters.waterStressFilter === "low_medium_only") {
+      list = list.filter((dc) => dc.waterStressBaseline === "Low" || dc.waterStressBaseline === "Medium");
+    }
+    if (filters.excludeHazardZones) {
+      list = list.filter((dc) => !dc.inFlightCorridor && (dc.nearestGasPipelineMeters || 1000) >= 500);
     }
 
     return list;
@@ -808,6 +839,73 @@ export function DeckGLMap({
       );
     }
 
+    // 6c. Terrestrial Dark Fiber Conduits Layer (Zayo, Lumen, Telia long-haul backbones)
+    if (layerVisibility.fiberConduits && darkFiberCorridors && darkFiberCorridors.length > 0) {
+      activeLayers.push(
+        new PathLayer({
+          id: "dark-fiber-conduits",
+          data: darkFiberCorridors,
+          getPath: (d: any) => d.coordinates,
+          getColor: [6, 182, 212, 210],
+          getWidth: 3,
+          widthMinPixels: 2,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+        })
+      );
+    }
+
+    // 6d. Quaternary Active Seismic Fault Lines Layer (USGS & GEM Active Faults)
+    if (layerVisibility.seismicFaults && seismicFaults && seismicFaults.length > 0) {
+      activeLayers.push(
+        new PathLayer({
+          id: "seismic-faults-layer",
+          data: seismicFaults,
+          getPath: (d: any) => d.coordinates,
+          getColor: (d: any) => (d.slipRateMmPerYr > 20 ? [239, 68, 68, 220] : [249, 115, 22, 200]),
+          getWidth: 3.5,
+          widthMinPixels: 2,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+        })
+      );
+    }
+
+    // 6e. Airport Runway Approach Obstacle Cones Layer (FAA Part 77 Imaginary Surfaces)
+    if (layerVisibility.flightCorridors && flightCorridors && flightCorridors.length > 0) {
+      activeLayers.push(
+        new PolygonLayer({
+          id: "flight-corridors-layer",
+          data: flightCorridors,
+          getPolygon: (d: any) => d.polygon,
+          getFillColor: [244, 63, 94, 55],
+          getLineColor: [244, 63, 94, 210],
+          stroked: true,
+          filled: true,
+          lineWidthMinPixels: 1.5,
+          pickable: true,
+          autoHighlight: true,
+        })
+      );
+    }
+
+    // 6f. Natural Gas Pipeline & Hazmat Rail Blast Buffers Layer (EIA & DOT PIR Corridors)
+    if (layerVisibility.hazardBuffers && hazardCorridors && hazardCorridors.length > 0) {
+      activeLayers.push(
+        new PathLayer({
+          id: "hazard-corridors-centerline",
+          data: hazardCorridors,
+          getPath: (d: any) => d.coordinates,
+          getColor: (d: any) => (d.type === "gas_pipeline" ? [225, 29, 72, 220] : [234, 179, 8, 220]),
+          getWidth: 2.5,
+          widthMinPixels: 2,
+          pickable: true,
+        })
+      );
+    }
+
     // 7. Global Data Centers Layer (4,351 Facilities from GE view)
     if (layerVisibility.datacenters && filteredDataCenters && filteredDataCenters.length > 0) {
       activeLayers.push(
@@ -817,10 +915,23 @@ export function DeckGLMap({
           getPosition: (d) => [d.longitude, d.latitude],
           getRadius: (d) => Math.max(1200, Math.sqrt(d.estimatedPowerMw) * 250),
           getFillColor: (d) => {
+            if (visualizationMode === "siting_score" || (filters.minSitingScore && filters.minSitingScore > 0)) {
+              const scoreMeta = getSitingScoreColor(d.sitingSuitabilityScore || 70);
+              return [...scoreMeta.rgb, 235] as [number, number, number, number];
+            }
             const col = OPERATOR_COLORS[d.operator] || OPERATOR_COLORS.Other;
             return [...col.rgb, 230] as [number, number, number, number];
           },
-          getLineColor: isLightMode ? [15, 23, 42, 220] : [255, 255, 255, 200],
+          getLineColor: (d) => {
+            if (visualizationMode === "siting_score" || (filters.minSitingScore && filters.minSitingScore > 0)) {
+              return (d.sitingSuitabilityScore || 70) >= 85
+                ? [16, 185, 129, 255]
+                : (d.sitingSuitabilityScore || 70) >= 70
+                ? [6, 182, 212, 255]
+                : [239, 68, 68, 255];
+            }
+            return isLightMode ? [15, 23, 42, 220] : [255, 255, 255, 200];
+          },
           stroked: true,
           lineWidthMinPixels: 1.5,
           radiusMinPixels: 4,
@@ -829,8 +940,8 @@ export function DeckGLMap({
           autoHighlight: true,
           highlightColor: [56, 189, 248, 255],
           updateTriggers: {
-            getFillColor: [filteredDataCenters],
-            getLineColor: [filteredDataCenters, isLightMode],
+            getFillColor: [filteredDataCenters, visualizationMode, filters.minSitingScore],
+            getLineColor: [filteredDataCenters, isLightMode, visualizationMode, filters.minSitingScore],
             getRadius: [filteredDataCenters],
           },
         })

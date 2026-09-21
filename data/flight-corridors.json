@@ -1,0 +1,152 @@
+[
+  {
+    "id": "flight-iad-runway-01r",
+    "airportCode": "IAD",
+    "airportName": "Washington Dulles International Airport (Northern Virginia)",
+    "runway": "01R/19L",
+    "corridorType": "approach_slope",
+    "clearanceFloorMeters": 45,
+    "polygon": [
+      [
+        -77.445,
+        38.9
+      ],
+      [
+        -77.42,
+        38.8
+      ],
+      [
+        -77.48,
+        38.8
+      ],
+      [
+        -77.46,
+        38.9
+      ],
+      [
+        -77.445,
+        38.9
+      ]
+    ]
+  },
+  {
+    "id": "flight-iad-runway-01c",
+    "airportCode": "IAD",
+    "airportName": "Dulles North Approach Corridor (Near Data Center Alley)",
+    "runway": "01C/19C",
+    "corridorType": "approach_slope",
+    "clearanceFloorMeters": 60,
+    "polygon": [
+      [
+        -77.46,
+        38.98
+      ],
+      [
+        -77.435,
+        39.08
+      ],
+      [
+        -77.495,
+        39.08
+      ],
+      [
+        -77.47,
+        38.98
+      ],
+      [
+        -77.46,
+        38.98
+      ]
+    ]
+  },
+  {
+    "id": "flight-sfo-runway-28",
+    "airportCode": "SFO",
+    "airportName": "San Francisco International Airport (Bay Approach)",
+    "runway": "28L/28R",
+    "corridorType": "approach_slope",
+    "clearanceFloorMeters": 30,
+    "polygon": [
+      [
+        -122.375,
+        37.6189
+      ],
+      [
+        -122.25,
+        37.58
+      ],
+      [
+        -122.24,
+        37.64
+      ],
+      [
+        -122.365,
+        37.625
+      ],
+      [
+        -122.375,
+        37.6189
+      ]
+    ]
+  },
+  {
+    "id": "flight-lhr-runway-27",
+    "airportCode": "LHR",
+    "airportName": "London Heathrow Airport (West London / Slough Corridor)",
+    "runway": "27L/27R",
+    "corridorType": "approach_slope",
+    "clearanceFloorMeters": 50,
+    "polygon": [
+      [
+        -0.4614,
+        51.47
+      ],
+      [
+        -0.6,
+        51.465
+      ],
+      [
+        -0.6,
+        51.52
+      ],
+      [
+        -0.4614,
+        51.49
+      ],
+      [
+        -0.4614,
+        51.47
+      ]
+    ]
+  },
+  {
+    "id": "flight-fra-runway-07",
+    "airportCode": "FRA",
+    "airportName": "Frankfurt Airport (Rhine-Main Airspace)",
+    "runway": "07R/25L",
+    "corridorType": "approach_slope",
+    "clearanceFloorMeters": 50,
+    "polygon": [
+      [
+        8.5705,
+        50.0379
+      ],
+      [
+        8.35,
+        50.01
+      ],
+      [
+        8.35,
+        50.06
+      ],
+      [
+        8.5705,
+        50.05
+      ],
+      [
+        8.5705,
+        50.0379
+      ]
+    ]
+  }
+]

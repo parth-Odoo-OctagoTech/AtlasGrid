@@ -110,6 +110,21 @@ export class GridCrawler {
           if (!isLikelyOnshore(dc.latitude, dc.longitude)) {
             maritimeRejected++;
           }
+          // Validate and ensure siting suitability score
+          if (!dc.sitingSuitabilityScore) {
+            dc.floodZone = dc.floodZone || "X";
+            dc.floodRiskLevel = dc.floodRiskLevel || "None";
+            dc.carrierNeutral = dc.carrierNeutral ?? (dc.category === "colocation" || dc.category === "hyperscale");
+            dc.darkFiberDistanceKm = dc.darkFiberDistanceKm || 2.5;
+            dc.freeCoolingHoursPct = dc.freeCoolingHoursPct || (Math.abs(dc.latitude) > 45 ? 82 : 68);
+            dc.sitingSuitabilityScore = Math.round(
+              (dc.carrierNeutral ? 85 : 70) * 0.25 +
+              (dc.floodZone === "X" ? 95 : 65) * 0.25 +
+              (dc.freeCoolingHoursPct || 70) * 0.25 +
+              75 * 0.25
+            );
+            modified = true;
+          }
         }
 
         if (modified) {

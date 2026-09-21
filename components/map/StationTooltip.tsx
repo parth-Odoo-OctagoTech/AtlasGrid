@@ -98,6 +98,46 @@ export function StationTooltip() {
             </span>
           </div>
 
+          {/* Siting Suitability Score & Core Siting Badge */}
+          {hoveredDataCenter.sitingSuitabilityScore != null && (
+            <div className="mt-2 rounded bg-[#101418] p-1.5 border border-[#293742]">
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] uppercase font-mono tracking-wider text-[#8a9ba8]">
+                  Siting Suitability Score
+                </span>
+                <span
+                  className={`font-mono text-[11px] font-bold ${
+                    hoveredDataCenter.sitingSuitabilityScore >= 85
+                      ? "text-[#10b981]"
+                      : hoveredDataCenter.sitingSuitabilityScore >= 70
+                      ? "text-[#06b6d4]"
+                      : hoveredDataCenter.sitingSuitabilityScore >= 55
+                      ? "text-[#f59e0b]"
+                      : "text-[#ef4444]"
+                  }`}
+                >
+                  {hoveredDataCenter.sitingSuitabilityScore} / 100
+                </span>
+              </div>
+              <div className="mt-1 grid grid-cols-3 gap-1 text-[9px] font-mono text-[#8a9ba8] border-t border-[#293742]/60 pt-1">
+                <div>
+                  <span className="text-[#5c7080] block">FIBER</span>
+                  <span className="text-[#f5f8fa] font-medium">{hoveredDataCenter.darkFiberDistanceKm != null ? `${hoveredDataCenter.darkFiberDistanceKm}km` : "Direct"}</span>
+                </div>
+                <div>
+                  <span className="text-[#5c7080] block">FLOOD</span>
+                  <span className={`${hoveredDataCenter.floodZone === "AE" || hoveredDataCenter.floodZone === "VE" ? "text-[#ef4444] font-bold" : "text-[#10b981]"}`}>
+                    {hoveredDataCenter.floodZone || "X"} ({hoveredDataCenter.floodRiskLevel || "None"})
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[#5c7080] block">FREE COOL</span>
+                  <span className="text-[#06b6d4] font-medium">{hoveredDataCenter.freeCoolingHoursPct != null ? `${hoveredDataCenter.freeCoolingHoursPct}%` : "72%"}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Metrics Grid */}
           <div className="grid grid-cols-2 gap-1.5 pt-2 text-xs font-mono">
             <div className="rounded bg-[#101418] p-1.5 border border-[#293742]">

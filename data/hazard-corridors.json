@@ -1,0 +1,109 @@
+[
+  {
+    "id": "hazard-transco-pipeline",
+    "name": "Transco Interstate Natural Gas Pipeline (36-42 inch, 1000 psi)",
+    "type": "gas_pipeline",
+    "operator": "Williams Companies",
+    "nominalDiameterInches": 42,
+    "operatingPressurePsi": 1000,
+    "pirBlastRadiusMeters": 400,
+    "coordinates": [
+      [
+        -95.3698,
+        29.7604
+      ],
+      [
+        -90.0715,
+        29.9511
+      ],
+      [
+        -86.8025,
+        33.5186
+      ],
+      [
+        -84.388,
+        33.749
+      ],
+      [
+        -80.8431,
+        35.2271
+      ],
+      [
+        -77.4875,
+        39.0438
+      ],
+      [
+        -75.1652,
+        39.9526
+      ],
+      [
+        -74.006,
+        40.7128
+      ]
+    ]
+  },
+  {
+    "id": "hazard-columbia-gas",
+    "name": "Columbia Gas Transmission System (30-inch High Pressure)",
+    "type": "gas_pipeline",
+    "operator": "TC Energy",
+    "nominalDiameterInches": 30,
+    "operatingPressurePsi": 900,
+    "pirBlastRadiusMeters": 310,
+    "coordinates": [
+      [
+        -82.9988,
+        39.9612
+      ],
+      [
+        -81.6326,
+        38.3498
+      ],
+      [
+        -78.1633,
+        39.1857
+      ],
+      [
+        -77.7169,
+        39.1374
+      ],
+      [
+        -77.45,
+        39.02
+      ]
+    ]
+  },
+  {
+    "id": "hazard-norfolk-southern-rail",
+    "name": "Class I Mainline Freight Rail (Toxic Inhalation Hazard TIH Transport)",
+    "type": "hazmat_rail",
+    "operator": "Norfolk Southern / CSX",
+    "pirBlastRadiusMeters": 800,
+    "coordinates": [
+      [
+        -87.6298,
+        41.8781
+      ],
+      [
+        -83.5552,
+        41.6528
+      ],
+      [
+        -81.6944,
+        41.4993
+      ],
+      [
+        -79.9959,
+        40.4406
+      ],
+      [
+        -77.0369,
+        38.9072
+      ],
+      [
+        -76.2859,
+        36.8508
+      ]
+    ]
+  }
+]

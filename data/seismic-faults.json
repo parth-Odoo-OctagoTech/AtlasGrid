@@ -1,0 +1,243 @@
+[
+  {
+    "id": "fault-san-andreas",
+    "name": "San Andreas Fault Zone (Northern & Southern Traces)",
+    "source": "USGS Quaternary Faults (Layer 21)",
+    "slipRateMmPerYr": 24.5,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (< 150 years)",
+    "coordinates": [
+      [
+        -124,
+        40.25
+      ],
+      [
+        -123,
+        38.3
+      ],
+      [
+        -122.5,
+        37.7
+      ],
+      [
+        -121.8,
+        36.9
+      ],
+      [
+        -120.8,
+        35.8
+      ],
+      [
+        -119.5,
+        34.8
+      ],
+      [
+        -118.1,
+        34.4
+      ],
+      [
+        -117.3,
+        34.1
+      ],
+      [
+        -116,
+        33.5
+      ],
+      [
+        -115.5,
+        33
+      ]
+    ]
+  },
+  {
+    "id": "fault-hayward",
+    "name": "Hayward Fault (East Bay)",
+    "source": "USGS Quaternary Faults",
+    "slipRateMmPerYr": 9,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (1868 M6.8)",
+    "coordinates": [
+      [
+        -122.38,
+        37.95
+      ],
+      [
+        -122.27,
+        37.87
+      ],
+      [
+        -122.2,
+        37.8
+      ],
+      [
+        -122.08,
+        37.67
+      ],
+      [
+        -121.98,
+        37.55
+      ],
+      [
+        -121.88,
+        37.43
+      ]
+    ]
+  },
+  {
+    "id": "fault-cascadia",
+    "name": "Cascadia Megathrust Subduction Zone",
+    "source": "USGS / GEM GAF-DB",
+    "slipRateMmPerYr": 40,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Holocene (1700 M9.0)",
+    "coordinates": [
+      [
+        -126,
+        49.5
+      ],
+      [
+        -125.5,
+        47.5
+      ],
+      [
+        -125,
+        45
+      ],
+      [
+        -124.5,
+        42
+      ],
+      [
+        -124.3,
+        40.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-new-madrid",
+    "name": "New Madrid Seismic Zone (Midwest Interplate Fault)",
+    "source": "USGS National Seismic Hazard",
+    "slipRateMmPerYr": 1.8,
+    "slipSense": "strike_slip",
+    "riskTier": "Moderate",
+    "age": "Historic (1811-1812 M7.5+)",
+    "coordinates": [
+      [
+        -90.5,
+        35.5
+      ],
+      [
+        -89.9,
+        36.1
+      ],
+      [
+        -89.5,
+        36.6
+      ],
+      [
+        -89.1,
+        37
+      ]
+    ]
+  },
+  {
+    "id": "fault-nankai-trough",
+    "name": "Nankai Trough Megathrust",
+    "source": "GEM Global Active Faults",
+    "slipRateMmPerYr": 55,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (1944/1946 M8.0+)",
+    "coordinates": [
+      [
+        138.5,
+        34.5
+      ],
+      [
+        137,
+        33.5
+      ],
+      [
+        135.5,
+        33
+      ],
+      [
+        133.5,
+        32.5
+      ],
+      [
+        131.5,
+        31.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-north-anatolian",
+    "name": "North Anatolian Fault Zone (Turkey - Europe Interface)",
+    "source": "GEM GAF-DB",
+    "slipRateMmPerYr": 22,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (1999 Izmit M7.6)",
+    "coordinates": [
+      [
+        27,
+        40.8
+      ],
+      [
+        29.97,
+        40.76
+      ],
+      [
+        31.17,
+        40.84
+      ],
+      [
+        33.5,
+        40.9
+      ],
+      [
+        36.5,
+        40.5
+      ],
+      [
+        40.5,
+        39.75
+      ]
+    ]
+  },
+  {
+    "id": "fault-himalayan-frontal",
+    "name": "Main Himalayan Frontal Thrust (MFT)",
+    "source": "GEM Active Faults / Wadia",
+    "slipRateMmPerYr": 18,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (2015 Gorkha M7.8)",
+    "coordinates": [
+      [
+        77,
+        30.5
+      ],
+      [
+        80,
+        29
+      ],
+      [
+        83.5,
+        27.8
+      ],
+      [
+        85.3,
+        27.7
+      ],
+      [
+        88.5,
+        26.8
+      ]
+    ]
+  }
+]

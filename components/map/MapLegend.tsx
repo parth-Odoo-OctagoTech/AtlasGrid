@@ -13,10 +13,11 @@ export function MapLegend() {
   const toggleFuelType = useGridStore((s) => s.toggleFuelType);
 
   const isLmpMode = visualizationMode === "heatmap_lmp";
+  const isSitingMode = visualizationMode === "siting_score";
 
   return (
     <div className="absolute bottom-4 left-4 z-20 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2 duration-200 font-sans">
-      <div className="w-68 rounded border border-[#293742] bg-[#182026]/95 backdrop-blur-md shadow-2xl text-[#f5f8fa] text-xs overflow-hidden">
+      <div className="w-72 rounded border border-[#293742] bg-[#182026]/95 backdrop-blur-md shadow-2xl text-[#f5f8fa] text-xs overflow-hidden">
         {/* Header */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
@@ -27,7 +28,11 @@ export function MapLegend() {
               <Layers className="h-2.5 w-2.5 text-[#2b95d6]" />
             </div>
             <span className="font-semibold uppercase tracking-wider">
-              {isLmpMode ? "Legend // LMP Ramp" : "Legend // Fuel Matrix"}
+              {isSitingMode
+                ? "Legend // Siting Suitability (0-100)"
+                : isLmpMode
+                ? "Legend // LMP Ramp"
+                : "Legend // Fuel Matrix"}
             </span>
           </div>
           {isCollapsed ? (
@@ -39,7 +44,21 @@ export function MapLegend() {
 
         {!isCollapsed && (
           <div className="p-2.5 space-y-2.5 font-mono text-xs">
-            {isLmpMode ? (
+            {isSitingMode ? (
+              /* Siting Suitability Score Legend */
+              <div>
+                <div className="mb-1 flex justify-between text-[9px] text-[#8a9ba8]">
+                  <span className="text-[#ef4444] font-semibold">&lt;55 Unfavorable</span>
+                  <span className="text-[#f59e0b]">55-69 Tier II</span>
+                  <span className="text-[#06b6d4]">70-84 Tier III</span>
+                  <span className="text-[#10b981] font-semibold">85+ Tier IV</span>
+                </div>
+                <div className="h-2 w-full rounded bg-gradient-to-r from-[#ef4444] via-[#f59e0b] via-[#06b6d4] to-[#10b981] shadow-inner" />
+                <div className="mt-1 text-[9px] text-[#8a9ba8] text-center">
+                  Weighted: Power (25%) • Fiber (20%) • Hazards (15%) • Climate (15%)
+                </div>
+              </div>
+            ) : isLmpMode ? (
               /* LMP Heatmap Color Legend */
               <div>
                 <div className="mb-1 flex justify-between text-[9px] text-[#8a9ba8]">
@@ -114,6 +133,46 @@ export function MapLegend() {
                   <span>Flood Hazard (100-Yr Surge)</span>
                 </div>
                 <span className="font-bold font-mono">ACTIVE</span>
+              </div>
+            )}
+
+            {layerVisibility.fiberConduits && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#06b6d4]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-0.5 w-3 bg-[#06b6d4]" />
+                  <span>Dark Fiber Conduits</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">Zayo/Lumen</span>
+              </div>
+            )}
+
+            {layerVisibility.seismicFaults && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#ef4444]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-0.5 w-3 bg-[#ef4444]" />
+                  <span>Quaternary Faults</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">USGS/GEM</span>
+              </div>
+            )}
+
+            {layerVisibility.flightCorridors && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#f43f5e]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-sm bg-[#f43f5e]/40 border border-[#f43f5e]" />
+                  <span>Flight Obstacle Cones</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">FAA Part 77</span>
+              </div>
+            )}
+
+            {layerVisibility.hazardBuffers && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#e11d48]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-0.5 w-3 bg-[#e11d48]" />
+                  <span>Gas & Rail Blast Zones</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">EIA/DOT</span>
               </div>
             )}
           </div>

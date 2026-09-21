@@ -3,6 +3,7 @@ import { BasemapStyle, FilterState, InfrastructureType, ProjectionMode, Viewport
 import { FuelType, Interconnector, PowerPlant, StationStatus, Substation } from "../types/power-plant";
 import { DataCenter } from "../types/data-center";
 import { GridAlert, GridSummary } from "../types/telemetry";
+import { DarkFiberCorridor, FlightCorridor, HazardCorridor, SeismicFaultLine } from "../types/siting";
 
 export interface LayerVisibility {
   plants: boolean;
@@ -14,6 +15,10 @@ export interface LayerVisibility {
   densityHex: boolean;
   labels: boolean;
   floodOverlay: boolean;
+  fiberConduits: boolean;
+  seismicFaults: boolean;
+  flightCorridors: boolean;
+  hazardBuffers: boolean;
 }
 
 export const INITIAL_FILTERS: FilterState = {
@@ -27,6 +32,13 @@ export const INITIAL_FILTERS: FilterState = {
   region: "GLOBAL",
   priceFilter: "all",
   searchQuery: "",
+  minSitingScore: 0,
+  carrierNeutralOnly: false,
+  maxIxpLatencyMs: 0,
+  floodRiskFilter: "all",
+  minFreeCoolingPct: 0,
+  waterStressFilter: "all",
+  excludeHazardZones: false,
 };
 
 export const DEFAULT_VIEWPORT: ViewportState = {
@@ -71,6 +83,12 @@ interface GridStoreState {
   dataCenters: DataCenter[];
   substations: Substation[];
 
+  // Sections 2-6 Siting Hazard & Fiber Layers
+  darkFiberCorridors: DarkFiberCorridor[];
+  seismicFaults: SeismicFaultLine[];
+  flightCorridors: FlightCorridor[];
+  hazardCorridors: HazardCorridor[];
+
   // Crawler Bot State
   crawlerStatus: {
     isRunning: boolean;
@@ -95,6 +113,10 @@ interface GridStoreState {
   setSelectedSubstation: (sub: Substation | null) => void;
   setDataCenters: (dcs: DataCenter[]) => void;
   setSubstations: (subs: Substation[]) => void;
+  setDarkFiberCorridors: (corridors: DarkFiberCorridor[]) => void;
+  setSeismicFaults: (faults: SeismicFaultLine[]) => void;
+  setFlightCorridors: (corridors: FlightCorridor[]) => void;
+  setHazardCorridors: (corridors: HazardCorridor[]) => void;
   setCrawlerStatus: (status: Partial<GridStoreState["crawlerStatus"]>) => void;
   selectStationById: (id: string | null, plants?: PowerPlant[]) => void;
   setHoveredStation: (
@@ -175,6 +197,10 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
     densityHex: false,
     labels: true,
     floodOverlay: false,
+    fiberConduits: true,
+    seismicFaults: true,
+    flightCorridors: false,
+    hazardBuffers: false,
   },
 
   hoveredStation: null,
@@ -186,6 +212,15 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   filters: INITIAL_FILTERS,
   dataCenters: [],
   substations: [],
+  darkFiberCorridors: [],
+  seismicFaults: [],
+  flightCorridors: [],
+  hazardCorridors: [],
+
+  setDarkFiberCorridors: (darkFiberCorridors) => set({ darkFiberCorridors }),
+  setSeismicFaults: (seismicFaults) => set({ seismicFaults }),
+  setFlightCorridors: (flightCorridors) => set({ flightCorridors }),
+  setHazardCorridors: (hazardCorridors) => set({ hazardCorridors }),
 
   crawlerStatus: {
     isRunning: false,

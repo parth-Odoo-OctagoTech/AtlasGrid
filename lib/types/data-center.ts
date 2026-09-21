@@ -29,6 +29,46 @@ export interface DataCenter {
   localCleanEnergyPercent?: number;
   estimatedAnnualCo2Tons?: number;
   commissioningYear?: number;
+  // Section 2: Telecommunications & Fiber Connectivity
+  carrierNeutral?: boolean;
+  tier1CarriersCount?: number;
+  carrierList?: string[];
+  darkFiberDistanceKm?: number;
+  ixpDistanceKm?: number;
+  ixpLatencyMs?: number;
+  hasDiversePathways?: boolean;
+  // Section 3: Environmental Hazards & Climate
+  floodZone?: "X" | "X500" | "A" | "AE" | "V" | "VE";
+  floodRiskLevel?: "None" | "Moderate" | "High" | "Extreme";
+  seismicPga?: number;
+  nearestFaultDistanceKm?: number;
+  tornadoRiskLevel?: "Low" | "Moderate" | "High";
+  freeCoolingHoursPct?: number;
+  designWetBulbC?: number;
+  economizerViable?: boolean;
+  // Section 4: Site Parcel, Soil & Topography
+  soilBearingCapacityLbs?: number;
+  bedrockDepthMeters?: number;
+  liquefactionRisk?: "None" | "Low" | "Moderate" | "High";
+  slopePct?: number;
+  parcelAcres?: number;
+  // Section 5: Water & Resource Availability
+  waterStressBaseline?: "Low" | "Medium" | "High" | "Extremely High";
+  waterStressPct?: number;
+  nearestWastewaterKm?: number;
+  wastewaterCapacitySurplusMgd?: number;
+  // Section 6: Man-Made Hazards, Zoning & Security
+  airportDistanceKm?: number;
+  inFlightCorridor?: boolean;
+  nearestGasPipelineMeters?: number;
+  pipelinePirBlastMeters?: number;
+  railHazmatDistanceKm?: number;
+  chemicalPlantDistanceKm?: number;
+  zoningStatus?: "Data Center Overlay Approved" | "Heavy Industrial" | "Re-zoning Required";
+  airQualityAttainment?: boolean;
+  perimeterStandoffMeters?: number;
+  // Composite Site Suitability Siting Score (0 - 100)
+  sitingSuitabilityScore?: number;
 }
 
 export interface DataCenterSummary {

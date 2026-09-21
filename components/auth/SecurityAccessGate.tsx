@@ -44,7 +44,10 @@ export function SecurityAccessGate({ children }: { children: React.ReactNode }) 
 
     async function checkSession() {
       try {
-        const res = await fetch("/api/auth/session");
+        const savedToken = typeof window !== "undefined" ? localStorage.getItem("atlasgrid_token") : null;
+        const res = await fetch("/api/auth/session", {
+          headers: savedToken ? { Authorization: `Bearer ${savedToken}` } : {},
+        });
         if (res.ok) {
           const data = await res.json();
           if (data.authenticated && isMounted) {
@@ -98,6 +101,11 @@ export function SecurityAccessGate({ children }: { children: React.ReactNode }) 
       const data = await res.json();
 
       if (res.ok && data.success) {
+        if (data.token) {
+          try {
+            localStorage.setItem("atlasgrid_token", data.token);
+          } catch {}
+        }
         setIsAuthenticated(true);
         setUser(data.user);
       } else {
@@ -115,6 +123,7 @@ export function SecurityAccessGate({ children }: { children: React.ReactNode }) 
 
   const logout = async () => {
     try {
+      localStorage.removeItem("atlasgrid_token");
       await fetch("/api/auth/logout", { method: "POST" });
     } catch (e) {
       console.warn("Logout error:", e);

@@ -17,6 +17,10 @@ import {
   Cpu,
   Layers,
   GitFork,
+  ShieldAlert,
+  Network,
+  Waves,
+  ThermometerSnowflake,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -114,7 +118,13 @@ export function FloatingFilters() {
     filters.minCapacityMw > 0 ||
     filters.statuses.length > 0 ||
     filters.region !== "GLOBAL" ||
-    filters.priceFilter !== "all";
+    filters.priceFilter !== "all" ||
+    (filters.minSitingScore != null && filters.minSitingScore > 0) ||
+    !!filters.carrierNeutralOnly ||
+    (filters.maxIxpLatencyMs != null && filters.maxIxpLatencyMs > 0) ||
+    (filters.floodRiskFilter != null && filters.floodRiskFilter !== "all") ||
+    (filters.minFreeCoolingPct != null && filters.minFreeCoolingPct > 0) ||
+    !!filters.excludeHazardZones;
 
   return (
     <div className="absolute left-4 top-14 z-20 transition-all duration-200">
@@ -390,6 +400,127 @@ export function FloatingFilters() {
                       {p.label}
                     </button>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* 7. Site Suitability & Environmental Hazards (Sections 2 - 6) */}
+            {showDatacenters && (
+              <div className="border-t border-[#293742] pt-2.5 space-y-2">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase font-semibold text-[#10b981] tracking-wider">
+                    <ShieldAlert className="h-3 w-3 text-[#10b981]" />
+                    <span>Site Suitability & Hazards (Sec 2-6)</span>
+                  </div>
+                  <span className="font-mono text-[10px] text-[#10b981] font-semibold">
+                    {filters.minSitingScore ? `>${filters.minSitingScore} Pts` : "All Sites"}
+                  </span>
+                </div>
+
+                {/* Siting Composite Score Threshold */}
+                <div>
+                  <div className="text-[9px] font-mono text-[#8a9ba8] mb-1">
+                    Minimum Composite Siting Score (0–100)
+                  </div>
+                  <div className="grid grid-cols-4 gap-1">
+                    {[
+                      { label: "All Sites", min: 0 },
+                      { label: "> 60 Viable", min: 60 },
+                      { label: "> 75 Tier III", min: 75 },
+                      { label: "> 85 Tier IV", min: 85 },
+                    ].map((s) => (
+                      <button
+                        key={s.min}
+                        onClick={() => setFilter("minSitingScore", s.min)}
+                        className={`rounded px-1 py-1 text-center font-mono text-[9px] transition-all ${
+                          (filters.minSitingScore || 0) === s.min
+                            ? "bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/50 font-semibold"
+                            : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
+                        }`}
+                      >
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Telecom & Hazard Toggles */}
+                <div className="grid grid-cols-2 gap-1 pt-0.5">
+                  <button
+                    onClick={() => setFilter("carrierNeutralOnly", !filters.carrierNeutralOnly)}
+                    className={`flex items-center justify-center gap-1 rounded px-1.5 py-1 text-[9px] font-mono transition-all ${
+                      filters.carrierNeutralOnly
+                        ? "bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/50 font-semibold"
+                        : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
+                    }`}
+                  >
+                    <Network className="h-2.5 w-2.5" />
+                    <span>Carrier Neutral</span>
+                  </button>
+
+                  <button
+                    onClick={() => setFilter("excludeHazardZones", !filters.excludeHazardZones)}
+                    className={`flex items-center justify-center gap-1 rounded px-1.5 py-1 text-[9px] font-mono transition-all ${
+                      filters.excludeHazardZones
+                        ? "bg-[#ef4444]/20 text-[#ef4444] border border-[#ef4444]/50 font-semibold"
+                        : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
+                    }`}
+                  >
+                    <ShieldAlert className="h-2.5 w-2.5" />
+                    <span>Exclude Hazards</span>
+                  </button>
+                </div>
+
+                {/* Flood Risk Filter */}
+                <div>
+                  <div className="text-[9px] font-mono text-[#8a9ba8] mb-1">
+                    FEMA Flood Zone Exclusion
+                  </div>
+                  <div className="grid grid-cols-3 gap-1">
+                    {[
+                      { id: "all", label: "All Zones" },
+                      { id: "no_high_flood", label: "No 100-Yr Surge" },
+                      { id: "zero_flood_only", label: "Zero Flood (X)" },
+                    ].map((fl) => (
+                      <button
+                        key={fl.id}
+                        onClick={() => setFilter("floodRiskFilter", fl.id as any)}
+                        className={`rounded px-1.5 py-1 text-center font-mono text-[9px] transition-all ${
+                          (filters.floodRiskFilter || "all") === fl.id
+                            ? "bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/50 font-semibold"
+                            : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
+                        }`}
+                      >
+                        {fl.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Free Cooling Economizers Filter */}
+                <div>
+                  <div className="text-[9px] font-mono text-[#8a9ba8] mb-1">
+                    Free-Cooling Economizer Potential
+                  </div>
+                  <div className="grid grid-cols-3 gap-1">
+                    {[
+                      { min: 0, label: "Any Climate" },
+                      { min: 70, label: "> 70% Direct Air" },
+                      { min: 85, label: "> 85% Nordic" },
+                    ].map((c) => (
+                      <button
+                        key={c.min}
+                        onClick={() => setFilter("minFreeCoolingPct", c.min)}
+                        className={`rounded px-1.5 py-1 text-center font-mono text-[9px] transition-all ${
+                          (filters.minFreeCoolingPct || 0) === c.min
+                            ? "bg-[#38bdf8]/20 text-[#38bdf8] border border-[#38bdf8]/50 font-semibold"
+                            : "bg-[#101418] text-[#8a9ba8] hover:text-[#f5f8fa] border border-[#293742]"
+                        }`}
+                      >
+                        {c.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
