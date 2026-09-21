@@ -180,6 +180,120 @@ async function seedCrawlerLogs() {
   }
 }
 
+async function seedHistoricalEarthquakes() {
+  console.log('--- Seeding Historical Earthquakes ---');
+  const eqPath = path.join(process.cwd(), 'data', 'historical-earthquakes.json');
+  if (!fs.existsSync(eqPath)) return;
+  const earthquakes = JSON.parse(fs.readFileSync(eqPath, 'utf-8'));
+  console.log(`Total historical earthquakes to seed: ${earthquakes.length}`);
+
+  const chunkSize = 150;
+  for (let i = 0; i < earthquakes.length; i += chunkSize) {
+    const chunk = earthquakes.slice(i, i + chunkSize);
+    const values = chunk.map(eq => {
+      const loc = `ST_SetSRID(ST_MakePoint(${eq.longitude}, ${eq.latitude}), 4326)`;
+      return `(${escapeSql(eq.id)}, ${escapeSql(eq.name)}, ${eq.magnitude}, ${eq.depthKm}, ${escapeSql(eq.occurredAt)}, ${eq.latitude}, ${eq.longitude}, ${loc}, ${escapeSql(eq.place)}, ${eq.significance || 500}, ${eq.mmi || 'NULL'}, ${eq.tsunami ? 'true' : 'false'}, ${eq.feltReports || 'NULL'}, ${escapeSql(eq.source || 'USGS_COMCAT')})`;
+    }).join(',\n');
+
+    const sql = `
+      INSERT INTO historical_earthquakes (id, name, magnitude, depth_km, occurred_at, latitude, longitude, location, place, significance, mmi, tsunami, felt_reports, source)
+      VALUES ${values}
+      ON CONFLICT (id) DO UPDATE SET
+        name = EXCLUDED.name,
+        magnitude = EXCLUDED.magnitude,
+        depth_km = EXCLUDED.depth_km,
+        occurred_at = EXCLUDED.occurred_at,
+        location = EXCLUDED.location,
+        significance = EXCLUDED.significance;
+    `;
+    await executeSql(sql);
+    console.log(`  Seeded earthquakes ${i + 1} to ${Math.min(i + chunkSize, earthquakes.length)}`);
+  }
+}
+
+async function seedHistoricalStorms() {
+  console.log('--- Seeding Historical Severe Storms ---');
+  const stormPath = path.join(process.cwd(), 'data', 'historical-storms.json');
+  if (!fs.existsSync(stormPath)) return;
+  const storms = JSON.parse(fs.readFileSync(stormPath, 'utf-8'));
+  console.log(`Total historical storms to seed: ${storms.length}`);
+
+  const chunkSize = 150;
+  for (let i = 0; i < storms.length; i += chunkSize) {
+    const chunk = storms.slice(i, i + chunkSize);
+    const values = chunk.map(s => {
+      const centerGeom = `ST_SetSRID(ST_MakePoint(${s.longitude}, ${s.latitude}), 4326)`;
+      let pathGeom = 'NULL';
+      if (s.pathCoordinates && s.pathCoordinates.length >= 2) {
+        const lineCoords = s.pathCoordinates.map(c => `${c[0]} ${c[1]}`).join(', ');
+        pathGeom = `ST_SetSRID(ST_GeomFromText('LINESTRING(${lineCoords})'), 4326)`;
+      }
+      return `(${escapeSql(s.id)}, ${escapeSql(s.eventType)}, ${escapeSql(s.name)}, ${escapeSql(s.intensity)}, ${s.categoryNum || 1}, ${escapeSql(s.occurredAt)}, ${s.latitude}, ${s.longitude}, ${centerGeom}, ${pathGeom}, ${s.maxWindMph || 'NULL'}, ${s.damagesUsdMillions || 'NULL'}, ${escapeSql(s.stateOrRegion)}, ${escapeSql(s.country || 'US')}, ${escapeSql(s.source || 'NOAA_SPC')})`;
+    }).join(',\n');
+
+    const sql = `
+      INSERT INTO historical_severe_storms (id, event_type, name, intensity, category_num, occurred_at, latitude, longitude, center_geom, path_geom, max_wind_mph, damages_usd_millions, state_or_region, country, source)
+      VALUES ${values}
+      ON CONFLICT (id) DO UPDATE SET
+        name = EXCLUDED.name,
+        intensity = EXCLUDED.intensity,
+        max_wind_mph = EXCLUDED.max_wind_mph,
+        damages_usd_millions = EXCLUDED.damages_usd_millions;
+    `;
+    await executeSql(sql);
+    console.log(`  Seeded storms ${i + 1} to ${Math.min(i + chunkSize, storms.length)}`);
+  }
+}
+
+async function seedHistoricalClimate() {
+  console.log('--- Seeding Historical Climate Records ---');
+  const climatePath = path.join(process.cwd(), 'data', 'historical-climate.json');
+  if (!fs.existsSync(climatePath)) return;
+  const climateData = JSON.parse(fs.readFileSync(climatePath, 'utf-8'));
+  const records = Object.values(climateData);
+  console.log(`Total climate records to seed: ${records.length}`);
+
+  for (const c of records) {
+    const loc = `ST_SetSRID(ST_MakePoint(${c.longitude}, ${c.latitude}), 4326)`;
+    const jsonNormals = escapeSql(JSON.stringify(c.monthlyNormals || []));
+    const sql = `
+      INSERT INTO historical_climate_records (region_code, region_name, latitude, longitude, location, period, annual_avg_dry_bulb_c, annual_avg_wet_bulb_c, peak_wet_bulb_c, total_annual_free_cooling_hours, free_cooling_efficiency_pct, extreme_heat_days_per_year, source, monthly_normals)
+      VALUES (${escapeSql(c.regionCode)}, ${escapeSql(c.regionName)}, ${c.latitude}, ${c.longitude}, ${loc}, ${escapeSql(c.period)}, ${c.annualAvgDryBulbC}, ${c.annualAvgWetBulbC}, ${c.peakWetBulbC}, ${c.totalAnnualFreeCoolingHours}, ${c.freeCoolingEfficiencyPct}, ${c.extremeHeatDaysPerYear}, ${escapeSql(c.source || 'NASA_POWER')}, ${jsonNormals}::jsonb)
+      ON CONFLICT (region_code) DO UPDATE SET
+        region_name = EXCLUDED.region_name,
+        annual_avg_dry_bulb_c = EXCLUDED.annual_avg_dry_bulb_c,
+        annual_avg_wet_bulb_c = EXCLUDED.annual_avg_wet_bulb_c,
+        total_annual_free_cooling_hours = EXCLUDED.total_annual_free_cooling_hours,
+        monthly_normals = EXCLUDED.monthly_normals;
+    `;
+    await executeSql(sql);
+  }
+  console.log(`✓ Seeded ${records.length} climate region profiles`);
+}
+
+async function seedHistoricalDcGrowth() {
+  console.log('--- Seeding Historical Data Center Fleet Growth ---');
+  const growthPath = path.join(process.cwd(), 'data', 'historical-dc-growth.json');
+  if (!fs.existsSync(growthPath)) return;
+  const growthData = JSON.parse(fs.readFileSync(growthPath, 'utf-8'));
+  console.log(`Total growth years to seed: ${growthData.length}`);
+
+  for (const g of growthData) {
+    const sql = `
+      INSERT INTO historical_datacenter_growth (year, total_power_mw, operational_facilities, hyperscale_count, colocation_count, enterprise_count, avg_pue, clean_energy_share_pct, cumulative_tflops_compute_est, key_milestone)
+      VALUES (${g.year}, ${g.totalPowerMw}, ${g.operationalFacilities}, ${g.hyperscaleCount}, ${g.colocationCount}, ${g.enterpriseCount}, ${g.avgPue}, ${g.cleanEnergySharePct}, ${g.cumulativeTflopsComputeEst}, ${escapeSql(g.keyMilestone)})
+      ON CONFLICT (year) DO UPDATE SET
+        total_power_mw = EXCLUDED.total_power_mw,
+        operational_facilities = EXCLUDED.operational_facilities,
+        avg_pue = EXCLUDED.avg_pue,
+        clean_energy_share_pct = EXCLUDED.clean_energy_share_pct,
+        key_milestone = EXCLUDED.key_milestone;
+    `;
+    await executeSql(sql);
+  }
+  console.log(`✓ Seeded ${growthData.length} years of data center growth records`);
+}
+
 async function main() {
   console.log('🚀 Starting Supabase Database Seeding...');
   try {
@@ -187,6 +301,10 @@ async function main() {
     await seedPowerPlants();
     await seedDataCenters();
     await seedCrawlerLogs();
+    await seedHistoricalEarthquakes();
+    await seedHistoricalStorms();
+    await seedHistoricalClimate();
+    await seedHistoricalDcGrowth();
     console.log('🎉 ALL DATASETS SEEDED TO SUPABASE SUCCESSFULLY!');
   } catch (e) {
     console.error('Seeding error:', e);
@@ -194,3 +312,4 @@ async function main() {
 }
 
 main();
+

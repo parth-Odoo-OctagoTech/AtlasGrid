@@ -166,6 +166,85 @@ CREATE INDEX IF NOT EXISTS idx_power_plants_country ON power_plants(country);
 CREATE INDEX IF NOT EXISTS idx_data_centers_country ON data_centers(country);
 CREATE INDEX IF NOT EXISTS idx_substations_country ON substations(country);
 CREATE INDEX IF NOT EXISTS idx_substations_voltage ON substations(voltage_kv);
+
+-- 8. Historical Earthquakes (USGS ComCat & ISC-GEM)
+CREATE TABLE IF NOT EXISTS historical_earthquakes (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  magnitude NUMERIC NOT NULL,
+  depth_km NUMERIC NOT NULL,
+  occurred_at TIMESTAMPTZ NOT NULL,
+  latitude NUMERIC NOT NULL,
+  longitude NUMERIC NOT NULL,
+  location GEOMETRY(Point, 4326),
+  place TEXT,
+  significance INTEGER,
+  mmi NUMERIC,
+  tsunami BOOLEAN DEFAULT false,
+  felt_reports INTEGER,
+  source TEXT DEFAULT 'USGS_COMCAT',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_hist_earthquakes_location ON historical_earthquakes USING GIST(location);
+CREATE INDEX IF NOT EXISTS idx_hist_earthquakes_mag ON historical_earthquakes(magnitude DESC);
+
+-- 9. Historical Severe Storms (NOAA SPC & HURDAT2)
+CREATE TABLE IF NOT EXISTS historical_severe_storms (
+  id TEXT PRIMARY KEY,
+  event_type TEXT NOT NULL,
+  name TEXT NOT NULL,
+  intensity TEXT NOT NULL,
+  category_num INTEGER NOT NULL DEFAULT 1,
+  occurred_at TIMESTAMPTZ NOT NULL,
+  latitude NUMERIC NOT NULL,
+  longitude NUMERIC NOT NULL,
+  center_geom GEOMETRY(Point, 4326),
+  path_geom GEOMETRY(LineString, 4326),
+  max_wind_mph NUMERIC,
+  damages_usd_millions NUMERIC,
+  state_or_region TEXT,
+  country TEXT NOT NULL,
+  source TEXT DEFAULT 'NOAA_SPC',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_hist_storms_center ON historical_severe_storms USING GIST(center_geom);
+CREATE INDEX IF NOT EXISTS idx_hist_storms_path ON historical_severe_storms USING GIST(path_geom);
+CREATE INDEX IF NOT EXISTS idx_hist_storms_type ON historical_severe_storms(event_type);
+
+-- 10. Historical Climate Records (NASA POWER & Open-Meteo 10-Year Normals)
+CREATE TABLE IF NOT EXISTS historical_climate_records (
+  region_code TEXT PRIMARY KEY,
+  region_name TEXT NOT NULL,
+  latitude NUMERIC NOT NULL,
+  longitude NUMERIC NOT NULL,
+  location GEOMETRY(Point, 4326),
+  period TEXT NOT NULL,
+  annual_avg_dry_bulb_c NUMERIC NOT NULL,
+  annual_avg_wet_bulb_c NUMERIC NOT NULL,
+  peak_wet_bulb_c NUMERIC NOT NULL,
+  total_annual_free_cooling_hours INTEGER NOT NULL,
+  free_cooling_efficiency_pct NUMERIC NOT NULL,
+  extreme_heat_days_per_year INTEGER NOT NULL,
+  source TEXT DEFAULT 'NASA_POWER',
+  monthly_normals JSONB NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS idx_hist_climate_location ON historical_climate_records USING GIST(location);
+
+-- 11. Historical Data Center Fleet Growth (1998–2026)
+CREATE TABLE IF NOT EXISTS historical_datacenter_growth (
+  year INTEGER PRIMARY KEY,
+  total_power_mw NUMERIC NOT NULL,
+  operational_facilities INTEGER NOT NULL,
+  hyperscale_count INTEGER NOT NULL,
+  colocation_count INTEGER NOT NULL,
+  enterprise_count INTEGER NOT NULL,
+  avg_pue NUMERIC NOT NULL,
+  clean_energy_share_pct NUMERIC NOT NULL,
+  cumulative_tflops_compute_est NUMERIC NOT NULL,
+  key_milestone TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
 `;
 
 async function main() {

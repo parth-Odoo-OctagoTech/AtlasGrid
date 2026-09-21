@@ -490,6 +490,7 @@ const apiRoutes = [
   "app/api/us-iso/route.ts",
   "app/api/substations/route.ts",
   "app/api/cron/crawler/route.ts",
+  "app/api/historical/route.ts",
 ];
 
 let routesWithForceDynamic = 0;
@@ -726,6 +727,105 @@ const chatModalSrc = fs.readFileSync(chatModalPath, "utf-8");
 assert(chatModalSrc.includes("How many data centres are in India?"), "AI Copilot includes prompt pill for India DC count");
 assert(chatModalSrc.includes("How many were there in 2025?"), "AI Copilot includes prompt pill for 2025 DC count");
 assert(chatModalSrc.includes("atlasgrid_gemini_key"), "AI Copilot provides user Gemini API key integration");
+
+// ---------------------------------------------------------------------------
+// TEST 19: Authoritative Historical Database (Earthquakes, Severe Storms, Climate & DC Growth)
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 19: Authoritative Historical Database (1950–2026 Audit) ---");
+
+const histEqPath = path.join(dataDir, "historical-earthquakes.json");
+const histStormPath = path.join(dataDir, "historical-storms.json");
+const histClimatePath = path.join(dataDir, "historical-climate.json");
+const histGrowthPath = path.join(dataDir, "historical-dc-growth.json");
+
+assert(fs.existsSync(histEqPath), "historical-earthquakes.json exists on disk");
+assert(fs.existsSync(histStormPath), "historical-storms.json exists on disk");
+assert(fs.existsSync(histClimatePath), "historical-climate.json exists on disk");
+assert(fs.existsSync(histGrowthPath), "historical-dc-growth.json exists on disk");
+
+const histEarthquakes = JSON.parse(fs.readFileSync(histEqPath, "utf-8"));
+const histStorms = JSON.parse(fs.readFileSync(histStormPath, "utf-8"));
+const histClimate = JSON.parse(fs.readFileSync(histClimatePath, "utf-8"));
+const histGrowth = JSON.parse(fs.readFileSync(histGrowthPath, "utf-8"));
+
+// 1. Earthquakes validation
+assert(Array.isArray(histEarthquakes) && histEarthquakes.length >= 900, `Loaded ${histEarthquakes.length} historical earthquakes (M5.0+)`);
+let invalidEqCoords = 0;
+let underM5Count = 0;
+for (const eq of histEarthquakes) {
+  if (eq.latitude < -90 || eq.latitude > 90 || eq.longitude < -180 || eq.longitude > 180) invalidEqCoords++;
+  if (eq.magnitude < 5.0) underM5Count++;
+}
+assert(invalidEqCoords === 0, "100% of historical earthquakes have valid geographic coordinates");
+assert(underM5Count === 0, "100% of historical earthquakes satisfy M5.0+ threshold");
+
+const lomaPrieta = histEarthquakes.find((e) => e.id === "usgs_1989_lomaprieta" || e.name.includes("Loma Prieta"));
+assert(!!lomaPrieta && lomaPrieta.magnitude === 6.9, "1989 Loma Prieta M6.9 earthquake verified in historical index");
+
+const tohoku = histEarthquakes.find((e) => e.id === "usgs_2011_tohoku" || e.name.includes("Great East Japan"));
+assert(!!tohoku && tohoku.magnitude === 9.1, "2011 Great East Japan Tohoku M9.1 megathrust verified in historical index");
+
+const bhuj = histEarthquakes.find((e) => e.id === "usgs_2001_bhuj" || e.name.includes("Bhuj"));
+assert(!!bhuj && bhuj.magnitude === 7.7, "2001 Bhuj Gujarat M7.7 intraplate earthquake verified in historical index");
+
+// 2. Severe Storms validation
+assert(Array.isArray(histStorms) && histStorms.length >= 400, `Loaded ${histStorms.length} historical severe storm events`);
+const katrina = histStorms.find((s) => s.name.includes("Katrina"));
+assert(!!katrina && katrina.categoryNum === 5, "Hurricane Katrina Cat 5 verified in historical storms index");
+
+const sandy = histStorms.find((s) => s.name.includes("Sandy"));
+assert(!!sandy && sandy.categoryNum === 2, "Superstorm Sandy verified in historical storms index");
+
+const joplin = histStorms.find((s) => s.name.includes("Joplin"));
+assert(!!joplin && joplin.intensity === "EF5", "2011 Joplin EF5 tornado verified in historical storms index");
+
+// 3. Climate Normals validation
+const climateMarkets = Object.keys(histClimate);
+assert(climateMarkets.length >= 10, `Loaded ${climateMarkets.length} regional 10-year climatological normal profiles`);
+assert(!!histClimate["ashburn_va"], "Northern Virginia (Ashburn) climate normal verified");
+assert(histClimate["ashburn_va"].totalAnnualFreeCoolingHours >= 5000, `Ashburn free-cooling economizer: ${histClimate["ashburn_va"].totalAnnualFreeCoolingHours} hrs/yr`);
+assert(!!histClimate["silicon_valley"], "Silicon Valley (Santa Clara) climate normal verified");
+assert(histClimate["silicon_valley"].freeCoolingEfficiencyPct >= 80, `Silicon Valley free-cooling efficiency: ${histClimate["silicon_valley"].freeCoolingEfficiencyPct}%`);
+
+// 4. Data Center Fleet Growth validation
+assert(Array.isArray(histGrowth) && histGrowth.length === 29, `Fleet growth covers exactly 29 years: 1998–2026 (actual: ${histGrowth.length})`);
+const year1998 = histGrowth.find((g) => g.year === 1998);
+const year2026 = histGrowth.find((g) => g.year === 2026);
+assert(!!year1998 && year1998.avgPue >= 2.0, `1998 average PUE benchmark: ${year1998?.avgPue} (expected >= 2.0)`);
+assert(!!year2026 && year2026.avgPue <= 1.25, `2026 average PUE benchmark: ${year2026?.avgPue} (expected <= 1.25)`);
+assert(!!year2026 && year2026.totalPowerMw >= 100000, `2026 global DC fleet capacity: ${year2026?.totalPowerMw.toLocaleString()} MW (expected >= 100,000 MW)`);
+assert(!!year2026 && year2026.cleanEnergySharePct >= 60, `2026 fleet clean energy share: ${year2026?.cleanEnergySharePct}% (expected >= 60%)`);
+
+// 5. Schema, Migration & Seeding validation
+const schemaSql = fs.readFileSync(path.join(process.cwd(), "lib/db/schema.sql"), "utf-8");
+assert(schemaSql.includes("historical_earthquakes"), "lib/db/schema.sql defines historical_earthquakes table");
+assert(schemaSql.includes("historical_severe_storms"), "lib/db/schema.sql defines historical_severe_storms table");
+assert(schemaSql.includes("historical_climate_records"), "lib/db/schema.sql defines historical_climate_records table");
+assert(schemaSql.includes("historical_datacenter_growth"), "lib/db/schema.sql defines historical_datacenter_growth table");
+assert(schemaSql.includes("idx_historical_earthquakes_location"), "lib/db/schema.sql includes GiST spatial index for earthquakes");
+
+const migrateSrc = fs.readFileSync(path.join(process.cwd(), "scripts/migrate-supabase.mjs"), "utf-8");
+assert(migrateSrc.includes("historical_earthquakes"), "scripts/migrate-supabase.mjs contains historical_earthquakes migration DDL");
+assert(migrateSrc.includes("historical_severe_storms"), "scripts/migrate-supabase.mjs contains historical_severe_storms migration DDL");
+
+const seedSrc = fs.readFileSync(path.join(process.cwd(), "scripts/seed-supabase.mjs"), "utf-8");
+assert(seedSrc.includes("seedHistoricalEarthquakes"), "scripts/seed-supabase.mjs contains seedHistoricalEarthquakes routine");
+assert(seedSrc.includes("seedHistoricalStorms"), "scripts/seed-supabase.mjs contains seedHistoricalStorms routine");
+assert(seedSrc.includes("seedHistoricalClimate"), "scripts/seed-supabase.mjs contains seedHistoricalClimate routine");
+assert(seedSrc.includes("seedHistoricalDcGrowth"), "scripts/seed-supabase.mjs contains seedHistoricalDcGrowth routine");
+
+// 6. UI & Historical Risk Ledger validation
+const inspectorSrc = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(inspectorSrc.includes("Historical Hazard & Climate Ledger"), "StationInspector displays Historical Hazard & Climate Ledger");
+assert(inspectorSrc.includes("1950–2026 AUDIT"), "StationInspector renders 1950–2026 audit badge");
+assert(inspectorSrc.includes("dc-historical-risk"), "StationInspector queries dc-historical-risk endpoint");
+
+// 7. Historical API Route validation
+const apiHistRoute = path.join(process.cwd(), "app/api/historical/route.ts");
+assert(fs.existsSync(apiHistRoute), "app/api/historical/route.ts exists");
+const apiHistSrc = fs.readFileSync(apiHistRoute, "utf-8");
+assert(apiHistSrc.includes('export const dynamic = "force-dynamic"'), "app/api/historical/route.ts exports force-dynamic");
+assert(apiHistSrc.includes("facility_risk"), "app/api/historical/route.ts supports facility_risk parameter");
 
 // ---------------------------------------------------------------------------
 // FINAL SUMMARY

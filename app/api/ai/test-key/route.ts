@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));
@@ -14,55 +16,52 @@ export async function POST(req: NextRequest) {
 
     apiKey = apiKey.trim().replace(/['"]/g, "");
 
-    // Test with gemini-1.5-flash
-    const testUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Priority model cascade starting with Gemini 3.6 Flash
+    const candidateModels = [
+      "gemini-3.6-flash",
+      "gemini-3.7-flash",
+      "gemini-2.5-flash",
+      "gemini-2.0-flash",
+      "gemini-1.5-flash",
+    ];
+
     const testPayload = {
-      contents: [{ parts: [{ text: "ping" }] }],
+      contents: [{ role: "user", parts: [{ text: "ping" }] }],
       generationConfig: { maxOutputTokens: 5 },
     };
 
-    const res = await fetch(testUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(testPayload),
-    });
+    let lastError = "Invalid Gemini API key or unauthorized response from Google.";
 
-    const data = await res.json().catch(() => ({}));
+    for (const model of candidateModels) {
+      try {
+        const testUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const res = await fetch(testUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(testPayload),
+        });
 
-    if (res.ok && data?.candidates?.[0]?.content) {
-      return NextResponse.json({
-        valid: true,
-        model: "gemini-1.5-flash",
-        message: "Gemini API key is valid and connected.",
-      });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data?.candidates?.[0]?.content) {
+          return NextResponse.json({
+            valid: true,
+            model: model,
+            message: `Gemini API key is verified and connected to ${model}.`,
+          });
+        }
+
+        if (data?.error?.message) {
+          lastError = data.error.message;
+        }
+      } catch (err: any) {
+        lastError = err.message || lastError;
+      }
     }
-
-    // Try fallback to gemini-2.0-flash
-    const fallbackUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-    const res2 = await fetch(fallbackUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(testPayload),
-    });
-
-    const data2 = await res2.json().catch(() => ({}));
-
-    if (res2.ok && data2?.candidates?.[0]?.content) {
-      return NextResponse.json({
-        valid: true,
-        model: "gemini-2.0-flash",
-        message: "Gemini API key is valid and connected to Gemini 2.0 Flash.",
-      });
-    }
-
-    const errMessage =
-      data?.error?.message ||
-      data2?.error?.message ||
-      "Invalid Gemini API key or unauthorized response from Google.";
 
     return NextResponse.json({
       valid: false,
-      error: errMessage,
+      error: lastError,
     });
   } catch (err: any) {
     return NextResponse.json(

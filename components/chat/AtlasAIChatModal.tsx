@@ -20,8 +20,11 @@ import {
   ExternalLink,
   CheckCircle2,
   XCircle,
+  Globe,
 } from "lucide-react";
 import { AIQueryAction } from "@/lib/services/ai-query-engine";
+import { MarkdownContent } from "./MarkdownContent";
+import { WebSearchResult } from "@/lib/services/web-search-service";
 
 interface ChatMessage {
   id: string;
@@ -29,6 +32,7 @@ interface ChatMessage {
   content: string;
   facts?: { label: string; value: string | number; unit?: string }[];
   actions?: AIQueryAction[];
+  sources?: WebSearchResult[];
   timestamp: string;
   source?: string;
   geminiError?: string;
@@ -37,9 +41,9 @@ interface ChatMessage {
 const DEFAULT_SUGGESTIONS = [
   "How many data centres are in India?",
   "How many were there in 2025?",
+  "Latest Microsoft & Google AI data center investments in India",
   "What is the largest data center by power demand?",
-  "How many data centers does Equinix operate?",
-  "Show global solar and nuclear generation capacity",
+  "Recent global grid deals & power constraints",
 ];
 
 export function AtlasAIChatModal() {
@@ -235,6 +239,7 @@ export function AtlasAIChatModal() {
           content: data.answer,
           facts: data.facts,
           actions: data.actions,
+          sources: data.sources,
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
           source: data.source,
           geminiError: data.geminiError,
@@ -286,7 +291,7 @@ export function AtlasAIChatModal() {
   if (!isChatOpen) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex h-[620px] w-[540px] max-w-[calc(100vw-2rem)] flex-col rounded-lg border border-[#293742] bg-[#182026] text-white shadow-2xl font-sans overflow-hidden">
+    <div className="fixed bottom-4 right-4 z-40 flex h-[650px] w-[580px] max-w-[calc(100vw-2rem)] flex-col rounded-lg border border-[#293742] bg-[#182026] text-white shadow-2xl font-sans overflow-hidden">
       {/* 1. Header */}
       <div className="flex items-center justify-between border-b border-[#293742] bg-[#101418] px-4 py-2.5">
         <div className="flex items-center gap-2.5">
@@ -294,9 +299,13 @@ export function AtlasAIChatModal() {
             <Sparkles className="h-4 w-4" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="font-mono text-xs font-bold tracking-wider text-[#f5f8fa]">
                 ATLASGRID // AI COPILOT
+              </span>
+              <span className="rounded bg-[#137cbd]/15 px-1.5 py-0.2 font-mono text-[9px] font-semibold text-[#2b95d6] border border-[#137cbd]/30 flex items-center gap-1">
+                <Globe className="h-2.5 w-2.5" />
+                LIVE WEB
               </span>
               {geminiApiKey ? (
                 <button
@@ -310,7 +319,7 @@ export function AtlasAIChatModal() {
               ) : (
                 <button
                   onClick={() => setShowSettings(true)}
-                  className="rounded bg-[#202b33] px-1.5 py-0.2 font-mono text-[9px] font-semibold text-[#8a9ba8] border border-[#293742] hover:text-[#2b95d6] hover:border-[#2b95d6]/50 transition-colors"
+                  className="rounded bg-[#202b33] px-1.5 py-0.2 font-mono text-[9px] font-semibold text-[#8a9ba8] border border-[#293742] hover:text-[#2b95d6] hover:border-[#2b95d6]/50 transition-colors cursor-pointer"
                   title="Click to Connect Gemini API Key"
                 >
                   + CONNECT GEMINI KEY
@@ -453,17 +462,21 @@ export function AtlasAIChatModal() {
             </div>
 
             <div
-              className={`max-w-[92%] rounded-md p-3 leading-relaxed whitespace-pre-wrap ${
+              className={`max-w-[95%] rounded-md p-3.5 leading-relaxed shadow-sm ${
                 msg.role === "user"
                   ? "bg-[#202b33] text-[#f5f8fa] border border-[#293742]"
                   : "bg-[#101418] text-[#e1e8ed] border-l-2 border-l-[#2b95d6] border-y border-r border-[#293742]"
               }`}
             >
-              {msg.content}
+              {msg.role === "user" ? (
+                <p className="text-xs text-[#f5f8fa] leading-relaxed whitespace-pre-wrap font-sans">{msg.content}</p>
+              ) : (
+                <MarkdownContent content={msg.content} />
+              )}
 
               {/* Fact Chips */}
               {msg.facts && msg.facts.length > 0 && (
-                <div className="mt-2.5 pt-2 border-t border-[#293742] flex flex-wrap gap-1.5">
+                <div className="mt-2.5 pt-2 border-t border-[#293742] flex flex-wrap gap-1.5 font-mono">
                   {msg.facts.map((fact, i) => (
                     <div
                       key={i}
@@ -480,7 +493,7 @@ export function AtlasAIChatModal() {
 
               {/* Interactive Action Chips */}
               {msg.actions && msg.actions.length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-1.5">
+                <div className="mt-2 flex flex-wrap gap-1.5 font-mono">
                   {msg.actions.map((act, i) => (
                     <button
                       key={i}
@@ -492,6 +505,38 @@ export function AtlasAIChatModal() {
                       <span>{act.label}</span>
                     </button>
                   ))}
+                </div>
+              )}
+
+              {/* Verified Web Intelligence Sources */}
+              {msg.sources && msg.sources.length > 0 && (
+                <div className="mt-3 pt-2.5 border-t border-[#293742]">
+                  <div className="flex items-center gap-1.5 mb-1.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-[#8a9ba8]">
+                    <Globe className="h-3 w-3 text-[#2b95d6]" />
+                    <span>Live Web Search Intelligence Sources ({msg.sources.length}):</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {msg.sources.map((src, i) => (
+                      <a
+                        key={i}
+                        href={src.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-between rounded bg-[#182026] hover:bg-[#202b33] border border-[#293742] hover:border-[#2b95d6]/50 px-2.5 py-1 text-[11px] text-[#c5d1de] hover:text-white transition-colors group"
+                        title={src.snippet || src.title}
+                      >
+                        <div className="flex items-center gap-1.5 truncate pr-2">
+                          <span className="font-mono text-[9px] font-bold uppercase text-[#2b95d6] shrink-0 bg-[#101418] px-1 py-0.2 rounded border border-[#293742]">
+                            {src.source}
+                          </span>
+                          <span className="truncate text-[11px] text-[#e1e8ed] group-hover:text-[#2b95d6]">
+                            {src.title}
+                          </span>
+                        </div>
+                        <ExternalLink className="h-3 w-3 shrink-0 text-[#5c7080] group-hover:text-[#2b95d6]" />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

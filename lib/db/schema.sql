@@ -122,3 +122,96 @@ CREATE TABLE IF NOT EXISTS grid_alerts (
 );
 
 CREATE INDEX IF NOT EXISTS idx_alerts_created_at ON grid_alerts(created_at DESC);
+
+-- =============================================================================
+-- Historical Earthquakes (USGS ComCat & ISC-GEM)
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS historical_earthquakes (
+  id VARCHAR(64) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  magnitude NUMERIC(3, 1) NOT NULL,
+  depth_km NUMERIC(6, 2) NOT NULL,
+  occurred_at TIMESTAMP WITH TIME ZONE NOT NULL,
+  latitude NUMERIC(10, 6) NOT NULL,
+  longitude NUMERIC(10, 6) NOT NULL,
+  location GEOMETRY(Point, 4326),
+  place TEXT,
+  significance INT,
+  mmi NUMERIC(3, 1),
+  tsunami BOOLEAN DEFAULT false,
+  felt_reports INT,
+  source VARCHAR(32) DEFAULT 'USGS_COMCAT',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_historical_earthquakes_location ON historical_earthquakes USING GIST(location);
+CREATE INDEX IF NOT EXISTS idx_historical_earthquakes_mag ON historical_earthquakes(magnitude DESC);
+CREATE INDEX IF NOT EXISTS idx_historical_earthquakes_time ON historical_earthquakes(occurred_at DESC);
+
+-- =============================================================================
+-- Historical Severe Storms (NOAA SPC & HURDAT2)
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS historical_severe_storms (
+  id VARCHAR(64) PRIMARY KEY,
+  event_type VARCHAR(32) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  intensity VARCHAR(16) NOT NULL,
+  category_num INT NOT NULL DEFAULT 1,
+  occurred_at TIMESTAMP WITH TIME ZONE NOT NULL,
+  latitude NUMERIC(10, 6) NOT NULL,
+  longitude NUMERIC(10, 6) NOT NULL,
+  center_geom GEOMETRY(Point, 4326),
+  path_geom GEOMETRY(LineString, 4326),
+  max_wind_mph NUMERIC(6, 2),
+  damages_usd_millions NUMERIC(12, 2),
+  state_or_region VARCHAR(128),
+  country VARCHAR(8) NOT NULL,
+  source VARCHAR(32) DEFAULT 'NOAA_SPC',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_historical_storms_center ON historical_severe_storms USING GIST(center_geom);
+CREATE INDEX IF NOT EXISTS idx_historical_storms_path ON historical_severe_storms USING GIST(path_geom);
+CREATE INDEX IF NOT EXISTS idx_historical_storms_type ON historical_severe_storms(event_type);
+CREATE INDEX IF NOT EXISTS idx_historical_storms_time ON historical_severe_storms(occurred_at DESC);
+
+-- =============================================================================
+-- Historical Climate Records (NASA POWER & Open-Meteo 10-Year Normals)
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS historical_climate_records (
+  region_code VARCHAR(64) PRIMARY KEY,
+  region_name VARCHAR(255) NOT NULL,
+  latitude NUMERIC(10, 6) NOT NULL,
+  longitude NUMERIC(10, 6) NOT NULL,
+  location GEOMETRY(Point, 4326),
+  period VARCHAR(64) NOT NULL,
+  annual_avg_dry_bulb_c NUMERIC(4, 1) NOT NULL,
+  annual_avg_wet_bulb_c NUMERIC(4, 1) NOT NULL,
+  peak_wet_bulb_c NUMERIC(4, 1) NOT NULL,
+  total_annual_free_cooling_hours INT NOT NULL,
+  free_cooling_efficiency_pct NUMERIC(5, 2) NOT NULL,
+  extreme_heat_days_per_year INT NOT NULL,
+  source VARCHAR(32) DEFAULT 'NASA_POWER',
+  monthly_normals JSONB NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_historical_climate_location ON historical_climate_records USING GIST(location);
+
+-- =============================================================================
+-- Historical Data Center Fleet Growth (1998–2026 Evolution)
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS historical_datacenter_growth (
+  year INT PRIMARY KEY,
+  total_power_mw NUMERIC(10, 2) NOT NULL,
+  operational_facilities INT NOT NULL,
+  hyperscale_count INT NOT NULL,
+  colocation_count INT NOT NULL,
+  enterprise_count INT NOT NULL,
+  avg_pue NUMERIC(4, 2) NOT NULL,
+  clean_energy_share_pct NUMERIC(5, 2) NOT NULL,
+  cumulative_tflops_compute_est NUMERIC(14, 2) NOT NULL,
+  key_milestone TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
