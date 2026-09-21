@@ -12,6 +12,8 @@ import { StationInspector } from "@/components/inspector/StationInspector";
 import { GridAnalyticsModal } from "@/components/analytics/GridAnalyticsModal";
 import { AlertCenterDrawer } from "@/components/analytics/AlertCenterDrawer";
 import { DataCenterFleetModal } from "@/components/analytics/DataCenterFleetModal";
+import { SecurityAccessGate } from "@/components/auth/SecurityAccessGate";
+import { AtlasAIChatModal } from "@/components/chat/AtlasAIChatModal";
 
 const DeckGLMap = dynamic(
   () => import("@/components/map/DeckGLMap"),
@@ -117,40 +119,45 @@ export default function PowerGridDashboard() {
   const cables = cablesData?.features || [];
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-background">
-      {/* Top HUD Header */}
-      <TopHud />
+    <SecurityAccessGate>
+      <main className="relative h-screen w-screen overflow-hidden bg-background">
+        {/* Top HUD Header */}
+        <TopHud />
 
-      {/* Replay Scrubber */}
-      <TimeScrubber />
+        {/* Replay Scrubber */}
+        <TimeScrubber />
 
-      {/* Floating Tactical Filter Controls */}
-      <FloatingFilters />
+        {/* Floating Tactical Filter Controls */}
+        <FloatingFilters />
 
-      {/* 60fps WebGL Deck.gl & MapLibre Map Canvas */}
-      <DeckGLMap
-        plants={plants}
-        interconnectors={interconnectors}
-        dataCenters={dataCenters}
-        substations={substations}
-        cables={cables}
-        isLoading={isStationsLoading || isDcLoading}
-      />
+        {/* 60fps WebGL Deck.gl & MapLibre Map Canvas */}
+        <DeckGLMap
+          plants={plants}
+          interconnectors={interconnectors}
+          dataCenters={dataCenters}
+          substations={substations}
+          cables={cables}
+          isLoading={isStationsLoading || isDcLoading}
+        />
 
-      {/* Slide-over Side Inspector Drawer */}
-      <StationInspector />
+        {/* Slide-over Side Inspector Drawer */}
+        <StationInspector />
 
-      {/* Global Search Dialog (Cmd+K) */}
-      <SearchBar plants={plants} />
+        {/* Global Search Dialog (Cmd+K) */}
+        <SearchBar plants={plants} />
 
-      {/* Global Analytics Modal */}
-      <GridAnalyticsModal plants={plants} interconnectors={interconnectors} />
+        {/* Global Analytics Modal */}
+        <GridAnalyticsModal plants={plants} interconnectors={interconnectors} />
 
-      {/* Global Data Center Fleet & Capacity Intelligence Modal */}
-      <DataCenterFleetModal dataCenters={dataCenters} />
+        {/* Global Data Center Fleet & Capacity Intelligence Modal */}
+        <DataCenterFleetModal dataCenters={dataCenters} />
 
-      {/* Grid Anomaly Alert Center Drawer */}
-      <AlertCenterDrawer />
-    </main>
+        {/* Grid Anomaly Alert Center Drawer */}
+        <AlertCenterDrawer />
+
+        {/* Palantir Grounded AI Copilot Terminal */}
+        <AtlasAIChatModal />
+      </main>
+    </SecurityAccessGate>
   );
 }

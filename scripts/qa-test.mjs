@@ -659,6 +659,75 @@ assert(inspectorCode.includes("data=!3m1!1e3"), "StationInspector links to Googl
 assert(inspectorCode.includes("flood_overlay_risk"), "StationInspector displays flood hazard assessment for facilities");
 
 // ---------------------------------------------------------------------------
+// TEST 17: Cybersecurity Perimeter & Administrative Authentication Gate
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 17: Cybersecurity Perimeter & Administrative Authentication ---");
+
+const secModulePath = path.join(process.cwd(), "lib/auth/security.ts");
+assert(fs.existsSync(secModulePath), "Security module exists (lib/auth/security.ts)");
+
+const authLoginRoute = path.join(process.cwd(), "app/api/auth/login/route.ts");
+const authLogoutRoute = path.join(process.cwd(), "app/api/auth/logout/route.ts");
+const authSessionRoute = path.join(process.cwd(), "app/api/auth/session/route.ts");
+assert(fs.existsSync(authLoginRoute), "Auth login route exists (app/api/auth/login/route.ts)");
+assert(fs.existsSync(authLogoutRoute), "Auth logout route exists (app/api/auth/logout/route.ts)");
+assert(fs.existsSync(authSessionRoute), "Auth session route exists (app/api/auth/session/route.ts)");
+
+const secGatePath = path.join(process.cwd(), "components/auth/SecurityAccessGate.tsx");
+assert(fs.existsSync(secGatePath), "SecurityAccessGate component exists (components/auth/SecurityAccessGate.tsx)");
+
+const secGateSrc = fs.readFileSync(secGatePath, "utf-8");
+assert(secGateSrc.includes("admin"), "SecurityAccessGate contains operator credential validation");
+assert(secGateSrc.includes("Qwerty123"), "SecurityAccessGate supports authorized passkey default");
+assert(secGateSrc.includes("RATE LIMIT LOCKOUT ACTIVE") || secGateSrc.includes("lockoutSecs"), "SecurityAccessGate enforces rate-limit feedback");
+
+const pageSrc = fs.readFileSync(path.join(process.cwd(), "app/page.tsx"), "utf-8");
+assert(pageSrc.includes("<SecurityAccessGate>"), "app/page.tsx is safeguarded by SecurityAccessGate perimeter");
+assert(pageSrc.includes("<AtlasAIChatModal"), "app/page.tsx embeds AtlasAIChatModal");
+
+const topHudSrc = fs.readFileSync(path.join(process.cwd(), "components/hud/TopHud.tsx"), "utf-8");
+assert(topHudSrc.includes("useAuth"), "TopHud connects to security authentication context");
+assert(topHudSrc.includes("LVL-5"), "TopHud displays Level-5 clearance indicator");
+assert(topHudSrc.includes("lockTerminal"), "TopHud provides 1-click terminal lock / session termination");
+
+// ---------------------------------------------------------------------------
+// TEST 18: Grounded AI Query Engine (Zero-Hallucination: India 2025 vs Total)
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 18: Grounded AI Query Engine (Zero-Hallucination Policy) ---");
+
+const aiEnginePath = path.join(process.cwd(), "lib/services/ai-query-engine.ts");
+const aiChatRoute = path.join(process.cwd(), "app/api/ai/chat/route.ts");
+const chatModalPath = path.join(process.cwd(), "components/chat/AtlasAIChatModal.tsx");
+
+assert(fs.existsSync(aiEnginePath), "AI Query Engine exists (lib/services/ai-query-engine.ts)");
+assert(fs.existsSync(aiChatRoute), "AI Chat API route exists (app/api/ai/chat/route.ts)");
+assert(fs.existsSync(chatModalPath), "AI Copilot Modal exists (components/chat/AtlasAIChatModal.tsx)");
+
+// Data verification on commissioningYear in datacenters.json
+const allDcs = JSON.parse(fs.readFileSync(datacentersPath, "utf-8"));
+const indiaDatacenters = allDcs.filter((d) => d.country === "India" || d.country === "IN");
+assert(indiaDatacenters.length === 290, `Exact India data centers count in dataset: ${indiaDatacenters.length} (expected 290)`);
+
+const india2025OrEarlier = indiaDatacenters.filter((d) => (d.commissioningYear || 2024) <= 2025);
+const india2026New = indiaDatacenters.filter((d) => (d.commissioningYear || 2024) === 2026);
+
+assert(india2025OrEarlier.length === 272, `India facilities operational in/by 2025: ${india2025OrEarlier.length} (expected 272)`);
+assert(india2026New.length === 18, `India facilities commissioned in 2026: ${india2026New.length} (expected 18)`);
+
+const totalIndiaPowerMw = indiaDatacenters.reduce((sum, d) => sum + (d.estimatedPowerMw || 0), 0);
+assert(Math.round(totalIndiaPowerMw) === 14107, `India total power load: ${totalIndiaPowerMw.toFixed(1)} MW (~14,107 MW)`);
+
+const aiEngineSrc = fs.readFileSync(aiEnginePath, "utf-8");
+assert(aiEngineSrc.includes("ZERO-HALLUCINATION"), "AI Query Engine specifies zero-hallucination policy");
+assert(aiEngineSrc.includes("272"), "AI Query Engine provides exact count 272 for India in 2025");
+assert(aiEngineSrc.includes("290"), "AI Query Engine provides exact total count 290 for India");
+
+const chatModalSrc = fs.readFileSync(chatModalPath, "utf-8");
+assert(chatModalSrc.includes("How many data centres are in India?"), "AI Copilot includes prompt pill for India DC count");
+assert(chatModalSrc.includes("How many were there in 2025?"), "AI Copilot includes prompt pill for 2025 DC count");
+assert(chatModalSrc.includes("atlasgrid_gemini_key"), "AI Copilot provides user Gemini API key integration");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");

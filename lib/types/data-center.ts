@@ -28,6 +28,7 @@ export interface DataCenter {
   // Calculated Sustainability & Grid Integration
   localCleanEnergyPercent?: number;
   estimatedAnnualCo2Tons?: number;
+  commissioningYear?: number;
 }
 
 export interface DataCenterSummary {

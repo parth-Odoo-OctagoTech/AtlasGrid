@@ -2,6 +2,7 @@
 
 import { useGridStore } from "@/lib/store/useGridStore";
 import { useMemo, useState, useEffect } from "react";
+import { useAuth } from "@/components/auth/SecurityAccessGate";
 import {
   Activity,
   AlertTriangle,
@@ -18,6 +19,8 @@ import {
   Layers,
   Sparkles,
   RefreshCw,
+  Lock,
+  LogOut,
 } from "lucide-react";
 
 export function TopHud() {
@@ -72,6 +75,10 @@ export function TopHud() {
   const setAnalyticsOpen = useGridStore((s) => s.setAnalyticsOpen);
   const setSearchOpen = useGridStore((s) => s.setSearchOpen);
   const setDcFleetOpen = useGridStore((s) => s.setDcFleetOpen);
+  const isChatOpen = useGridStore((s) => s.isChatOpen);
+  const setChatOpen = useGridStore((s) => s.setChatOpen);
+
+  const { user, lockTerminal } = useAuth();
 
   // Global Hotkeys (Palantir Command shortcuts)
   useEffect(() => {
@@ -88,10 +95,13 @@ export function TopHud() {
       if (e.key === "l" || e.key === "L") {
         setAlertsOpen(!useGridStore.getState().isAlertsOpen);
       }
+      if (e.key === "j" || e.key === "J") {
+        setChatOpen(!useGridStore.getState().isChatOpen);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen]);
+  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen]);
 
   const totalDcPowerMw = useMemo(
     () => dataCenters.reduce((sum, d) => sum + d.estimatedPowerMw, 0),
@@ -316,6 +326,44 @@ export function TopHud() {
             </span>
           )}
         </button>
+
+        {/* AI Copilot Trigger */}
+        <button
+          onClick={() => setChatOpen(!isChatOpen)}
+          className={`flex items-center gap-1.5 rounded px-2.5 py-1 text-xs transition-colors cursor-pointer ${
+            isChatOpen
+              ? "bg-[#137cbd] text-white border border-[#2b95d6] shadow-sm"
+              : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742] hover:border-[#2b95d6]/50"
+          }`}
+          title="Open AtlasGrid AI Copilot (⌘J)"
+        >
+          <Sparkles className={`h-3.5 w-3.5 ${isChatOpen ? "text-white" : "text-[#2b95d6]"}`} />
+          <span className="hidden sm:inline text-[11px] font-mono font-medium">Copilot</span>
+          <kbd className="hidden md:inline rounded bg-[#101418] px-1 py-0.2 text-[9px] font-mono text-[#8a9ba8] border border-[#293742]">
+            ⌘J
+          </kbd>
+        </button>
+
+        {/* Security Clearance Perimeter & Terminal Lock */}
+        <div className="flex items-center gap-1.5 pl-1.5 border-l border-[#293742]">
+          <div
+            className="hidden xl:flex items-center gap-1 px-2 py-0.5 rounded bg-[#101418] border border-[#293742] text-[10px] font-mono text-[#15b371]"
+            title="Authenticated with Level-5 Top Secret Clearance"
+          >
+            <ShieldCheck className="h-3 w-3 text-[#15b371]" />
+            <span className="font-semibold text-[#f5f8fa]">{user?.username || "ADMIN"}</span>
+            <span className="text-[#5c7080]">// LVL-5</span>
+          </div>
+
+          <button
+            onClick={lockTerminal}
+            className="flex items-center gap-1 rounded px-2 py-1 text-[11px] font-mono text-[#8a9ba8] bg-[#101418] border border-[#293742] hover:bg-[#db3737]/20 hover:text-[#f55656] hover:border-[#db3737]/40 transition-colors cursor-pointer"
+            title="Lock Terminal & Terminate Session"
+          >
+            <Lock className="h-3 w-3" />
+            <span className="hidden md:inline">Lock</span>
+          </button>
+        </div>
       </div>
     </header>
   );

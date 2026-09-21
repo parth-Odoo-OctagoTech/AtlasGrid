@@ -48,6 +48,7 @@ interface GridStoreState {
   isAnalyticsOpen: boolean;
   isSearchOpen: boolean;
   isDcFleetOpen: boolean;
+  isChatOpen: boolean;
 
   // Viewport & Map Config
   viewport: ViewportState;
@@ -142,6 +143,7 @@ interface GridStoreState {
   setAnalyticsOpen: (open: boolean) => void;
   setSearchOpen: (open: boolean) => void;
   setDcFleetOpen: (open: boolean) => void;
+  setChatOpen: (open: boolean) => void;
   setReplayMode: (isReplay: boolean) => void;
   setReplayHour: (hour: number) => void;
   setReplayPlaying: (isPlaying: boolean) => void;
@@ -157,6 +159,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   isAnalyticsOpen: false,
   isSearchOpen: false,
   isDcFleetOpen: false,
+  isChatOpen: false,
 
   viewport: DEFAULT_VIEWPORT,
   visualizationMode: "2d_scatter",
@@ -471,6 +474,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setSearchOpen: (open) => set({ isSearchOpen: open }),
 
   setDcFleetOpen: (open) => set({ isDcFleetOpen: open }),
+  setChatOpen: (open) => set({ isChatOpen: open }),
 
   setReplayMode: (isReplay) => set({ isReplayMode: isReplay }),
 
