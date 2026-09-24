@@ -1,5 +1,17 @@
 [
   {
+    "runId": "crawl-2026-09-24T02-19-08-938Z",
+    "timestamp": "2026-09-24T02:19:09.109Z",
+    "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
+    "status": "success",
+    "discoveredCandidates": 5415,
+    "verifiedNewNodes": 0,
+    "repairedLinks": 0,
+    "maritimePointsRejected": 0,
+    "durationMs": 171,
+    "details": "Continuous crawler scan finished in 171ms. Verified 0 new onshore nodes, repaired 0 links, 0 maritime errors."
+  },
+  {
     "runId": "crawl-2026-09-23T20-52-38-678Z",
     "timestamp": "2026-09-23T20:52:38.769Z",
     "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
