@@ -21,6 +21,7 @@ import {
   RefreshCw,
   Lock,
   LogOut,
+  Database,
 } from "lucide-react";
 
 export function TopHud() {
@@ -77,6 +78,8 @@ export function TopHud() {
   const setDcFleetOpen = useGridStore((s) => s.setDcFleetOpen);
   const isChatOpen = useGridStore((s) => s.isChatOpen);
   const setChatOpen = useGridStore((s) => s.setChatOpen);
+  const isDataSourcesOpen = useGridStore((s) => s.isDataSourcesOpen);
+  const setDataSourcesOpen = useGridStore((s) => s.setDataSourcesOpen);
 
   const { user, lockTerminal } = useAuth();
 
@@ -98,10 +101,13 @@ export function TopHud() {
       if (e.key === "j" || e.key === "J") {
         setChatOpen(!useGridStore.getState().isChatOpen);
       }
+      if (e.key === "s" || e.key === "S") {
+        setDataSourcesOpen(!useGridStore.getState().isDataSourcesOpen);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen]);
+  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen]);
 
   const totalDcPowerMw = useMemo(
     () => dataCenters.reduce((sum, d) => sum + d.estimatedPowerMw, 0),
@@ -179,29 +185,38 @@ export function TopHud() {
             </span>
           </span>
 
-          {/* Autonomous Crawler Bot Status Interactive Pill */}
-          <button
-            onClick={handleTriggerSync}
-            disabled={isSyncing}
-            className="h-7 hidden sm:inline-flex items-center gap-1.5 px-2.5 rounded border border-[#293742] bg-[#101418] hover:bg-[#182026] hover:border-[#2b95d6]/50 text-[10px] font-mono text-[#8a9ba8] transition-colors cursor-pointer group leading-none"
-            title="AtlasGrid Continuous Crawler Bot: Click to trigger instant grid & registry sync"
-          >
-            {isSyncing ? (
-              <RefreshCw className="h-3 w-3 shrink-0 animate-spin text-[#2b95d6]" />
-            ) : (
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#15b371]" />
+          {/* Autonomous Crawler Bot Status & Registry Interactive Pill */}
+          <div className="hidden sm:inline-flex items-center">
+            <button
+              onClick={() => setDataSourcesOpen(true)}
+              className="h-7 inline-flex items-center gap-1.5 px-2.5 rounded-l border-y border-l border-[#293742] bg-[#101418] hover:bg-[#182026] hover:border-[#2b95d6]/50 text-[10px] font-mono text-[#8a9ba8] transition-colors cursor-pointer group leading-none"
+              title="Open Data Sources & Continuous Crawler Registry (S)"
+            >
+              {isSyncing ? (
+                <RefreshCw className="h-3 w-3 shrink-0 animate-spin text-[#2b95d6]" />
+              ) : (
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#15b371] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#15b371]" />
+                </span>
+              )}
+              <span className="text-[#f5f8fa] font-semibold">
+                {syncFeedback ? syncFeedback : "BOT: ACTIVE"}
               </span>
-            )}
-            <span className="text-[#f5f8fa] font-semibold">
-              {syncFeedback ? syncFeedback : "BOT: ACTIVE"}
-            </span>
-            <span className="text-[#5c7080]">•</span>
-            <span className="text-[#2b95d6] group-hover:underline">
-              {isSyncing ? "SYNCING" : "SYNC NOW"}
-            </span>
-          </button>
+              <span className="text-[#5c7080]">•</span>
+              <span className="text-[#2b95d6] group-hover:underline font-bold">
+                REGISTRY
+              </span>
+            </button>
+            <button
+              onClick={handleTriggerSync}
+              disabled={isSyncing}
+              className="h-7 inline-flex items-center px-2 rounded-r border border-[#293742] bg-[#101418] hover:bg-[#182026] hover:border-[#2b95d6]/50 text-[10px] font-mono text-[#2b95d6] hover:text-[#f5f8fa] transition-colors cursor-pointer disabled:opacity-50 leading-none"
+              title="Trigger instant multi-source crawler synchronization"
+            >
+              <span>{isSyncing ? "SYNCING..." : "SYNC"}</span>
+            </button>
+          </div>
 
           {/* Live UTC Master Clock */}
           {mounted && utcTime && (
@@ -298,6 +313,23 @@ export function TopHud() {
           <span className="hidden sm:inline font-medium">Objects</span>
           <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             O
+          </kbd>
+        </button>
+
+        {/* Data Sources & Continuous Crawler Registry */}
+        <button
+          onClick={() => setDataSourcesOpen(true)}
+          className={`h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none transition-colors cursor-pointer ${
+            isDataSourcesOpen
+              ? "bg-[#202b33] border border-[#2b95d6] text-[#2b95d6]"
+              : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742] hover:border-[#30404d]"
+          }`}
+          title="Open Data Sources & Continuous Crawler Registry (S)"
+        >
+          <Database className="h-3.5 w-3.5 shrink-0 text-[#2b95d6]" />
+          <span className="hidden sm:inline font-medium">Sources</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
+            S
           </kbd>
         </button>
 

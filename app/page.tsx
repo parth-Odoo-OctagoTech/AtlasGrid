@@ -12,6 +12,7 @@ import { StationInspector } from "@/components/inspector/StationInspector";
 import { GridAnalyticsModal } from "@/components/analytics/GridAnalyticsModal";
 import { AlertCenterDrawer } from "@/components/analytics/AlertCenterDrawer";
 import { DataCenterFleetModal } from "@/components/analytics/DataCenterFleetModal";
+import { DataSourcesRegistryModal } from "@/components/analytics/DataSourcesRegistryModal";
 import { SecurityAccessGate } from "@/components/auth/SecurityAccessGate";
 import { AtlasAIChatModal } from "@/components/chat/AtlasAIChatModal";
 
@@ -176,6 +177,9 @@ export default function PowerGridDashboard() {
 
         {/* Global Data Center Fleet & Capacity Intelligence Modal */}
         <DataCenterFleetModal dataCenters={dataCenters} />
+
+        {/* Global Data Sources & Continuous Crawler Registry Modal */}
+        <DataSourcesRegistryModal />
 
         {/* Grid Anomaly Alert Center Drawer */}
         <AlertCenterDrawer />

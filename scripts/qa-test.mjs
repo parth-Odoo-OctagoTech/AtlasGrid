@@ -563,6 +563,60 @@ assert(krSubs.length >= 80, `South Korea substations count: ${krSubs.length} (>=
 assert(jpSubs.length >= 100, `Japan substations count: ${jpSubs.length} (>= 100 requirement)`);
 assert(usSubs.length >= 100, `United States substations count: ${usSubs.length} (>= 100 requirement)`);
 
+// Verification of California & US Pacific Coast Maritime Rejection (Zero Water Points)
+function isOffshoreUSWestCoast(lat, lng) {
+  if (lat >= 32.0 && lat <= 49.0 && lng < -114.0) {
+    if (lat < 32.6 && lng < -117.15) return true; // South of San Diego / Tijuana offshore
+    if (lat < 33.0 && lng < -117.35) return true; // San Diego county coastal waters
+    if (lat < 33.5 && lng < -117.80) return true; // Orange County / Dana Point offshore
+    if (lat < 33.8 && lng < -118.40) return true; // San Pedro / Long Beach offshore
+    if (lat < 34.1 && lng < -118.60) return true; // Santa Monica Bay
+    if (lat < 34.3 && lng < -119.50) return true; // Ventura / Santa Barbara Channel
+    if (lat < 34.55 && lng < -120.50) return true; // Point Conception offshore
+    if (lat < 35.25 && lng < -120.90) return true; // San Luis Obispo (Diablo Canyon is at -120.852)
+    if (lat < 35.80 && lng < -121.40) return true; // Central Coast / San Simeon offshore
+    if (lat < 36.50 && lng < -121.95) return true; // Big Sur offshore
+    if (lat < 37.00 && lng < -122.30) return true; // Monterey Bay (Moss Landing is at -121.785)
+    if (lat < 37.80 && lng < -122.55) return true; // SF Peninsula offshore
+    if (lat < 38.30 && lng < -123.10) return true; // Marin / Point Reyes offshore
+    if (lat < 39.00 && lng < -123.75) return true; // Sonoma coast offshore
+    if (lat < 40.00 && lng < -124.15) return true; // Mendocino coast offshore
+    if (lat < 40.50 && lng < -124.45) return true; // Cape Mendocino offshore
+    if (lat < 42.00 && lng < -124.30) return true; // Humboldt / Del Norte offshore
+    if (lat < 46.30 && lng < -124.10) return true; // Oregon coast offshore
+    if (lat <= 49.00 && lng < -124.80) return true; // Washington coast offshore
+  }
+  return false;
+}
+
+const offshoreSubs = subs.filter((s) => isOffshoreUSWestCoast(s.latitude, s.longitude));
+assert(offshoreSubs.length === 0, `Zero substations in California/US West Coast Pacific Ocean waters (found ${offshoreSubs.length})`);
+
+const offshorePlants = plants.filter((p) => isOffshoreUSWestCoast(p.latitude, p.longitude));
+assert(offshorePlants.length === 0, `Zero power plants in California/US West Coast Pacific Ocean waters (found ${offshorePlants.length})`);
+
+// Verify Key California 500kV Bulk Transmission Hubs are present and accurate
+const midwaySub = subs.find((s) => s.id === "us-sub-midway" || s.name.includes("Midway 500kV"));
+assert(midwaySub && midwaySub.latitude >= 35.2 && midwaySub.latitude <= 35.4 && midwaySub.longitude >= -119.8 && midwaySub.longitude <= -119.5, "Midway 500kV Substation verified at Buttonwillow, Kern County");
+
+const vincentSub = subs.find((s) => s.id === "us-sub-vincent" || s.name.includes("Vincent 500kV"));
+assert(vincentSub && vincentSub.latitude >= 34.3 && vincentSub.latitude <= 34.6 && vincentSub.longitude >= -118.3 && vincentSub.longitude <= -118.0, "Vincent 500kV Substation verified at Acton/Palmdale, LA County");
+
+const lugoSub = subs.find((s) => s.id === "us-sub-lugo" || s.name.includes("Lugo 500kV"));
+assert(lugoSub && lugoSub.latitude >= 34.2 && lugoSub.latitude <= 34.5 && lugoSub.longitude >= -117.5 && lugoSub.longitude <= -117.2, "Lugo 500kV Substation verified at Hesperia, San Bernardino County");
+
+const deversSub = subs.find((s) => s.id === "us-sub-devers-500" || s.name.includes("Devers 500kV"));
+assert(deversSub && deversSub.latitude >= 33.8 && deversSub.latitude <= 34.1 && deversSub.longitude >= -116.7 && deversSub.longitude <= -116.4, "Devers 500kV Substation verified at Palm Springs, Riverside County");
+
+const imperialSub = subs.find((s) => s.name.includes("Imperial Valley 500kV"));
+assert(imperialSub && imperialSub.latitude >= 32.6 && imperialSub.latitude <= 32.9 && imperialSub.longitude >= -115.9 && imperialSub.longitude <= -115.6, "Imperial Valley 500kV Substation verified at El Centro / Imperial County");
+
+const diabloSub = subs.find((s) => s.id === "sub-us-station-real-26" || s.name.includes("Diablo Canyon"));
+assert(diabloSub && diabloSub.latitude >= 35.1 && diabloSub.latitude <= 35.3 && diabloSub.longitude >= -120.9 && diabloSub.longitude <= -120.7, "Diablo Canyon 500kV Switchyard verified at San Luis Obispo coast");
+
+const mossLandingSub = subs.find((s) => s.id === "sub-us-station-real-33" || s.name.includes("Moss Landing"));
+assert(mossLandingSub && mossLandingSub.latitude >= 36.7 && mossLandingSub.latitude <= 36.9 && mossLandingSub.longitude >= -121.9 && mossLandingSub.longitude <= -121.7, "Moss Landing 500kV Switchyard verified at Monterey Bay");
+
 // Substation Layer Filtering & Data Center Isolation Verification
 const deckGlMapSrc = fs.readFileSync(path.join(process.cwd(), "components", "map", "DeckGLMap.tsx"), "utf-8");
 assert(deckGlMapSrc.includes('filters.infrastructureType === "datacenters"'), "DeckGLMap checks datacenters filter mode before rendering substations");
@@ -845,6 +899,56 @@ assert(fs.existsSync(apiHistRoute), "app/api/historical/route.ts exists");
 const apiHistSrc = fs.readFileSync(apiHistRoute, "utf-8");
 assert(apiHistSrc.includes('export const dynamic = "force-dynamic"'), "app/api/historical/route.ts exports force-dynamic");
 assert(apiHistSrc.includes("facility_risk"), "app/api/historical/route.ts supports facility_risk parameter");
+
+// ---------------------------------------------------------------------------
+// TEST 20: Comprehensive Open Data Sources (10 Pillars) & Continuous Multi-Source Crawler
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 20: Comprehensive Open Data Sources (10 Pillars) & Continuous Crawler Engine ---");
+
+const crawlerSourcesRoute = path.join(process.cwd(), "app/api/crawler/sources/route.ts");
+assert(fs.existsSync(crawlerSourcesRoute), "app/api/crawler/sources/route.ts exists");
+const crawlerSourcesSrc = fs.readFileSync(crawlerSourcesRoute, "utf-8");
+assert(crawlerSourcesSrc.includes("totalPillars: 10"), "Data Sources API specifies all 10 infrastructure pillars");
+assert(crawlerSourcesSrc.includes("peeringdb-fac"), "Data Sources API monitors PeeringDB Global Facility & IXP Registry");
+assert(crawlerSourcesSrc.includes("us-iso-grid"), "Data Sources API monitors US Regional Transmission Organizations");
+assert(crawlerSourcesSrc.includes("entsoe-transparency"), "Data Sources API monitors ENTSO-E European Transparency Platform");
+assert(crawlerSourcesSrc.includes("usgs-realtime-eq"), "Data Sources API monitors USGS Real-Time Earthquake GeoJSON feed");
+assert(crawlerSourcesSrc.includes("fema-nfhl"), "Data Sources API monitors FEMA National Flood Hazard Layer");
+assert(crawlerSourcesSrc.includes("noaa-spc-svrgis"), "Data Sources API monitors NOAA SPC SVRGIS Severe Weather Archive");
+assert(crawlerSourcesSrc.includes("nasa-power-api"), "Data Sources API monitors NASA POWER Global Solar & Meteorological API");
+assert(crawlerSourcesSrc.includes("wri-aqueduct"), "Data Sources API monitors WRI Aqueduct 4.0 Water Risk Atlas");
+assert(crawlerSourcesSrc.includes("usda-ssurgo-sda"), "Data Sources API monitors USDA NRCS Soil Data Access");
+assert(crawlerSourcesSrc.includes("faa-part77-airspace"), "Data Sources API monitors FAA Part 77 Aeronautical GIS");
+
+const crawlerSrc = fs.readFileSync(path.join(process.cwd(), "lib/crawler/grid-crawler.ts"), "utf-8");
+assert(crawlerSrc.includes("syncLiveUsgsEarthquakes"), "GridCrawler implements live USGS Real-Time earthquake sync");
+assert(crawlerSrc.includes("syncLiveGdacsAlerts"), "GridCrawler implements live GDACS multi-hazard disaster alert sync");
+assert(crawlerSrc.includes("liveFeedsPolled"), "GridCrawler audit records track live feeds polled in each cycle");
+
+const dataSourcesModalPath = path.join(process.cwd(), "components/analytics/DataSourcesRegistryModal.tsx");
+assert(fs.existsSync(dataSourcesModalPath), "DataSourcesRegistryModal component exists");
+const dataSourcesModalSrc = fs.readFileSync(dataSourcesModalPath, "utf-8");
+assert(dataSourcesModalSrc.includes("DATA SOURCES") && dataSourcesModalSrc.includes("CONTINUOUS CRAWLER REGISTRY"), "Modal renders high-density registry title");
+assert(dataSourcesModalSrc.includes("SYNC ALL SOURCES NOW"), "Modal provides operator 1-click multi-source sync trigger");
+assert(dataSourcesModalSrc.includes("10 Infrastructure Pillars"), "Modal details 10 infrastructure pillars");
+
+const sourcesStoreSrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(sourcesStoreSrc.includes("isDataSourcesOpen: boolean"), "useGridStore manages isDataSourcesOpen state");
+assert(sourcesStoreSrc.includes("setDataSourcesOpen: (open: boolean) => void"), "useGridStore exposes setDataSourcesOpen action");
+
+const hudSourcesSrc = fs.readFileSync(path.join(process.cwd(), "components/hud/TopHud.tsx"), "utf-8");
+assert(hudSourcesSrc.includes("setDataSourcesOpen(true)"), "TopHud links crawler pill to open Data Sources Registry modal");
+assert(hudSourcesSrc.includes("Sources"), "TopHud right action group includes Sources button");
+
+const mainPageSrc = fs.readFileSync(path.join(process.cwd(), "app/page.tsx"), "utf-8");
+assert(mainPageSrc.includes("<DataSourcesRegistryModal"), "app/page.tsx mounts DataSourcesRegistryModal in root layout");
+
+const blueprintPath = path.join(process.env.HOME || "", ".gemini/antigravity/brain/01110b01-a6aa-444a-b305-096c5ac40224/data_sources_and_crawler_blueprint.md");
+if (fs.existsSync(blueprintPath)) {
+  const bpSrc = fs.readFileSync(blueprintPath, "utf-8");
+  assert(bpSrc.includes("Continuous Multi-Source Crawler Engine Implementation"), "Blueprint documents continuous multi-source crawler engine");
+  assert(bpSrc.includes("Automated Schedules & Keeping Everything Updated"), "Blueprint documents automated cron update schedules");
+}
 
 // ---------------------------------------------------------------------------
 // FINAL SUMMARY

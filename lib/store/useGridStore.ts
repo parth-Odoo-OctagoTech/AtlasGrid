@@ -61,6 +61,7 @@ interface GridStoreState {
   isSearchOpen: boolean;
   isDcFleetOpen: boolean;
   isChatOpen: boolean;
+  isDataSourcesOpen: boolean;
 
   // Viewport & Map Config
   viewport: ViewportState;
@@ -117,6 +118,7 @@ interface GridStoreState {
   setSeismicFaults: (faults: SeismicFaultLine[]) => void;
   setFlightCorridors: (corridors: FlightCorridor[]) => void;
   setHazardCorridors: (corridors: HazardCorridor[]) => void;
+  setDataSourcesOpen: (open: boolean) => void;
   setCrawlerStatus: (status: Partial<GridStoreState["crawlerStatus"]>) => void;
   selectStationById: (id: string | null, plants?: PowerPlant[]) => void;
   setHoveredStation: (
@@ -182,6 +184,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   isSearchOpen: false,
   isDcFleetOpen: false,
   isChatOpen: false,
+  isDataSourcesOpen: false,
 
   viewport: DEFAULT_VIEWPORT,
   visualizationMode: "2d_scatter",
@@ -510,6 +513,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
 
   setDcFleetOpen: (open) => set({ isDcFleetOpen: open }),
   setChatOpen: (open) => set({ isChatOpen: open }),
+  setDataSourcesOpen: (open) => set({ isDataSourcesOpen: open }),
 
   setReplayMode: (isReplay) => set({ isReplayMode: isReplay }),
 

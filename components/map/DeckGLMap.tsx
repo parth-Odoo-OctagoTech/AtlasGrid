@@ -1004,7 +1004,7 @@ export function DeckGLMap({
         new ScatterplotLayer<Substation>({
           id: "substations-nodes",
           data: filteredSubstations,
-          getPosition: (d) => [d.longitude, d.latitude],
+          getPosition: (d) => [d.longitude ?? (d as any).lng ?? 0, d.latitude ?? (d as any).lat ?? 0],
           getRadius: (d) => Math.max(1200, Math.sqrt(d.voltageKv) * 160),
           getFillColor: (d) => {
             const col = getSubstationColor(d.voltageKv);
