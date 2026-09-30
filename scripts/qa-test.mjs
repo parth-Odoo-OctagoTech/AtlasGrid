@@ -951,6 +951,113 @@ if (fs.existsSync(blueprintPath)) {
 }
 
 // ---------------------------------------------------------------------------
+// TEST 21: Institutional Commercialization & Investment Committee Underwriting Engine (Epics 1–5)
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 21: Institutional Commercialization & Investment Committee Underwriting Engine ---");
+
+// 1. Epic 1: FERC Order 2023 Interconnection Queue & Substation POI Headroom Engine
+const queueDataPath = path.join(process.cwd(), "data/interconnection-queues.json");
+assert(fs.existsSync(queueDataPath), "data/interconnection-queues.json exists on disk");
+const queueData = JSON.parse(fs.readFileSync(queueDataPath, "utf-8"));
+assert(Array.isArray(queueData) && queueData.length >= 10, `Loaded ${queueData.length} FERC/RTO bulk transmission queue profiles`);
+
+const queueTypesPath = path.join(process.cwd(), "lib/types/interconnection-queue.ts");
+assert(fs.existsSync(queueTypesPath), "lib/types/interconnection-queue.ts exists");
+
+const queueServicePath = path.join(process.cwd(), "lib/services/interconnection-queue-service.ts");
+assert(fs.existsSync(queueServicePath), "lib/services/interconnection-queue-service.ts exists");
+const queueServiceSrc = fs.readFileSync(queueServicePath, "utf-8");
+assert(queueServiceSrc.includes("findNearestInterconnectionQueue"), "Queue service exports findNearestInterconnectionQueue");
+assert(queueServiceSrc.includes("queueSaturationIndex"), "Queue service calculates Queue Saturation Index (QSI)");
+
+const queueRoutePath = path.join(process.cwd(), "app/api/interconnection-queue/route.ts");
+assert(fs.existsSync(queueRoutePath), "app/api/interconnection-queue/route.ts exists");
+
+// 2. Epic 2: Behind-The-Meter (BTM) Baseload Co-Location & Nuclear / SMR Feasibility Engine
+const btmDataPath = path.join(process.cwd(), "data/btm-colocation-sites.json");
+assert(fs.existsSync(btmDataPath), "data/btm-colocation-sites.json exists on disk");
+const btmData = JSON.parse(fs.readFileSync(btmDataPath, "utf-8"));
+assert(Array.isArray(btmData) && btmData.length >= 8, `Loaded ${btmData.length} verified BTM nuclear, SMR, and clean baseload sites`);
+
+const susquehanna = btmData.find((s) => s.id === "btm-susquehanna");
+assert(!!susquehanna, "Susquehanna Nuclear Station exists in BTM dataset");
+if (susquehanna) {
+  assert(susquehanna.availableDirectBtmCapacityMw === 960, "Susquehanna has 960 MW direct BTM bus capacity");
+  assert(susquehanna.contiguousAcreageAvailable === 1200, "Susquehanna has 1,200 acres dedicated data center land");
+  assert(susquehanna.rtoTariffBypassSavingsDollarPerMwh >= 20, "Susquehanna saves >= $20/MWh RTO tariff bypass");
+}
+
+const craneTmi = btmData.find((s) => s.id === "btm-crane-tmi");
+assert(!!craneTmi, "Crane Clean Energy Center (TMI Unit 1) exists in BTM dataset");
+
+const btmTypesPath = path.join(process.cwd(), "lib/types/btm-colocation.ts");
+assert(fs.existsSync(btmTypesPath), "lib/types/btm-colocation.ts exists");
+
+const btmServicePath = path.join(process.cwd(), "lib/services/btm-colocation-service.ts");
+assert(fs.existsSync(btmServicePath), "lib/services/btm-colocation-service.ts exists");
+const btmServiceSrc = fs.readFileSync(btmServicePath, "utf-8");
+assert(btmServiceSrc.includes("findNearestBtmColocation"), "BTM service exports findNearestBtmColocation");
+assert(btmServiceSrc.includes("annualTransmissionTariffSavingsMillionDollars"), "BTM service computes annual tariff bypass dollar savings");
+
+const btmRoutePath = path.join(process.cwd(), "app/api/btm-colocation/route.ts");
+assert(fs.existsSync(btmRoutePath), "app/api/btm-colocation/route.ts exists");
+
+// 3. Epic 3: 24/7 Carbon-Free Energy (CFE) Matching & Scope 2 Decarbonization Simulator
+const cfeTypesPath = path.join(process.cwd(), "lib/types/carbon-free-energy.ts");
+assert(fs.existsSync(cfeTypesPath), "lib/types/carbon-free-energy.ts exists");
+
+const cfeEnginePath = path.join(process.cwd(), "lib/services/cfe-simulation-engine.ts");
+assert(fs.existsSync(cfeEnginePath), "lib/services/cfe-simulation-engine.ts exists");
+const cfeEngineSrc = fs.readFileSync(cfeEnginePath, "utf-8");
+assert(cfeEngineSrc.includes("run247CfeSimulation"), "CFE simulation engine exports run247CfeSimulation");
+assert(cfeEngineSrc.includes("bessCapacityMwh"), "CFE simulation engine incorporates battery storage (BESS) dispatch");
+assert(cfeEngineSrc.includes("avoidedScope2EmissionsTonsCo2"), "CFE simulation engine calculates avoided Scope 2 CO2 tons");
+
+const cfeRoutePath = path.join(process.cwd(), "app/api/cfe-simulator/route.ts");
+assert(fs.existsSync(cfeRoutePath), "app/api/cfe-simulator/route.ts exists");
+
+// 4. Epic 4: Water Usage Effectiveness (WUE) & Thermal Cooling Energy Penalty Engine
+const coolingEnginePath = path.join(process.cwd(), "lib/services/water-cooling-engine.ts");
+assert(fs.existsSync(coolingEnginePath), "lib/services/water-cooling-engine.ts exists");
+const coolingEngineSrc = fs.readFileSync(coolingEnginePath, "utf-8");
+assert(coolingEngineSrc.includes("calculateWaterCoolingMetrics"), "Cooling engine exports calculateWaterCoolingMetrics");
+assert(coolingEngineSrc.includes("extraPeakMwRequired"), "Cooling engine calculates dry cooling heatwave energy penalty in MW");
+assert(coolingEngineSrc.includes("annualWaterConsumptionMgy"), "Cooling engine calculates annual water consumption in MGY");
+
+const coolingRoutePath = path.join(process.cwd(), "app/api/cooling-analysis/route.ts");
+assert(fs.existsSync(coolingRoutePath), "app/api/cooling-analysis/route.ts exists");
+
+// 5. Epic 5: Institutional Siting Dossier Generator & UI Wiring
+const dossierModalPath = path.join(process.cwd(), "components/analytics/InstitutionalSitingDossierModal.tsx");
+assert(fs.existsSync(dossierModalPath), "InstitutionalSitingDossierModal component exists");
+const dossierModalSrc = fs.readFileSync(dossierModalPath, "utf-8");
+assert(dossierModalSrc.includes("INSTITUTIONAL SITING DOSSIER") && dossierModalSrc.includes("CONFIDENTIAL // IC MEMO"), "Dossier renders institutional memorandum title");
+assert(dossierModalSrc.includes("Target Campus IT Load:"), "Dossier includes interactive 50–1000 MW capacity sizing slider");
+assert(dossierModalSrc.includes("10-Pillar Institutional Siting Radar"), "Dossier renders 10-pillar radar score breakdown");
+assert(dossierModalSrc.includes("Interconnection Queue & POI Headroom"), "Dossier includes FERC queue audit section");
+assert(dossierModalSrc.includes("Behind-The-Meter (BTM) Nuclear & Baseload"), "Dossier includes BTM nuclear/SMR section");
+assert(dossierModalSrc.includes("24/7 Carbon-Free Energy (CFE) Matching"), "Dossier includes 24/7 CFE graph & Scope 2 calculator");
+assert(dossierModalSrc.includes("Dry Cooling Conversion Penalty"), "Dossier includes WUE & dry cooling trade-offs");
+assert(dossierModalSrc.includes("PRINT / EXPORT (PDF)"), "Dossier includes print and export button");
+
+const gridStoreDossierSrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(gridStoreDossierSrc.includes("isDossierOpen: boolean"), "useGridStore manages isDossierOpen state");
+assert(gridStoreDossierSrc.includes("dossierTarget:"), "useGridStore stores dossierTarget asset");
+assert(gridStoreDossierSrc.includes("openDossierForTarget:"), "useGridStore provides openDossierForTarget action");
+
+const appPageDossierSrc = fs.readFileSync(path.join(process.cwd(), "app/page.tsx"), "utf-8");
+assert(appPageDossierSrc.includes("<InstitutionalSitingDossierModal"), "app/page.tsx mounts InstitutionalSitingDossierModal in root layout");
+
+const topHudDossierSrc = fs.readFileSync(path.join(process.cwd(), "components/hud/TopHud.tsx"), "utf-8");
+assert(topHudDossierSrc.includes("setDossierOpen(true)"), "TopHud includes Dossier button trigger");
+assert(topHudDossierSrc.includes("Dossier"), "TopHud renders Dossier action label");
+
+const inspectorDossierSrc = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(inspectorDossierSrc.includes("GENERATE INVESTMENT COMMITTEE DOSSIER"), "StationInspector features prominent Dossier trigger buttons");
+assert(inspectorDossierSrc.includes("FERC Order 2023 Interconnection Queue"), "StationInspector displays FERC Order 2023 queue cards");
+assert(inspectorDossierSrc.includes("Behind-The-Meter (BTM) Baseload Co-Location"), "StationInspector displays BTM baseload cards");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");

@@ -22,6 +22,7 @@ import {
   Lock,
   LogOut,
   Database,
+  FileText,
 } from "lucide-react";
 
 export function TopHud() {
@@ -80,6 +81,8 @@ export function TopHud() {
   const setChatOpen = useGridStore((s) => s.setChatOpen);
   const isDataSourcesOpen = useGridStore((s) => s.isDataSourcesOpen);
   const setDataSourcesOpen = useGridStore((s) => s.setDataSourcesOpen);
+  const isDossierOpen = useGridStore((s) => s.isDossierOpen);
+  const setDossierOpen = useGridStore((s) => s.setDossierOpen);
 
   const { user, lockTerminal } = useAuth();
 
@@ -104,10 +107,13 @@ export function TopHud() {
       if (e.key === "s" || e.key === "S") {
         setDataSourcesOpen(!useGridStore.getState().isDataSourcesOpen);
       }
+      if (e.key === "d" || e.key === "D") {
+        setDossierOpen(!useGridStore.getState().isDossierOpen);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen]);
+  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen, setDossierOpen]);
 
   const totalDcPowerMw = useMemo(
     () => dataCenters.reduce((sum, d) => sum + d.estimatedPowerMw, 0),
@@ -343,6 +349,23 @@ export function TopHud() {
           <span className="hidden sm:inline">Analytics</span>
           <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             A
+          </kbd>
+        </button>
+
+        {/* Institutional Underwriting Dossier Generator */}
+        <button
+          onClick={() => setDossierOpen(true)}
+          className={`h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none transition-colors cursor-pointer ${
+            isDossierOpen
+              ? "bg-[#202b33] border border-[#f29d49] text-[#f29d49]"
+              : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742] hover:border-[#f29d49]/50"
+          }`}
+          title="Open Institutional Siting & Underwriting Dossier (D)"
+        >
+          <FileText className="h-3.5 w-3.5 shrink-0 text-[#f29d49]" />
+          <span className="hidden sm:inline font-medium">Dossier</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
+            D
           </kbd>
         </button>
 

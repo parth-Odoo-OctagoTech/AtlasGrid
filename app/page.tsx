@@ -13,6 +13,7 @@ import { GridAnalyticsModal } from "@/components/analytics/GridAnalyticsModal";
 import { AlertCenterDrawer } from "@/components/analytics/AlertCenterDrawer";
 import { DataCenterFleetModal } from "@/components/analytics/DataCenterFleetModal";
 import { DataSourcesRegistryModal } from "@/components/analytics/DataSourcesRegistryModal";
+import { InstitutionalSitingDossierModal } from "@/components/analytics/InstitutionalSitingDossierModal";
 import { SecurityAccessGate } from "@/components/auth/SecurityAccessGate";
 import { AtlasAIChatModal } from "@/components/chat/AtlasAIChatModal";
 
@@ -186,6 +187,9 @@ export default function PowerGridDashboard() {
 
         {/* Palantir Grounded AI Copilot Terminal */}
         <AtlasAIChatModal />
+
+        {/* Institutional Siting & Underwriting Dossier Generator Modal */}
+        <InstitutionalSitingDossierModal />
       </main>
     </SecurityAccessGate>
   );

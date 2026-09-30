@@ -62,6 +62,12 @@ interface GridStoreState {
   isDcFleetOpen: boolean;
   isChatOpen: boolean;
   isDataSourcesOpen: boolean;
+  isDossierOpen: boolean;
+  dossierTarget: {
+    dataCenter?: DataCenter | null;
+    station?: PowerPlant | null;
+    substation?: Substation | null;
+  } | null;
 
   // Viewport & Map Config
   viewport: ViewportState;
@@ -119,6 +125,12 @@ interface GridStoreState {
   setFlightCorridors: (corridors: FlightCorridor[]) => void;
   setHazardCorridors: (corridors: HazardCorridor[]) => void;
   setDataSourcesOpen: (open: boolean) => void;
+  setDossierOpen: (open: boolean) => void;
+  openDossierForTarget: (target: {
+    dataCenter?: DataCenter | null;
+    station?: PowerPlant | null;
+    substation?: Substation | null;
+  }) => void;
   setCrawlerStatus: (status: Partial<GridStoreState["crawlerStatus"]>) => void;
   selectStationById: (id: string | null, plants?: PowerPlant[]) => void;
   setHoveredStation: (
@@ -185,6 +197,8 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   isDcFleetOpen: false,
   isChatOpen: false,
   isDataSourcesOpen: false,
+  isDossierOpen: false,
+  dossierTarget: null,
 
   viewport: DEFAULT_VIEWPORT,
   visualizationMode: "2d_scatter",
@@ -514,6 +528,8 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setDcFleetOpen: (open) => set({ isDcFleetOpen: open }),
   setChatOpen: (open) => set({ isChatOpen: open }),
   setDataSourcesOpen: (open) => set({ isDataSourcesOpen: open }),
+  setDossierOpen: (open) => set({ isDossierOpen: open }),
+  openDossierForTarget: (target) => set({ isDossierOpen: true, dossierTarget: target }),
 
   setReplayMode: (isReplay) => set({ isReplayMode: isReplay }),
 

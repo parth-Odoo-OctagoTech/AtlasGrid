@@ -47,8 +47,14 @@ import {
   History,
   CloudLightning,
   Wind,
+  FileText,
+  DollarSign,
+  Atom,
+  TrendingUp,
 } from "lucide-react";
 import { calculateSitingScoreBreakdown, getSitingScoreColor } from "@/lib/services/siting-suitability-service";
+import { findNearestInterconnectionQueue } from "@/lib/services/interconnection-queue-service";
+import { findNearestBtmColocation } from "@/lib/services/btm-colocation-service";
 import {
   getGoogleMapsUrl,
   getOfficialWebsite,
@@ -72,6 +78,7 @@ export function StationInspector() {
   const setBasemapStyle = useGridStore((s) => s.setBasemapStyle);
   const layerVisibility = useGridStore((s) => s.layerVisibility);
   const toggleLayer = useGridStore((s) => s.toggleLayer);
+  const openDossierForTarget = useGridStore((s) => s.openDossierForTarget);
 
   // Fetch stations for cross-referencing
   const { data: allStationsData } = useQuery({
@@ -244,10 +251,72 @@ export function StationInspector() {
               {selectedSubstation.voltageKv} kV Transmission
             </span>
           </div>
+
+          {/* Institutional Dossier Trigger */}
+          <button
+            onClick={() => openDossierForTarget({ substation: selectedSubstation })}
+            className="w-full mt-3 py-2 px-3 rounded text-[11px] font-mono font-bold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+            title="Compile Siting & Headroom Underwriting Dossier for this Substation"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            <span>GENERATE INVESTMENT COMMITTEE DOSSIER</span>
+          </button>
         </div>
 
         {/* Substation Telemetry & Details Body */}
         <div className="p-4 space-y-4 font-mono text-xs">
+          {(() => {
+            const queue = findNearestInterconnectionQueue(selectedSubstation.latitude, selectedSubstation.longitude, 250);
+            if (!queue) return null;
+            return (
+              <div className="p-3 rounded bg-[#101418] border border-[#293742] space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#f5f8fa]">
+                    <RadioTower className="h-3.5 w-3.5 text-[#2b95d6]" />
+                    <span>FERC Queue & POI Headroom</span>
+                  </div>
+                  <span
+                    className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${
+                      queue.feasibilityRating.includes("Favorable")
+                        ? "text-[#15b371] border-[#15b371]/30 bg-[#15b371]/10"
+                        : queue.feasibilityRating.includes("Moderate")
+                        ? "text-[#2b95d6] border-[#2b95d6]/30 bg-[#2b95d6]/10"
+                        : "text-[#f55656] border-[#f55656]/30 bg-[#f55656]/10"
+                    }`}
+                  >
+                    {queue.feasibilityRating}
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+                  <div>
+                    <span className="text-[#5c7080]">Headroom: </span>
+                    <span className="text-[#15b371] font-bold">
+                      {queue.substationQueue.availableLargeLoadHeadroomMw} MW
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Queue Saturation: </span>
+                    <span className="text-[#f5f8fa] font-bold">
+                      {queue.substationQueue.queueSaturationIndex}/100
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Est. Energization: </span>
+                    <span className="text-[#f5f8fa]">
+                      {queue.estimatedEnergizationYear} ({queue.substationQueue.estimatedEnergizationLeadTimeYears} yrs)
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Active Queue: </span>
+                    <span className="text-[#2b95d6]">
+                      {queue.substationQueue.activeQueuedProjectsCount} projects ({queue.substationQueue.totalQueuedLargeLoadMw.toLocaleString()} MW)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
           {/* Core Metrics Cards */}
           <div className="grid grid-cols-2 gap-2">
             <div className="p-2.5 rounded bg-[#101418] border border-[#293742]">
@@ -354,6 +423,14 @@ export function StationInspector() {
           >
             <ExternalLink className="h-3 w-3" />
           </a>
+          <button
+            onClick={() => openDossierForTarget({ substation: selectedSubstation })}
+            className="px-2.5 py-1.5 rounded text-xs font-mono font-semibold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] hover:text-white border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-1"
+            title="Open Investment Committee Dossier"
+          >
+            <FileText className="h-3.5 w-3.5 text-[#f29d49]" />
+            <span>Dossier</span>
+          </button>
         </div>
       </aside>
     );
@@ -467,6 +544,16 @@ export function StationInspector() {
               </button>
             </div>
           </div>
+
+          {/* Institutional Dossier Trigger */}
+          <button
+            onClick={() => openDossierForTarget({ dataCenter: selectedDataCenter })}
+            className="w-full mt-3 py-2 px-3 rounded text-[11px] font-mono font-bold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+            title="Compile Siting & Underwriting Dossier for this Facility"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            <span>GENERATE INVESTMENT COMMITTEE DOSSIER</span>
+          </button>
         </div>
 
         {/* Primary KPI Metrics Bento */}
@@ -729,6 +816,134 @@ export function StationInspector() {
                   </div>
                 </div>
               </div>
+            </div>
+          );
+        })()}
+
+        {/* FERC Queue & BTM Baseload Co-Location Siting Intelligence */}
+        {(() => {
+          const queue = findNearestInterconnectionQueue(selectedDataCenter.latitude, selectedDataCenter.longitude, selectedDataCenter.estimatedPowerMw || 250);
+          const btm = findNearestBtmColocation(selectedDataCenter.latitude, selectedDataCenter.longitude, selectedDataCenter.estimatedPowerMw || 250);
+
+          return (
+            <div className="p-4 border-b border-[#293742] space-y-3 bg-[#131b21]">
+              <div className="text-[10px] uppercase tracking-wider font-mono font-semibold text-[#8a9ba8] flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-[#f29d49]">
+                  <TrendingUp className="h-3.5 w-3.5 text-[#f29d49]" />
+                  <span>Institutional Interconnection & Baseload Audit</span>
+                </div>
+                <span className="text-[9px] font-mono text-[#f29d49] bg-[#101418] px-1.5 py-0.5 rounded border border-[#293742]">
+                  FERC 2023 / BTM
+                </span>
+              </div>
+
+              {/* Card 1: FERC Order 2023 Interconnection Queue & Substation POI Headroom */}
+              {queue && (
+                <div className="p-3 rounded bg-[#101418] border border-[#293742] space-y-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[#f5f8fa]">
+                        <RadioTower className="h-3.5 w-3.5 text-[#2b95d6]" />
+                        <span>{queue.substationQueue.substationName}</span>
+                      </div>
+                      <div className="text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                        {queue.substationQueue.isoRegion} • {queue.distanceKm} km POI Distance • {queue.substationQueue.voltageKv} kV
+                      </div>
+                    </div>
+                    <span
+                      className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                        queue.feasibilityRating.includes("Favorable")
+                          ? "text-[#15b371] border-[#15b371]/30 bg-[#15b371]/10"
+                          : queue.feasibilityRating.includes("Moderate")
+                          ? "text-[#2b95d6] border-[#2b95d6]/30 bg-[#2b95d6]/10"
+                          : "text-[#f55656] border-[#f55656]/30 bg-[#f55656]/10"
+                      }`}
+                    >
+                      {queue.feasibilityRating}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-mono pt-1 border-t border-[#202b33]">
+                    <div>
+                      <span className="text-[#5c7080]">Large-Load Headroom: </span>
+                      <span className="text-[#15b371] font-bold">
+                        {queue.substationQueue.availableLargeLoadHeadroomMw} MW
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">Queue Saturation (QSI): </span>
+                      <span className="text-[#f5f8fa] font-bold">
+                        {queue.substationQueue.queueSaturationIndex}/100
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">Est. Energization: </span>
+                      <span className="text-[#f5f8fa]">
+                        {queue.estimatedEnergizationYear} ({queue.substationQueue.estimatedEnergizationLeadTimeYears} yrs)
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">Queued Projects: </span>
+                      <span className="text-[#2b95d6]">
+                        {queue.substationQueue.activeQueuedProjectsCount} ({queue.substationQueue.totalQueuedLargeLoadMw.toLocaleString()} MW)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Card 2: Behind-The-Meter (BTM) Baseload Co-Location (Nuclear / SMR / Geothermal) */}
+              {btm && (
+                <div className="p-3 rounded bg-[#101418] border border-[#293742] space-y-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[#f5f8fa]">
+                        <Atom className="h-3.5 w-3.5 text-[#ec4899]" />
+                        <span>{btm.site.facilityName}</span>
+                      </div>
+                      <div className="text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                        {btm.site.technology.replace("_", " ").toUpperCase()} • {btm.distanceKm} km away
+                      </div>
+                    </div>
+                    <span
+                      className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                        btm.isDirectColocationViable
+                          ? "text-[#15b371] border-[#15b371]/30 bg-[#15b371]/10"
+                          : "text-[#d9822b] border-[#d9822b]/30 bg-[#d9822b]/10"
+                      }`}
+                    >
+                      {btm.isDirectColocationViable ? "Direct Bus Feeder Viable" : "Regional Offtake Corridor"}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-mono pt-1 border-t border-[#202b33]">
+                    <div>
+                      <span className="text-[#5c7080]">Direct Bus Capacity: </span>
+                      <span className="text-[#15b371] font-bold">
+                        {btm.site.availableDirectBtmCapacityMw} MW
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">Tariff Bypass Savings: </span>
+                      <span className="text-[#f29d49] font-bold">
+                        ${btm.annualTransmissionTariffSavingsMillionDollars}M / yr
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">BTM Acreage: </span>
+                      <span className="text-[#f5f8fa]">
+                        {btm.site.contiguousAcreageAvailable} acres
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">RTO Tariff Rate: </span>
+                      <span className="text-[#a7b6c2]">
+                        ${btm.site.rtoTariffBypassSavingsDollarPerMwh}/MWh avoided
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })()}
@@ -1154,6 +1369,14 @@ export function StationInspector() {
             <Globe className="h-3.5 w-3.5 text-[#15b371]" />
             <span>Web ↗</span>
           </a>
+          <button
+            onClick={() => openDossierForTarget({ dataCenter: selectedDataCenter })}
+            className="px-2.5 py-1.5 rounded text-xs font-mono font-semibold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] hover:text-white border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-1"
+            title="Open Investment Committee Dossier"
+          >
+            <FileText className="h-3.5 w-3.5 text-[#f29d49]" />
+            <span>Dossier</span>
+          </button>
         </div>
       </aside>
     );
@@ -1231,9 +1454,69 @@ export function StationInspector() {
             </button>
           </div>
         </div>
+
+        {/* Institutional Dossier Trigger */}
+        <button
+          onClick={() => openDossierForTarget({ station: selectedStation })}
+          className="w-full mt-3 py-2 px-3 rounded text-[11px] font-mono font-bold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+          title="Simulate Co-Located AI Campus & Underwrite Site"
+        >
+          <FileText className="h-3.5 w-3.5" />
+          <span>GENERATE INVESTMENT COMMITTEE DOSSIER</span>
+        </button>
       </div>
 
       <div className="p-4 space-y-4">
+        {/* BTM Baseload Co-Location & Siting Opportunity */}
+        {(() => {
+          const btm = findNearestBtmColocation(selectedStation.latitude, selectedStation.longitude, 250);
+          const queue = findNearestInterconnectionQueue(selectedStation.latitude, selectedStation.longitude, 250);
+
+          return (
+            <div className="p-3 bg-[#101418] border border-[#293742] rounded space-y-2">
+              <div className="flex items-center justify-between text-xs font-semibold text-[#f5f8fa]">
+                <div className="flex items-center gap-1.5 text-[#ec4899]">
+                  <Atom className="h-3.5 w-3.5" />
+                  <span>Baseload Co-Location & Siting Potential</span>
+                </div>
+                <span className="text-[9px] font-mono font-bold text-[#15b371] bg-[#15b371]/10 px-1.5 py-0.5 rounded border border-[#15b371]/30">
+                  {selectedStation.capacityMw >= 250 ? "Institutional Scale" : "Modular Scale"}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
+                <div>
+                  <span className="text-[#5c7080]">Max Direct Offtake: </span>
+                  <span className="text-[#15b371] font-bold">
+                    {Math.round(selectedStation.capacityMw * 0.8)} MW
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[#5c7080]">BTM Tariff Avoidance: </span>
+                  <span className="text-[#f29d49] font-bold">
+                    ${(Math.round(selectedStation.capacityMw * 0.8 * 8760 * 0.95 * 22 / 1_000_000 * 10) / 10)}M / yr
+                  </span>
+                </div>
+                {queue && (
+                  <>
+                    <div>
+                      <span className="text-[#5c7080]">POI Substation: </span>
+                      <span className="text-[#2b95d6]">
+                        {queue.substationQueue.substationName} ({queue.distanceKm} km)
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">POI Headroom: </span>
+                      <span className="text-[#f5f8fa]">
+                        {queue.substationQueue.availableLargeLoadHeadroomMw} MW ({queue.feasibilityRating})
+                      </span>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Telemetry Summary Cards */}
         <div className="grid grid-cols-2 gap-2">
           <div className="p-3 bg-[#101418] border border-[#293742] rounded">
@@ -1544,6 +1827,14 @@ export function StationInspector() {
         >
           <ExternalLink className="h-3 w-3" />
         </a>
+        <button
+          onClick={() => openDossierForTarget({ station: selectedStation })}
+          className="px-2.5 py-1.5 rounded text-xs font-mono font-semibold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] hover:text-white border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-1"
+          title="Open Investment Committee Dossier"
+        >
+          <FileText className="h-3.5 w-3.5 text-[#f29d49]" />
+          <span>Dossier</span>
+        </button>
       </div>
     </aside>
   );
