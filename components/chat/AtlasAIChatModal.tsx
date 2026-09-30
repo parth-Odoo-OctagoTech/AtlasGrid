@@ -43,11 +43,14 @@ interface ChatMessage {
 }
 
 const DEFAULT_SUGGESTIONS = [
+  "Compare Ashburn vs Dallas for 500MW site selection",
+  "What are BTM nuclear co-location economics at Susquehanna?",
+  "Which cable landing stations connect Virginia to Europe?",
+  "How does dual-utility transmission redundancy reduce SAIDI outage risk?",
+  "What is the PJM interconnection queue delay?",
   "How many data centres are in India?",
   "How many were there in 2025?",
-  "Latest Microsoft & Google AI data center investments in India",
   "What is the largest data center by power demand?",
-  "Recent global grid deals & power constraints",
 ];
 
 export function AtlasAIChatModal() {
@@ -81,11 +84,13 @@ export function AtlasAIChatModal() {
       id: "initial",
       role: "assistant",
       content:
-        "Welcome to **AtlasGrid AI Copilot**. Grounded directly on verified global infrastructure telemetry with a **strict zero-hallucination policy**.\n\nYou can query facility counts, historical commissioning years (e.g. *how many data centres in India, how many in 2025*), power demands, or regional infrastructure clusters.",
+        "Welcome to **AtlasGrid AI Copilot**. Grounded directly on verified global infrastructure telemetry with a **strict zero-hallucination policy**.\n\nYou can query institutional site selection metrics, FERC interconnection queues, behind-the-meter nuclear co-location economics, dual-feed transmission redundancy, subsea cable landing stations, or regional compute clusters.",
       facts: [
         { label: "India Data Centers (By 2025)", value: 272 },
         { label: "India Total (2026)", value: 290 },
         { label: "Global Data Centers", value: 6686 },
+        { label: "Subsea Cable Landing Hubs", value: 10 },
+        { label: "BTM Baseload Sites", value: 8 },
       ],
       timestamp: "SYSTEM READY",
       source: "grounded-dataset",

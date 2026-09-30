@@ -51,10 +51,13 @@ import {
   DollarSign,
   Atom,
   TrendingUp,
+  Scale,
 } from "lucide-react";
 import { calculateSitingScoreBreakdown, getSitingScoreColor } from "@/lib/services/siting-suitability-service";
 import { findNearestInterconnectionQueue } from "@/lib/services/interconnection-queue-service";
 import { findNearestBtmColocation } from "@/lib/services/btm-colocation-service";
+import { analyzeTransmissionRedundancy } from "@/lib/services/transmission-redundancy-service";
+import { findNearestCableLandingStation } from "@/lib/services/subsea-backhaul-service";
 import {
   getGoogleMapsUrl,
   getOfficialWebsite,
@@ -79,6 +82,9 @@ export function StationInspector() {
   const layerVisibility = useGridStore((s) => s.layerVisibility);
   const toggleLayer = useGridStore((s) => s.toggleLayer);
   const openDossierForTarget = useGridStore((s) => s.openDossierForTarget);
+  const portfolioCandidateIds = useGridStore((s) => s.portfolioCandidateIds);
+  const togglePortfolioCandidate = useGridStore((s) => s.togglePortfolioCandidate);
+  const setPortfolioBenchmarkOpen = useGridStore((s) => s.setPortfolioBenchmarkOpen);
 
   // Fetch stations for cross-referencing
   const { data: allStationsData } = useQuery({
@@ -545,15 +551,32 @@ export function StationInspector() {
             </div>
           </div>
 
-          {/* Institutional Dossier Trigger */}
-          <button
-            onClick={() => openDossierForTarget({ dataCenter: selectedDataCenter })}
-            className="w-full mt-3 py-2 px-3 rounded text-[11px] font-mono font-bold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-2 shadow-sm cursor-pointer"
-            title="Compile Siting & Underwriting Dossier for this Facility"
-          >
-            <FileText className="h-3.5 w-3.5" />
-            <span>GENERATE INVESTMENT COMMITTEE DOSSIER</span>
-          </button>
+          {/* Institutional Dossier & Benchmark Triggers */}
+          <div className="mt-3 flex items-center gap-1.5">
+            <button
+              onClick={() => openDossierForTarget({ dataCenter: selectedDataCenter })}
+              className="flex-1 py-2 px-2.5 rounded text-[11px] font-mono font-bold bg-[#d9822b]/20 hover:bg-[#d9822b]/30 text-[#f29d49] border border-[#d9822b]/50 transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+              title="Compile Siting & Underwriting Dossier for this Facility"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              <span>DOSSIER</span>
+            </button>
+            <button
+              onClick={() => {
+                togglePortfolioCandidate(selectedDataCenter.id);
+                setPortfolioBenchmarkOpen(true);
+              }}
+              className={`py-2 px-3 rounded text-[11px] font-mono font-bold transition-colors flex items-center justify-center gap-1.5 border cursor-pointer ${
+                portfolioCandidateIds.includes(selectedDataCenter.id)
+                  ? "bg-[#2b95d6] text-white border-[#2b95d6]"
+                  : "bg-[#202b33] hover:bg-[#293742] text-[#f5f8fa] border-[#293742]"
+              }`}
+              title="Add to Multi-Site Portfolio Benchmark Matrix"
+            >
+              <Scale className="h-3.5 w-3.5 text-[#2b95d6]" />
+              <span>{portfolioCandidateIds.includes(selectedDataCenter.id) ? "BENCHMARKED" : "BENCHMARK"}</span>
+            </button>
+          </div>
         </div>
 
         {/* Primary KPI Metrics Bento */}
@@ -940,6 +963,116 @@ export function StationInspector() {
                       <span className="text-[#a7b6c2]">
                         ${btm.site.rtoTariffBypassSavingsDollarPerMwh}/MWh avoided
                       </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
+        {/* Transmission Redundancy & Subsea Backhaul Intelligence */}
+        {(() => {
+          const redundancy = analyzeTransmissionRedundancy(selectedDataCenter.latitude, selectedDataCenter.longitude);
+          const subsea = findNearestCableLandingStation(selectedDataCenter.latitude, selectedDataCenter.longitude);
+
+          return (
+            <div className="p-4 border-b border-[#293742] space-y-3 bg-[#11171d]">
+              <div className="text-[10px] uppercase tracking-wider font-mono font-semibold text-[#8a9ba8] flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-[#2b95d6]">
+                  <Zap className="h-3.5 w-3.5 text-[#2b95d6]" />
+                  <span>Dual-Utility Redundancy & Subsea CLS Backhaul</span>
+                </div>
+                <span className="text-[9px] font-mono text-[#10b981] bg-[#101418] px-1.5 py-0.5 rounded border border-[#293742]">
+                  N-1 / SUBSEA
+                </span>
+              </div>
+
+              {/* Dual-Feed Transmission Redundancy Card */}
+              <div className="p-3 rounded bg-[#101418] border border-[#293742] space-y-2">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[#f5f8fa]">
+                      <RadioTower className="h-3.5 w-3.5 text-[#2b95d6]" />
+                      <span>{redundancy.complianceTier}</span>
+                    </div>
+                    <div className="text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                      Primary: {redundancy.primarySubstationName} ({redundancy.primaryDistanceKm} km)
+                    </div>
+                  </div>
+                  <span
+                    className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                      redundancy.redundancyArchitecture === "dual_independent_substation_2n"
+                        ? "text-[#10b981] border-[#10b981]/30 bg-[#10b981]/10"
+                        : "text-[#f59e0b] border-[#f59e0b]/30 bg-[#f59e0b]/10"
+                    }`}
+                  >
+                    {redundancy.redundancyArchitecture === "dual_independent_substation_2n" ? "2N Dual Utility Feed" : "N-1 Single Substation"}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono pt-1 border-t border-[#202b33]">
+                  {redundancy.secondarySubstationName && (
+                    <div>
+                      <span className="text-[#5c7080]">Secondary Feed: </span>
+                      <span className="text-[#2b95d6] truncate font-semibold">
+                        {redundancy.secondarySubstationName} ({redundancy.secondaryDistanceKm} km)
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <span className="text-[#5c7080]">Expected Outage: </span>
+                    <span className="text-[#10b981] font-bold">
+                      {redundancy.expectedAnnualOutageMinutes} min/yr (SAIDI)
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Right-of-Way: </span>
+                    <span className="text-[#f5f8fa]">{redundancy.rightOfWayComplexity}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Intertie CapEx: </span>
+                    <span className="text-[#f29d49] font-bold">
+                      ${redundancy.estimatedTLineIntertieCapexMillionDollars}M
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Subsea Cable Landing Station (CLS) Backhaul Card */}
+              {subsea && (
+                <div className="p-3 rounded bg-[#101418] border border-[#293742] space-y-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[#f5f8fa]">
+                        <Cpu className="h-3.5 w-3.5 text-[#06b6d4]" />
+                        <span>{subsea.nearestCls.name}</span>
+                      </div>
+                      <div className="text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                        {subsea.terrestrialDistanceKm} km Terrestrial Dark Fiber • {subsea.nearestCls.totalLitCapacityTbps} Tbps Lit Capacity
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border border-[#06b6d4]/30 bg-[#06b6d4]/10 text-[#06b6d4] shrink-0">
+                      {subsea.backhaulRating}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-[10px] font-mono pt-1 border-t border-[#202b33]">
+                    <div>
+                      <span className="text-[#5c7080]">Transatlantic RTT: </span>
+                      <span className="text-[#10b981] font-bold">
+                        {subsea.totalTransatlanticLatencyRttMs} ms to London
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[#5c7080]">Transpacific RTT: </span>
+                      <span className="text-[#06b6d4] font-bold">
+                        {subsea.totalTranspacificLatencyRttMs} ms to Tokyo
+                      </span>
+                    </div>
+                    <div className="col-span-2 text-[9px] text-[#8a9ba8] truncate">
+                      <span className="text-[#5c7080]">Subsea Systems: </span>
+                      <span className="text-[#f5f8fa]">{subsea.nearestCls.activeSubseaSystems.join(", ")}</span>
                     </div>
                   </div>
                 </div>

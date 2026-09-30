@@ -14,6 +14,7 @@ import { AlertCenterDrawer } from "@/components/analytics/AlertCenterDrawer";
 import { DataCenterFleetModal } from "@/components/analytics/DataCenterFleetModal";
 import { DataSourcesRegistryModal } from "@/components/analytics/DataSourcesRegistryModal";
 import { InstitutionalSitingDossierModal } from "@/components/analytics/InstitutionalSitingDossierModal";
+import { SitePortfolioBenchmarkModal } from "@/components/analytics/SitePortfolioBenchmarkModal";
 import { SecurityAccessGate } from "@/components/auth/SecurityAccessGate";
 import { AtlasAIChatModal } from "@/components/chat/AtlasAIChatModal";
 
@@ -190,6 +191,9 @@ export default function PowerGridDashboard() {
 
         {/* Institutional Siting & Underwriting Dossier Generator Modal */}
         <InstitutionalSitingDossierModal />
+
+        {/* Multi-Site Portfolio Benchmark & RFP Tender Evaluator Modal */}
+        <SitePortfolioBenchmarkModal />
       </main>
     </SecurityAccessGate>
   );

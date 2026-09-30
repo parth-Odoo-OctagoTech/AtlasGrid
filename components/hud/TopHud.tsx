@@ -23,6 +23,7 @@ import {
   LogOut,
   Database,
   FileText,
+  Scale,
 } from "lucide-react";
 
 export function TopHud() {
@@ -83,6 +84,8 @@ export function TopHud() {
   const setDataSourcesOpen = useGridStore((s) => s.setDataSourcesOpen);
   const isDossierOpen = useGridStore((s) => s.isDossierOpen);
   const setDossierOpen = useGridStore((s) => s.setDossierOpen);
+  const isPortfolioBenchmarkOpen = useGridStore((s) => s.isPortfolioBenchmarkOpen);
+  const setPortfolioBenchmarkOpen = useGridStore((s) => s.setPortfolioBenchmarkOpen);
 
   const { user, lockTerminal } = useAuth();
 
@@ -110,10 +113,13 @@ export function TopHud() {
       if (e.key === "d" || e.key === "D") {
         setDossierOpen(!useGridStore.getState().isDossierOpen);
       }
+      if (e.key === "b" || e.key === "B") {
+        setPortfolioBenchmarkOpen(!useGridStore.getState().isPortfolioBenchmarkOpen);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen, setDossierOpen]);
+  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen, setDossierOpen, setPortfolioBenchmarkOpen]);
 
   const totalDcPowerMw = useMemo(
     () => dataCenters.reduce((sum, d) => sum + d.estimatedPowerMw, 0),
@@ -366,6 +372,23 @@ export function TopHud() {
           <span className="hidden sm:inline font-medium">Dossier</span>
           <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             D
+          </kbd>
+        </button>
+
+        {/* Multi-Site Portfolio Benchmark Matrix */}
+        <button
+          onClick={() => setPortfolioBenchmarkOpen(true)}
+          className={`h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none transition-colors cursor-pointer ${
+            isPortfolioBenchmarkOpen
+              ? "bg-[#202b33] border border-[#2b95d6] text-[#2b95d6]"
+              : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742] hover:border-[#2b95d6]/50"
+          }`}
+          title="Open Multi-Site Portfolio Benchmark & RFP Tender Matrix (B)"
+        >
+          <Scale className="h-3.5 w-3.5 shrink-0 text-[#2b95d6]" />
+          <span className="hidden sm:inline font-medium">Benchmark</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
+            B
           </kbd>
         </button>
 

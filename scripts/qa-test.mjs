@@ -1058,7 +1058,121 @@ assert(inspectorDossierSrc.includes("FERC Order 2023 Interconnection Queue"), "S
 assert(inspectorDossierSrc.includes("Behind-The-Meter (BTM) Baseload Co-Location"), "StationInspector displays BTM baseload cards");
 
 // ---------------------------------------------------------------------------
+// TEST 22: Dual-Feed Redundancy, Subsea CLS Backhaul, Portfolio Benchmark Matrix & Copilot Grounding (Epics 6–9)
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 22: Dual-Feed Redundancy, Subsea CLS Backhaul, Portfolio Benchmark & Copilot Grounding ---");
+
+// 1. Epic 6: Substation Dual-Utility Feed & N-1 Transmission Contingency Reliability Engine
+const redundancyTypesPath = path.join(process.cwd(), "lib/types/transmission-redundancy.ts");
+assert(fs.existsSync(redundancyTypesPath), "lib/types/transmission-redundancy.ts exists");
+
+const redundancyServicePath = path.join(process.cwd(), "lib/services/transmission-redundancy-service.ts");
+assert(fs.existsSync(redundancyServicePath), "lib/services/transmission-redundancy-service.ts exists");
+const redundancyServiceSrc = fs.readFileSync(redundancyServicePath, "utf-8");
+assert(redundancyServiceSrc.includes("analyzeTransmissionRedundancy"), "Transmission redundancy service exports analyzeTransmissionRedundancy");
+assert(redundancyServiceSrc.includes("expectedAnnualOutageMinutes"), "Transmission redundancy service calculates annual SAIDI outage minutes");
+assert(redundancyServiceSrc.includes("estimatedTLineIntertieCapexMillionDollars"), "Transmission redundancy service models intertie CapEx");
+assert(redundancyServiceSrc.includes("interSubstationDist >= 3.0"), "Transmission redundancy enforces 3.0 km physical separation for true diversity");
+
+const redundancyRoutePath = path.join(process.cwd(), "app/api/transmission-redundancy/route.ts");
+assert(fs.existsSync(redundancyRoutePath), "app/api/transmission-redundancy/route.ts exists");
+const redundancyRouteSrc = fs.readFileSync(redundancyRoutePath, "utf-8");
+assert(redundancyRouteSrc.includes('export const dynamic = "force-dynamic"'), "transmission-redundancy route exports force-dynamic");
+
+// 2. Epic 7: Subsea Cable Landing Stations (CLS) & Terrestrial Dark Fiber Backhaul Latency Engine
+const clsDataPath = path.join(process.cwd(), "data/cable-landing-stations.json");
+assert(fs.existsSync(clsDataPath), "data/cable-landing-stations.json exists on disk");
+const clsData = JSON.parse(fs.readFileSync(clsDataPath, "utf-8"));
+assert(Array.isArray(clsData) && clsData.length >= 10, `Loaded ${clsData.length} global Cable Landing Station hubs (>= 10 requirement)`);
+
+const vaBeachCls = clsData.find((s) => s.id === "cls-virginia-beach");
+assert(!!vaBeachCls, "Virginia Beach Cable Landing Hub exists in CLS dataset");
+if (vaBeachCls) {
+  assert(vaBeachCls.totalLitCapacityTbps >= 600, "Virginia Beach has >= 600 Tbps lit capacity");
+  assert(vaBeachCls.rttToLondonMs < 65, "Virginia Beach has sub-65ms RTT to London");
+  assert(vaBeachCls.activeSubseaSystems.some((sys) => sys.includes("MAREA")), "Virginia Beach hosts MAREA transoceanic cable");
+}
+
+const wallNjCls = clsData.find((s) => s.id === "cls-wall-nj");
+assert(!!wallNjCls, "Wall NJ Cable Landing Station exists in CLS dataset");
+if (wallNjCls) {
+  assert(wallNjCls.activeSubseaSystems.some((sys) => sys.includes("Havfrue")), "Wall NJ hosts Havfrue/AEC-2 transatlantic cable");
+}
+
+let validClsCount = 0;
+for (const s of clsData) {
+  if (
+    s.id &&
+    s.name &&
+    typeof s.latitude === "number" &&
+    typeof s.longitude === "number" &&
+    typeof s.totalLitCapacityTbps === "number" &&
+    Array.isArray(s.activeSubseaSystems) &&
+    s.activeSubseaSystems.length > 0
+  ) {
+    validClsCount++;
+  }
+}
+assert(validClsCount === clsData.length, `100% of CLS records have valid schemas, coordinates, and active subsea systems (${validClsCount}/${clsData.length})`);
+
+const clsTypesPath = path.join(process.cwd(), "lib/types/subsea-backhaul.ts");
+assert(fs.existsSync(clsTypesPath), "lib/types/subsea-backhaul.ts exists");
+
+const clsServicePath = path.join(process.cwd(), "lib/services/subsea-backhaul-service.ts");
+assert(fs.existsSync(clsServicePath), "lib/services/subsea-backhaul-service.ts exists");
+const clsServiceSrc = fs.readFileSync(clsServicePath, "utf-8");
+assert(clsServiceSrc.includes("findNearestCableLandingStation"), "Subsea backhaul service exports findNearestCableLandingStation");
+assert(clsServiceSrc.includes("getCableLandingStations"), "Subsea backhaul service exports getCableLandingStations");
+
+const clsRoutePath = path.join(process.cwd(), "app/api/subsea-backhaul/route.ts");
+assert(fs.existsSync(clsRoutePath), "app/api/subsea-backhaul/route.ts exists");
+const clsRouteSrc = fs.readFileSync(clsRoutePath, "utf-8");
+assert(clsRouteSrc.includes('export const dynamic = "force-dynamic"'), "subsea-backhaul route exports force-dynamic");
+
+// 3. Epic 8: Multi-Site RFP Portfolio Benchmark Comparison Matrix
+const benchmarkModalPath = path.join(process.cwd(), "components/analytics/SitePortfolioBenchmarkModal.tsx");
+assert(fs.existsSync(benchmarkModalPath), "components/analytics/SitePortfolioBenchmarkModal.tsx exists");
+const benchmarkModalSrc = fs.readFileSync(benchmarkModalPath, "utf-8");
+assert(benchmarkModalSrc.includes("MULTI-SITE PORTFOLIO BENCHMARK MATRIX") && benchmarkModalSrc.includes("RFP & TENDER EVALUATOR"), "Benchmark modal renders institutional tender engine header");
+assert(benchmarkModalSrc.includes("Substation POI Headroom") && benchmarkModalSrc.includes("BTM Nuclear Tariff Savings"), "Benchmark modal displays 8 Institutional Pillars breakdown");
+assert(benchmarkModalSrc.includes("handleExportCsv"), "Benchmark modal provides 1-click CSV tender export");
+assert(benchmarkModalSrc.includes("window.print"), "Benchmark modal supports executive memo print view");
+
+const benchmarkStoreSrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(benchmarkStoreSrc.includes("isPortfolioBenchmarkOpen: boolean"), "useGridStore manages isPortfolioBenchmarkOpen state");
+assert(benchmarkStoreSrc.includes("portfolioCandidateIds: string[]"), "useGridStore manages portfolioCandidateIds array");
+assert(benchmarkStoreSrc.includes("togglePortfolioCandidate: (id: string) => void"), "useGridStore exposes togglePortfolioCandidate action");
+assert(benchmarkStoreSrc.includes("clearPortfolioCandidates: () => void"), "useGridStore exposes clearPortfolioCandidates action");
+
+const benchmarkRootPageSrc = fs.readFileSync(path.join(process.cwd(), "app/page.tsx"), "utf-8");
+assert(benchmarkRootPageSrc.includes("<SitePortfolioBenchmarkModal"), "app/page.tsx mounts SitePortfolioBenchmarkModal");
+
+const benchmarkTopHudSrc = fs.readFileSync(path.join(process.cwd(), "components/hud/TopHud.tsx"), "utf-8");
+assert(benchmarkTopHudSrc.includes("setPortfolioBenchmarkOpen(true)"), "TopHud wires Benchmark modal open action");
+assert(benchmarkTopHudSrc.includes("Benchmark"), "TopHud renders Benchmark button");
+assert(benchmarkTopHudSrc.includes("Scale"), "TopHud uses Scale icon for portfolio benchmark");
+
+const benchmarkInspectorSrc = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(benchmarkInspectorSrc.includes("Dual-Utility Redundancy & Subsea CLS Backhaul"), "StationInspector displays dual-feed redundancy analysis card");
+assert(benchmarkInspectorSrc.includes("min/yr (SAIDI)"), "StationInspector displays SAIDI outage analysis");
+assert(benchmarkInspectorSrc.includes("BENCHMARK"), "StationInspector renders Benchmark toggle button in header");
+
+// 4. Epic 9: AtlasGrid AI Copilot Institutional Intelligence Grounding
+const institutionalAiEngineSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/ai-query-engine.ts"), "utf-8");
+assert(institutionalAiEngineSrc.includes("INSTITUTIONAL UNDERWRITING INTELLIGENCE"), "ai-query-engine prompt context contains institutional underwriting intelligence");
+assert(institutionalAiEngineSrc.includes("Transoceanic Subsea Cable Landing Stations"), "ai-query-engine grounds subsea CLS hubs");
+assert(institutionalAiEngineSrc.includes("Behind-The-Meter (BTM) Baseload Co-Location"), "ai-query-engine grounds BTM baseload sites");
+assert(institutionalAiEngineSrc.includes("FERC Order 2023 Bulk Interconnection Queues"), "ai-query-engine grounds FERC queue bottlenecks");
+assert(institutionalAiEngineSrc.includes("Multi-Site Institutional Portfolio Benchmark Matrix"), "ai-query-engine handles portfolio benchmark comparisons");
+
+const copilotChatModalSrc = fs.readFileSync(path.join(process.cwd(), "components/chat/AtlasAIChatModal.tsx"), "utf-8");
+assert(copilotChatModalSrc.includes("Compare Ashburn vs Dallas for 500MW site selection"), "AtlasAIChatModal includes institutional comparison suggestion");
+assert(copilotChatModalSrc.includes("What are BTM nuclear co-location economics at Susquehanna?"), "AtlasAIChatModal includes BTM nuclear economics suggestion");
+assert(copilotChatModalSrc.includes("Subsea Cable Landing Hubs"), "AtlasAIChatModal features CLS hubs in initial state facts");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
+
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");
 console.log(`QA TEST RUN COMPLETED: ${passed} PASSED, ${failed} FAILED`);

@@ -68,6 +68,8 @@ interface GridStoreState {
     station?: PowerPlant | null;
     substation?: Substation | null;
   } | null;
+  isPortfolioBenchmarkOpen: boolean;
+  portfolioCandidateIds: string[];
 
   // Viewport & Map Config
   viewport: ViewportState;
@@ -131,6 +133,9 @@ interface GridStoreState {
     station?: PowerPlant | null;
     substation?: Substation | null;
   }) => void;
+  setPortfolioBenchmarkOpen: (open: boolean) => void;
+  togglePortfolioCandidate: (id: string) => void;
+  clearPortfolioCandidates: () => void;
   setCrawlerStatus: (status: Partial<GridStoreState["crawlerStatus"]>) => void;
   selectStationById: (id: string | null, plants?: PowerPlant[]) => void;
   setHoveredStation: (
@@ -199,6 +204,8 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   isDataSourcesOpen: false,
   isDossierOpen: false,
   dossierTarget: null,
+  isPortfolioBenchmarkOpen: false,
+  portfolioCandidateIds: [],
 
   viewport: DEFAULT_VIEWPORT,
   visualizationMode: "2d_scatter",
@@ -530,6 +537,20 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setDataSourcesOpen: (open) => set({ isDataSourcesOpen: open }),
   setDossierOpen: (open) => set({ isDossierOpen: open }),
   openDossierForTarget: (target) => set({ isDossierOpen: true, dossierTarget: target }),
+  setPortfolioBenchmarkOpen: (open) => set({ isPortfolioBenchmarkOpen: open }),
+  togglePortfolioCandidate: (id) =>
+    set((state) => {
+      const exists = state.portfolioCandidateIds.includes(id);
+      if (exists) {
+        return { portfolioCandidateIds: state.portfolioCandidateIds.filter((cid) => cid !== id) };
+      } else {
+        if (state.portfolioCandidateIds.length >= 4) {
+          return { portfolioCandidateIds: [...state.portfolioCandidateIds.slice(1), id] };
+        }
+        return { portfolioCandidateIds: [...state.portfolioCandidateIds, id] };
+      }
+    }),
+  clearPortfolioCandidates: () => set({ portfolioCandidateIds: [] }),
 
   setReplayMode: (isReplay) => set({ isReplayMode: isReplay }),
 
