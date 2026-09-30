@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const dataDir = path.join(process.cwd(), "data");
@@ -10,6 +12,8 @@ export async function GET() {
     const faultsPath = path.join(dataDir, "seismic-faults.json");
     const flightPath = path.join(dataDir, "flight-corridors.json");
     const hazardPath = path.join(dataDir, "hazard-corridors.json");
+    const eqPath = path.join(dataDir, "historical-earthquakes.json");
+    const clsPath = path.join(dataDir, "cable-landing-stations.json");
 
     const darkFiberCorridors = fs.existsSync(fiberPath)
       ? JSON.parse(fs.readFileSync(fiberPath, "utf-8"))
@@ -23,6 +27,12 @@ export async function GET() {
     const hazardCorridors = fs.existsSync(hazardPath)
       ? JSON.parse(fs.readFileSync(hazardPath, "utf-8"))
       : [];
+    const earthquakes = fs.existsSync(eqPath)
+      ? JSON.parse(fs.readFileSync(eqPath, "utf-8"))
+      : [];
+    const cableLandingStations = fs.existsSync(clsPath)
+      ? JSON.parse(fs.readFileSync(clsPath, "utf-8"))
+      : [];
 
     return NextResponse.json(
       {
@@ -30,11 +40,15 @@ export async function GET() {
         seismicFaults,
         flightCorridors,
         hazardCorridors,
+        earthquakes,
+        cableLandingStations,
         summary: {
           darkFiberCount: darkFiberCorridors.length,
           seismicFaultCount: seismicFaults.length,
           flightCorridorCount: flightCorridors.length,
           hazardCorridorCount: hazardCorridors.length,
+          earthquakeCount: earthquakes.length,
+          cableLandingStationCount: cableLandingStations.length,
         },
       },
       {

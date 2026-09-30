@@ -20,6 +20,9 @@ import {
 import { StationTooltip } from "./StationTooltip";
 import { MapControls } from "./MapControls";
 import { MapLegend } from "./MapLegend";
+import { DarkFiberCorridor, SeismicFaultLine } from "@/lib/types/siting";
+import { CableLandingStation } from "@/lib/types/subsea-backhaul";
+import { HistoricalEarthquake } from "@/lib/types/historical";
 
 const BASEMAP_STYLES: Record<string, any> = {
   positron: {
@@ -201,12 +204,19 @@ export function DeckGLMap({
   const setHoveredDataCenter = useGridStore((s) => s.setHoveredDataCenter);
   const setHoveredSubstation = useGridStore((s) => s.setHoveredSubstation);
   const setHoveredFloodZone = useGridStore((s) => s.setHoveredFloodZone);
+  const setHoveredFiber = useGridStore((s) => s.setHoveredFiber);
+  const setHoveredCable = useGridStore((s) => s.setHoveredCable);
+  const setHoveredCls = useGridStore((s) => s.setHoveredCls);
+  const setHoveredEarthquake = useGridStore((s) => s.setHoveredEarthquake);
+  const setHoveredFault = useGridStore((s) => s.setHoveredFault);
   const filters = useGridStore((s) => s.filters);
 
   const darkFiberCorridors = useGridStore((s) => s.darkFiberCorridors);
   const seismicFaults = useGridStore((s) => s.seismicFaults);
   const flightCorridors = useGridStore((s) => s.flightCorridors);
   const hazardCorridors = useGridStore((s) => s.hazardCorridors);
+  const earthquakes = useGridStore((s) => s.earthquakes);
+  const cableLandingStations = useGridStore((s) => s.cableLandingStations);
 
   const isGlobe = projectionMode === "globe";
 
@@ -786,7 +796,7 @@ export function DeckGLMap({
       );
     }
 
-    // 6. Submarine Fiber-Optic Cables Layer (TeleGeography Global Dataset from GE view)
+    // 6. Submarine Fiber-Optic Cables Layer (TeleGeography Global Dataset)
     if (layerVisibility.subseaCables && cables && cables.length > 0) {
       activeLayers.push(
         new GeoJsonLayer({
@@ -794,9 +804,9 @@ export function DeckGLMap({
           data: cables,
           stroked: true,
           filled: false,
-          lineWidthMinPixels: 1.5,
-          getLineColor: isLightMode ? [2, 132, 199, 210] : [6, 182, 212, 160],
-          getLineWidth: 2,
+          lineWidthMinPixels: 1.8,
+          getLineColor: isLightMode ? [0, 160, 210, 220] : [0, 229, 255, 185],
+          getLineWidth: 2.5,
           pickable: true,
           autoHighlight: true,
           highlightColor: [255, 255, 255, 255],
@@ -804,7 +814,44 @@ export function DeckGLMap({
       );
     }
 
-    // 6b. Flood Hazard Inundation Risk Overlay (Coastal Storm Surge & 100-Yr Inundation Buffers)
+    // 6b. Cable Landing Stations (CLS) - Subsea-to-Terrestrial Fiber Landing Gateways
+    if ((layerVisibility.subseaCables || layerVisibility.fiberConduits) && cableLandingStations && cableLandingStations.length > 0) {
+      activeLayers.push(
+        new ScatterplotLayer<CableLandingStation>({
+          id: "cable-landing-stations-outer",
+          data: cableLandingStations,
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: 18000,
+          getFillColor: [0, 229, 255, 50],
+          getLineColor: [0, 229, 255, 240],
+          stroked: true,
+          lineWidthMinPixels: 2,
+          radiusMinPixels: 7,
+          radiusMaxPixels: 24,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+        })
+      );
+
+      activeLayers.push(
+        new ScatterplotLayer<CableLandingStation>({
+          id: "cable-landing-stations-core",
+          data: cableLandingStations,
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: 6000,
+          getFillColor: [255, 255, 255, 255],
+          getLineColor: [0, 229, 255, 255],
+          stroked: true,
+          lineWidthMinPixels: 1.5,
+          radiusMinPixels: 3.5,
+          radiusMaxPixels: 12,
+          pickable: false,
+        })
+      );
+    }
+
+    // 6c. Flood Hazard Inundation Risk Overlay (Coastal Storm Surge & 100-Yr Inundation Buffers)
     if (layerVisibility.floodOverlay && floodHazardZones && floodHazardZones.length > 0) {
       activeLayers.push(
         new ScatterplotLayer({
@@ -839,15 +886,32 @@ export function DeckGLMap({
       );
     }
 
-    // 6c. Terrestrial Dark Fiber Conduits Layer (Zayo, Lumen, Telia long-haul backbones)
+    // 6d. Terrestrial Dark Fiber Conduits Layer (Zayo, Lumen, Telia, Colt, Shinkansen backbones)
     if (layerVisibility.fiberConduits && darkFiberCorridors && darkFiberCorridors.length > 0) {
       activeLayers.push(
         new PathLayer({
           id: "dark-fiber-conduits",
           data: darkFiberCorridors,
           getPath: (d: any) => d.coordinates,
-          getColor: [6, 182, 212, 210],
-          getWidth: 3,
+          getColor: isLightMode ? [147, 51, 234, 220] : [192, 132, 252, 235],
+          getWidth: 3.5,
+          widthMinPixels: 2.5,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+        })
+      );
+    }
+
+    // 6e. Quaternary Active Seismic Fault Lines Layer (USGS & GEM Active Faults)
+    if (layerVisibility.seismicFaults && seismicFaults && seismicFaults.length > 0) {
+      activeLayers.push(
+        new PathLayer({
+          id: "seismic-faults-layer",
+          data: seismicFaults,
+          getPath: (d: any) => d.coordinates,
+          getColor: (d: any) => (d.slipRateMmPerYr > 20 ? [239, 68, 68, 235] : [249, 115, 22, 215]),
+          getWidth: (d: any) => (d.slipRateMmPerYr > 20 ? 4.5 : 3.0),
           widthMinPixels: 2,
           pickable: true,
           autoHighlight: true,
@@ -856,16 +920,28 @@ export function DeckGLMap({
       );
     }
 
-    // 6d. Quaternary Active Seismic Fault Lines Layer (USGS & GEM Active Faults)
-    if (layerVisibility.seismicFaults && seismicFaults && seismicFaults.length > 0) {
+    // 6f. USGS M5.0+ Global Earthquake Epicenters (Hazard Shockwave & Mercalli Intensity)
+    if (layerVisibility.seismicFaults && earthquakes && earthquakes.length > 0) {
       activeLayers.push(
-        new PathLayer({
-          id: "seismic-faults-layer",
-          data: seismicFaults,
-          getPath: (d: any) => d.coordinates,
-          getColor: (d: any) => (d.slipRateMmPerYr > 20 ? [239, 68, 68, 220] : [249, 115, 22, 200]),
-          getWidth: 3.5,
-          widthMinPixels: 2,
+        new ScatterplotLayer<HistoricalEarthquake>({
+          id: "earthquakes-epicenters-layer",
+          data: earthquakes,
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: (d) => Math.max(9000, Math.pow(d.magnitude - 4.5, 2.4) * 12000),
+          getFillColor: (d) =>
+            d.magnitude >= 7.0
+              ? [239, 68, 68, 190]   // Crimson M7.0+
+              : d.magnitude >= 6.0
+              ? [249, 115, 22, 175]  // Orange M6.0-6.9
+              : [234, 179, 8, 155],  // Amber M5.0-5.9
+          getLineColor: (d) =>
+            d.magnitude >= 7.0
+              ? [255, 255, 255, 240]
+              : [255, 255, 255, 170],
+          stroked: true,
+          lineWidthMinPixels: 1.5,
+          radiusMinPixels: 4,
+          radiusMaxPixels: 26,
           pickable: true,
           autoHighlight: true,
           highlightColor: [255, 255, 255, 255],
@@ -1039,6 +1115,12 @@ export function DeckGLMap({
     filteredDataCenters,
     filteredSubstations,
     cables,
+    cableLandingStations,
+    darkFiberCorridors,
+    seismicFaults,
+    flightCorridors,
+    hazardCorridors,
+    earthquakes,
     isGlobe,
     basemapStyle,
     isLightMode,
@@ -1071,35 +1153,124 @@ export function DeckGLMap({
   const handleDeckHover = useCallback(
     (info: any) => {
       if (info.object) {
+        const coords = { x: info.x, y: info.y };
         if ("hazardType" in info.object) {
-          setHoveredFloodZone(info.object, { x: info.x, y: info.y });
+          setHoveredFloodZone(info.object, coords);
           setHoveredStation(null, null);
           setHoveredDataCenter(null, null);
           setHoveredSubstation(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
+        } else if ("magnitude" in info.object) {
+          setHoveredEarthquake(info.object as HistoricalEarthquake, coords);
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredFault(null, null);
+        } else if ("activeSubseaSystems" in info.object) {
+          setHoveredCls(info.object as CableLandingStation, coords);
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
+        } else if ("slipRateMmPerYr" in info.object) {
+          setHoveredFault(info.object as SeismicFaultLine, coords);
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+        } else if (
+          "fiberPairs" in info.object ||
+          ("type" in info.object && "operator" in info.object && "coordinates" in info.object && !("activeSubseaSystems" in info.object))
+        ) {
+          setHoveredFiber(info.object as DarkFiberCorridor, coords);
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
+        } else if (info.object?.type === "Feature" && info.object?.properties?.name) {
+          setHoveredCable(info.object.properties, coords);
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
+          setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
         } else if ("fuelType" in info.object) {
-          setHoveredStation(info.object as PowerPlant, { x: info.x, y: info.y });
+          setHoveredStation(info.object as PowerPlant, coords);
           setHoveredDataCenter(null, null);
           setHoveredSubstation(null, null);
           setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
         } else if ("estimatedPowerMw" in info.object) {
-          setHoveredDataCenter(info.object as DataCenter, { x: info.x, y: info.y });
+          setHoveredDataCenter(info.object as DataCenter, coords);
           setHoveredStation(null, null);
           setHoveredSubstation(null, null);
           setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
         } else if ("voltageKv" in info.object) {
-          setHoveredSubstation(info.object as Substation, { x: info.x, y: info.y });
+          setHoveredSubstation(info.object as Substation, coords);
           setHoveredStation(null, null);
           setHoveredDataCenter(null, null);
           setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
         }
       } else {
         setHoveredStation(null, null);
         setHoveredDataCenter(null, null);
         setHoveredSubstation(null, null);
         setHoveredFloodZone(null, null);
+        setHoveredFiber(null, null);
+        setHoveredCable(null, null);
+        setHoveredCls(null, null);
+        setHoveredEarthquake(null, null);
+        setHoveredFault(null, null);
       }
     },
-    [setHoveredStation, setHoveredDataCenter, setHoveredSubstation, setHoveredFloodZone]
+    [
+      setHoveredStation,
+      setHoveredDataCenter,
+      setHoveredSubstation,
+      setHoveredFloodZone,
+      setHoveredFiber,
+      setHoveredCable,
+      setHoveredCls,
+      setHoveredEarthquake,
+      setHoveredFault,
+    ]
   );
 
   return (

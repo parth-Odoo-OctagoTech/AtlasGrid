@@ -136,24 +136,53 @@ export function MapLegend() {
               </div>
             )}
 
-            {layerVisibility.fiberConduits && (
-              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#06b6d4]">
+            {layerVisibility.subseaCables && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#00e5ff]">
                 <div className="flex items-center gap-1.5">
-                  <span className="h-0.5 w-3 bg-[#06b6d4]" />
+                  <span className="h-0.5 w-3 bg-[#00e5ff]" />
+                  <span>Subsea Cables</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">TeleGeography</span>
+              </div>
+            )}
+
+            {(layerVisibility.subseaCables || layerVisibility.fiberConduits) && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#00e5ff]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full border border-[#00e5ff] bg-white animate-pulse" />
+                  <span>Cable Landing Hubs (CLS)</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">Global CLS</span>
+              </div>
+            )}
+
+            {layerVisibility.fiberConduits && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#c084fc]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-0.5 w-3 bg-[#c084fc]" />
                   <span>Dark Fiber Conduits</span>
                 </div>
-                <span className="font-mono text-[#8a9ba8]">Zayo/Lumen</span>
+                <span className="font-mono text-[#8a9ba8]">30+ Corridors</span>
               </div>
             )}
 
             {layerVisibility.seismicFaults && (
-              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#ef4444]">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-0.5 w-3 bg-[#ef4444]" />
-                  <span>Quaternary Faults</span>
+              <>
+                <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#ef4444]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-0.5 w-3 bg-[#ef4444]" />
+                    <span>Quaternary Faults</span>
+                  </div>
+                  <span className="font-mono text-[#8a9ba8]">USGS/GEM (28 Systems)</span>
                 </div>
-                <span className="font-mono text-[#8a9ba8]">USGS/GEM</span>
-              </div>
+                <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#f97316]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-[#ef4444] border border-white" />
+                    <span>USGS Earthquakes M5.0+</span>
+                  </div>
+                  <span className="font-mono text-[#8a9ba8]">933 Events</span>
+                </div>
+              </>
             )}
 
             {layerVisibility.flightCorridors && (

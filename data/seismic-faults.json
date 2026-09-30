@@ -1,75 +1,142 @@
 [
   {
-    "id": "fault-san-andreas",
-    "name": "San Andreas Fault Zone (Northern & Southern Traces)",
-    "source": "USGS Quaternary Faults (Layer 21)",
-    "slipRateMmPerYr": 24.5,
+    "id": "fault-san-andreas-north",
+    "name": "Northern San Andreas Fault (Mendocino to San Juan Bautista)",
+    "source": "USGS Quaternary Faults (QFAULT)",
+    "slipRateMmPerYr": 24,
     "slipSense": "strike_slip",
     "riskTier": "High",
-    "age": "Historic (< 150 years)",
+    "age": "Historic (1906 San Francisco M7.9 rupture)",
     "coordinates": [
       [
-        -124,
-        40.25
+        -124.3,
+        40.26
       ],
       [
-        -123,
+        -124,
+        39.8
+      ],
+      [
+        -123.75,
+        39
+      ],
+      [
+        -123.35,
+        38.6
+      ],
+      [
+        -123.05,
         38.3
       ],
       [
-        -122.5,
-        37.7
+        -122.8,
+        38.05
       ],
       [
-        -121.8,
-        36.9
+        -122.53,
+        37.75
       ],
       [
-        -120.8,
-        35.8
+        -122.42,
+        37.58
       ],
       [
-        -119.5,
-        34.8
+        -122.25,
+        37.38
       ],
       [
-        -118.1,
-        34.4
+        -122.1,
+        37.2
       ],
       [
-        -117.3,
-        34.1
+        -121.85,
+        37.05
       ],
       [
-        -116,
-        33.5
-      ],
-      [
-        -115.5,
-        33
+        -121.53,
+        36.84
       ]
     ]
   },
   {
-    "id": "fault-hayward",
-    "name": "Hayward Fault (East Bay)",
-    "source": "USGS Quaternary Faults",
+    "id": "fault-san-andreas-south",
+    "name": "Southern San Andreas Fault (Parkfield to Salton Sea)",
+    "source": "USGS Quaternary Faults (QFAULT)",
+    "slipRateMmPerYr": 32,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Locked (Last major rupture 1857 Fort Tejon M7.9)",
+    "coordinates": [
+      [
+        -120.43,
+        35.89
+      ],
+      [
+        -119.78,
+        35.25
+      ],
+      [
+        -119.3,
+        34.9
+      ],
+      [
+        -118.9,
+        34.8
+      ],
+      [
+        -118.15,
+        34.58
+      ],
+      [
+        -117.65,
+        34.4
+      ],
+      [
+        -117.4,
+        34.25
+      ],
+      [
+        -117.2,
+        34.15
+      ],
+      [
+        -116.5,
+        33.95
+      ],
+      [
+        -116.15,
+        33.72
+      ],
+      [
+        -115.6,
+        33.3
+      ]
+    ]
+  },
+  {
+    "id": "fault-hayward-calaveras",
+    "name": "Hayward-Calaveras Fault System (East Bay Urban Core)",
+    "source": "USGS Quaternary Faults (QFAULT)",
     "slipRateMmPerYr": 9,
     "slipSense": "strike_slip",
     "riskTier": "High",
-    "age": "Historic (1868 M6.8)",
+    "age": "Historic (1868 Hayward M6.8 rupture)",
     "coordinates": [
       [
-        -122.38,
-        37.95
+        -122.45,
+        38.05
       ],
       [
-        -122.27,
+        -122.36,
+        37.94
+      ],
+      [
+        -122.26,
         37.87
       ],
       [
-        -122.2,
-        37.8
+        -122.18,
+        37.78
       ],
       [
         -122.08,
@@ -80,163 +147,1043 @@
         37.55
       ],
       [
-        -121.88,
-        37.43
-      ]
-    ]
-  },
-  {
-    "id": "fault-cascadia",
-    "name": "Cascadia Megathrust Subduction Zone",
-    "source": "USGS / GEM GAF-DB",
-    "slipRateMmPerYr": 40,
-    "slipSense": "thrust",
-    "riskTier": "High",
-    "age": "Holocene (1700 M9.0)",
-    "coordinates": [
-      [
-        -126,
-        49.5
+        -121.85,
+        37.4
       ],
       [
-        -125.5,
-        47.5
+        -121.78,
+        37.28
       ],
       [
-        -125,
-        45
-      ],
-      [
-        -124.5,
-        42
-      ],
-      [
-        -124.3,
-        40.5
-      ]
-    ]
-  },
-  {
-    "id": "fault-new-madrid",
-    "name": "New Madrid Seismic Zone (Midwest Interplate Fault)",
-    "source": "USGS National Seismic Hazard",
-    "slipRateMmPerYr": 1.8,
-    "slipSense": "strike_slip",
-    "riskTier": "Moderate",
-    "age": "Historic (1811-1812 M7.5+)",
-    "coordinates": [
-      [
-        -90.5,
-        35.5
-      ],
-      [
-        -89.9,
-        36.1
-      ],
-      [
-        -89.5,
-        36.6
-      ],
-      [
-        -89.1,
+        -121.55,
         37
       ]
     ]
   },
   {
-    "id": "fault-nankai-trough",
-    "name": "Nankai Trough Megathrust",
-    "source": "GEM Global Active Faults",
-    "slipRateMmPerYr": 55,
-    "slipSense": "thrust",
+    "id": "fault-san-jacinto",
+    "name": "San Jacinto Fault Zone (Most Active SoCal Fault)",
+    "source": "USGS Quaternary Faults (QFAULT)",
+    "slipRateMmPerYr": 15,
+    "slipSense": "strike_slip",
     "riskTier": "High",
-    "age": "Historic (1944/1946 M8.0+)",
+    "age": "Historic (1918 San Jacinto M6.8)",
     "coordinates": [
       [
-        138.5,
-        34.5
+        -117.45,
+        34.28
+      ],
+      [
+        -117.3,
+        34.1
+      ],
+      [
+        -117.15,
+        33.95
+      ],
+      [
+        -116.95,
+        33.75
+      ],
+      [
+        -116.65,
+        33.55
+      ],
+      [
+        -116.35,
+        33.25
+      ],
+      [
+        -115.95,
+        32.9
+      ]
+    ]
+  },
+  {
+    "id": "fault-cascadia-megathrust",
+    "name": "Cascadia Megathrust Subduction Zone (Mendocino to Vancouver Island)",
+    "source": "USGS / GSC Cascadia Geodynamics",
+    "slipRateMmPerYr": 40,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (1700 Cascadia M9.0 Orphan Tsunami)",
+    "coordinates": [
+      [
+        -124.8,
+        40.3
+      ],
+      [
+        -124.6,
+        41.5
+      ],
+      [
+        -124.8,
+        42.5
+      ],
+      [
+        -124.9,
+        43.5
+      ],
+      [
+        -124.7,
+        44.5
+      ],
+      [
+        -124.6,
+        45.8
+      ],
+      [
+        -124.8,
+        46.5
+      ],
+      [
+        -125,
+        47.5
+      ],
+      [
+        -125.5,
+        48.5
+      ],
+      [
+        -126.8,
+        49.5
+      ],
+      [
+        -128.2,
+        50.8
+      ]
+    ]
+  },
+  {
+    "id": "fault-seattle-fault",
+    "name": "Seattle Fault Zone (Puget Sound East-West Thrust)",
+    "source": "USGS Quaternary Faults (QFAULT)",
+    "slipRateMmPerYr": 1.5,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Holocene (ca. 900 AD M7.3 Tsunami Event)",
+    "coordinates": [
+      [
+        -122.65,
+        47.56
+      ],
+      [
+        -122.52,
+        47.58
+      ],
+      [
+        -122.38,
+        47.59
+      ],
+      [
+        -122.33,
+        47.59
+      ],
+      [
+        -122.2,
+        47.58
+      ],
+      [
+        -122.12,
+        47.56
+      ],
+      [
+        -121.98,
+        47.54
+      ]
+    ]
+  },
+  {
+    "id": "fault-denali-alaska",
+    "name": "Denali Fault System (Interior Alaska Arc)",
+    "source": "USGS / Alaska Earthquake Center",
+    "slipRateMmPerYr": 12,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (2002 Denali M7.9 pipeline rupture)",
+    "coordinates": [
+      [
+        -151,
+        62.9
+      ],
+      [
+        -149,
+        63.3
+      ],
+      [
+        -146.5,
+        63.55
+      ],
+      [
+        -143.8,
+        63.2
+      ],
+      [
+        -141.5,
+        62.6
+      ],
+      [
+        -138.5,
+        61.2
+      ]
+    ]
+  },
+  {
+    "id": "fault-aleutian-megathrust",
+    "name": "Aleutian Subduction Megathrust (Pacific-North America Convergence)",
+    "source": "USGS National Seismic Hazard Model",
+    "slipRateMmPerYr": 65,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (1964 Great Alaska M9.2)",
+    "coordinates": [
+      [
+        -148,
+        59.8
+      ],
+      [
+        -151.5,
+        58.5
+      ],
+      [
+        -155,
+        56.8
+      ],
+      [
+        -159,
+        54.8
+      ],
+      [
+        -164,
+        53.8
+      ],
+      [
+        -168,
+        53
+      ],
+      [
+        -174,
+        52
+      ],
+      [
+        -179,
+        51.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-wasatch",
+    "name": "Wasatch Fault Zone (Salt Lake City Urban Corridor)",
+    "source": "Utah Geological Survey / USGS",
+    "slipRateMmPerYr": 2.2,
+    "slipSense": "normal",
+    "riskTier": "Moderate",
+    "age": "Late Quaternary (Holocene M7.0+ potential)",
+    "coordinates": [
+      [
+        -112,
+        41.5
+      ],
+      [
+        -111.95,
+        41.22
+      ],
+      [
+        -111.88,
+        40.85
+      ],
+      [
+        -111.83,
+        40.75
+      ],
+      [
+        -111.85,
+        40.55
+      ],
+      [
+        -111.68,
+        40.25
+      ],
+      [
+        -111.75,
+        39.8
+      ]
+    ]
+  },
+  {
+    "id": "fault-new-madrid",
+    "name": "New Madrid Seismic Zone (Reelfoot Rift Interplate Network)",
+    "source": "USGS Central & Eastern US Hazard",
+    "slipRateMmPerYr": 3.5,
+    "slipSense": "strike_slip",
+    "riskTier": "Moderate",
+    "age": "Historic (1811-1812 New Madrid M7.5-M7.8 sequence)",
+    "coordinates": [
+      [
+        -89.6,
+        35.8
+      ],
+      [
+        -89.8,
+        36.1
+      ],
+      [
+        -89.5,
+        36.35
+      ],
+      [
+        -89.45,
+        36.55
+      ],
+      [
+        -89.55,
+        36.65
+      ],
+      [
+        -89.15,
+        37.1
+      ]
+    ]
+  },
+  {
+    "id": "fault-japan-trench",
+    "name": "Japan Trench Megathrust (Pacific Subduction Plate Boundary)",
+    "source": "JMA / NIED Japan Earthquake Hazard",
+    "slipRateMmPerYr": 85,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (2011 Great East Japan M9.1 Tohoku-Oki)",
+    "coordinates": [
+      [
+        143.5,
+        41
+      ],
+      [
+        143.8,
+        39.5
+      ],
+      [
+        144.2,
+        38.322
+      ],
+      [
+        143.9,
+        37
+      ],
+      [
+        143.2,
+        36
+      ],
+      [
+        142.5,
+        35.2
+      ]
+    ]
+  },
+  {
+    "id": "fault-sagami-trough",
+    "name": "Sagami Trough (Tokyo Metropolitan Kanto Subduction Interface)",
+    "source": "NIED / JMA Headquarters for Earthquake Research",
+    "slipRateMmPerYr": 30,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (1923 Great Kanto M7.9 Earthquake)",
+    "coordinates": [
+      [
+        139.1,
+        35.25
+      ],
+      [
+        139.35,
+        35.15
+      ],
+      [
+        139.6,
+        35.05
+      ],
+      [
+        139.8,
+        34.9
+      ],
+      [
+        140.4,
+        34.8
+      ],
+      [
+        141.5,
+        34.7
+      ]
+    ]
+  },
+  {
+    "id": "fault-nankai-megathrust",
+    "name": "Nankai Trough Megathrust (Philippine Sea Plate Subduction)",
+    "source": "JMA / NIED Tokai-Tonankai-Nankai Model",
+    "slipRateMmPerYr": 60,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Locked (1944 Tonankai M8.1 / 1946 Nankai M8.4)",
+    "coordinates": [
+      [
+        138.6,
+        35
+      ],
+      [
+        138,
+        34.3
       ],
       [
         137,
-        33.5
+        33.8
       ],
       [
-        135.5,
-        33
+        136,
+        33.3
+      ],
+      [
+        134.8,
+        32.8
       ],
       [
         133.5,
-        32.5
+        32.4
       ],
       [
-        131.5,
+        132.5,
+        32
+      ],
+      [
+        131.8,
         31.5
       ]
     ]
   },
   {
-    "id": "fault-north-anatolian",
-    "name": "North Anatolian Fault Zone (Turkey - Europe Interface)",
-    "source": "GEM GAF-DB",
-    "slipRateMmPerYr": 22,
+    "id": "fault-japan-mtl",
+    "name": "Japan Median Tectonic Line (MTL Strike-Slip Fault)",
+    "source": "Geological Survey of Japan (AIST)",
+    "slipRateMmPerYr": 7.5,
     "slipSense": "strike_slip",
     "riskTier": "High",
-    "age": "Historic (1999 Izmit M7.6)",
+    "age": "Historic (1596 Keicho-Fushimi M7.5 sequence)",
     "coordinates": [
       [
-        27,
-        40.8
+        136.5,
+        34.8
       ],
       [
-        29.97,
-        40.76
+        135.8,
+        34.4
       ],
       [
-        31.17,
-        40.84
+        135.2,
+        34.25
       ],
       [
-        33.5,
-        40.9
+        134.5,
+        34.05
       ],
       [
-        36.5,
+        133.8,
+        33.95
+      ],
+      [
+        132.8,
+        33.85
+      ],
+      [
+        132.2,
+        33.45
+      ]
+    ]
+  },
+  {
+    "id": "fault-taiwan-longitudinal",
+    "name": "Taiwan Longitudinal Valley & Chelungpu Fault System",
+    "source": "Central Geological Survey Taiwan (MOEA)",
+    "slipRateMmPerYr": 50,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (1999 Chi-Chi M7.7 & 2024 Hualien M7.4)",
+    "coordinates": [
+      [
+        121.75,
+        24.35
+      ],
+      [
+        121.6,
+        24
+      ],
+      [
+        121.4,
+        23.5
+      ],
+      [
+        121.25,
+        23.1
+      ],
+      [
+        121.15,
+        22.75
+      ],
+      [
+        120.7,
+        24.15
+      ],
+      [
+        120.65,
+        23.85
+      ]
+    ]
+  },
+  {
+    "id": "fault-philippine-fault",
+    "name": "Philippine Fault Zone (Luzon to Mindanao Left-Lateral Slip)",
+    "source": "PHIVOLCS Active Faults",
+    "slipRateMmPerYr": 35,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (1990 Luzon M7.7 / 125km rupture)",
+    "coordinates": [
+      [
+        120.8,
+        16.8
+      ],
+      [
+        121.05,
+        15.9
+      ],
+      [
+        121.5,
+        14.8
+      ],
+      [
+        122.5,
+        13.8
+      ],
+      [
+        123.7,
+        12.8
+      ],
+      [
+        124.6,
+        11.2
+      ],
+      [
+        125.6,
+        9.8
+      ],
+      [
+        126,
+        7.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-manila-trench",
+    "name": "Manila Trench Subduction Megathrust (South China Sea Basin)",
+    "source": "PHIVOLCS / GEM Global Hazard",
+    "slipRateMmPerYr": 55,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Quaternary (Mega-tsunami hazard to Manila Bay)",
+    "coordinates": [
+      [
+        119.5,
+        20
+      ],
+      [
+        119.3,
+        18.5
+      ],
+      [
+        119,
+        16.5
+      ],
+      [
+        119.2,
+        14.8
+      ],
+      [
+        119.8,
+        13.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-sunda-megathrust",
+    "name": "Sunda Megathrust (Sumatra - Java Trench Subduction Zone)",
+    "source": "BMKG Indonesia / Earth Observatory of Singapore",
+    "slipRateMmPerYr": 65,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (2004 Indian Ocean M9.1-9.3 / 2005 Nias M8.6)",
+    "coordinates": [
+      [
+        93,
+        6
+      ],
+      [
+        94.5,
+        3.3
+      ],
+      [
+        96.8,
+        1.5
+      ],
+      [
+        98.5,
+        -0.5
+      ],
+      [
+        100.5,
+        -2.5
+      ],
+      [
+        102.5,
+        -4.5
+      ],
+      [
+        105,
+        -6.8
+      ],
+      [
+        108.5,
+        -8.5
+      ],
+      [
+        112.5,
+        -9.5
+      ],
+      [
+        116.5,
+        -10
+      ]
+    ]
+  },
+  {
+    "id": "fault-alpine-new-zealand",
+    "name": "New Zealand Alpine Fault (South Island Transpressional Plate Boundary)",
+    "source": "GNS Science New Zealand",
+    "slipRateMmPerYr": 38,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Locked (Last rupture 1717 AD M8.1 / ~300 yr recurrence)",
+    "coordinates": [
+      [
+        167.8,
+        -44.5
+      ],
+      [
+        168.8,
+        -43.8
+      ],
+      [
+        170.1,
+        -43.3
+      ],
+      [
+        171.2,
+        -42.8
+      ],
+      [
+        172.5,
+        -42.2
+      ],
+      [
+        173.8,
+        -41.7
+      ],
+      [
+        175.2,
+        -41.3
+      ]
+    ]
+  },
+  {
+    "id": "fault-north-anatolian",
+    "name": "North Anatolian Fault Zone (Turkey - Sea of Marmara - Istanbul)",
+    "source": "AFAD Turkey / Kandilli Observatory",
+    "slipRateMmPerYr": 24,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (1999 Izmit M7.6 / Marmara Seismic Gap)",
+    "coordinates": [
+      [
+        40.8,
+        39.5
+      ],
+      [
+        39.5,
+        39.75
+      ],
+      [
+        36.8,
         40.5
       ],
       [
-        40.5,
-        39.75
+        34.5,
+        40.8
+      ],
+      [
+        32,
+        40.8
+      ],
+      [
+        30.6,
+        40.75
+      ],
+      [
+        29.9,
+        40.75
+      ],
+      [
+        29,
+        40.85
+      ],
+      [
+        27.8,
+        40.9
+      ],
+      [
+        26.5,
+        40.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-east-anatolian",
+    "name": "East Anatolian Fault Zone (Kahramanmaras - Antakya)",
+    "source": "AFAD Turkey / USGS Earthquake Hazard",
+    "slipRateMmPerYr": 10,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (Feb 2023 Kahramanmaras M7.8 / M7.6 doublet)",
+    "coordinates": [
+      [
+        40.8,
+        39.5
+      ],
+      [
+        39.2,
+        38.65
+      ],
+      [
+        38,
+        38
+      ],
+      [
+        36.95,
+        37.58
+      ],
+      [
+        36.4,
+        37.1
+      ],
+      [
+        36.15,
+        36.2
+      ]
+    ]
+  },
+  {
+    "id": "fault-hellenic-arc",
+    "name": "Hellenic Subduction Arc (Ionian Islands - Crete - Rhodes)",
+    "source": "National Observatory of Athens (NOA)",
+    "slipRateMmPerYr": 35,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (365 AD Crete M8.5 Tsunami)",
+    "coordinates": [
+      [
+        20.5,
+        38.2
+      ],
+      [
+        21.2,
+        36.8
+      ],
+      [
+        22.8,
+        35.8
+      ],
+      [
+        24,
+        35.1
+      ],
+      [
+        25.5,
+        34.8
+      ],
+      [
+        26.8,
+        35.2
+      ],
+      [
+        28.2,
+        36
+      ]
+    ]
+  },
+  {
+    "id": "fault-apennines-italy",
+    "name": "Central Apennines Extensional Fault System",
+    "source": "INGV Italy Active Fault Database (ITHACA)",
+    "slipRateMmPerYr": 4.5,
+    "slipSense": "normal",
+    "riskTier": "High",
+    "age": "Historic (2009 L'Aquila M6.3 / 2016 Amatrice M6.2)",
+    "coordinates": [
+      [
+        12.5,
+        43.4
+      ],
+      [
+        12.8,
+        43
+      ],
+      [
+        13.1,
+        42.8
+      ],
+      [
+        13.25,
+        42.6
+      ],
+      [
+        13.4,
+        42.35
+      ],
+      [
+        13.7,
+        42.05
+      ],
+      [
+        14.2,
+        41.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-dead-sea-transform",
+    "name": "Dead Sea Transform Fault (Aqaba to Lebanon / Syrian Arc)",
+    "source": "GII Israel / Jordan Seismological Observatory",
+    "slipRateMmPerYr": 5,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (749 AD Galilee M7.3 / 1927 Jericho M6.2)",
+    "coordinates": [
+      [
+        34.95,
+        29.5
+      ],
+      [
+        35.15,
+        30.5
+      ],
+      [
+        35.45,
+        31.5
+      ],
+      [
+        35.55,
+        32
+      ],
+      [
+        35.6,
+        32.8
+      ],
+      [
+        35.65,
+        33.3
+      ],
+      [
+        35.8,
+        34
       ]
     ]
   },
   {
     "id": "fault-himalayan-frontal",
-    "name": "Main Himalayan Frontal Thrust (MFT)",
-    "source": "GEM Active Faults / Wadia",
-    "slipRateMmPerYr": 18,
+    "name": "Main Himalayan Frontal Thrust (MFT) & Main Boundary Thrust",
+    "source": "Geological Survey of India / Nepal Dept of Mines",
+    "slipRateMmPerYr": 21,
     "slipSense": "thrust",
     "riskTier": "High",
-    "age": "Historic (2015 Gorkha M7.8)",
+    "age": "Historic (1934 Bihar-Nepal M8.0 / 2015 Gorkha M7.8)",
     "coordinates": [
       [
-        77,
-        30.5
+        74.5,
+        33.5
+      ],
+      [
+        76.2,
+        32.2
+      ],
+      [
+        78,
+        30.4
       ],
       [
         80,
-        29
+        29.2
       ],
       [
-        83.5,
-        27.8
+        82.5,
+        28.2
       ],
       [
-        85.3,
+        84.5,
+        28
+      ],
+      [
+        85.35,
         27.7
+      ],
+      [
+        86.5,
+        27.2
       ],
       [
         88.5,
         26.8
+      ],
+      [
+        90.5,
+        26.8
+      ],
+      [
+        93,
+        27.2
+      ],
+      [
+        95.5,
+        27.8
+      ]
+    ]
+  },
+  {
+    "id": "fault-chaman-pakistan",
+    "name": "Chaman Transform Fault (Indo-Eurasian Western Plate Boundary)",
+    "source": "Pakistan Meteorological Dept / USGS",
+    "slipRateMmPerYr": 25,
+    "slipSense": "strike_slip",
+    "riskTier": "High",
+    "age": "Historic (1935 Quetta M7.7)",
+    "coordinates": [
+      [
+        66.3,
+        28
+      ],
+      [
+        66.5,
+        29.5
+      ],
+      [
+        66.9,
+        30.2
+      ],
+      [
+        67.5,
+        31.5
+      ],
+      [
+        68.5,
+        33
+      ],
+      [
+        69.2,
+        34.5
+      ]
+    ]
+  },
+  {
+    "id": "fault-chile-peru-megathrust",
+    "name": "Peru-Chile Megathrust (Nazca - South American Subduction)",
+    "source": "CSN Chile / IGP Peru",
+    "slipRateMmPerYr": 68,
+    "slipSense": "thrust",
+    "riskTier": "High",
+    "age": "Historic (1960 Great Valdivia M9.5 World Record / 2010 Maule M8.8)",
+    "coordinates": [
+      [
+        -77.5,
+        -12
+      ],
+      [
+        -76,
+        -14
+      ],
+      [
+        -73,
+        -16.5
+      ],
+      [
+        -71.5,
+        -18.5
+      ],
+      [
+        -70.8,
+        -20.2
+      ],
+      [
+        -71,
+        -23.5
+      ],
+      [
+        -72,
+        -29.8
+      ],
+      [
+        -72.5,
+        -33
+      ],
+      [
+        -73.2,
+        -36
+      ],
+      [
+        -74.5,
+        -39.8
+      ]
+    ]
+  },
+  {
+    "id": "fault-mid-atlantic-iceland",
+    "name": "Mid-Atlantic Ridge (Reykjanes Ridge & Iceland Volcanic Rift)",
+    "source": "Icelandic Met Office (IMO)",
+    "slipRateMmPerYr": 20,
+    "slipSense": "normal",
+    "riskTier": "Moderate",
+    "age": "Active Rifting (2021-2026 Reykjanes Eruptive & Seismic Sequence)",
+    "coordinates": [
+      [
+        -23,
+        63.5
+      ],
+      [
+        -22.4,
+        63.85
+      ],
+      [
+        -21.8,
+        64.05
+      ],
+      [
+        -21.1,
+        64.25
+      ],
+      [
+        -19.5,
+        64.7
+      ],
+      [
+        -17,
+        65
+      ],
+      [
+        -16,
+        66
       ]
     ]
   }

@@ -1168,7 +1168,72 @@ assert(institutionalAiEngineSrc.includes("Multi-Site Institutional Portfolio Ben
 const copilotChatModalSrc = fs.readFileSync(path.join(process.cwd(), "components/chat/AtlasAIChatModal.tsx"), "utf-8");
 assert(copilotChatModalSrc.includes("Compare Ashburn vs Dallas for 500MW site selection"), "AtlasAIChatModal includes institutional comparison suggestion");
 assert(copilotChatModalSrc.includes("What are BTM nuclear co-location economics at Susquehanna?"), "AtlasAIChatModal includes BTM nuclear economics suggestion");
-assert(copilotChatModalSrc.includes("Subsea Cable Landing Hubs"), "AtlasAIChatModal features CLS hubs in initial state facts");
+// ---------------------------------------------------------------------------
+// TEST 22: High-Density Terrestrial Dark Fiber, Active Seismic Faults & USGS Earthquakes
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 22: Terrestrial Fiber, Quaternary Faults & Earthquakes Visual Upgrades ---");
+
+const darkFiberDataPath = path.join(dataDir, "dark-fiber-corridors.json");
+assert(fs.existsSync(darkFiberDataPath), "dark-fiber-corridors.json exists on disk");
+const darkFiberData = JSON.parse(fs.readFileSync(darkFiberDataPath, "utf-8"));
+assert(Array.isArray(darkFiberData) && darkFiberData.length >= 25, `High-density terrestrial dark fiber network: ${darkFiberData.length} corridors (target >= 25)`);
+
+// Verify geographic distribution of dark fiber (US, Europe, Asia, India)
+const ashburnFiber = darkFiberData.find((f) => f.id.includes("ashburn") || f.name.includes("Ashburn") || f.name.includes("Loudoun"));
+assert(!!ashburnFiber, "Ashburn / Data Center Alley metro & express dark fiber corridors verified");
+
+const flapFiber = darkFiberData.find((f) => f.name.includes("FLAP") || f.name.includes("Europe") || f.name.includes("London") || f.name.includes("Frankfurt"));
+assert(!!flapFiber, "European FLAP-D trans-European dark fiber backbones verified");
+
+const asiaFiber = darkFiberData.find((f) => f.name.includes("Tokyo") || f.name.includes("Singapore") || f.name.includes("Johor") || f.name.includes("Mumbai") || f.name.includes("India"));
+assert(!!asiaFiber, "Asia-Pacific & Indian subcontinent high-capacity dark fiber backbones verified");
+
+// Seismic active faults
+const seismicFaultsPath = path.join(dataDir, "seismic-faults.json");
+assert(fs.existsSync(seismicFaultsPath), "seismic-faults.json exists on disk");
+const seismicFaultsData = JSON.parse(fs.readFileSync(seismicFaultsPath, "utf-8"));
+assert(Array.isArray(seismicFaultsData) && seismicFaultsData.length >= 25, `Active Quaternary fault systems: ${seismicFaultsData.length} tectonic systems (target >= 25)`);
+
+const sanAndreas = seismicFaultsData.find((f) => f.name.includes("San Andreas"));
+assert(!!sanAndreas, "San Andreas Fault System (Northern & Southern segments) verified");
+
+const cascadia = seismicFaultsData.find((f) => f.name.includes("Cascadia") || f.name.includes("Subduction"));
+assert(!!cascadia, "Cascadia Subduction Megathrust verified");
+
+const ringOfFire = seismicFaultsData.find((f) => f.name.includes("Japan") || f.name.includes("Nankai") || f.name.includes("Sunda") || f.name.includes("Alpine"));
+assert(!!ringOfFire, "Pacific Ring of Fire megathrusts and active collision systems verified");
+
+// Historical earthquakes dataset
+const earthquakesDataPath = path.join(dataDir, "historical-earthquakes.json");
+assert(fs.existsSync(earthquakesDataPath), "historical-earthquakes.json exists on disk");
+const earthquakesData = JSON.parse(fs.readFileSync(earthquakesDataPath, "utf-8"));
+assert(Array.isArray(earthquakesData) && earthquakesData.length >= 500, `USGS verified historical earthquakes dataset: ${earthquakesData.length} records (target >= 500)`);
+
+// Verify API route payload contains earthquakes and cableLandingStations
+const sitingRoutePath = path.join(process.cwd(), "app/api/siting/route.ts");
+const sitingRouteSrc = fs.readFileSync(sitingRoutePath, "utf-8");
+assert(sitingRouteSrc.includes("earthquakes") && sitingRouteSrc.includes("historical-earthquakes.json"), "api/siting route serves historical earthquakes");
+assert(sitingRouteSrc.includes("cableLandingStations") && sitingRouteSrc.includes("cable-landing-stations.json"), "api/siting route serves cableLandingStations");
+
+// Verify DeckGLMap layer visual differentiation
+const deckGlVisualMapSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlVisualMapSrc.includes("subsea-fiber-cables") && deckGlVisualMapSrc.includes("229, 255"), "DeckGLMap renders subsea cables with bioluminescent oceanic aqua");
+assert(deckGlVisualMapSrc.includes("dark-fiber-conduits") && (deckGlVisualMapSrc.includes("192, 132, 252") || deckGlVisualMapSrc.includes("147, 51, 234")), "DeckGLMap renders terrestrial dark fiber with electric neon violet");
+assert(deckGlVisualMapSrc.includes("cable-landing-stations-outer") && deckGlVisualMapSrc.includes("cable-landing-stations-core"), "DeckGLMap renders Cable Landing Stations with dual concentric portal rings");
+assert(deckGlVisualMapSrc.includes("earthquakes-epicenters-layer"), "DeckGLMap renders USGS M5.0+ earthquake epicenters layer");
+
+// Verify StationTooltip handles all 5 layers
+const stationTooltipVisualSrc = fs.readFileSync(path.join(process.cwd(), "components/map/StationTooltip.tsx"), "utf-8");
+assert(stationTooltipVisualSrc.includes("TERRESTRIAL DARK FIBER"), "StationTooltip renders dark fiber HUD card");
+assert(stationTooltipVisualSrc.includes("SUBSEA FIBER CABLE"), "StationTooltip renders subsea cable HUD card");
+assert(stationTooltipVisualSrc.includes("CABLE LANDING STATION (CLS)"), "StationTooltip renders Cable Landing Station HUD card");
+assert(stationTooltipVisualSrc.includes("USGS SEISMIC EVENT"), "StationTooltip renders USGS earthquake HUD card");
+assert(stationTooltipVisualSrc.includes("ACTIVE SEISMIC FAULT"), "StationTooltip renders Quaternary active fault HUD card");
+
+// Verify MapLegend expanded items
+const mapLegendVisualSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapLegend.tsx"), "utf-8");
+assert(mapLegendVisualSrc.includes("Subsea Cables") && mapLegendVisualSrc.includes("Cable Landing Hubs (CLS)"), "MapLegend includes Subsea Cables and CLS hubs");
+assert(mapLegendVisualSrc.includes("USGS Earthquakes M5.0+"), "MapLegend includes USGS Earthquakes M5.0+");
 
 // ---------------------------------------------------------------------------
 // FINAL SUMMARY

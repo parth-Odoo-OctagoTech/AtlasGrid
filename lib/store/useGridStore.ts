@@ -4,6 +4,8 @@ import { FuelType, Interconnector, PowerPlant, StationStatus, Substation } from 
 import { DataCenter } from "../types/data-center";
 import { GridAlert, GridSummary } from "../types/telemetry";
 import { DarkFiberCorridor, FlightCorridor, HazardCorridor, SeismicFaultLine } from "../types/siting";
+import { HistoricalEarthquake } from "../types/historical";
+import { CableLandingStation } from "../types/subsea-backhaul";
 
 export interface LayerVisibility {
   plants: boolean;
@@ -83,6 +85,11 @@ interface GridStoreState {
   hoveredDataCenter: DataCenter | null;
   hoveredSubstation: Substation | null;
   hoveredFloodZone: any | null;
+  hoveredFiber: DarkFiberCorridor | null;
+  hoveredCable: any | null;
+  hoveredCls: CableLandingStation | null;
+  hoveredEarthquake: HistoricalEarthquake | null;
+  hoveredFault: SeismicFaultLine | null;
   hoverCoordinates: { x: number; y: number } | null;
 
   // Filters
@@ -97,6 +104,8 @@ interface GridStoreState {
   seismicFaults: SeismicFaultLine[];
   flightCorridors: FlightCorridor[];
   hazardCorridors: HazardCorridor[];
+  earthquakes: HistoricalEarthquake[];
+  cableLandingStations: CableLandingStation[];
 
   // Crawler Bot State
   crawlerStatus: {
@@ -126,6 +135,8 @@ interface GridStoreState {
   setSeismicFaults: (faults: SeismicFaultLine[]) => void;
   setFlightCorridors: (corridors: FlightCorridor[]) => void;
   setHazardCorridors: (corridors: HazardCorridor[]) => void;
+  setEarthquakes: (earthquakes: HistoricalEarthquake[]) => void;
+  setCableLandingStations: (stations: CableLandingStation[]) => void;
   setDataSourcesOpen: (open: boolean) => void;
   setDossierOpen: (open: boolean) => void;
   openDossierForTarget: (target: {
@@ -152,6 +163,26 @@ interface GridStoreState {
   ) => void;
   setHoveredFloodZone: (
     zone: any | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredFiber: (
+    fiber: DarkFiberCorridor | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredCable: (
+    cable: any | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredCls: (
+    cls: CableLandingStation | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredEarthquake: (
+    earthquake: HistoricalEarthquake | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
+  setHoveredFault: (
+    fault: SeismicFaultLine | null,
     coords?: { x: number; y: number } | null
   ) => void;
   setVisualizationMode: (mode: VisualizationMode) => void;
@@ -231,6 +262,11 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   hoveredDataCenter: null,
   hoveredSubstation: null,
   hoveredFloodZone: null,
+  hoveredFiber: null,
+  hoveredCable: null,
+  hoveredCls: null,
+  hoveredEarthquake: null,
+  hoveredFault: null,
   hoverCoordinates: null,
 
   filters: INITIAL_FILTERS,
@@ -240,11 +276,15 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   seismicFaults: [],
   flightCorridors: [],
   hazardCorridors: [],
+  earthquakes: [],
+  cableLandingStations: [],
 
   setDarkFiberCorridors: (darkFiberCorridors) => set({ darkFiberCorridors }),
   setSeismicFaults: (seismicFaults) => set({ seismicFaults }),
   setFlightCorridors: (flightCorridors) => set({ flightCorridors }),
   setHazardCorridors: (hazardCorridors) => set({ hazardCorridors }),
+  setEarthquakes: (earthquakes) => set({ earthquakes }),
+  setCableLandingStations: (cableLandingStations) => set({ cableLandingStations }),
 
   crawlerStatus: {
     isRunning: false,
@@ -344,6 +384,36 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setHoveredFloodZone: (zone, coords) =>
     set({
       hoveredFloodZone: zone,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredFiber: (fiber, coords) =>
+    set({
+      hoveredFiber: fiber,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredCable: (cable, coords) =>
+    set({
+      hoveredCable: cable,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredCls: (cls, coords) =>
+    set({
+      hoveredCls: cls,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredEarthquake: (earthquake, coords) =>
+    set({
+      hoveredEarthquake: earthquake,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredFault: (fault, coords) =>
+    set({
+      hoveredFault: fault,
       hoverCoordinates: coords || null,
     }),
 
