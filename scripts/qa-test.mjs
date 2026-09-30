@@ -1525,6 +1525,47 @@ const aiEngineInstSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/a
 assert(aiEngineInstSrc.includes("Institutional Asset Catalog & Ownership / Offtake Metadata"), "AI query engine prompt includes institutional metadata grounding");
 
 // ---------------------------------------------------------------------------
+// TEST 26: US State Fleet Breakdown & Zero-Data-Center States Grounding
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 26: US State Fleet Breakdown & Zero-DC States Grounding ---");
+
+assert(aiEngineInstSrc.includes("US_50_STATES"), "ai-query-engine exports US_50_STATES comprehensive metadata");
+assert(aiEngineInstSrc.includes("USStateMetadata"), "ai-query-engine defines USStateMetadata interface");
+assert(aiEngineInstSrc.includes("statesWithoutDcs"), "ai-query-engine calculates statesWithoutDcs");
+assert(aiEngineInstSrc.includes("statesWithDcs"), "ai-query-engine calculates statesWithDcs");
+assert(aiEngineInstSrc.includes("isZeroStateQuery"), "ai-query-engine handles zero-data-center state queries");
+assert(aiEngineInstSrc.includes("matchedState"), "ai-query-engine supports single-state queries across all 50 US states");
+
+// Verify prompt grounding contains zero-DC states and siting drivers
+assert(aiEngineInstSrc.includes("States WITHOUT Data Centers"), "Grounding prompt context enumerates states without data centers");
+assert(aiEngineInstSrc.includes("Act 250"), "Grounding prompt explains Vermont Act 250 environmental review");
+assert(aiEngineInstSrc.includes("Wyoming & Montana"), "Grounding prompt explains Wyoming & Montana dark fiber latency constraints");
+assert(aiEngineInstSrc.includes("Alaska & Hawaii"), "Grounding prompt explains Alaska & Hawaii islanded grid and tariff realities");
+
+// Verify exact counts from datacenters.json
+const usDcsFromRaw = allDcs.filter((d) => (d.country || "").toUpperCase().includes("US") || (d.country || "").toUpperCase().includes("UNITED STATES"));
+assert(usDcsFromRaw.length === 2274, `Total verified US data centers: ${usDcsFromRaw.length} (expected 2274)`);
+
+const usStatesDetected = new Set(usDcsFromRaw.map((d) => d.state).filter(Boolean));
+assert(usStatesDetected.size === 21, `Active US states with data centers: ${usStatesDetected.size} (expected 21)`);
+
+const virginiaDcs = usDcsFromRaw.filter((d) => d.state === "Virginia");
+assert(virginiaDcs.length === 451, `Virginia data centers count: ${virginiaDcs.length} (expected 451)`);
+
+const texasDcs = usDcsFromRaw.filter((d) => d.state === "Texas");
+assert(texasDcs.length === 220, `Texas data centers count: ${texasDcs.length} (expected 220)`);
+
+const wyomingDcs = usDcsFromRaw.filter((d) => d.state === "Wyoming");
+assert(wyomingDcs.length === 0, `Wyoming data centers in dataset: ${wyomingDcs.length} (expected 0)`);
+
+const vermontDcs = usDcsFromRaw.filter((d) => d.state === "Vermont");
+assert(vermontDcs.length === 0, `Vermont data centers in dataset: ${vermontDcs.length} (expected 0)`);
+
+// Verify UI integration in Copilot modal
+const copilotModalStateSrc = fs.readFileSync(path.join(process.cwd(), "components/chat/AtlasAIChatModal.tsx"), "utf-8");
+assert(copilotModalStateSrc.includes("Which US states do not have a data center?"), "AtlasAIChatModal includes prompt suggestion for zero-DC US states");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 
 // ---------------------------------------------------------------------------

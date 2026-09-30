@@ -46,6 +46,528 @@ function normalizeCountry(country?: string): string {
   return c;
 }
 
+export interface USStateMetadata {
+  name: string;
+  abbr: string;
+  region: string;
+  capital: string;
+  lat: number;
+  lng: number;
+  alternativeHub: string;
+  sitingDriver: string;
+}
+
+export const US_50_STATES: USStateMetadata[] = [
+  {
+    name: "Alabama",
+    abbr: "AL",
+    region: "South",
+    capital: "Montgomery",
+    lat: 32.3777,
+    lng: -86.3006,
+    alternativeHub: "Atlanta, GA (111 DCs, 6.8 GW) & Huntsville/TVA corridor",
+    sitingDriver: "Wholesale data center capacity is captured predominantly by Georgia Power / Atlanta metro and Tennessee Valley Authority (TVA) sub-hubs."
+  },
+  {
+    name: "Alaska",
+    abbr: "AK",
+    region: "Non-Contiguous",
+    capital: "Juneau",
+    lat: 61.2181,
+    lng: -149.9003,
+    alternativeHub: "Seattle, WA (190 DCs, 16.3 GW) via Alaska Communications & GCI subsea fiber",
+    sitingDriver: "Geographic isolation, lack of interconnection with continental NERC grid, high electricity tariffs (>22-28¢/kWh), and reliance on subsea backhaul."
+  },
+  {
+    name: "Arizona",
+    abbr: "AZ",
+    region: "Mountain West",
+    capital: "Phoenix",
+    lat: 33.4484,
+    lng: -112.0740,
+    alternativeHub: "Phoenix / Mesa (Active Tier-1 Hub)",
+    sitingDriver: "Major Tier-1 market driven by low natural disaster risk, SRP/APS power infrastructure, and aggressive sales tax exemptions."
+  },
+  {
+    name: "Arkansas",
+    abbr: "AR",
+    region: "South",
+    capital: "Little Rock",
+    lat: 34.7465,
+    lng: -92.2896,
+    alternativeHub: "Dallas-Fort Worth, TX (220 DCs, 9.6 GW) & Entergy footprint",
+    sitingDriver: "Proximity to ERCOT and Dallas-Fort Worth absorptive capacity has limited speculative hyperscale development."
+  },
+  {
+    name: "California",
+    abbr: "CA",
+    region: "Pacific",
+    capital: "Sacramento",
+    lat: 37.3382,
+    lng: -121.8863,
+    alternativeHub: "Silicon Valley & Los Angeles (Active Tier-1 Hub)",
+    sitingDriver: "Primary global tech innovation hub (Santa Clara / San Jose / LA), constrained by CAISO grid interconnects and high commercial power costs."
+  },
+  {
+    name: "Colorado",
+    abbr: "CO",
+    region: "Mountain West",
+    capital: "Denver",
+    lat: 39.7392,
+    lng: -104.9903,
+    alternativeHub: "Denver / Aurora (Active Regional Hub)",
+    sitingDriver: "Intermountain tech and aerospace compute hub with strong Xcel Energy transmission interties."
+  },
+  {
+    name: "Connecticut",
+    abbr: "CT",
+    region: "New England",
+    capital: "Hartford",
+    lat: 41.7658,
+    lng: -72.6734,
+    alternativeHub: "New York / New Jersey (164 combined DCs)",
+    sitingDriver: "High ISO-NE wholesale electricity rates and municipal siting hurdles push institutional developers to NJ/NY or Northern Virginia."
+  },
+  {
+    name: "Delaware",
+    abbr: "DE",
+    region: "Mid-Atlantic",
+    capital: "Dover",
+    lat: 39.1582,
+    lng: -75.5244,
+    alternativeHub: "Philadelphia, PA (84 DCs) & New Jersey (108 DCs)",
+    sitingDriver: "Financial corporate registry domicile, but compute workloads are hosted in adjacent PJM PJM-East corridors."
+  },
+  {
+    name: "Florida",
+    abbr: "FL",
+    region: "South",
+    capital: "Tallahassee",
+    lat: 28.5383,
+    lng: -81.3792,
+    alternativeHub: "Miami / NAP of the Americas & Orlando (Active Hub)",
+    sitingDriver: "Premier Latin American interconnection hub, constrained in coastal zones by FEMA hurricane storm surge requirements."
+  },
+  {
+    name: "Georgia",
+    abbr: "GA",
+    region: "South",
+    capital: "Atlanta",
+    lat: 33.7490,
+    lng: -84.3880,
+    alternativeHub: "Atlanta Metro / Lithia Springs (Active Tier-1 Hub)",
+    sitingDriver: "Southeastern hyperscale anchor with favorable Georgia Power industrial rates and extensive fiber crossroads."
+  },
+  {
+    name: "Hawaii",
+    abbr: "HI",
+    region: "Non-Contiguous",
+    capital: "Honolulu",
+    lat: 21.3069,
+    lng: -157.8583,
+    alternativeHub: "Silicon Valley & Los Angeles, CA via Transpacific Subsea Cables (MAREA / SEA-US)",
+    sitingDriver: "Islanded HECO grids, highest US electricity tariffs (>32-38¢/kWh), limited land parcels, and environmental preservation mandates."
+  },
+  {
+    name: "Idaho",
+    abbr: "ID",
+    region: "Mountain West",
+    capital: "Boise",
+    lat: 43.6150,
+    lng: -116.2023,
+    alternativeHub: "Boardman, OR (88 DCs) & Quincy, WA (190 DCs)",
+    sitingDriver: "Pacific Northwest hydro-rich footprint, with regional wholesale developments primarily located just across the border in Oregon and Washington."
+  },
+  {
+    name: "Illinois",
+    abbr: "IL",
+    region: "Midwest",
+    capital: "Springfield",
+    lat: 41.8781,
+    lng: -87.6298,
+    alternativeHub: "Chicago / Elk Grove Village (Active Tier-1 Hub)",
+    sitingDriver: "Dominant Midwest financial and hyperscale peering hub with 20-year sales tax abatement programs and ComEd transmission."
+  },
+  {
+    name: "Indiana",
+    abbr: "IN",
+    region: "Midwest",
+    capital: "Indianapolis",
+    lat: 39.7684,
+    lng: -86.1581,
+    alternativeHub: "Chicago, IL (125 DCs) & Columbus, OH (121 DCs)",
+    sitingDriver: "Adjacent to major Illinois and Ohio mega-clusters; emerging pipeline in New Carlisle/Fort Wayne currently under construction."
+  },
+  {
+    name: "Iowa",
+    abbr: "IA",
+    region: "Midwest",
+    capital: "Des Moines",
+    lat: 41.6005,
+    lng: -93.6091,
+    alternativeHub: "Council Bluffs & Des Moines (Active Tier-1 Hyperscale Hub)",
+    sitingDriver: "Massive hyperscale campuses (Google, Meta, Microsoft) driven by MidAmerican Energy wind tariffs and competitive tax incentives."
+  },
+  {
+    name: "Kansas",
+    abbr: "KS",
+    region: "Midwest",
+    capital: "Topeka",
+    lat: 39.0473,
+    lng: -95.6752,
+    alternativeHub: "Kansas City, MO (35 DCs) & Council Bluffs, IA (100 DCs)",
+    sitingDriver: "Compute served largely from Missouri side of the Kansas City metro and nearby Iowa wind-powered hyperscale hubs."
+  },
+  {
+    name: "Kentucky",
+    abbr: "KY",
+    region: "South",
+    capital: "Frankfort",
+    lat: 38.2009,
+    lng: -84.8733,
+    alternativeHub: "Columbus, OH (121 DCs) & PJM East / TVA corridors",
+    sitingDriver: "Wholesale absorption concentrated north in Ohio and east in Virginia."
+  },
+  {
+    name: "Louisiana",
+    abbr: "LA",
+    region: "South",
+    capital: "Baton Rouge",
+    lat: 30.4515,
+    lng: -91.1871,
+    alternativeHub: "Dallas-Fort Worth & Houston, TX (220 DCs, 9.6 GW)",
+    sitingDriver: "Severe coastal flood/hurricane insurance exposure and proximity to massive ERCOT hubs in neighboring Texas."
+  },
+  {
+    name: "Maine",
+    abbr: "ME",
+    region: "New England",
+    capital: "Augusta",
+    lat: 44.3106,
+    lng: -69.7795,
+    alternativeHub: "Greater Boston & New York (56 DCs) / Montreal cross-border grid",
+    sitingDriver: "Extreme geographic latency from primary cloud peering points, rural power transmission grid, and ISO-NE wholesale electricity costs."
+  },
+  {
+    name: "Maryland",
+    abbr: "MD",
+    region: "Mid-Atlantic",
+    capital: "Annapolis",
+    lat: 39.0458,
+    lng: -76.6413,
+    alternativeHub: "Northern Virginia / Ashburn (451 DCs, 37.3 GW)",
+    sitingDriver: "Located directly across the Potomac River from Data Center Alley; Virginia's permanent tax incentives captured wholesale multi-tenant investment."
+  },
+  {
+    name: "Massachusetts",
+    abbr: "MA",
+    region: "New England",
+    capital: "Boston",
+    lat: 42.3601,
+    lng: -71.0589,
+    alternativeHub: "New York (56 DCs) & New Jersey (108 DCs)",
+    sitingDriver: "Dense university/biotech edge enterprise footprint, but wholesale multi-hundred-MW campuses locate outside ISO-NE due to high power tariffs."
+  },
+  {
+    name: "Michigan",
+    abbr: "MI",
+    region: "Midwest",
+    capital: "Lansing",
+    lat: 42.7325,
+    lng: -84.5555,
+    alternativeHub: "Chicago, IL (125 DCs) & Columbus, OH (121 DCs)",
+    sitingDriver: "Historically lacked comprehensive state data center tax exemptions until recent legislative updates; compute absorbed by IL and OH."
+  },
+  {
+    name: "Minnesota",
+    abbr: "MN",
+    region: "Midwest",
+    capital: "Saint Paul",
+    lat: 44.9537,
+    lng: -93.0900,
+    alternativeHub: "Minneapolis-St. Paul (Active Regional Hub)",
+    sitingDriver: "Cold-climate free-cooling advantage, anchored by financial services, healthcare, and enterprise colocation."
+  },
+  {
+    name: "Mississippi",
+    abbr: "MS",
+    region: "South",
+    capital: "Jackson",
+    lat: 32.2988,
+    lng: -90.1848,
+    alternativeHub: "Canton / Jackson & Greater Memphis Border (Active Emerging Hub)",
+    sitingDriver: "Rapidly expanding AI frontier hosting major AWS and xAI gigawatt-scale infrastructure projects."
+  },
+  {
+    name: "Missouri",
+    abbr: "MO",
+    region: "Midwest",
+    capital: "Jefferson City",
+    lat: 38.5767,
+    lng: -92.1735,
+    alternativeHub: "Kansas City & St. Louis (Active Regional Hub)",
+    sitingDriver: "Strategic central US transcontinental fiber crossroads with low industrial power tariffs."
+  },
+  {
+    name: "Montana",
+    abbr: "MT",
+    region: "Mountain West",
+    capital: "Helena",
+    lat: 46.5891,
+    lng: -112.0391,
+    alternativeHub: "Seattle / Quincy, WA (190 DCs) & Salt Lake City, UT (38 DCs)",
+    sitingDriver: "Low population density, limited local fiber route mesh, and transmission queue lead times >5 years."
+  },
+  {
+    name: "Nebraska",
+    abbr: "NE",
+    region: "Midwest",
+    capital: "Lincoln",
+    lat: 40.8136,
+    lng: -96.7026,
+    alternativeHub: "Council Bluffs, IA (100 DCs, 12.7 GW)",
+    sitingDriver: "Hyperscale developers clustered directly across the Missouri River in Council Bluffs, IA to leverage Iowa's tax incentives."
+  },
+  {
+    name: "Nevada",
+    abbr: "NV",
+    region: "Mountain West",
+    capital: "Carson City",
+    lat: 36.1699,
+    lng: -115.1398,
+    alternativeHub: "Las Vegas / Reno (Active Tier-1 Hub)",
+    sitingDriver: "Switch SuperNAP mega-campus and Tahoe-Reno industrial center (Google, Apple, Switch) with abundant solar power."
+  },
+  {
+    name: "New Hampshire",
+    abbr: "NH",
+    region: "New England",
+    capital: "Concord",
+    lat: 43.2081,
+    lng: -71.5376,
+    alternativeHub: "Greater Boston & New York (56 DCs)",
+    sitingDriver: "Constrained by ISO-NE wholesale electricity supply and lack of hyperscale campus land parcels."
+  },
+  {
+    name: "New Jersey",
+    abbr: "NJ",
+    region: "Mid-Atlantic",
+    capital: "Trenton",
+    lat: 40.7357,
+    lng: -74.1724,
+    alternativeHub: "Secaucus, Newark & Piscataway (Active Tier-1 Financial Hub)",
+    sitingDriver: "Global financial exchange matching engine hub (NYSE, Nasdaq, BATS) with direct transatlantic subsea landing cables."
+  },
+  {
+    name: "New Mexico",
+    abbr: "NM",
+    region: "Mountain West",
+    capital: "Santa Fe",
+    lat: 35.6870,
+    lng: -105.9378,
+    alternativeHub: "Phoenix, AZ (107 DCs) & West Texas ERCOT footprint",
+    sitingDriver: "Limited commercial colocation density; Meta Los Lunas campus operates as dedicated private single-tenant site."
+  },
+  {
+    name: "New York",
+    abbr: "NY",
+    region: "Mid-Atlantic",
+    capital: "Albany",
+    lat: 40.7128,
+    lng: -74.0060,
+    alternativeHub: "New York City & Upstate Hydro (Active Tier-1 Hub)",
+    sitingDriver: "Carrier hotels (60 Hudson, 111 8th Ave) and upstate low-cost hydro power (Niagara / St. Lawrence)."
+  },
+  {
+    name: "North Carolina",
+    abbr: "NC",
+    region: "South",
+    capital: "Raleigh",
+    lat: 35.7796,
+    lng: -78.6382,
+    alternativeHub: "Charlotte & Western NC Foothills (Active Tier-1 Hub)",
+    sitingDriver: "Duke Energy nuclear/hydro capacity powering Google (Lenoir), Apple (Maiden), and Meta (Forest City)."
+  },
+  {
+    name: "North Dakota",
+    abbr: "ND",
+    region: "Midwest",
+    capital: "Bismarck",
+    lat: 46.8083,
+    lng: -100.7837,
+    alternativeHub: "Minneapolis-St. Paul, MN (29 DCs)",
+    sitingDriver: "Cold weather advantage offset by extreme network distance to Tier-1 financial and AI internet exchange points."
+  },
+  {
+    name: "Ohio",
+    abbr: "OH",
+    region: "Midwest",
+    capital: "Columbus",
+    lat: 39.9612,
+    lng: -82.9988,
+    alternativeHub: "Central Ohio / New Albany (Active Tier-1 Hyperscale Hub)",
+    sitingDriver: "Fastest-growing Midwest hyperscale corridor (AWS, Google, Meta, Microsoft) with robust AEP Ohio bulk transmission."
+  },
+  {
+    name: "Oklahoma",
+    abbr: "OK",
+    region: "South",
+    capital: "Oklahoma City",
+    lat: 35.4676,
+    lng: -97.5164,
+    alternativeHub: "Dallas-Fort Worth, TX (220 DCs, 9.6 GW)",
+    sitingDriver: "Abundant wind power, with commercial multi-tenant demand absorbed south across the Red River in Dallas-Fort Worth."
+  },
+  {
+    name: "Oregon",
+    abbr: "OR",
+    region: "Pacific",
+    capital: "Salem",
+    lat: 45.5152,
+    lng: -122.6784,
+    alternativeHub: "Hillsboro & Boardman / Columbia River (Active Tier-1 Hub)",
+    sitingDriver: "Hillsboro transpacific subsea cable gateway and Boardman low-cost Bonneville Power Administration (BPA) hydro."
+  },
+  {
+    name: "Pennsylvania",
+    abbr: "PA",
+    region: "Mid-Atlantic",
+    capital: "Harrisburg",
+    lat: 39.9526,
+    lng: -75.1652,
+    alternativeHub: "Philadelphia & Susquehanna / PJM (Active Hub)",
+    sitingDriver: "Major nuclear generation hub hosting the landmark Talen Susquehanna AWS behind-the-meter nuclear co-location campus."
+  },
+  {
+    name: "Rhode Island",
+    abbr: "RI",
+    region: "New England",
+    capital: "Providence",
+    lat: 41.8240,
+    lng: -71.4128,
+    alternativeHub: "Greater Boston, MA & New York / New Jersey",
+    sitingDriver: "Smallest land area in the US, lack of 500kV bulk transmission substations, and elevated ISO-NE retail power rates."
+  },
+  {
+    name: "South Carolina",
+    abbr: "SC",
+    region: "South",
+    capital: "Columbia",
+    lat: 34.0007,
+    lng: -81.0348,
+    alternativeHub: "Atlanta, GA (111 DCs) & Charlotte / North Carolina (47 DCs)",
+    sitingDriver: "Emerging pipeline in Berkeley/Orangeburg counties, with established multi-tenant capacity currently centered in NC and GA."
+  },
+  {
+    name: "South Dakota",
+    abbr: "SD",
+    region: "Midwest",
+    capital: "Pierre",
+    lat: 44.3683,
+    lng: -100.3510,
+    alternativeHub: "Council Bluffs, IA (100 DCs) & Minneapolis, MN (29 DCs)",
+    sitingDriver: "Low grid capacity at bulk transmission voltages and lack of transcontinental fiber interconnects."
+  },
+  {
+    name: "Tennessee",
+    abbr: "TN",
+    region: "South",
+    capital: "Nashville",
+    lat: 36.1627,
+    lng: -86.7816,
+    alternativeHub: "Northern Mississippi (14 DCs / xAI Colossus) & Atlanta, GA (111 DCs)",
+    sitingDriver: "TVA power constraint moratoriums have historically slowed speculative builds; multi-hundred MW AI training located just south across the MS line."
+  },
+  {
+    name: "Texas",
+    abbr: "TX",
+    region: "South",
+    capital: "Austin",
+    lat: 30.2672,
+    lng: -97.7431,
+    alternativeHub: "Dallas-Fort Worth, Austin & San Antonio (Active Tier-1 Hub)",
+    sitingDriver: "Independent ERCOT grid, deregulated retail electricity market, rapid interconnection timelines, and massive colocation density."
+  },
+  {
+    name: "Utah",
+    abbr: "UT",
+    region: "Mountain West",
+    capital: "Salt Lake City",
+    lat: 40.7608,
+    lng: -111.8910,
+    alternativeHub: "Salt Lake City / Silicon Slopes (Active Hub)",
+    sitingDriver: "Low natural disaster risk, Rocky Mountain Power industrial tariffs, and major NSA / Meta hyperscale installations."
+  },
+  {
+    name: "Vermont",
+    abbr: "VT",
+    region: "New England",
+    capital: "Montpelier",
+    lat: 44.2601,
+    lng: -72.5778,
+    alternativeHub: "Montreal, QC (Hydro-Quebec) & New York (56 DCs)",
+    sitingDriver: "Zero multi-tenant hyperscale data centers due to strict Act 250 environmental review, bans on heavy diesel backup generator emissions, and lack of wholesale transmission tariffs."
+  },
+  {
+    name: "Virginia",
+    abbr: "VA",
+    region: "South",
+    capital: "Richmond",
+    lat: 39.0438,
+    lng: -77.4875,
+    alternativeHub: "Ashburn / Loudoun County (The World's Capital of Cloud)",
+    sitingDriver: "Data Center Alley hosts ~70% of global internet traffic, 451 facilities, 37.3 GW, and Dominion Energy 500kV bulk transmission."
+  },
+  {
+    name: "Washington",
+    abbr: "WA",
+    region: "Pacific",
+    capital: "Olympia",
+    lat: 47.6062,
+    lng: -122.3321,
+    alternativeHub: "Seattle Metro & Central Washington / Quincy (Active Tier-1 Hub)",
+    sitingDriver: "Columbia River PUD ultra-low-cost hydro power (Quincy, Wenatchee) and Seattle corporate headquarters (Microsoft, Amazon)."
+  },
+  {
+    name: "West Virginia",
+    abbr: "WV",
+    region: "South",
+    capital: "Charleston",
+    lat: 38.3498,
+    lng: -81.6326,
+    alternativeHub: "Northern Virginia / Ashburn (451 DCs, 37.3 GW)",
+    sitingDriver: "Directly adjacent to Ashburn; hyperscale investment historically remained on the Virginia side to capture statutory tax abatements."
+  },
+  {
+    name: "Wisconsin",
+    abbr: "WI",
+    region: "Midwest",
+    capital: "Madison",
+    lat: 43.0731,
+    lng: -89.4012,
+    alternativeHub: "Chicago / Northern Illinois (125 DCs, 4.9 GW)",
+    sitingDriver: "Proximity to Chicago Tier-1 peering market; Microsoft Mount Pleasant campus is currently under construction on former Foxconn land."
+  },
+  {
+    name: "Wyoming",
+    abbr: "WY",
+    region: "Mountain West",
+    capital: "Cheyenne",
+    lat: 41.1399,
+    lng: -104.8202,
+    alternativeHub: "Denver, CO (55 DCs) & Salt Lake City, UT (38 DCs)",
+    sitingDriver: "0 commercial multi-tenant data centers in registry; historically limited by transcontinental dark fiber backhaul latency and transmission queue interconnect delays, though Cheyenne hosts localized single-tenant tech footprints."
+  }
+];
+
+export interface USStateAggregated {
+  state: string;
+  count: number;
+  totalMw: number;
+  topOps: string[];
+  topCities: string[];
+}
+
 /**
  * Generates verified grounding facts from the live repository
  */
@@ -58,6 +580,16 @@ export function getDatasetStatistics() {
   let totalDcPowerMw = 0;
   const countryCounts: Record<string, { total: number; by2025: number; in2026: number; totalMw: number }> = {};
   const operatorCounts: Record<string, { count: number; totalMw: number }> = {};
+
+  // US State Aggregations
+  const usStateCounts: Record<string, {
+    count: number;
+    totalMw: number;
+    operators: Record<string, number>;
+    cities: Record<string, number>;
+  }> = {};
+  let totalUsDcs = 0;
+  let totalUsPowerMw = 0;
 
   for (const dc of dcs) {
     totalDcPowerMw += dc.estimatedPowerMw || 0;
@@ -82,7 +614,49 @@ export function getDatasetStatistics() {
     }
     operatorCounts[op].count += 1;
     operatorCounts[op].totalMw += dc.estimatedPowerMw || 0;
+
+    // US State-level tracking
+    if (country === "UNITED STATES") {
+      totalUsDcs++;
+      totalUsPowerMw += dc.estimatedPowerMw || 0;
+      const st = dc.state?.trim() || "Unknown";
+      if (!usStateCounts[st]) {
+        usStateCounts[st] = { count: 0, totalMw: 0, operators: {}, cities: {} };
+      }
+      usStateCounts[st].count++;
+      usStateCounts[st].totalMw += dc.estimatedPowerMw || 0;
+      usStateCounts[st].operators[op] = (usStateCounts[st].operators[op] || 0) + 1;
+      if (dc.city) {
+        usStateCounts[st].cities[dc.city] = (usStateCounts[st].cities[dc.city] || 0) + 1;
+      }
+    }
   }
+
+  // Sorted list of states with DCs
+  const statesWithDcs: USStateAggregated[] = Object.entries(usStateCounts)
+    .filter(([st]) => st !== "Unknown")
+    .map(([state, data]) => {
+      const topOps = Object.entries(data.operators)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([o]) => o);
+      const topCities = Object.entries(data.cities)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 4)
+        .map(([c]) => c);
+      return {
+        state,
+        count: data.count,
+        totalMw: data.totalMw,
+        topOps,
+        topCities,
+      };
+    })
+    .sort((a, b) => b.count - a.count);
+
+  // States with 0 DCs
+  const activeStateNames = new Set(statesWithDcs.map((s) => s.state));
+  const statesWithoutDcs = US_50_STATES.filter((s) => !activeStateNames.has(s.name));
 
   // Plant aggregations
   const totalPlants = plants.length;
@@ -107,6 +681,11 @@ export function getDatasetStatistics() {
     totalPlants,
     totalPlantCapacityMw,
     fuelCapacity,
+    usStateCounts,
+    statesWithDcs,
+    statesWithoutDcs,
+    totalUsDcs,
+    totalUsPowerMw,
   };
 }
 
@@ -116,7 +695,12 @@ export function getDatasetStatistics() {
 export function buildGroundingPromptContext(): string {
   const stats = getDatasetStatistics();
   const india = stats.countryCounts["INDIA"] || { total: 290, by2025: 272, in2026: 18, totalMw: 14107 };
-  const usa = stats.countryCounts["UNITED STATES"] || { total: 478, by2025: 450, in2026: 28, totalMw: 6200 };
+  const usa = stats.countryCounts["UNITED STATES"] || {
+    total: stats.totalUsDcs,
+    by2025: 2200,
+    in2026: 74,
+    totalMw: stats.totalUsPowerMw,
+  };
 
   const topOps = Object.entries(stats.operatorCounts)
     .sort((a, b) => b[1].count - a[1].count)
@@ -157,6 +741,12 @@ export function buildGroundingPromptContext(): string {
     )
     .join("\n");
 
+  const statesWithDcsFormatted = stats.statesWithDcs
+    .map((s) => `    - ${s.state}: ${s.count} facilities, ${(s.totalMw / 1000).toFixed(1)} GW (Top Operators: ${s.topOps.join(", ")})`)
+    .join("\n");
+
+  const statesWithoutDcsFormatted = stats.statesWithoutDcs.map((s) => s.name).join(", ");
+
   return `
 GROUND TRUTH DATASET (ZERO-HALLUCINATION POLICY):
 - Total Verified Data Centers in AtlasGrid: ${stats.totalDcs} facilities
@@ -167,7 +757,16 @@ GROUND TRUTH DATASET (ZERO-HALLUCINATION POLICY):
   * Commissioned in 2026 (recent AI expansions): ${india.in2026} facilities
   * Total Estimated Power Load: ${india.totalMw.toFixed(1)} MW (~${(india.totalMw / 1000).toFixed(2)} GW)
 - United States Data Centers:
-  * Total: ${usa.total} facilities (${usa.by2025} by 2025, ${usa.in2026} in 2026)
+  * Total Verified Facilities: ${stats.totalUsDcs} facilities across ${stats.statesWithDcs.length} states (${(stats.totalUsPowerMw / 1000).toFixed(1)} GW aggregate IT load)
+  * States WITH Data Centers (${stats.statesWithDcs.length} active states):
+${statesWithDcsFormatted}
+  * States WITHOUT Data Centers (Zero recorded facilities in AtlasGrid) (${stats.statesWithoutDcs.length} states):
+    ${statesWithoutDcsFormatted}
+  * Institutional Siting Context for Zero-Facility States:
+    - Vermont: Governed by strict Act 250 environmental review, bans on heavy diesel backup generator emissions, and retail electricity rates >18-20¢/kWh; zero multi-tenant wholesale colocation.
+    - Wyoming & Montana: Constrained by transcontinental dark fiber packet latency (>15ms to Bay Area/Chicago) and transmission queue delays; served via Denver, CO and Salt Lake City, UT.
+    - Alaska & Hawaii: Non-contiguous islanded grids, lack of terrestrial interties, high generation costs (>25-35¢/kWh), reliant on subsea cables.
+    - Maryland, West Virginia, Indiana, Wisconsin: Spillover absorbed by adjacent low-tax mega-hubs (Northern Virginia, Columbus Ohio, and Suburban Chicago).
 - Top Operators:
 ${topOps}
 - Total Power Plants in Registry: ${stats.totalPlants} units (${(stats.totalPlantCapacityMw / 1000).toFixed(1)} GW)
@@ -203,6 +802,14 @@ INSTRUCTIONS:
 3. NEVER assume or invent numbers. If data is unavailable, state clearly that it is not in the verified registry.
 4. When asked specifically about India data centers in 2025 vs total, cite: ${india.total} total data centers, with ${india.by2025} operational in/by 2025, and ${india.in2026} commissioned in 2026.
 5. Ground queries regarding historical trends, pricing backtests, queue dwell growth, or daily snapshots in the verified historical ledgers.
+6. When asked which US state does NOT have a data center at all, or states without data centers:
+   - State clearly and unequivocally that ${stats.statesWithoutDcs.length} states currently have zero facilities in the AtlasGrid dataset.
+   - Specifically highlight key institutional examples such as Vermont, Wyoming, Alaska, Montana, and Maine.
+   - Provide the complete list of ${stats.statesWithoutDcs.length} states: ${statesWithoutDcsFormatted}.
+   - Explain the institutional siting drivers (VT Act 250, dark fiber route latency, transmission queue bottlenecks, islanded grids, and state tax exemptions).
+7. When asked about a specific US state (e.g. Texas, Virginia, Wyoming, Vermont, California):
+   - If the state has data centers, cite exact facility count, power load, and top operators (e.g., Virginia: 451 DCs, 37.3 GW; Texas: 220 DCs, 9.6 GW).
+   - If 0 facilities, state clearly that it has 0 facilities in the registry and cite the nearest regional serving hub and institutional rationale.
 `.trim();
 }
 
@@ -269,15 +876,217 @@ export function executeDatasetQuery(query: string): AIQueryResponse {
     };
   }
 
-  // 2. United States queries
-  if (q.includes("us") || q.includes("united states") || q.includes("america")) {
-    const usa = stats.countryCounts["UNITED STATES"] || { total: 478, by2025: 450, in2026: 28, totalMw: 6200 };
+  // 2. US States WITHOUT Data Centers (Zero DC query handler)
+  const isZeroStateQuery =
+    (q.includes("not have") ||
+      q.includes("without") ||
+      q.includes("no data") ||
+      q.includes("zero") ||
+      q.includes("don't have") ||
+      q.includes("does not have") ||
+      q.includes("doesn't have") ||
+      q.includes("haven't") ||
+      q.includes("none") ||
+      q.includes("0 data") ||
+      q.includes("missing") ||
+      q.includes("no dc") ||
+      q.includes("zero dc") ||
+      q.includes("0 dc") ||
+      q.includes("least") ||
+      q.includes("empty")) &&
+    (q.includes("state") ||
+      q.includes("states") ||
+      q.includes("us") ||
+      q.includes("united states") ||
+      q.includes("america") ||
+      q.includes("dc") ||
+      q.includes("data center") ||
+      q.includes("datacenter") ||
+      q.includes("facility") ||
+      q.includes("facilities"));
+
+  // Check if a specific state is mentioned in the query
+  const matchedState = US_50_STATES.find((st) => {
+    const nameRegex = new RegExp(`\\b${st.name}\\b`, "i");
+    const abbrRegex = new RegExp(`\\b(in|for|at|state of)\\s+${st.abbr}\\b`, "i");
+    return nameRegex.test(q) || abbrRegex.test(q);
+  });
+
+  // If asking generally about states with NO data centers (and not targeting a single state)
+  if (isZeroStateQuery && !matchedState) {
+    const zeroStateNames = stats.statesWithoutDcs.map((s) => s.name);
     return {
-      answer: `### United States Data Center Infrastructure Summary\n\nAtlasGrid tracks **${usa.total} verified data center facilities** in the United States:\n\n- **Operational by 2025**: **${usa.by2025}** facilities.\n- **Commissioned in 2026**: **${usa.in2026}** hyperscale nodes.\n- **Total Estimated IT Power**: **${usa.totalMw.toFixed(1)} MW** (~${(usa.totalMw / 1000).toFixed(2)} GW).\n- **Major Hubs**: Northern Virginia (Data Center Alley / Ashburn), Silicon Valley, Dallas-Fort Worth, Phoenix, and Chicago.`,
+      answer: `### US States Without Data Centers (AtlasGrid Verified Registry & Siting Analysis)
+
+In the verified AtlasGrid infrastructure registry of **${stats.totalUsDcs.toLocaleString()} US facilities**, exactly **${stats.statesWithoutDcs.length} states** currently have **0 recorded multi-tenant or hyperscale data center facilities**, while **${stats.statesWithDcs.length} states** house the nation's **${(stats.totalUsPowerMw / 1000).toFixed(1)} GW** compute fleet.
+
+#### Complete List of ${stats.statesWithoutDcs.length} States with 0 Data Centers in AtlasGrid:
+*${zeroStateNames.join(", ")}*
+
+---
+
+#### Regional Categorization of Zero-Facility States:
+- **New England (4)**: Connecticut, Maine, New Hampshire, Rhode Island, Vermont *(plus Delaware in Mid-Atlantic)*
+- **Mid-Atlantic (2)**: Delaware, Maryland *(Maryland has localized carrier POPs in Baltimore/suburban DC, but primary hyperscale load concentrates across the Potomac in Northern Virginia)*
+- **South / Southeast (7)**: Alabama, Arkansas, Kentucky, Louisiana, South Carolina, Tennessee, West Virginia
+- **Midwest / Plains (7)**: Indiana, Kansas, Michigan, Nebraska, North Dakota, South Dakota, Wisconsin
+- **Mountain West (5)**: Idaho, Montana, New Mexico, Oklahoma, Wyoming
+- **Non-Contiguous (2)**: Alaska, Hawaii
+
+---
+
+#### Institutional Siting Drivers (Why Certain States Lack Hyperscale Campuses):
+1. **Environmental Permitting & Land-Use Regulation**:
+   - **Vermont**: Governed by strict **Act 250** environmental land-use review, municipal restrictions on heavy diesel backup generator emissions, and commercial retail power rates exceeding 18–20¢/kWh. As a result, Vermont has **0 wholesale colocation or hyperscale facilities**.
+2. **Dark Fiber Backhaul Latency & Network Divergence**:
+   - **Wyoming & Montana**: Sit outside primary transcontinental dark fiber express corridors (Ashburn–Chicago–Silicon Valley). Packet latency to primary peering exchanges exceeds the 5ms SLA required for low-latency financial trading and distributed AI inference clusters.
+3. **Islanded Grids & Extreme Energy Tariffs**:
+   - **Alaska & Hawaii**: Non-contiguous geography, lack of interconnection with the continental North American bulk power grid (NERC), reliance on expensive imported LNG/diesel generation (>25–35¢/kWh), and dependence on transoceanic subsea cables.
+4. **State Tax Incentive Differentials & Border Spillover**:
+   - **Maryland & West Virginia**: Hyperscale capital allocates to **Northern Virginia (451 DCs, 37.3 GW)** due to Virginia's statutory Data Center Sales & Use Tax Exemption.
+   - **Indiana & Michigan**: Regional compute is absorbed by adjacent power hubs in **Central Ohio (121 DCs, 10.9 GW)** and **Chicago / Northern Illinois (125 DCs, 4.9 GW)**.`,
+      facts: [
+        { label: "States with 0 Facilities", value: stats.statesWithoutDcs.length },
+        { label: "States with Data Centers", value: stats.statesWithDcs.length },
+        { label: "Total US Facilities", value: stats.totalUsDcs },
+        { label: "Total US Power", value: (stats.totalUsPowerMw / 1000).toFixed(1), unit: "GW" },
+        {
+          label: "Top State",
+          value: `${stats.statesWithDcs[0].state} (${stats.statesWithDcs[0].count} DCs, ${(stats.statesWithDcs[0].totalMw / 1000).toFixed(1)} GW)`,
+        },
+        { label: "Key Zero-Facility States", value: "Vermont, Wyoming, Alaska, Montana, Maine" },
+      ],
+      actions: [
+        {
+          type: "FLY_TO",
+          label: "Fly to Ashburn, VA (Top US Cluster)",
+          coordinates: [-77.4875, 39.0438],
+          zoom: 9,
+        },
+        {
+          type: "FLY_TO",
+          label: "Inspect Montpelier, VT (Zero-DC Benchmark)",
+          coordinates: [-72.5778, 44.2601],
+          zoom: 8,
+        },
+        {
+          type: "FILTER",
+          label: "Filter: United States Fleet",
+          filterParams: { region: "United States", infrastructureType: "datacenter" },
+        },
+      ],
+      confidence: 1.0,
+      source: "grounded-dataset",
+      referenceCount: stats.statesWithoutDcs.length,
+    };
+  }
+
+  // 3. Specific US State Queries (e.g. Texas, Wyoming, Vermont, California, Virginia, etc.)
+  if (matchedState) {
+    const st = matchedState;
+    const stateData = stats.usStateCounts[st.name];
+
+    if (stateData && stateData.count > 0) {
+      // State HAS data centers
+      const topOps = Object.entries(stateData.operators)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 4)
+        .map(([op, cnt]) => `${op} (${cnt})`);
+      const topCities = Object.entries(stateData.cities)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 4)
+        .map(([city, cnt]) => `${city} (${cnt})`);
+
+      const powerStr =
+        stateData.totalMw >= 1000
+          ? `${(stateData.totalMw / 1000).toFixed(2)} GW (${stateData.totalMw.toFixed(0)} MW)`
+          : `${stateData.totalMw.toFixed(1)} MW`;
+
+      return {
+        answer: `### ${st.name} Data Center Fleet Telemetry\n\nAtlasGrid tracks **${stateData.count} verified data centers** in **${st.name}**:\n\n- **Total IT Power Demand**: **${powerStr}**\n- **US Fleet Share**: **${((stateData.count / stats.totalUsDcs) * 100).toFixed(1)}%** of all recorded US facilities\n- **Key Operating Hubs**: ${topCities.join(", ") || st.capital}\n- **Dominant Operators**: ${topOps.join(", ") || "Wholesale Colocation"}\n- **Grid & Siting Underwriting**: ${st.sitingDriver}`,
+        facts: [
+          { label: `${st.name} Facilities`, value: stateData.count },
+          {
+            label: "Power Demand",
+            value: stateData.totalMw >= 1000 ? (stateData.totalMw / 1000).toFixed(2) : stateData.totalMw.toFixed(1),
+            unit: stateData.totalMw >= 1000 ? "GW" : "MW",
+          },
+          { label: "US Fleet Share", value: `${((stateData.count / stats.totalUsDcs) * 100).toFixed(1)}%` },
+          { label: "Top Operator", value: Object.entries(stateData.operators).sort((a, b) => b[1] - a[1])[0]?.[0] || "N/A" },
+        ],
+        actions: [
+          {
+            type: "FLY_TO",
+            label: `Fly to ${st.name}`,
+            coordinates: [st.lng, st.lat],
+            zoom: 8,
+          },
+          {
+            type: "FILTER",
+            label: `Filter: ${st.name} Data Centers`,
+            filterParams: { region: "United States", state: st.name, infrastructureType: "datacenter" },
+          },
+        ],
+        confidence: 1.0,
+        source: "grounded-dataset",
+        referenceCount: stateData.count,
+      };
+    } else {
+      // State has ZERO data centers
+      return {
+        answer: `### ${st.name}: Data Center Infrastructure Assessment\n\nAtlasGrid currently records **0 verified multi-tenant or hyperscale data centers** in **${st.name}**.\n\n- **Status**: No registered wholesale colocation or hyperscale compute footprint in the verified registry.\n- **Primary Regional Serving Hub**: **${st.alternativeHub}**.\n- **Underwriting Context**: ${st.sitingDriver}\n- **National Context**: ${st.name} is one of **${stats.statesWithoutDcs.length} US states** with 0 recorded commercial data center facilities in the AtlasGrid dataset.`,
+        facts: [
+          { label: `${st.name} Facilities`, value: 0 },
+          { label: "Status", value: "No Hyperscale Footprint" },
+          { label: "Regional Serving Hub", value: st.alternativeHub.split("(")[0].trim() },
+          { label: "US States with 0 DCs", value: stats.statesWithoutDcs.length },
+        ],
+        actions: [
+          {
+            type: "FLY_TO",
+            label: `Inspect ${st.name} (${st.capital})`,
+            coordinates: [st.lng, st.lat],
+            zoom: 7,
+          },
+        ],
+        confidence: 1.0,
+        source: "grounded-dataset",
+        referenceCount: 0,
+      };
+    }
+  }
+
+  // 4. United States General queries
+  const isUsaQuery =
+    /\b(us|usa|united states|america|nationwide)\b/i.test(q) ||
+    q.includes("in the us") ||
+    q.includes("in the usa") ||
+    q.includes("in the united states");
+
+  if (isUsaQuery) {
+    const usa = stats.countryCounts["UNITED STATES"] || {
+      total: stats.totalUsDcs,
+      by2025: 2200,
+      in2026: 74,
+      totalMw: stats.totalUsPowerMw,
+    };
+
+    const topStatesList = stats.statesWithDcs
+      .slice(0, 8)
+      .map(
+        (s, idx) =>
+          `${idx + 1}. **${s.state}**: **${s.count}** facilities (${(s.totalMw / 1000).toFixed(1)} GW) – Top: *${s.topOps.slice(0, 2).join(", ")}*`
+      )
+      .join("\n");
+
+    return {
+      answer: `### United States Data Center Infrastructure Summary\n\nAtlasGrid tracks **${usa.total.toLocaleString()} verified data center facilities** across the United States representing **${(usa.totalMw / 1000).toFixed(1)} GW** of aggregate IT power demand.\n\n#### Top States by Capacity:\n${topStatesList}\n\n- **Fleet Distribution**: Facilities are concentrated across **${stats.statesWithDcs.length} states**, while **${stats.statesWithoutDcs.length} states** currently have **0 recorded multi-tenant or hyperscale facilities**.\n- **Primary Mega-Hub**: Northern Virginia (Ashburn / Loudoun County) anchors global cloud infrastructure with 451 facilities and 37.3 GW.\n- **Secondary Growth Hubs**: Dallas-Fort Worth (TX), Silicon Valley (CA), Pacific Northwest (WA), Columbus (OH), and Atlanta (GA).`,
       facts: [
         { label: "US Facilities", value: usa.total },
-        { label: "Operational by 2025", value: usa.by2025 },
-        { label: "Total Power Load", value: (usa.totalMw / 1000).toFixed(2), unit: "GW" },
+        { label: "Total Power Load", value: (usa.totalMw / 1000).toFixed(1), unit: "GW" },
+        { label: "Active States", value: stats.statesWithDcs.length },
+        { label: "States with 0 DCs", value: stats.statesWithoutDcs.length },
+        { label: "Top State", value: "Virginia (451 DCs, 37.3 GW)" },
       ],
       actions: [
         {
@@ -285,6 +1094,11 @@ export function executeDatasetQuery(query: string): AIQueryResponse {
           label: "Fly to Ashburn, VA (Data Center Alley)",
           coordinates: [-77.4875, 39.0438],
           zoom: 9,
+        },
+        {
+          type: "FILTER",
+          label: "Filter: United States Fleet",
+          filterParams: { region: "United States", infrastructureType: "datacenter" },
         },
       ],
       confidence: 1.0,

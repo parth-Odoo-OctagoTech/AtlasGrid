@@ -43,6 +43,7 @@ interface ChatMessage {
 }
 
 const DEFAULT_SUGGESTIONS = [
+  "Which US states do not have a data center?",
   "Compare Ashburn vs Dallas for 500MW site selection",
   "What are BTM nuclear co-location economics at Susquehanna?",
   "Which cable landing stations connect Virginia to Europe?",
