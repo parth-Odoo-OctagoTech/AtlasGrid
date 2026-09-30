@@ -85,6 +85,7 @@ export function StationInspector() {
   const portfolioCandidateIds = useGridStore((s) => s.portfolioCandidateIds);
   const togglePortfolioCandidate = useGridStore((s) => s.togglePortfolioCandidate);
   const setPortfolioBenchmarkOpen = useGridStore((s) => s.setPortfolioBenchmarkOpen);
+  const setTimeMachineOpen = useGridStore((s) => s.setTimeMachineOpen);
 
   // Fetch stations for cross-referencing
   const { data: allStationsData } = useQuery({
@@ -1363,6 +1364,18 @@ export function StationInspector() {
                 </div>
               </div>
             </div>
+
+            {/* Historical Time Machine & Backtest Deep-Dive Trigger */}
+            <button
+              onClick={() => setTimeMachineOpen(true)}
+              className="w-full flex items-center justify-between p-2.5 rounded border border-cyan-500/40 bg-cyan-950/20 hover:bg-cyan-900/30 text-cyan-300 transition text-[11px] font-mono cursor-pointer"
+            >
+              <div className="flex items-center gap-1.5 font-semibold">
+                <History className="h-3.5 w-3.5 text-cyan-400" />
+                <span>Launch Institutional Time Machine & Backtest</span>
+              </div>
+              <ArrowRight className="h-3.5 w-3.5 text-cyan-400" />
+            </button>
           </div>
         </div>
 

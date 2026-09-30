@@ -115,3 +115,120 @@ export interface FacilityHistoricalRiskProfile {
   };
   climateBaseline?: HistoricalClimateRecord;
 }
+
+export interface HistoricalPowerGenerationYear {
+  year: number;
+  usTotalGenerationTwh: number;
+  usGenerationBySource: {
+    coalTwh: number;
+    naturalGasTwh: number;
+    nuclearTwh: number;
+    hydroTwh: number;
+    windTwh: number;
+    solarTwh: number;
+    batteryStorageTwh: number;
+    otherTwh: number;
+  };
+  usCarbonIntensityGramsPerKwh: number;
+  usNuclearBaseloadGw: number;
+  usNuclearCapacityFactorPct: number;
+  usCoalRetirementsCumulativeGw: number;
+  euCarbonIntensityGramsPerKwh: number;
+  euRenewableSharePct: number;
+  apacGenerationTwh: number;
+  keyGridMilestone?: string;
+}
+
+export interface HistoricalLmpHub {
+  hubId: string;
+  hubName: string;
+  avgLmpUsdPerMwh: number;
+  peakLmpUsdPerMwh: number;
+  offPeakLmpUsdPerMwh: number;
+  negativePriceHoursPct: number;
+  maxSpikeLmpUsdPerMwh: number;
+  volatilityIndex: number;
+  primaryDriver: string;
+}
+
+export interface HistoricalLmpYear {
+  year: number;
+  globalMacroContext: string;
+  hubs: HistoricalLmpHub[];
+}
+
+export interface HistoricalQueueBacklogYear {
+  year: number;
+  totalQueuedCapacityGw: number;
+  averageDwellYears: number;
+  completionRatePct: number;
+  attritionRatePct: number;
+  byTechnologyGw: {
+    solarGw: number;
+    storageGw: number;
+    windGw: number;
+    gasGw: number;
+    hybridGw: number;
+    largeLoadDataCentersGw: number;
+  };
+  byIsoGw: {
+    pjmGw: number;
+    ercotGw: number;
+    caisoGw: number;
+    misoGw: number;
+    sppGw: number;
+    isoneGw: number;
+    nyisoGw: number;
+    nonIsoGw: number;
+  };
+  regulatoryStatus: string;
+  implicationForDataCenters: string;
+}
+
+export interface HistoricalFloodEvent {
+  id: string;
+  year: number;
+  eventName: string;
+  occurredDate: string;
+  region: string;
+  country: string;
+  latitude: number;
+  longitude: number;
+  hazardType: string;
+  peakSurgeOrDepthMeters: number;
+  damagesUsdBillions: number;
+  infrastructureImpact: string;
+  dcInsuranceImplication: string;
+}
+
+export interface HistoricalGridEmergencyEvent {
+  id: string;
+  year: number;
+  eventName: string;
+  startDate: string;
+  endDate: string;
+  eventType: string;
+  gridRegion: string;
+  generationOfflineMw: number;
+  customersWithoutPowerMillions: number;
+  maxWholesalePriceMwh: number;
+  criticalFailureMechanism: string;
+  dcOperationalLesson: string;
+}
+
+export interface DailySnapshotManifestItem {
+  snapshotDate: string;
+  timestamp: string;
+  sha256: string;
+  substationsCount: number;
+  powerPlantsCount: number;
+  dataCentersCount: number;
+  darkFiberCorridorsCount: number;
+  floodHazardZonesCount: number;
+  earthquakesCount: number;
+  stormsCount: number;
+  totalPlantCapacityMw: number;
+  pjmWesternHubLmp: number;
+  ercotNorthHubLmp: number;
+}
+

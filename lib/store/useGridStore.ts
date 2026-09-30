@@ -72,6 +72,7 @@ interface GridStoreState {
   } | null;
   isPortfolioBenchmarkOpen: boolean;
   portfolioCandidateIds: string[];
+  isTimeMachineOpen: boolean;
 
   // Viewport & Map Config
   viewport: ViewportState;
@@ -149,6 +150,7 @@ interface GridStoreState {
   setPortfolioBenchmarkOpen: (open: boolean) => void;
   togglePortfolioCandidate: (id: string) => void;
   clearPortfolioCandidates: () => void;
+  setTimeMachineOpen: (open: boolean) => void;
   setCrawlerStatus: (status: Partial<GridStoreState["crawlerStatus"]>) => void;
   selectStationById: (id: string | null, plants?: PowerPlant[]) => void;
   setHoveredStation: (
@@ -239,6 +241,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   dossierTarget: null,
   isPortfolioBenchmarkOpen: false,
   portfolioCandidateIds: [],
+  isTimeMachineOpen: false,
 
   viewport: DEFAULT_VIEWPORT,
   visualizationMode: "2d_scatter",
@@ -625,6 +628,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
       }
     }),
   clearPortfolioCandidates: () => set({ portfolioCandidateIds: [] }),
+  setTimeMachineOpen: (open) => set({ isTimeMachineOpen: open }),
 
   setReplayMode: (isReplay) => set({ isReplayMode: isReplay }),
 

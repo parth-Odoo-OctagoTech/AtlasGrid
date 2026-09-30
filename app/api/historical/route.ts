@@ -5,7 +5,13 @@ import {
   getHistoricalClimate,
   getAllClimateRecords,
   getDataCenterGrowthTimeline,
-  getFacilityHistoricalRisk
+  getFacilityHistoricalRisk,
+  getHistoricalPowerGeneration,
+  getHistoricalLmpPricing,
+  getHistoricalQueueBacklog,
+  getHistoricalFloodCatastrophes,
+  getHistoricalGridEmergencies,
+  getDailySnapshotManifest
 } from "@/lib/db/historical-repository";
 
 export const dynamic = "force-dynamic";
@@ -70,6 +76,46 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    if (type === "power") {
+      const startYear = searchParams.get("startYear") ? parseInt(searchParams.get("startYear")!, 10) : undefined;
+      const endYear = searchParams.get("endYear") ? parseInt(searchParams.get("endYear")!, 10) : undefined;
+      const records = getHistoricalPowerGeneration({ startYear, endYear });
+      return NextResponse.json({ success: true, count: records.length, powerGenerationMix: records });
+    }
+
+    if (type === "pricing") {
+      const startYear = searchParams.get("startYear") ? parseInt(searchParams.get("startYear")!, 10) : undefined;
+      const endYear = searchParams.get("endYear") ? parseInt(searchParams.get("endYear")!, 10) : undefined;
+      const records = getHistoricalLmpPricing({ startYear, endYear });
+      return NextResponse.json({ success: true, count: records.length, wholesaleLmpPricing: records });
+    }
+
+    if (type === "queues") {
+      const startYear = searchParams.get("startYear") ? parseInt(searchParams.get("startYear")!, 10) : undefined;
+      const endYear = searchParams.get("endYear") ? parseInt(searchParams.get("endYear")!, 10) : undefined;
+      const records = getHistoricalQueueBacklog({ startYear, endYear });
+      return NextResponse.json({ success: true, count: records.length, interconnectionQueueBacklog: records });
+    }
+
+    if (type === "floods") {
+      const minYear = searchParams.get("minYear") ? parseInt(searchParams.get("minYear")!, 10) : undefined;
+      const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")!, 10) : undefined;
+      const records = getHistoricalFloodCatastrophes({ minYear, limit });
+      return NextResponse.json({ success: true, count: records.length, floodCatastrophes: records });
+    }
+
+    if (type === "grid_stress") {
+      const eventType = searchParams.get("eventType") || undefined;
+      const limit = searchParams.get("limit") ? parseInt(searchParams.get("limit")!, 10) : undefined;
+      const records = getHistoricalGridEmergencies({ eventType, limit });
+      return NextResponse.json({ success: true, count: records.length, gridContingencies: records });
+    }
+
+    if (type === "snapshots") {
+      const manifest = getDailySnapshotManifest();
+      return NextResponse.json({ success: true, count: manifest.length, snapshots: manifest });
+    }
+
     if (type === "facility_risk") {
       const lat = parseFloat(searchParams.get("lat") || "0");
       const lon = parseFloat(searchParams.get("lon") || "0");
@@ -104,6 +150,12 @@ export async function GET(request: NextRequest) {
         totalSevereStormsIndexed: getHistoricalStorms().length,
         climateMarketBaselines: climateRegions.length,
         dcGrowthSpanYears: growth.length,
+        powerGenerationYearsSpan: getHistoricalPowerGeneration().length,
+        wholesaleLmpYearsSpan: getHistoricalLmpPricing().length,
+        interconnectionQueueYearsSpan: getHistoricalQueueBacklog().length,
+        floodCatastrophesIndexed: getHistoricalFloodCatastrophes().length,
+        gridEmergenciesIndexed: getHistoricalGridEmergencies().length,
+        dailySnapshotsArchived: getDailySnapshotManifest().length,
         sampleEarthquakes: earthquakes,
         sampleStorms: storms
       }

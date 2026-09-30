@@ -24,6 +24,7 @@ import {
   Database,
   FileText,
   Scale,
+  History,
 } from "lucide-react";
 
 export function TopHud() {
@@ -86,6 +87,8 @@ export function TopHud() {
   const setDossierOpen = useGridStore((s) => s.setDossierOpen);
   const isPortfolioBenchmarkOpen = useGridStore((s) => s.isPortfolioBenchmarkOpen);
   const setPortfolioBenchmarkOpen = useGridStore((s) => s.setPortfolioBenchmarkOpen);
+  const isTimeMachineOpen = useGridStore((s) => s.isTimeMachineOpen);
+  const setTimeMachineOpen = useGridStore((s) => s.setTimeMachineOpen);
 
   const { user, lockTerminal } = useAuth();
 
@@ -116,10 +119,13 @@ export function TopHud() {
       if (e.key === "b" || e.key === "B") {
         setPortfolioBenchmarkOpen(!useGridStore.getState().isPortfolioBenchmarkOpen);
       }
+      if (e.key === "h" || e.key === "H") {
+        setTimeMachineOpen(!useGridStore.getState().isTimeMachineOpen);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen, setDossierOpen, setPortfolioBenchmarkOpen]);
+  }, [setAlertsOpen, setAnalyticsOpen, setDcFleetOpen, setChatOpen, setDataSourcesOpen, setDossierOpen, setPortfolioBenchmarkOpen, setTimeMachineOpen]);
 
   const totalDcPowerMw = useMemo(
     () => dataCenters.reduce((sum, d) => sum + d.estimatedPowerMw, 0),
@@ -389,6 +395,23 @@ export function TopHud() {
           <span className="hidden sm:inline font-medium">Benchmark</span>
           <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
             B
+          </kbd>
+        </button>
+
+        {/* Institutional Historical Time Machine & Backtest Studio */}
+        <button
+          onClick={() => setTimeMachineOpen(true)}
+          className={`h-7 flex items-center gap-1.5 rounded px-2.5 text-[11px] font-mono leading-none transition-colors cursor-pointer ${
+            isTimeMachineOpen
+              ? "bg-[#202b33] border border-cyan-400 text-cyan-400"
+              : "bg-[#202b33] border border-[#293742] text-[#f5f8fa] hover:bg-[#293742] hover:border-cyan-400/50"
+          }`}
+          title="Open Historical Time Machine & Backtest Studio (H)"
+        >
+          <History className="h-3.5 w-3.5 shrink-0 text-cyan-400" />
+          <span className="hidden sm:inline font-medium">History</span>
+          <kbd className="hidden md:inline-flex h-4 min-w-[18px] px-1 items-center justify-center rounded bg-[#101418] text-[9px] font-mono leading-none text-[#8a9ba8] border border-[#293742]">
+            H
           </kbd>
         </button>
 

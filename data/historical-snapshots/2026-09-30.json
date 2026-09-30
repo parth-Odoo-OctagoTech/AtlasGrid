@@ -1,0 +1,30 @@
+{
+  "snapshotDate": "2026-09-30",
+  "timestamp": "2026-09-30T06:13:30.431Z",
+  "runId": "daily-harvest-2026-09-30-1790748810434",
+  "metrics": {
+    "substationsCount": 3047,
+    "powerPlantsCount": 5415,
+    "totalGenerationCapacityMw": 7194978,
+    "dataCentersCount": 6686,
+    "totalDataCenterPowerMw": 0,
+    "darkFiberCorridorsCount": 30,
+    "floodHazardZonesCount": 41,
+    "historicalEarthquakesIndexed": 945,
+    "historicalStormsIndexed": 460,
+    "interconnectionQueueNodes": 12,
+    "activeDisasterAlerts": 0,
+    "newEarthquakesHarvestedToday": 0
+  },
+  "pricingBenchmarks": {
+    "pjmWesternHubLmp": 52.4,
+    "ercotNorthHubLmp": 46.1
+  },
+  "metadata": {
+    "engineVersion": "2.4.0-institutional",
+    "sourcesPolled": [
+      "OFFLINE_LOCAL_VERIFIED_REGISTRIES"
+    ],
+    "integritySha256": "d010df47f0c992d394d06389b6df1c327eb082bb490a778dc830560806593e1b"
+  }
+}

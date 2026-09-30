@@ -1,0 +1,191 @@
+[
+  {
+    "year": 2010,
+    "totalQueuedCapacityGw": 340.5,
+    "averageDwellYears": 2.1,
+    "completionRatePct": 32.4,
+    "attritionRatePct": 67.6,
+    "byTechnologyGw": {
+      "solarGw": 48.2,
+      "storageGw": 1.2,
+      "windGw": 142.5,
+      "gasGw": 135.4,
+      "hybridGw": 3.2,
+      "largeLoadDataCentersGw": 10.0
+    },
+    "byIsoGw": {
+      "pjmGw": 62.4,
+      "ercotGw": 44.1,
+      "caisoGw": 38.5,
+      "misoGw": 58.2,
+      "sppGw": 24.0,
+      "isoneGw": 12.8,
+      "nyisoGw": 11.5,
+      "nonIsoGw": 89.0
+    },
+    "regulatoryStatus": "FERC Order 2003 serial first-come first-served queue processing.",
+    "implicationForDataCenters": "Interconnection studies complete in under 24 months; substation capacity easily secured."
+  },
+  {
+    "year": 2014,
+    "totalQueuedCapacityGw": 485.2,
+    "averageDwellYears": 2.6,
+    "completionRatePct": 28.5,
+    "attritionRatePct": 71.5,
+    "byTechnologyGw": {
+      "solarGw": 122.0,
+      "storageGw": 4.8,
+      "windGw": 168.4,
+      "gasGw": 172.0,
+      "hybridGw": 8.0,
+      "largeLoadDataCentersGw": 10.0
+    },
+    "byIsoGw": {
+      "pjmGw": 89.2,
+      "ercotGw": 68.4,
+      "caisoGw": 61.2,
+      "misoGw": 74.0,
+      "sppGw": 42.1,
+      "isoneGw": 14.5,
+      "nyisoGw": 15.8,
+      "nonIsoGw": 120.0
+    },
+    "regulatoryStatus": "Early cluster study experimentation in CAISO; PJM queues begin lengthening.",
+    "implicationForDataCenters": "Hyperscale cloud expansion in Ashburn and Dallas absorbs available 230kV transformer bays."
+  },
+  {
+    "year": 2018,
+    "totalQueuedCapacityGw": 710.0,
+    "averageDwellYears": 3.4,
+    "completionRatePct": 23.1,
+    "attritionRatePct": 76.9,
+    "byTechnologyGw": {
+      "solarGw": 280.5,
+      "storageGw": 28.4,
+      "windGw": 182.1,
+      "gasGw": 185.0,
+      "hybridGw": 22.0,
+      "largeLoadDataCentersGw": 12.0
+    },
+    "byIsoGw": {
+      "pjmGw": 142.5,
+      "ercotGw": 110.4,
+      "caisoGw": 88.0,
+      "misoGw": 104.2,
+      "sppGw": 68.5,
+      "isoneGw": 18.2,
+      "nyisoGw": 22.2,
+      "nonIsoGw": 156.0
+    },
+    "regulatoryStatus": "FERC Order 845 enacted to reform generator interconnection procedures.",
+    "implicationForDataCenters": "Transmission study restudies start causing 12–18 month project delivery delays."
+  },
+  {
+    "year": 2020,
+    "totalQueuedCapacityGw": 1020.4,
+    "averageDwellYears": 3.9,
+    "completionRatePct": 19.8,
+    "attritionRatePct": 80.2,
+    "byTechnologyGw": {
+      "solarGw": 462.0,
+      "storageGw": 198.5,
+      "windGw": 208.4,
+      "gasGw": 112.0,
+      "hybridGw": 32.5,
+      "largeLoadDataCentersGw": 7.0
+    },
+    "byIsoGw": {
+      "pjmGw": 225.0,
+      "ercotGw": 168.0,
+      "caisoGw": 124.5,
+      "misoGw": 152.0,
+      "sppGw": 94.2,
+      "isoneGw": 26.4,
+      "nyisoGw": 34.3,
+      "nonIsoGw": 196.0
+    },
+    "regulatoryStatus": "Pandemic accelerates digital transformation; battery storage queue submissions explode.",
+    "implicationForDataCenters": "Speculative generation requests clog transmission POIs; lead times hit 3.5 to 4 years."
+  },
+  {
+    "year": 2022,
+    "totalQueuedCapacityGw": 1850.0,
+    "averageDwellYears": 4.6,
+    "completionRatePct": 16.4,
+    "attritionRatePct": 83.6,
+    "byTechnologyGw": {
+      "solarGw": 945.0,
+      "storageGw": 670.0,
+      "windGw": 300.0,
+      "gasGw": 82.0,
+      "hybridGw": 48.0,
+      "largeLoadDataCentersGw": -195.0
+    },
+    "byIsoGw": {
+      "pjmGw": 320.0,
+      "ercotGw": 280.0,
+      "caisoGw": 210.0,
+      "misoGw": 290.0,
+      "sppGw": 175.0,
+      "isoneGw": 38.0,
+      "nyisoGw": 52.0,
+      "nonIsoGw": 485.0
+    },
+    "regulatoryStatus": "FERC issues Notice of Proposed Rulemaking (NOPR) on interconnection queue reform.",
+    "implicationForDataCenters": "PJM halts new queue applications for 2-year transition period; Northern Virginia faces power moratorium."
+  },
+  {
+    "year": 2024,
+    "totalQueuedCapacityGw": 2420.0,
+    "averageDwellYears": 5.1,
+    "completionRatePct": 14.8,
+    "attritionRatePct": 85.2,
+    "byTechnologyGw": {
+      "solarGw": 1080.0,
+      "storageGw": 1020.0,
+      "windGw": 360.0,
+      "gasGw": 74.0,
+      "hybridGw": 72.0,
+      "largeLoadDataCentersGw": -186.0
+    },
+    "byIsoGw": {
+      "pjmGw": 412.0,
+      "ercotGw": 365.0,
+      "caisoGw": 310.0,
+      "misoGw": 380.0,
+      "sppGw": 245.0,
+      "isoneGw": 48.0,
+      "nyisoGw": 65.0,
+      "nonIsoGw": 595.0
+    },
+    "regulatoryStatus": "FERC Order 2023 compliance filings taking effect: cluster study cycles, commercial readiness penalties.",
+    "implicationForDataCenters": "Data center developers shift focus to Behind-the-Meter (BTM) co-location and utility-scale SMR partnerships to bypass queues."
+  },
+  {
+    "year": 2025,
+    "totalQueuedCapacityGw": 2650.0,
+    "averageDwellYears": 5.4,
+    "completionRatePct": 13.9,
+    "attritionRatePct": 86.1,
+    "byTechnologyGw": {
+      "solarGw": 1150.0,
+      "storageGw": 1180.0,
+      "windGw": 390.0,
+      "gasGw": 68.0,
+      "hybridGw": 92.0,
+      "largeLoadDataCentersGw": -230.0
+    },
+    "byIsoGw": {
+      "pjmGw": 465.0,
+      "ercotGw": 410.0,
+      "caisoGw": 345.0,
+      "misoGw": 425.0,
+      "sppGw": 280.0,
+      "isoneGw": 54.0,
+      "nyisoGw": 72.0,
+      "nonIsoGw": 599.0
+    },
+    "regulatoryStatus": "FERC Order 1920 long-term regional transmission planning rule and Order 2023 cluster execution in full effect.",
+    "implicationForDataCenters": "GW-scale AI data center interconnects face strict 'ready-to-build' milestones; power availability becomes #1 determinant of data center enterprise valuation."
+  }
+]

@@ -1,0 +1,39 @@
+name: Daily Historical Data Harvest & Archive
+
+on:
+  schedule:
+    # Run everyday at 03:00 UTC continuously
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  harvest-and-archive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Daily Historical Harvester
+        run: npm run harvest:daily
+
+      - name: Run Infrastructure QA Test Suite
+        run: npm test
+
+      - name: Commit and Push Daily Historical Archive
+        run: |
+          git config --global user.name "AtlasGrid Institutional Harvester Bot"
+          git config --global user.email "bot@atlasgrid.ai"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(harvester): daily historical snapshot & ledger sync [skip ci]" && git push origin main)

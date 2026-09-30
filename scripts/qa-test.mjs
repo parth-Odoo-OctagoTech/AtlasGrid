@@ -1302,6 +1302,120 @@ assert(stationTooltipVisualSrc.includes("100-Yr Surge Depth"), "StationTooltip r
 assert(stationTooltipVisualSrc.includes("Rec. Pad Elevation"), "StationTooltip renders Recommended Pad Elevation metric");
 
 // ---------------------------------------------------------------------------
+// TEST 24: Deep Historical Provenance, Daily Automated Harvester & Point-In-Time Institutional Archival
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 24: Deep Historical Provenance, Daily Harvester & Institutional Time Machine ---");
+
+// 1. Historical Power Generation Dataset (1990–2025)
+const genHistoryPath = path.join(process.cwd(), "data/historical-power-generation.json");
+assert(fs.existsSync(genHistoryPath), "historical-power-generation.json exists on disk");
+const genHistoryData = JSON.parse(fs.readFileSync(genHistoryPath, "utf-8"));
+assert(Array.isArray(genHistoryData) && genHistoryData.length >= 10, `Power generation history contains ${genHistoryData.length} annual records (target >= 10)`);
+assert(genHistoryData[0].year === 1990, "Generation history starts at baseline year 1990");
+assert(genHistoryData[genHistoryData.length - 1].year >= 2025, "Generation history extends through 2025+");
+assert(typeof genHistoryData[0].usCarbonIntensityGramsPerKwh === "number", "Tracks fleet carbon intensity (gCO2/kWh)");
+assert(typeof genHistoryData[0].usGenerationBySource?.coalTwh === "number", "Tracks fuel mix breakdown by coal, gas, nuclear, renewables");
+
+// 2. Historical Wholesale LMP Pricing Dataset (2015–2025)
+const lmpHistoryPath = path.join(process.cwd(), "data/historical-lmp-pricing.json");
+assert(fs.existsSync(lmpHistoryPath), "historical-lmp-pricing.json exists on disk");
+const lmpHistoryData = JSON.parse(fs.readFileSync(lmpHistoryPath, "utf-8"));
+assert(Array.isArray(lmpHistoryData) && lmpHistoryData.length >= 5, `Wholesale LMP pricing contains ${lmpHistoryData.length} annual records (target >= 5)`);
+assert(lmpHistoryData[0].year === 2015, "LMP pricing history starts at 2015");
+assert(lmpHistoryData[lmpHistoryData.length - 1].year >= 2025, "LMP pricing history extends through 2025");
+assert(lmpHistoryData[0].hubs.length === 8, "Tracks 8 global trading hubs (PJM, ERCOT, CAISO, MISO, NYISO, EPEX, N2EX, JEPX)");
+assert(typeof lmpHistoryData[0].hubs[0].negativePriceHoursPct === "number", "Tracks negative pricing hours % for curtailment arbitrage");
+
+// 3. Historical FERC Queue Backlog Dataset (2010–2025)
+const queueHistoryPath = path.join(process.cwd(), "data/historical-queue-backlog.json");
+assert(fs.existsSync(queueHistoryPath), "historical-queue-backlog.json exists on disk");
+const queueHistoryData = JSON.parse(fs.readFileSync(queueHistoryPath, "utf-8"));
+assert(Array.isArray(queueHistoryData) && queueHistoryData.length >= 5, `Queue backlog history contains ${queueHistoryData.length} annual records (target >= 5)`);
+assert(queueHistoryData[0].year === 2010, "Queue backlog history starts at 2010");
+assert(queueHistoryData[queueHistoryData.length - 1].year >= 2025, "Queue backlog history extends through 2025");
+assert(typeof queueHistoryData[0].totalQueuedCapacityGw === "number", "Tracks total queued GW");
+assert(typeof queueHistoryData[0].averageDwellYears === "number", "Tracks average queue study dwell time in years");
+
+// 4. Historical Flood Catastrophes Ledger (1953–2024)
+const floodHistoryPath = path.join(process.cwd(), "data/historical-flood-events.json");
+assert(fs.existsSync(floodHistoryPath), "historical-flood-events.json exists on disk");
+const floodHistoryData = JSON.parse(fs.readFileSync(floodHistoryPath, "utf-8"));
+assert(Array.isArray(floodHistoryData) && floodHistoryData.length >= 10, `Flood catastrophes ledger contains ${floodHistoryData.length} records (target >= 10)`);
+assert(floodHistoryData.some(f => f.year === 1953), "Contains 1953 North Sea Flood benchmark");
+assert(floodHistoryData.some(f => f.eventName.includes("Katrina")), "Contains Hurricane Katrina benchmark");
+assert(floodHistoryData.some(f => f.eventName.includes("Sandy")), "Contains Hurricane Sandy benchmark");
+assert(floodHistoryData.some(f => f.eventName.includes("Harvey")), "Contains Hurricane Harvey benchmark");
+
+// 5. Historical Grid Emergencies & Blackouts (2000–2024)
+const extremeHistoryPath = path.join(process.cwd(), "data/historical-extreme-events.json");
+assert(fs.existsSync(extremeHistoryPath), "historical-extreme-events.json exists on disk");
+const extremeHistoryData = JSON.parse(fs.readFileSync(extremeHistoryPath, "utf-8"));
+assert(Array.isArray(extremeHistoryData) && extremeHistoryData.length >= 5, `Grid emergencies ledger contains ${extremeHistoryData.length} records (target >= 5)`);
+assert(extremeHistoryData.some(e => e.year === 2003), "Contains 2003 Northeast Blackout benchmark");
+assert(extremeHistoryData.some(e => e.eventName.includes("Uri")), "Contains 2021 Winter Storm Uri ERCOT benchmark");
+assert(extremeHistoryData.some(e => e.eventName.includes("Elliott")), "Contains 2022 Winter Storm Elliott benchmark");
+
+// 6. Historical Earthquakes Catalog Extension (1900–2026)
+const eqHistoryData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/historical-earthquakes.json"), "utf-8"));
+assert(eqHistoryData.length >= 940, `Earthquakes catalog contains ${eqHistoryData.length} verified events (target >= 940)`);
+assert(eqHistoryData.some(e => e.id.includes("1906_sf")), "Contains 1906 San Francisco M7.9 landmark quake");
+assert(eqHistoryData.some(e => e.id.includes("1923_kanto")), "Contains 1923 Great Kanto M7.9 landmark quake");
+assert(eqHistoryData.some(e => e.id.includes("1964_alaska")), "Contains 1964 Great Alaska M9.2 landmark quake");
+
+// 7. Daily Snapshot Manifest & Immutable Snapshots
+const manifestHistoryPath = path.join(process.cwd(), "data/historical-snapshots/manifest.json");
+assert(fs.existsSync(manifestHistoryPath), "data/historical-snapshots/manifest.json exists on disk");
+const manifestHistoryData = JSON.parse(fs.readFileSync(manifestHistoryPath, "utf-8"));
+assert(Array.isArray(manifestHistoryData) && manifestHistoryData.length >= 5, `Daily snapshot manifest contains ${manifestHistoryData.length} records (target >= 5)`);
+assert(!!manifestHistoryData[0].sha256, "Snapshots include SHA-256 cryptographic integrity hash");
+assert(typeof manifestHistoryData[0].substationsCount === "number", "Snapshots record substations count");
+assert(typeof manifestHistoryData[0].dataCentersCount === "number", "Snapshots record data centers count");
+
+// 8. Automation Scripts & Workflows
+assert(fs.existsSync(path.join(process.cwd(), "scripts/daily-historical-harvester.mjs")), "scripts/daily-historical-harvester.mjs exists on disk");
+const pkgJsonSrc = fs.readFileSync(path.join(process.cwd(), "package.json"), "utf-8");
+assert(pkgJsonSrc.includes('"harvest:daily"'), "package.json defines 'harvest:daily' script");
+const vercelJsonSrc = fs.readFileSync(path.join(process.cwd(), "vercel.json"), "utf-8");
+assert(vercelJsonSrc.includes("/api/cron/daily-harvester") && vercelJsonSrc.includes("0 2 * * *"), "vercel.json schedules daily-harvester at 02:00 UTC");
+const ghWorkflowSrc = fs.readFileSync(path.join(process.cwd(), ".github/workflows/daily-historical-sync.yml"), "utf-8");
+assert(ghWorkflowSrc.includes("harvest:daily") && ghWorkflowSrc.includes("0 3 * * *"), "GitHub Actions workflow schedules daily harvest at 03:00 UTC");
+
+// 9. API Routes
+const timeSeriesRouteSrc = fs.readFileSync(path.join(process.cwd(), "app/api/historical/time-series/route.ts"), "utf-8");
+assert(timeSeriesRouteSrc.includes("powerGenerationMix") && timeSeriesRouteSrc.includes("wholesaleLmpPricing"), "api/historical/time-series route serves multi-domain time series");
+assert(timeSeriesRouteSrc.includes("text/csv") && timeSeriesRouteSrc.includes("attachment; filename="), "api/historical/time-series route supports CSV download format");
+
+const snapshotsRouteSrc = fs.readFileSync(path.join(process.cwd(), "app/api/historical/snapshots/route.ts"), "utf-8");
+assert(snapshotsRouteSrc.includes("manifest.json"), "api/historical/snapshots route serves daily snapshot ledger");
+
+const dailyCronRouteSrc = fs.readFileSync(path.join(process.cwd(), "app/api/cron/daily-harvester/route.ts"), "utf-8");
+assert(dailyCronRouteSrc.includes("AtlasGrid daily historical harvest verified"), "api/cron/daily-harvester route handles automated cron triggers");
+
+// 10. Frontend UI Integration
+assert(fs.existsSync(path.join(process.cwd(), "components/analytics/HistoricalTimeMachineModal.tsx")), "HistoricalTimeMachineModal component exists on disk");
+const timeMachineSrc = fs.readFileSync(path.join(process.cwd(), "components/analytics/HistoricalTimeMachineModal.tsx"), "utf-8");
+assert(timeMachineSrc.includes("Institutional Historical Time Machine & Backtest Studio"), "Time Machine renders institutional title");
+assert(timeMachineSrc.includes("1998: Telecom & Meet-Me Rooms"), "Time Machine supports 1998 Dot-Com Era preset");
+assert(timeMachineSrc.includes("2021: Winter Storm Uri Grid Freeze"), "Time Machine supports 2021 Uri Crisis preset");
+assert(timeMachineSrc.includes("2025: GW-Scale AI Supercluster Era"), "Time Machine supports 2025 GW-Scale AI Supercluster preset");
+assert(timeMachineSrc.includes("Enterprise Institutional Data Licensing"), "Time Machine includes commercial licensing prospectus");
+assert(timeMachineSrc.includes("$25,000") && timeMachineSrc.includes("$75,000") && timeMachineSrc.includes("$150,000"), "Time Machine details $25k, $75k, and $150k commercial licensing tiers");
+
+const topHudHistorySrc = fs.readFileSync(path.join(process.cwd(), "components/hud/TopHud.tsx"), "utf-8");
+assert(topHudHistorySrc.includes("setTimeMachineOpen"), "TopHud connects setTimeMachineOpen action");
+assert(topHudHistorySrc.includes("Historical Time Machine & Backtest Studio (H)"), "TopHud renders History button with tooltip");
+
+const storeHistorySrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(storeHistorySrc.includes("isTimeMachineOpen: boolean"), "useGridStore manages isTimeMachineOpen boolean");
+assert(storeHistorySrc.includes("setTimeMachineOpen: (open: boolean) => void"), "useGridStore exposes setTimeMachineOpen action");
+
+const pageHistorySrc = fs.readFileSync(path.join(process.cwd(), "app/page.tsx"), "utf-8");
+assert(pageHistorySrc.includes("<HistoricalTimeMachineModal />"), "app/page.tsx mounts HistoricalTimeMachineModal");
+
+const inspectorHistorySrc = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(inspectorHistorySrc.includes("Launch Institutional Time Machine & Backtest"), "StationInspector includes Time Machine launch trigger");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 
 // ---------------------------------------------------------------------------

@@ -3,17 +3,35 @@ import {
   HistoricalStormEvent,
   HistoricalClimateRecord,
   HistoricalDataCenterGrowth,
-  FacilityHistoricalRiskProfile
+  FacilityHistoricalRiskProfile,
+  HistoricalPowerGenerationYear,
+  HistoricalLmpYear,
+  HistoricalQueueBacklogYear,
+  HistoricalFloodEvent,
+  HistoricalGridEmergencyEvent,
+  DailySnapshotManifestItem
 } from "../types/historical";
 import earthquakesRaw from "@/data/historical-earthquakes.json";
 import stormsRaw from "@/data/historical-storms.json";
 import climateRaw from "@/data/historical-climate.json";
 import growthRaw from "@/data/historical-dc-growth.json";
+import generationRaw from "@/data/historical-power-generation.json";
+import lmpRaw from "@/data/historical-lmp-pricing.json";
+import queueRaw from "@/data/historical-queue-backlog.json";
+import floodRaw from "@/data/historical-flood-events.json";
+import extremeRaw from "@/data/historical-extreme-events.json";
+import snapshotManifestRaw from "@/data/historical-snapshots/manifest.json";
 
 const staticEarthquakes = earthquakesRaw as unknown as HistoricalEarthquake[];
 const staticStorms = stormsRaw as unknown as HistoricalStormEvent[];
 const staticClimateRecords = climateRaw as unknown as Record<string, HistoricalClimateRecord>;
 const staticGrowthTimeline = growthRaw as unknown as HistoricalDataCenterGrowth[];
+const staticGeneration = generationRaw as unknown as HistoricalPowerGenerationYear[];
+const staticLmp = lmpRaw as unknown as HistoricalLmpYear[];
+const staticQueues = queueRaw as unknown as HistoricalQueueBacklogYear[];
+const staticFloods = floodRaw as unknown as HistoricalFloodEvent[];
+const staticExtremes = extremeRaw as unknown as HistoricalGridEmergencyEvent[];
+const staticSnapshotManifest = snapshotManifestRaw as unknown as DailySnapshotManifestItem[];
 
 export function haversineDistanceKm(
   lat1: number,
@@ -276,3 +294,96 @@ export function getFacilityHistoricalRisk(
     climateBaseline
   };
 }
+
+/**
+ * Get multi-decade historical power generation mix and fleet carbon intensity
+ */
+export function getHistoricalPowerGeneration(filters?: {
+  startYear?: number;
+  endYear?: number;
+}): HistoricalPowerGenerationYear[] {
+  let list = staticGeneration;
+  if (filters?.startYear !== undefined) {
+    list = list.filter((g) => g.year >= filters.startYear!);
+  }
+  if (filters?.endYear !== undefined) {
+    list = list.filter((g) => g.year <= filters.endYear!);
+  }
+  return list;
+}
+
+/**
+ * Get 10-year wholesale power LMP pricing history across 8 major hubs
+ */
+export function getHistoricalLmpPricing(filters?: {
+  startYear?: number;
+  endYear?: number;
+}): HistoricalLmpYear[] {
+  let list = staticLmp;
+  if (filters?.startYear !== undefined) {
+    list = list.filter((l) => l.year >= filters.startYear!);
+  }
+  if (filters?.endYear !== undefined) {
+    list = list.filter((l) => l.year <= filters.endYear!);
+  }
+  return list;
+}
+
+/**
+ * Get 15-year FERC Order 2023 transmission interconnection queue evolution
+ */
+export function getHistoricalQueueBacklog(filters?: {
+  startYear?: number;
+  endYear?: number;
+}): HistoricalQueueBacklogYear[] {
+  let list = staticQueues;
+  if (filters?.startYear !== undefined) {
+    list = list.filter((q) => q.year >= filters.startYear!);
+  }
+  if (filters?.endYear !== undefined) {
+    list = list.filter((q) => q.year <= filters.endYear!);
+  }
+  return list;
+}
+
+/**
+ * Get 75-year historical flood catastrophes and surge benchmark events
+ */
+export function getHistoricalFloodCatastrophes(filters?: {
+  minYear?: number;
+  limit?: number;
+}): HistoricalFloodEvent[] {
+  let list = staticFloods;
+  if (filters?.minYear !== undefined) {
+    list = list.filter((f) => f.year >= filters.minYear!);
+  }
+  if (filters?.limit) {
+    list = list.slice(0, filters.limit);
+  }
+  return list;
+}
+
+/**
+ * Get 25-year grid contingency emergencies, blackouts, and extreme climate events
+ */
+export function getHistoricalGridEmergencies(filters?: {
+  eventType?: string;
+  limit?: number;
+}): HistoricalGridEmergencyEvent[] {
+  let list = staticExtremes;
+  if (filters?.eventType) {
+    list = list.filter((e) => e.eventType.toLowerCase() === filters.eventType!.toLowerCase());
+  }
+  if (filters?.limit) {
+    list = list.slice(0, filters.limit);
+  }
+  return list;
+}
+
+/**
+ * Get manifest of daily point-in-time snapshots
+ */
+export function getDailySnapshotManifest(): DailySnapshotManifestItem[] {
+  return staticSnapshotManifest;
+}
+

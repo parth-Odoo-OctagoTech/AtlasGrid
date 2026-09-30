@@ -1,0 +1,30 @@
+{
+  "snapshotDate": "2026-06-30",
+  "timestamp": "2026-06-30T00:00:00.000Z",
+  "runId": "daily-harvest-2026-06-30-000000",
+  "metrics": {
+    "substationsCount": 2980,
+    "powerPlantsCount": 5350,
+    "totalGenerationCapacityMw": 7080000,
+    "dataCentersCount": 6510,
+    "totalDataCenterPowerMw": 276675,
+    "darkFiberCorridorsCount": 28,
+    "floodHazardZonesCount": 38,
+    "historicalEarthquakesIndexed": 912,
+    "historicalStormsIndexed": 442,
+    "interconnectionQueueNodes": 12
+  },
+  "pricingBenchmarks": {
+    "pjmWesternHubLmp": 48.2,
+    "ercotNorthHubLmp": 51.5
+  },
+  "metadata": {
+    "engineVersion": "2.4.0-institutional",
+    "sourcesPolled": [
+      "USGS_HISTORICAL",
+      "EIA_860_861",
+      "PEERINGDB_ARCHIVE"
+    ],
+    "integritySha256": "61af43939c92cb17ed3153b2d4bb9e86007626d661efad7537ee002977a5614f"
+  }
+}

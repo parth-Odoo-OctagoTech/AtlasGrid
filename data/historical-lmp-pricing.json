@@ -1,0 +1,566 @@
+[
+  {
+    "year": 2015,
+    "globalMacroContext": "Low Henry Hub gas prices ($2.62/MMBtu) keep US power prices subdued; early solar growth in California.",
+    "hubs": [
+      {
+        "hubId": "pjm_west",
+        "hubName": "PJM Western Hub",
+        "avgLmpUsdPerMwh": 36.12,
+        "peakLmpUsdPerMwh": 43.45,
+        "offPeakLmpUsdPerMwh": 28.80,
+        "negativePriceHoursPct": 0.4,
+        "maxSpikeLmpUsdPerMwh": 312.50,
+        "volatilityIndex": 28.4,
+        "primaryDriver": "Plentiful Marcellus shale gas suppressing regional wholesale clearing prices."
+      },
+      {
+        "hubId": "ercot_north",
+        "hubName": "ERCOT North Hub",
+        "avgLmpUsdPerMwh": 26.77,
+        "peakLmpUsdPerMwh": 32.10,
+        "offPeakLmpUsdPerMwh": 21.45,
+        "negativePriceHoursPct": 1.8,
+        "maxSpikeLmpUsdPerMwh": 450.00,
+        "volatilityIndex": 34.2,
+        "primaryDriver": "West Texas wind transmission expansion under CREZ lines easing Panhandle congestion."
+      },
+      {
+        "hubId": "caiso_sp15",
+        "hubName": "CAISO SP15",
+        "avgLmpUsdPerMwh": 34.82,
+        "peakLmpUsdPerMwh": 41.20,
+        "offPeakLmpUsdPerMwh": 28.44,
+        "negativePriceHoursPct": 1.2,
+        "maxSpikeLmpUsdPerMwh": 185.00,
+        "volatilityIndex": 24.5,
+        "primaryDriver": "Early emergence of the 'Duck Curve' midday solar depression."
+      },
+      {
+        "hubId": "miso_in",
+        "hubName": "MISO Indiana Hub",
+        "avgLmpUsdPerMwh": 31.05,
+        "peakLmpUsdPerMwh": 37.80,
+        "offPeakLmpUsdPerMwh": 24.30,
+        "negativePriceHoursPct": 0.6,
+        "maxSpikeLmpUsdPerMwh": 220.00,
+        "volatilityIndex": 26.8,
+        "primaryDriver": "Coal-to-gas fuel switching in Midwest generation fleet."
+      },
+      {
+        "hubId": "nyiso_zone_j",
+        "hubName": "NYISO Zone J (NYC)",
+        "avgLmpUsdPerMwh": 44.20,
+        "peakLmpUsdPerMwh": 55.40,
+        "offPeakLmpUsdPerMwh": 33.00,
+        "negativePriceHoursPct": 0.2,
+        "maxSpikeLmpUsdPerMwh": 420.00,
+        "volatilityIndex": 38.1,
+        "primaryDriver": "Urban transmission import constraints into New York City load pocket."
+      },
+      {
+        "hubId": "epex_de",
+        "hubName": "Germany (THE / EPEX Spot)",
+        "avgLmpUsdPerMwh": 35.10,
+        "peakLmpUsdPerMwh": 42.60,
+        "offPeakLmpUsdPerMwh": 27.60,
+        "negativePriceHoursPct": 2.1,
+        "maxSpikeLmpUsdPerMwh": 140.00,
+        "volatilityIndex": 31.0,
+        "primaryDriver": "Energiewende wind additions causing cross-border export surges to Poland/Czechia."
+      },
+      {
+        "hubId": "n2ex_uk",
+        "hubName": "UK (N2EX Day-Ahead)",
+        "avgLmpUsdPerMwh": 48.30,
+        "peakLmpUsdPerMwh": 58.20,
+        "offPeakLmpUsdPerMwh": 38.40,
+        "negativePriceHoursPct": 0.3,
+        "maxSpikeLmpUsdPerMwh": 210.00,
+        "volatilityIndex": 29.5,
+        "primaryDriver": "UK Carbon Price Floor (CPF) elevating wholesale baseline relative to mainland."
+      },
+      {
+        "hubId": "jepx_tokyo",
+        "hubName": "Japan (JEPX Tokyo Area)",
+        "avgLmpUsdPerMwh": 115.40,
+        "peakLmpUsdPerMwh": 138.20,
+        "offPeakLmpUsdPerMwh": 92.60,
+        "negativePriceHoursPct": 0.0,
+        "maxSpikeLmpUsdPerMwh": 380.00,
+        "volatilityIndex": 42.0,
+        "primaryDriver": "Post-Fukushima reliance on imported LNG and thermal oil generation."
+      }
+    ]
+  },
+  {
+    "year": 2018,
+    "globalMacroContext": "Severe winter bomb cyclone stresses PJM; record summer heat in Texas tests ERCOT reserve margins.",
+    "hubs": [
+      {
+        "hubId": "pjm_west",
+        "hubName": "PJM Western Hub",
+        "avgLmpUsdPerMwh": 38.25,
+        "peakLmpUsdPerMwh": 48.60,
+        "offPeakLmpUsdPerMwh": 27.90,
+        "negativePriceHoursPct": 0.6,
+        "maxSpikeLmpUsdPerMwh": 650.00,
+        "volatilityIndex": 41.2,
+        "primaryDriver": "January 2018 bomb cyclone driving fuel oil dual-fuel peaker dispatch."
+      },
+      {
+        "hubId": "ercot_north",
+        "hubName": "ERCOT North Hub",
+        "avgLmpUsdPerMwh": 35.60,
+        "peakLmpUsdPerMwh": 52.40,
+        "offPeakLmpUsdPerMwh": 23.20,
+        "negativePriceHoursPct": 2.4,
+        "maxSpikeLmpUsdPerMwh": 2150.00,
+        "volatilityIndex": 62.5,
+        "primaryDriver": "Tight summer operating reserves trigger Operating Reserve Demand Curve (ORDC) adders."
+      },
+      {
+        "hubId": "caiso_sp15",
+        "hubName": "CAISO SP15",
+        "avgLmpUsdPerMwh": 41.15,
+        "peakLmpUsdPerMwh": 54.30,
+        "offPeakLmpUsdPerMwh": 28.00,
+        "negativePriceHoursPct": 3.8,
+        "maxSpikeLmpUsdPerMwh": 480.00,
+        "volatilityIndex": 45.6,
+        "primaryDriver": "Aliso Canyon gas storage restrictions and deep solar oversupply curtailments."
+      },
+      {
+        "hubId": "miso_in",
+        "hubName": "MISO Indiana Hub",
+        "avgLmpUsdPerMwh": 34.40,
+        "peakLmpUsdPerMwh": 42.10,
+        "offPeakLmpUsdPerMwh": 26.70,
+        "negativePriceHoursPct": 1.1,
+        "maxSpikeLmpUsdPerMwh": 380.00,
+        "volatilityIndex": 35.8,
+        "primaryDriver": "Polar vortex cold snaps lifting regional gas peaker margins."
+      },
+      {
+        "hubId": "nyiso_zone_j",
+        "hubName": "NYISO Zone J (NYC)",
+        "avgLmpUsdPerMwh": 49.80,
+        "peakLmpUsdPerMwh": 66.50,
+        "offPeakLmpUsdPerMwh": 33.10,
+        "negativePriceHoursPct": 0.3,
+        "maxSpikeLmpUsdPerMwh": 780.00,
+        "volatilityIndex": 48.2,
+        "primaryDriver": "Winter gas pipeline constraints into downstate New York."
+      },
+      {
+        "hubId": "epex_de",
+        "hubName": "Germany (THE / EPEX Spot)",
+        "avgLmpUsdPerMwh": 44.50,
+        "peakLmpUsdPerMwh": 56.10,
+        "offPeakLmpUsdPerMwh": 32.90,
+        "negativePriceHoursPct": 3.4,
+        "maxSpikeLmpUsdPerMwh": 185.00,
+        "volatilityIndex": 38.4,
+        "primaryDriver": "Rising EU ETS carbon allowance prices lifting marginal coal costs."
+      },
+      {
+        "hubId": "n2ex_uk",
+        "hubName": "UK (N2EX Day-Ahead)",
+        "avgLmpUsdPerMwh": 61.20,
+        "peakLmpUsdPerMwh": 74.80,
+        "offPeakLmpUsdPerMwh": 47.60,
+        "negativePriceHoursPct": 0.8,
+        "maxSpikeLmpUsdPerMwh": 340.00,
+        "volatilityIndex": 36.9,
+        "primaryDriver": "High gas generation share combined with North Sea interconnector imports."
+      },
+      {
+        "hubId": "jepx_tokyo",
+        "hubName": "Japan (JEPX Tokyo Area)",
+        "avgLmpUsdPerMwh": 98.40,
+        "peakLmpUsdPerMwh": 122.00,
+        "offPeakLmpUsdPerMwh": 74.80,
+        "negativePriceHoursPct": 0.1,
+        "maxSpikeLmpUsdPerMwh": 420.00,
+        "volatilityIndex": 46.1,
+        "primaryDriver": "First Kyushu solar curtailments under METI output control directives."
+      }
+    ]
+  },
+  {
+    "year": 2021,
+    "globalMacroContext": "Winter Storm Uri in ERCOT creates the most severe power price event in US history ($9,000/MWh cap); global energy crunch begins.",
+    "hubs": [
+      {
+        "hubId": "pjm_west",
+        "hubName": "PJM Western Hub",
+        "avgLmpUsdPerMwh": 39.75,
+        "peakLmpUsdPerMwh": 51.20,
+        "offPeakLmpUsdPerMwh": 28.30,
+        "negativePriceHoursPct": 1.2,
+        "maxSpikeLmpUsdPerMwh": 820.00,
+        "volatilityIndex": 46.8,
+        "primaryDriver": "Rising natural gas input costs and post-COVID demand rebound."
+      },
+      {
+        "hubId": "ercot_north",
+        "hubName": "ERCOT North Hub",
+        "avgLmpUsdPerMwh": 113.80,
+        "peakLmpUsdPerMwh": 168.40,
+        "offPeakLmpUsdPerMwh": 59.20,
+        "negativePriceHoursPct": 5.1,
+        "maxSpikeLmpUsdPerMwh": 9000.00,
+        "volatilityIndex": 184.2,
+        "primaryDriver": "Winter Storm Uri: 52 GW thermal & renewable outages, clearing at $9,000/MWh cap for 70+ hours."
+      },
+      {
+        "hubId": "caiso_sp15",
+        "hubName": "CAISO SP15",
+        "avgLmpUsdPerMwh": 53.60,
+        "peakLmpUsdPerMwh": 74.20,
+        "offPeakLmpUsdPerMwh": 33.00,
+        "negativePriceHoursPct": 6.8,
+        "maxSpikeLmpUsdPerMwh": 1450.00,
+        "volatilityIndex": 72.1,
+        "primaryDriver": "Severe drought cutting hydro generation by 48%; evening net load ramps."
+      },
+      {
+        "hubId": "miso_in",
+        "hubName": "MISO Indiana Hub",
+        "avgLmpUsdPerMwh": 42.10,
+        "peakLmpUsdPerMwh": 56.40,
+        "offPeakLmpUsdPerMwh": 27.80,
+        "negativePriceHoursPct": 2.2,
+        "maxSpikeLmpUsdPerMwh": 1200.00,
+        "volatilityIndex": 54.3,
+        "primaryDriver": "February cold snap transmission congestion across MISO-South interface."
+      },
+      {
+        "hubId": "nyiso_zone_j",
+        "hubName": "NYISO Zone J (NYC)",
+        "avgLmpUsdPerMwh": 54.90,
+        "peakLmpUsdPerMwh": 73.10,
+        "offPeakLmpUsdPerMwh": 36.70,
+        "negativePriceHoursPct": 0.5,
+        "maxSpikeLmpUsdPerMwh": 950.00,
+        "volatilityIndex": 51.4,
+        "primaryDriver": "Indian Point nuclear plant permanent retirement removes 2,069 MW of zero-carbon baseload."
+      },
+      {
+        "hubId": "epex_de",
+        "hubName": "Germany (THE / EPEX Spot)",
+        "avgLmpUsdPerMwh": 96.85,
+        "peakLmpUsdPerMwh": 128.40,
+        "offPeakLmpUsdPerMwh": 65.30,
+        "negativePriceHoursPct": 4.8,
+        "maxSpikeLmpUsdPerMwh": 520.00,
+        "volatilityIndex": 68.2,
+        "primaryDriver": "European gas storage deficit and low North Sea wind speeds ('Dunkelflaute')."
+      },
+      {
+        "hubId": "n2ex_uk",
+        "hubName": "UK (N2EX Day-Ahead)",
+        "avgLmpUsdPerMwh": 117.80,
+        "peakLmpUsdPerMwh": 158.90,
+        "offPeakLmpUsdPerMwh": 76.70,
+        "negativePriceHoursPct": 1.6,
+        "maxSpikeLmpUsdPerMwh": 1850.00,
+        "volatilityIndex": 89.3,
+        "primaryDriver": "IFA interconnector fire and TTF gas rally creating peak capacity squeeze."
+      },
+      {
+        "hubId": "jepx_tokyo",
+        "hubName": "Japan (JEPX Tokyo Area)",
+        "avgLmpUsdPerMwh": 138.50,
+        "peakLmpUsdPerMwh": 194.00,
+        "offPeakLmpUsdPerMwh": 83.00,
+        "negativePriceHoursPct": 0.2,
+        "maxSpikeLmpUsdPerMwh": 2200.00,
+        "volatilityIndex": 112.5,
+        "primaryDriver": "January 2021 LNG inventory dry-up triggers nationwide power conservation alerts."
+      }
+    ]
+  },
+  {
+    "year": 2022,
+    "globalMacroContext": "Russia-Ukraine war triggers historic global energy shock; European gas exceeds €300/MWh; US Henry Hub spikes to $9/MMBtu.",
+    "hubs": [
+      {
+        "hubId": "pjm_west",
+        "hubName": "PJM Western Hub",
+        "avgLmpUsdPerMwh": 79.45,
+        "peakLmpUsdPerMwh": 104.20,
+        "offPeakLmpUsdPerMwh": 54.70,
+        "negativePriceHoursPct": 0.8,
+        "maxSpikeLmpUsdPerMwh": 2400.00,
+        "volatilityIndex": 64.2,
+        "primaryDriver": "Winter Storm Elliott in December forces 47 GW of generator outages; PJM emergency alerts."
+      },
+      {
+        "hubId": "ercot_north",
+        "hubName": "ERCOT North Hub",
+        "avgLmpUsdPerMwh": 74.80,
+        "peakLmpUsdPerMwh": 118.50,
+        "offPeakLmpUsdPerMwh": 31.10,
+        "negativePriceHoursPct": 7.4,
+        "maxSpikeLmpUsdPerMwh": 4850.00,
+        "volatilityIndex": 108.4,
+        "primaryDriver": "Record summer heatwaves (11 straight days of all-time peak records above 80 GW)."
+      },
+      {
+        "hubId": "caiso_sp15",
+        "hubName": "CAISO SP15",
+        "avgLmpUsdPerMwh": 88.20,
+        "peakLmpUsdPerMwh": 132.80,
+        "offPeakLmpUsdPerMwh": 43.60,
+        "negativePriceHoursPct": 8.9,
+        "maxSpikeLmpUsdPerMwh": 2100.00,
+        "volatilityIndex": 88.9,
+        "primaryDriver": "September 2022 Western Heat Dome: CAISO sets all-time peak load record (52,061 MW)."
+      },
+      {
+        "hubId": "miso_in",
+        "hubName": "MISO Indiana Hub",
+        "avgLmpUsdPerMwh": 71.30,
+        "peakLmpUsdPerMwh": 96.50,
+        "offPeakLmpUsdPerMwh": 46.10,
+        "negativePriceHoursPct": 1.9,
+        "maxSpikeLmpUsdPerMwh": 1600.00,
+        "volatilityIndex": 59.8,
+        "primaryDriver": "Midwest capacity auction clears at $236.66/MW-day cap reflecting regional supply deficits."
+      },
+      {
+        "hubId": "nyiso_zone_j",
+        "hubName": "NYISO Zone J (NYC)",
+        "avgLmpUsdPerMwh": 94.60,
+        "peakLmpUsdPerMwh": 128.20,
+        "offPeakLmpUsdPerMwh": 61.00,
+        "negativePriceHoursPct": 0.4,
+        "maxSpikeLmpUsdPerMwh": 1850.00,
+        "volatilityIndex": 69.5,
+        "primaryDriver": "Dual gas-oil peakers operating at maximum capacity to satisfy downstate reliability rules."
+      },
+      {
+        "hubId": "epex_de",
+        "hubName": "Germany (THE / EPEX Spot)",
+        "avgLmpUsdPerMwh": 235.40,
+        "peakLmpUsdPerMwh": 312.00,
+        "offPeakLmpUsdPerMwh": 158.80,
+        "negativePriceHoursPct": 5.2,
+        "maxSpikeLmpUsdPerMwh": 870.00,
+        "volatilityIndex": 124.6,
+        "primaryDriver": "Nord Stream shutdown and total cessation of Russian pipeline gas deliveries."
+      },
+      {
+        "hubId": "n2ex_uk",
+        "hubName": "UK (N2EX Day-Ahead)",
+        "avgLmpUsdPerMwh": 252.10,
+        "peakLmpUsdPerMwh": 338.50,
+        "offPeakLmpUsdPerMwh": 165.70,
+        "negativePriceHoursPct": 2.4,
+        "maxSpikeLmpUsdPerMwh": 2400.00,
+        "volatilityIndex": 138.1,
+        "primaryDriver": "UK energy price guarantee enacted to subsidize domestic and commercial consumers."
+      },
+      {
+        "hubId": "jepx_tokyo",
+        "hubName": "Japan (JEPX Tokyo Area)",
+        "avgLmpUsdPerMwh": 210.80,
+        "peakLmpUsdPerMwh": 285.00,
+        "offPeakLmpUsdPerMwh": 136.60,
+        "negativePriceHoursPct": 0.3,
+        "maxSpikeLmpUsdPerMwh": 1650.00,
+        "volatilityIndex": 92.4,
+        "primaryDriver": "Global spot LNG trades above $50/MMBtu, forcing heavy government fuel subsidies."
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "globalMacroContext": "Gas prices normalize but AI data center power demand growth sparks transmission capacity scarcity across PJM and ERCOT.",
+    "hubs": [
+      {
+        "hubId": "pjm_west",
+        "hubName": "PJM Western Hub",
+        "avgLmpUsdPerMwh": 46.80,
+        "peakLmpUsdPerMwh": 62.40,
+        "offPeakLmpUsdPerMwh": 31.20,
+        "negativePriceHoursPct": 2.6,
+        "maxSpikeLmpUsdPerMwh": 950.00,
+        "volatilityIndex": 44.5,
+        "primaryDriver": "PJM 2025/2026 Base Residual Auction clears at record $269.92/MW-day driven by Loudoun data center load."
+      },
+      {
+        "hubId": "ercot_north",
+        "hubName": "ERCOT North Hub",
+        "avgLmpUsdPerMwh": 42.50,
+        "peakLmpUsdPerMwh": 76.80,
+        "offPeakLmpUsdPerMwh": 18.20,
+        "negativePriceHoursPct": 11.2,
+        "maxSpikeLmpUsdPerMwh": 3400.00,
+        "volatilityIndex": 94.7,
+        "primaryDriver": "Massive solar buildout (23 GW) drives 11.2% negative pricing hours; evening peakers capture huge spreads."
+      },
+      {
+        "hubId": "caiso_sp15",
+        "hubName": "CAISO SP15",
+        "avgLmpUsdPerMwh": 44.20,
+        "peakLmpUsdPerMwh": 72.10,
+        "offPeakLmpUsdPerMwh": 16.30,
+        "negativePriceHoursPct": 14.8,
+        "maxSpikeLmpUsdPerMwh": 880.00,
+        "volatilityIndex": 81.3,
+        "primaryDriver": "10 GW battery storage fleet absorbs midday solar curtailments, flattening net load peaks."
+      },
+      {
+        "hubId": "miso_in",
+        "hubName": "MISO Indiana Hub",
+        "avgLmpUsdPerMwh": 38.60,
+        "peakLmpUsdPerMwh": 51.20,
+        "offPeakLmpUsdPerMwh": 26.00,
+        "negativePriceHoursPct": 3.9,
+        "maxSpikeLmpUsdPerMwh": 740.00,
+        "volatilityIndex": 41.8,
+        "primaryDriver": "Substation interconnection bottlenecks in Indiana and Ohio AI development corridors."
+      },
+      {
+        "hubId": "nyiso_zone_j",
+        "hubName": "NYISO Zone J (NYC)",
+        "avgLmpUsdPerMwh": 58.40,
+        "peakLmpUsdPerMwh": 79.50,
+        "offPeakLmpUsdPerMwh": 37.30,
+        "negativePriceHoursPct": 0.9,
+        "maxSpikeLmpUsdPerMwh": 920.00,
+        "volatilityIndex": 49.6,
+        "primaryDriver": "Champlain Hudson Power Express (CHPE) transmission line construction underway."
+      },
+      {
+        "hubId": "epex_de",
+        "hubName": "Germany (THE / EPEX Spot)",
+        "avgLmpUsdPerMwh": 78.50,
+        "peakLmpUsdPerMwh": 99.20,
+        "offPeakLmpUsdPerMwh": 57.80,
+        "negativePriceHoursPct": 8.4,
+        "maxSpikeLmpUsdPerMwh": 390.00,
+        "volatilityIndex": 58.2,
+        "primaryDriver": "Rapid expansion of rooftop solar causes negative pricing summer weekends across Central Europe."
+      },
+      {
+        "hubId": "n2ex_uk",
+        "hubName": "UK (N2EX Day-Ahead)",
+        "avgLmpUsdPerMwh": 84.10,
+        "peakLmpUsdPerMwh": 108.40,
+        "offPeakLmpUsdPerMwh": 59.80,
+        "negativePriceHoursPct": 4.1,
+        "maxSpikeLmpUsdPerMwh": 580.00,
+        "volatilityIndex": 61.4,
+        "primaryDriver": "Offshore wind CFD round 6 awards; network charge reform for large computing connections."
+      },
+      {
+        "hubId": "jepx_tokyo",
+        "hubName": "Japan (JEPX Tokyo Area)",
+        "avgLmpUsdPerMwh": 92.40,
+        "peakLmpUsdPerMwh": 124.60,
+        "offPeakLmpUsdPerMwh": 60.20,
+        "negativePriceHoursPct": 1.8,
+        "maxSpikeLmpUsdPerMwh": 640.00,
+        "volatilityIndex": 54.1,
+        "primaryDriver": "Restart of Onagawa Unit 2 nuclear plant and Tokyo area data center cluster expansions."
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "globalMacroContext": "Hyperscale AI data center campuses require dedicated behind-the-meter nuclear PPAs to hedge soaring capacity prices and transmission queues.",
+    "hubs": [
+      {
+        "hubId": "pjm_west",
+        "hubName": "PJM Western Hub",
+        "avgLmpUsdPerMwh": 52.40,
+        "peakLmpUsdPerMwh": 71.80,
+        "offPeakLmpUsdPerMwh": 33.00,
+        "negativePriceHoursPct": 3.1,
+        "maxSpikeLmpUsdPerMwh": 1150.00,
+        "volatilityIndex": 48.7,
+        "primaryDriver": "Transmission headroom exhaustion across Dominion and PEPCO territories drives bilateral PPAs at premiums."
+      },
+      {
+        "hubId": "ercot_north",
+        "hubName": "ERCOT North Hub",
+        "avgLmpUsdPerMwh": 46.10,
+        "peakLmpUsdPerMwh": 84.50,
+        "offPeakLmpUsdPerMwh": 17.50,
+        "negativePriceHoursPct": 13.5,
+        "maxSpikeLmpUsdPerMwh": 3800.00,
+        "volatilityIndex": 102.3,
+        "primaryDriver": "Permian Basin oilfield electrification and 30+ GW of proposed data center loads trigger SB 1014 grid reforms."
+      },
+      {
+        "hubId": "caiso_sp15",
+        "hubName": "CAISO SP15",
+        "avgLmpUsdPerMwh": 48.30,
+        "peakLmpUsdPerMwh": 79.40,
+        "offPeakLmpUsdPerMwh": 17.10,
+        "negativePriceHoursPct": 16.2,
+        "maxSpikeLmpUsdPerMwh": 920.00,
+        "volatilityIndex": 84.6,
+        "primaryDriver": "Negative pricing hours hit all-time high of 16.2%; commercial battery storage capturing arbitrage."
+      },
+      {
+        "hubId": "miso_in",
+        "hubName": "MISO Indiana Hub",
+        "avgLmpUsdPerMwh": 42.80,
+        "peakLmpUsdPerMwh": 58.90,
+        "offPeakLmpUsdPerMwh": 26.70,
+        "negativePriceHoursPct": 4.5,
+        "maxSpikeLmpUsdPerMwh": 890.00,
+        "volatilityIndex": 46.2,
+        "primaryDriver": "Multi-GW Microsoft and Meta campuses under construction in central Indiana driving local sub-transmission buildout."
+      },
+      {
+        "hubId": "nyiso_zone_j",
+        "hubName": "NYISO Zone J (NYC)",
+        "avgLmpUsdPerMwh": 62.50,
+        "peakLmpUsdPerMwh": 86.20,
+        "offPeakLmpUsdPerMwh": 38.80,
+        "negativePriceHoursPct": 1.1,
+        "maxSpikeLmpUsdPerMwh": 1100.00,
+        "volatilityIndex": 52.8,
+        "primaryDriver": "Peaker plant phaseout under NYC Peaker Rule limits local peaking margin."
+      },
+      {
+        "hubId": "epex_de",
+        "hubName": "Germany (THE / EPEX Spot)",
+        "avgLmpUsdPerMwh": 74.20,
+        "peakLmpUsdPerMwh": 94.60,
+        "offPeakLmpUsdPerMwh": 53.80,
+        "negativePriceHoursPct": 10.1,
+        "maxSpikeLmpUsdPerMwh": 450.00,
+        "volatilityIndex": 61.9,
+        "primaryDriver": "SuedLink HVDC construction delays continue North-South power price divergence."
+      },
+      {
+        "hubId": "n2ex_uk",
+        "hubName": "UK (N2EX Day-Ahead)",
+        "avgLmpUsdPerMwh": 79.80,
+        "peakLmpUsdPerMwh": 103.20,
+        "offPeakLmpUsdPerMwh": 56.40,
+        "negativePriceHoursPct": 5.4,
+        "maxSpikeLmpUsdPerMwh": 690.00,
+        "volatilityIndex": 64.7,
+        "primaryDriver": "National Grid 'Clean Power 2030' plan initiates queue fast-tracking for grid-scale computing."
+      },
+      {
+        "hubId": "jepx_tokyo",
+        "hubName": "Japan (JEPX Tokyo Area)",
+        "avgLmpUsdPerMwh": 88.50,
+        "peakLmpUsdPerMwh": 118.00,
+        "offPeakLmpUsdPerMwh": 59.00,
+        "negativePriceHoursPct": 2.5,
+        "maxSpikeLmpUsdPerMwh": 710.00,
+        "volatilityIndex": 57.3,
+        "primaryDriver": "Regional green power surcharge incentives enacted for Inzai and Kansai data clusters."
+      }
+    ]
+  }
+]

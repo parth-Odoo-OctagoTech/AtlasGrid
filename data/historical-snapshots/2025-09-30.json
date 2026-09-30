@@ -1,0 +1,30 @@
+{
+  "snapshotDate": "2025-09-30",
+  "timestamp": "2025-09-30T00:00:00.000Z",
+  "runId": "daily-harvest-2025-09-30-000000",
+  "metrics": {
+    "substationsCount": 2680,
+    "powerPlantsCount": 5080,
+    "totalGenerationCapacityMw": 6740000,
+    "dataCentersCount": 5980,
+    "totalDataCenterPowerMw": 254150,
+    "darkFiberCorridorsCount": 22,
+    "floodHazardZonesCount": 30,
+    "historicalEarthquakesIndexed": 820,
+    "historicalStormsIndexed": 385,
+    "interconnectionQueueNodes": 12
+  },
+  "pricingBenchmarks": {
+    "pjmWesternHubLmp": 54.1,
+    "ercotNorthHubLmp": 48.9
+  },
+  "metadata": {
+    "engineVersion": "2.4.0-institutional",
+    "sourcesPolled": [
+      "USGS_HISTORICAL",
+      "EIA_860_861",
+      "PEERINGDB_ARCHIVE"
+    ],
+    "integritySha256": "9bd573c80e27abbcb8ae767f3f323972d2c631a3c1fa2f9006c542860799af72"
+  }
+}

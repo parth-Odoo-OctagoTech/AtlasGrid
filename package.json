@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "node scripts/qa-test.mjs",
+    "harvest:daily": "node scripts/daily-historical-harvester.mjs",
     "generate-data": "ts-node --project tsconfig.scripts.json scripts/generate-plants.ts"
   },
   "dependencies": {

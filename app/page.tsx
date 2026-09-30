@@ -15,6 +15,7 @@ import { DataCenterFleetModal } from "@/components/analytics/DataCenterFleetModa
 import { DataSourcesRegistryModal } from "@/components/analytics/DataSourcesRegistryModal";
 import { InstitutionalSitingDossierModal } from "@/components/analytics/InstitutionalSitingDossierModal";
 import { SitePortfolioBenchmarkModal } from "@/components/analytics/SitePortfolioBenchmarkModal";
+import { HistoricalTimeMachineModal } from "@/components/analytics/HistoricalTimeMachineModal";
 import { SecurityAccessGate } from "@/components/auth/SecurityAccessGate";
 import { AtlasAIChatModal } from "@/components/chat/AtlasAIChatModal";
 
@@ -200,6 +201,9 @@ export default function PowerGridDashboard() {
 
         {/* Multi-Site Portfolio Benchmark & RFP Tender Evaluator Modal */}
         <SitePortfolioBenchmarkModal />
+
+        {/* Institutional Historical Time Machine & Backtest Studio Modal */}
+        <HistoricalTimeMachineModal />
       </main>
     </SecurityAccessGate>
   );
