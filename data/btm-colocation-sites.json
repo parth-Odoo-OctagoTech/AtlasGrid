@@ -23,7 +23,17 @@
     "btmFeasibilityScore": 96,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Amazon Web Services (AWS) 960MW Cumulus Data Campus ($650M acquisition)",
-    "regulatoryPrecedentNotes": "Precedent established for direct behind-the-meter intertie subject to FERC PJM Interconnection Service Agreement review."
+    "regulatoryPrecedentNotes": "Precedent established for direct behind-the-meter intertie subject to FERC PJM Interconnection Service Agreement review.",
+    "fullAddress": "764 Salem Blvd, Berwick, PA 18603, United States",
+    "city": "Berwick",
+    "state": "Pennsylvania",
+    "owner": "Talen Energy Corporation",
+    "clientsServed": "Amazon Web Services (AWS 960MW Cumulus Campus) & PJM Mid-Atlantic GenAI Clusters",
+    "majorUsers": [
+      "Amazon Web Services",
+      "Cumulus Data",
+      "Anthropic Claude Clusters"
+    ]
   },
   {
     "id": "btm-crane-tmi",
@@ -43,13 +53,22 @@
     "nrcSecurityStandoffMeters": 600,
     "switchyardDistanceMeters": 420,
     "waterSourceRights": "Susquehanna River Closed-Cycle Cooling Towers",
-    "rtoTariffBypassSavingsDollarPerMwh": 24.0,
+    "rtoTariffBypassSavingsDollarPerMwh": 24,
     "annualCleanOfftakePotentialGwh": 7315,
     "co2IntensityGPerKwh": 0,
     "btmFeasibilityScore": 94,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Microsoft 20-Year PPA (835MW Dedicated Carbon-Free Supply to 2054)",
-    "regulatoryPrecedentNotes": "NRC re-authorization targeted for 2028 commercial restart with dedicated corporate offtake."
+    "regulatoryPrecedentNotes": "NRC re-authorization targeted for 2028 commercial restart with dedicated corporate offtake.",
+    "fullAddress": "Three Mile Island Generating Station, Route 441 South, Middletown, PA 17057, United States",
+    "city": "Middletown",
+    "state": "Pennsylvania",
+    "owner": "Constellation Energy Generation, LLC",
+    "clientsServed": "Microsoft 20-Year Dedicated Clean Energy Offtake (835MW Crane Clean Energy Center)",
+    "majorUsers": [
+      "Microsoft Corporation",
+      "OpenAI Supercomputing Infrastructure"
+    ]
   },
   {
     "id": "btm-byron",
@@ -69,13 +88,22 @@
     "nrcSecurityStandoffMeters": 750,
     "switchyardDistanceMeters": 480,
     "waterSourceRights": "Rock River Permitted Intake with Dual Natural Draft Cooling Towers",
-    "rtoTariffBypassSavingsDollarPerMwh": 21.0,
+    "rtoTariffBypassSavingsDollarPerMwh": 21,
     "annualCleanOfftakePotentialGwh": 8760,
     "co2IntensityGPerKwh": 0,
     "btmFeasibilityScore": 92,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Active bilateral negotiations with Hyperscale AI Consortia",
-    "regulatoryPrecedentNotes": "Exceptional land buffer (1,700+ acres); dual high-capacity 345kV switchyards on plant premises."
+    "regulatoryPrecedentNotes": "Exceptional land buffer (1,700+ acres); dual high-capacity 345kV switchyards on plant premises.",
+    "fullAddress": "4450 N German Church Rd, Byron, IL 61010, United States",
+    "city": "Byron",
+    "state": "Illinois",
+    "owner": "Constellation Energy Generation, LLC",
+    "clientsServed": "Chicago Financial Market GenAI Clusters & Direct-Fed Hyperscale Compute",
+    "majorUsers": [
+      "Chicago HFT Consortium",
+      "Enterprise Hyperscale Cloud"
+    ]
   },
   {
     "id": "btm-vogtle",
@@ -101,7 +129,16 @@
     "btmFeasibilityScore": 95,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Georgia Power Large Load Expansion Program & Hyperscale JV",
-    "regulatoryPrecedentNotes": "Largest nuclear station in the US with new AP1000 reactors commissioned in 2023-2024."
+    "regulatoryPrecedentNotes": "Largest nuclear station in the US with new AP1000 reactors commissioned in 2023-2024.",
+    "fullAddress": "7821 River Rd, Waynesboro, GA 30830, United States",
+    "city": "Waynesboro",
+    "state": "Georgia",
+    "owner": "Georgia Power (Southern Company) / Oglethorpe Power / MEAG",
+    "clientsServed": "Southeastern AI Gigawatt Supercluster & Sovereign Cloud Infrastructure",
+    "majorUsers": [
+      "Southern Megawatt AI Campus",
+      "Hyperscale Cloud Platform"
+    ]
   },
   {
     "id": "btm-palo-verde",
@@ -127,7 +164,16 @@
     "btmFeasibilityScore": 91,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Adjacent to Phoenix / Buckeye Hyperscale Development Corridor",
-    "regulatoryPrecedentNotes": "Only nuclear plant in the world cooled entirely by treated municipal effluent; zero potable water consumption."
+    "regulatoryPrecedentNotes": "Only nuclear plant in the world cooled entirely by treated municipal effluent; zero potable water consumption.",
+    "fullAddress": "Palo Verde Generating Station, Arizona (WECC), US",
+    "city": "Arizona",
+    "state": "Arizona (WECC)",
+    "owner": "Arizona Public Service (APS) / Salt River Project (SRP) Generation Assets",
+    "clientsServed": "Behind-the-Meter Dedicated Hyperscale Data Center Campus",
+    "majorUsers": [
+      "Hyperscale Cloud Operator",
+      "AI Research Cluster"
+    ]
   },
   {
     "id": "btm-comanche-peak",
@@ -147,13 +193,22 @@
     "nrcSecurityStandoffMeters": 700,
     "switchyardDistanceMeters": 400,
     "waterSourceRights": "Squaw Creek Reservoir 100% Closed Loop",
-    "rtoTariffBypassSavingsDollarPerMwh": 26.0,
+    "rtoTariffBypassSavingsDollarPerMwh": 26,
     "annualCleanOfftakePotentialGwh": 7008,
     "co2IntensityGPerKwh": 0,
     "btmFeasibilityScore": 93,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Vistra Corporate AI Strategy & ERCOT Large Flexible Load Program",
-    "regulatoryPrecedentNotes": "Located inside ERCOT; completely exempt from FERC Federal Power Act Section 205 transmission review."
+    "regulatoryPrecedentNotes": "Located inside ERCOT; completely exempt from FERC Federal Power Act Section 205 transmission review.",
+    "fullAddress": "6322 Glen Rose Hwy, Somervell County, Glen Rose, TX 76043, United States",
+    "city": "Glen Rose",
+    "state": "Texas",
+    "owner": "Vistra Corp / Luminant",
+    "clientsServed": "ERCOT AI Superclusters & Texas Innovation Corridor High-Density Compute",
+    "majorUsers": [
+      "Texas Megawatt AI Consortium",
+      "Dallas Hyperscale Intertie"
+    ]
   },
   {
     "id": "btm-surry",
@@ -179,7 +234,16 @@
     "btmFeasibilityScore": 89,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Direct optical dark fiber interconnects to Richmond & Ashburn hubs",
-    "regulatoryPrecedentNotes": "Licensed to operate until 2052/2053 under NRC Subsequent License Renewal (SLR)."
+    "regulatoryPrecedentNotes": "Licensed to operate until 2052/2053 under NRC Subsequent License Renewal (SLR).",
+    "fullAddress": "Surry Nuclear Power Station, Virginia (PJM / Data Center Alley Corridor), US",
+    "city": "Virginia",
+    "state": "Virginia (PJM / Data Center Alley Corridor)",
+    "owner": "Dominion Energy Generation Assets",
+    "clientsServed": "Behind-the-Meter Dedicated Hyperscale Data Center Campus",
+    "majorUsers": [
+      "Hyperscale Cloud Operator",
+      "AI Research Cluster"
+    ]
   },
   {
     "id": "btm-kairos-hermes",
@@ -199,13 +263,22 @@
     "nrcSecurityStandoffMeters": 250,
     "switchyardDistanceMeters": 200,
     "waterSourceRights": "Passive Decay Heat Air-Cooled System (Zero Water Consumption)",
-    "rtoTariffBypassSavingsDollarPerMwh": 28.0,
+    "rtoTariffBypassSavingsDollarPerMwh": 28,
     "annualCleanOfftakePotentialGwh": 1150,
     "co2IntensityGPerKwh": 0,
     "btmFeasibilityScore": 88,
     "readinessTier": "Tier 2 - Feasibility & NRC Permitting",
     "knownHyperscalePartnerships": "Google 500MW Advanced SMR Corporate Power Agreement (Target COD 2030-2035)",
-    "regulatoryPrecedentNotes": "NRC Construction Permit issued in Dec 2023; first non-light-water commercial reactor permit in 50+ years."
+    "regulatoryPrecedentNotes": "NRC Construction Permit issued in Dec 2023; first non-light-water commercial reactor permit in 50+ years.",
+    "fullAddress": "Kairos Power Hermes Advanced SMR Demonstration Site, Tennessee (TVA / Oak Ridge), US",
+    "city": "Tennessee",
+    "state": "Tennessee (TVA / Oak Ridge)",
+    "owner": "Kairos Power Generation Assets",
+    "clientsServed": "Behind-the-Meter Dedicated Hyperscale Data Center Campus",
+    "majorUsers": [
+      "Hyperscale Cloud Operator",
+      "AI Research Cluster"
+    ]
   },
   {
     "id": "btm-terrapower-natrium",
@@ -225,13 +298,22 @@
     "nrcSecurityStandoffMeters": 300,
     "switchyardDistanceMeters": 280,
     "waterSourceRights": "Dry Air-Cooled Condensers (High Elevation Arid Optimized)",
-    "rtoTariffBypassSavingsDollarPerMwh": 25.0,
+    "rtoTariffBypassSavingsDollarPerMwh": 25,
     "annualCleanOfftakePotentialGwh": 2800,
     "co2IntensityGPerKwh": 0,
     "btmFeasibilityScore": 86,
     "readinessTier": "Tier 2 - Feasibility & NRC Permitting",
     "knownHyperscalePartnerships": "PacifiCorp Western Clean Computing Offtake Evaluation",
-    "regulatoryPrecedentNotes": "Construction commenced on non-nuclear island in 2024; nuclear island application submitted to NRC."
+    "regulatoryPrecedentNotes": "Construction commenced on non-nuclear island in 2024; nuclear island application submitted to NRC.",
+    "fullAddress": "TerraPower Natrium Advanced SMR & Molten Salt Energy Campus, Wyoming (WECC / Kemmerer), US",
+    "city": "Wyoming",
+    "state": "Wyoming (WECC / Kemmerer)",
+    "owner": "TerraPower / PacifiCorp Generation Assets",
+    "clientsServed": "Behind-the-Meter Dedicated Hyperscale Data Center Campus",
+    "majorUsers": [
+      "Hyperscale Cloud Operator",
+      "AI Research Cluster"
+    ]
   },
   {
     "id": "btm-fervo-cape",
@@ -251,12 +333,21 @@
     "nrcSecurityStandoffMeters": 50,
     "switchyardDistanceMeters": 250,
     "waterSourceRights": "Closed-Loop Geothermal Subsurface Recirculation (Near-Zero Surface Loss)",
-    "rtoTariffBypassSavingsDollarPerMwh": 20.0,
+    "rtoTariffBypassSavingsDollarPerMwh": 20,
     "annualCleanOfftakePotentialGwh": 3328,
     "co2IntensityGPerKwh": 5,
     "btmFeasibilityScore": 90,
     "readinessTier": "Tier 1 - Commercial Shovel-Ready",
     "knownHyperscalePartnerships": "Google Clean Energy Partnership & Southern California Edison 400MW PPA",
-    "regulatoryPrecedentNotes": "Zero NRC regulatory oversight required; BLM geothermal lease approved; commercial energization 2026-2028."
+    "regulatoryPrecedentNotes": "Zero NRC regulatory oversight required; BLM geothermal lease approved; commercial energization 2026-2028.",
+    "fullAddress": "Fervo Energy Cape Station Enhanced Geothermal (EGS), Utah (WECC / Beaver County), US",
+    "city": "Utah",
+    "state": "Utah (WECC / Beaver County)",
+    "owner": "Fervo Energy Generation Assets",
+    "clientsServed": "Behind-the-Meter Dedicated Hyperscale Data Center Campus",
+    "majorUsers": [
+      "Hyperscale Cloud Operator",
+      "AI Research Cluster"
+    ]
   }
 ]

@@ -16,6 +16,14 @@ export interface CableLandingStation {
   rttToFrankfurtMs: number;
   rttToTokyoMs: number;
   rttToSingaporeMs: number;
+  // Institutional Metadata
+  fullAddress?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  owner?: string;
+  majorUsers?: string[];
+  clientsServed?: string;
 }
 
 export interface SubseaBackhaulAnalysis {

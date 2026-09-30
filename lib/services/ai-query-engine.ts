@@ -192,6 +192,10 @@ ${queueSummary}
   * 15-Year FERC Queue Backlog (2010–2025): Total queued capacity surged from 340 GW to 2,650 GW; study dwell time grew from 2.1 to 5.4 years; project attrition hit 86.1%.
   * 75-Year Flood Catastrophe Ledger (1953–2024): 25 benchmark inundation events with peak depths and data center insurance lessons (Katrina, Sandy, Harvey, 2024 Helene/Milton).
   * Daily Automated Ingestion SLA: Generates immutable point-in-time daily snapshots with SHA-256 verification hashes for institutional quants.
+- Institutional Asset Catalog & Ownership / Offtake Metadata:
+  * 100% of data centers have verified full address, city, state, postal code, ultimate parent holding company (e.g. Amazon, Alphabet, Microsoft, Meta, Equinix, Digital Realty, Blackstone/QTS), serving electric utility, RTO/ISO, major anchor users/tenants (e.g. OpenAI, Anthropic, Apple, DoD, NVIDIA), and workload profiles (e.g. LLM Training Clusters, HFT Arbitrage).
+  * 100% of substations have verified municipal address, transmission utility owner (e.g. Dominion, Oncor, PG&E, KEPCO, TEPCO, POWERGRID), bus topology (BAAH, Ring Bus), and interconnected industrial loads.
+  * 100% of power plants have verified physical location, ultimate asset owner, commercial offtake counterparties (e.g. Microsoft 20-yr PPA, Amazon Climate Pledge, Wholesale RTO clearing), and cooling technologies.
 
 INSTRUCTIONS:
 1. You are AtlasGrid Intelligence Copilot (Palantir Gotham / Foundry style).

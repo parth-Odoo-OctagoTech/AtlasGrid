@@ -71,7 +71,15 @@ export interface PowerPlant {
   satelliteTracked?: boolean;
   turbineManufacturer?: string;
   waterSource?: string;
+  coolingTechnology?: string;
   unitCount?: number;
+  // Institutional Siting & Commercial Offtake Metadata
+  fullAddress?: string;
+  city?: string;
+  state?: string;
+  owner?: string;
+  offtakers?: string[];
+  clientsServed?: string;
 }
 
 export interface Interconnector {
@@ -205,6 +213,16 @@ export interface Substation {
   operator: string;
   connectedCapacityMw: number;
   connectedPlantsCount: number;
+  // Institutional Grid Siting & Consumer Load Metadata
+  fullAddress?: string;
+  city?: string;
+  state?: string;
+  owner?: string;
+  servingUtility?: string;
+  interconnectedClients?: string;
+  clientsServed?: string;
+  busConfiguration?: string;
+  transformerCapacityMva?: number;
 }
 
 export function getSubstationColor(voltageKv: number): { rgb: [number, number, number]; hex: string; label: string } {

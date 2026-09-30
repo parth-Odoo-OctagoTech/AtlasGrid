@@ -169,8 +169,9 @@ export function StationTooltip() {
             <div className="text-[12px] text-[#f5f8fa] font-bold truncate">
               {hoveredCls.name}
             </div>
-            <div className="text-[10px] text-[#38bdf8]">
-              Operator: {hoveredCls.operator}
+            <div className="text-[10px] text-[#38bdf8] flex items-center justify-between">
+              <span>{hoveredCls.city ? `${hoveredCls.city}, ${hoveredCls.state || hoveredCls.country}` : `Operator: ${hoveredCls.operator}`}</span>
+              {hoveredCls.owner && <span className="text-[#a78bfa] truncate max-w-[140px] text-[9px]">{hoveredCls.owner.split("/")[0]}</span>}
             </div>
           </div>
 
@@ -377,7 +378,7 @@ export function StationTooltip() {
               {hoveredFloodZone.name}
             </div>
             <div className="text-[10px] text-[#94a3b8] truncate">
-              {hoveredFloodZone.basin ? `${hoveredFloodZone.basin} • ` : ""}{hoveredFloodZone.hazardType}
+              {hoveredFloodZone.nearestCity ? `${hoveredFloodZone.nearestCity}, ${hoveredFloodZone.stateOrProvince} • ` : ""}{hoveredFloodZone.hazardType}
             </div>
           </div>
 
@@ -414,8 +415,8 @@ export function StationTooltip() {
           )}
 
           <div className="mt-2 border-t border-[#213540] pt-1 text-[9px] font-mono text-[#94a3b8] flex items-center justify-between">
-            <span className="truncate max-w-[190px]">{hoveredFloodZone.floodDefenseStatus || "Coastal Storm Surge & Inundation Buffer"}</span>
-            <span style={{ color: floodThemeColor }}>FEMA / GloFAS</span>
+            <span className="truncate max-w-[190px]">{hoveredFloodZone.responsibleFloodControlAuthority || hoveredFloodZone.floodDefenseStatus || "Coastal Storm Surge Buffer"}</span>
+            <span style={{ color: floodThemeColor }}>{hoveredFloodZone.governingJurisdiction?.split("/")[0]?.trim() || "FEMA / GloFAS"}</span>
           </div>
         </div>
       </div>
@@ -441,9 +442,9 @@ export function StationTooltip() {
                 <span className="truncate">{hoveredDataCenter.name}</span>
               </h4>
               <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] mt-0.5">
-                <span className="text-[#f5f8fa] font-medium">{hoveredDataCenter.countryName || hoveredDataCenter.country}</span>
+                <span className="text-[#f5f8fa] font-medium">{hoveredDataCenter.city ? `${hoveredDataCenter.city}, ` : ""}{hoveredDataCenter.countryName || hoveredDataCenter.country}</span>
                 <span>•</span>
-                <span className="text-[#2b95d6]">{hoveredDataCenter.region}</span>
+                <span className="text-[#2b95d6]">{hoveredDataCenter.state || hoveredDataCenter.region}</span>
               </div>
             </div>
             <span
@@ -526,6 +527,18 @@ export function StationTooltip() {
             </div>
           )}
 
+          {hoveredDataCenter.owner && (
+            <div className="mt-1.5 text-[10px] font-mono text-[#a78bfa] truncate px-0.5" title={hoveredDataCenter.owner}>
+              Parent: {hoveredDataCenter.owner.split("/")[0]}
+            </div>
+          )}
+
+          {hoveredDataCenter.clientsServed && (
+            <div className="mt-0.5 text-[9px] font-sans text-[#9ca3af] truncate px-0.5" title={hoveredDataCenter.clientsServed}>
+              Workloads: {hoveredDataCenter.clientsServed}
+            </div>
+          )}
+
           {/* Quick Footer */}
           <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-1.5 text-[10px] font-mono text-[#8a9ba8]">
             <span>
@@ -559,9 +572,9 @@ export function StationTooltip() {
                 <span className="truncate">{hoveredSubstation.name}</span>
               </h4>
               <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] mt-0.5">
-                <span className="text-[#f5f8fa] font-medium">{hoveredSubstation.countryName || hoveredSubstation.country}</span>
+                <span className="text-[#f5f8fa] font-medium">{hoveredSubstation.city ? `${hoveredSubstation.city}, ` : ""}{hoveredSubstation.countryName || hoveredSubstation.country}</span>
                 <span>•</span>
-                <span className="text-[#2b95d6]">{hoveredSubstation.gridRegion || hoveredSubstation.region}</span>
+                <span className="text-[#2b95d6]">{hoveredSubstation.state || hoveredSubstation.gridRegion || hoveredSubstation.region}</span>
               </div>
             </div>
             <span
@@ -598,9 +611,15 @@ export function StationTooltip() {
           </div>
 
           <div className="mt-1.5 text-[10px] font-mono text-[#8a9ba8] flex items-center justify-between px-0.5">
-            <span className="truncate max-w-[180px]">{hoveredSubstation.operator}</span>
+            <span className="truncate max-w-[180px]">Utility: {hoveredSubstation.owner || hoveredSubstation.operator}</span>
             <span className="text-[#f5f8fa] font-semibold">{voltColor.label}</span>
           </div>
+
+          {hoveredSubstation.interconnectedClients && (
+            <div className="mt-0.5 text-[9px] font-sans text-[#9ca3af] truncate px-0.5" title={hoveredSubstation.interconnectedClients}>
+              Feeds: {hoveredSubstation.interconnectedClients}
+            </div>
+          )}
 
           {/* Quick Footer */}
           <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-1.5 text-[10px] font-mono text-[#8a9ba8]">
@@ -639,9 +658,9 @@ export function StationTooltip() {
               <span className="truncate">{hoveredStation.name}</span>
             </h4>
             <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8a9ba8] mt-0.5">
-              <span className="text-[#f5f8fa] font-medium">{hoveredStation.countryName}</span>
+              <span className="text-[#f5f8fa] font-medium">{hoveredStation.city ? `${hoveredStation.city}, ` : ""}{hoveredStation.countryName}</span>
               <span>•</span>
-              <span className="text-[#2b95d6]">{hoveredStation.gridRegion}</span>
+              <span className="text-[#2b95d6]">{hoveredStation.state || hoveredStation.gridRegion}</span>
             </div>
           </div>
           <span
@@ -711,6 +730,18 @@ export function StationTooltip() {
             />
           </div>
         </div>
+
+        {hoveredStation.owner && (
+          <div className="mt-1.5 text-[10px] font-mono text-[#a78bfa] truncate px-0.5" title={hoveredStation.owner}>
+            Owner: {hoveredStation.owner}
+          </div>
+        )}
+
+        {hoveredStation.offtakers && hoveredStation.offtakers.length > 0 && (
+          <div className="mt-0.5 text-[9px] font-mono text-[#2b95d6] truncate px-0.5" title={hoveredStation.offtakers[0]}>
+            Offtake: {hoveredStation.offtakers[0]}
+          </div>
+        )}
 
         {/* Quick Footer */}
         <div className="mt-2 flex items-center justify-between border-t border-[#293742] pt-1.5 text-[10px] font-mono text-[#8a9ba8]">

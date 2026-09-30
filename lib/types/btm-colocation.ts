@@ -40,4 +40,11 @@ export interface BtmColocationSite {
   readinessTier: BtmReadinessTier;
   knownHyperscalePartnerships?: string; // e.g. "AWS Talen Susquehanna 960MW Campus", "Microsoft Constellation TMI 835MW"
   regulatoryPrecedentNotes: string;
+  // Institutional Siting & Commercial Metadata
+  fullAddress?: string;
+  city?: string;
+  state?: string;
+  owner?: string;
+  clientsServed?: string;
+  majorUsers?: string[];
 }

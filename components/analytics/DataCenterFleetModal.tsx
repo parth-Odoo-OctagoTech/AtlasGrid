@@ -120,11 +120,15 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
           const q = searchQuery.toLowerCase().trim();
           const matchName = dc.name.toLowerCase().includes(q);
           const matchOp = dc.operator.toLowerCase().includes(q);
+          const matchOwner = (dc.owner || "").toLowerCase().includes(q);
           const matchCountry = (dc.countryName || dc.country).toLowerCase().includes(q);
           const matchCity = (dc.city || "").toLowerCase().includes(q);
-          const matchAddress = (dc.address || "").toLowerCase().includes(q);
+          const matchState = (dc.state || "").toLowerCase().includes(q);
+          const matchAddress = (dc.fullAddress || dc.address || "").toLowerCase().includes(q);
           const matchRegion = dc.region.toLowerCase().includes(q);
-          if (!matchName && !matchOp && !matchCountry && !matchCity && !matchAddress && !matchRegion) {
+          const matchClients = (dc.clientsServed || "").toLowerCase().includes(q);
+          const matchUsers = dc.majorUsers?.some((u) => u.toLowerCase().includes(q));
+          if (!matchName && !matchOp && !matchOwner && !matchCountry && !matchCity && !matchState && !matchAddress && !matchRegion && !matchClients && !matchUsers) {
             return false;
           }
         }
@@ -538,10 +542,15 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                               {dc.city && (
                                 <>
                                   <span>•</span>
-                                  <span className="truncate max-w-[120px]">{dc.city}</span>
+                                  <span className="truncate max-w-[140px] text-[#eab308]">{dc.city}{dc.state ? `, ${dc.state}` : ""}</span>
                                 </>
                               )}
                             </div>
+                            {dc.clientsServed && (
+                              <div className="mt-0.5 text-[9px] font-sans text-[#9ca3af] truncate max-w-[280px]" title={dc.clientsServed}>
+                                {dc.clientsServed}
+                              </div>
+                            )}
                           </td>
 
                           {/* Operator & Category */}
@@ -556,8 +565,18 @@ export function DataCenterFleetModal({ dataCenters }: DataCenterFleetModalProps)
                             >
                               {dc.operator.replace(" (AWS)", "").replace(" (GCP)", "").replace(" (OCI)", "")}
                             </span>
+                            {dc.owner && (
+                              <div className="mt-0.5 text-[9px] text-[#c084fc] font-mono truncate max-w-[160px]" title={dc.owner}>
+                                {dc.owner.split("/")[0]}
+                              </div>
+                            )}
                             <div className="mt-0.5 text-[9px] text-[#8a9ba8] font-mono">
                               <span className="capitalize">{dc.category}</span>
+                              {dc.redundancyRating && (
+                                <span className="text-[#5c7080]">
+                                  {" "}• {dc.redundancyRating.includes("IV") ? "Tier IV" : "Tier III"}
+                                </span>
+                              )}
                             </div>
                           </td>
 

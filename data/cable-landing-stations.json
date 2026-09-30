@@ -8,15 +8,37 @@
     "region": "Virginia",
     "latitude": 36.8529,
     "longitude": -75.978,
-    "activeSubseaSystems": ["MAREA (200 Tbps)", "Dunant (250 Tbps)", "BRUSA (160 Tbps)", "Confluence-1"],
+    "activeSubseaSystems": [
+      "MAREA (200 Tbps)",
+      "Dunant (250 Tbps)",
+      "BRUSA (160 Tbps)",
+      "Confluence-1"
+    ],
     "totalLitCapacityTbps": 610,
-    "consortiumMembers": ["Microsoft", "Google", "Meta", "Telxius"],
+    "consortiumMembers": [
+      "Microsoft",
+      "Google",
+      "Meta",
+      "Telxius"
+    ],
     "primaryTerrestrialCorridor": "Direct Ashburn Express Dark Fiber Route (Sub-2.8ms RTT)",
     "tier1IxpDistanceKm": 2.4,
     "rttToLondonMs": 62.4,
     "rttToFrankfurtMs": 71.8,
     "rttToTokyoMs": 138.2,
-    "rttToSingaporeMs": 194.5
+    "rttToSingaporeMs": 194.5,
+    "fullAddress": "Camp Pendleton State Military Reservation, Virginia Beach, VA 23451, United States",
+    "city": "Virginia Beach",
+    "state": "Virginia",
+    "postalCode": "23451",
+    "owner": "Telxius Telecom S.A. / Telefónica Infra",
+    "majorUsers": [
+      "Microsoft Azure",
+      "Google Cloud",
+      "Meta Platforms",
+      "Amazon AWS"
+    ],
+    "clientsServed": "Transatlantic Hyperscale AI Model Synchronization, Global Inter-Cloud Peering & Low-Latency Financial Transaction Routing"
   },
   {
     "id": "cls-wall-nj",
@@ -27,15 +49,36 @@
     "region": "New Jersey",
     "latitude": 40.161,
     "longitude": -74.062,
-    "activeSubseaSystems": ["Havfrue / AEC-2 (108 Tbps)", "Seabras-1 (72 Tbps)", "Wall-LI"],
+    "activeSubseaSystems": [
+      "Havfrue / AEC-2 (108 Tbps)",
+      "Seabras-1 (72 Tbps)",
+      "Wall-LI"
+    ],
     "totalLitCapacityTbps": 280,
-    "consortiumMembers": ["Google", "Meta", "Aqua Comms", "TI Sparkle"],
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "Aqua Comms",
+      "TI Sparkle"
+    ],
     "primaryTerrestrialCorridor": "NJFX Colocation Bypass - Direct Manhattan / Ashburn Fiber",
     "tier1IxpDistanceKm": 0.1,
     "rttToLondonMs": 58.2,
     "rttToFrankfurtMs": 67.5,
     "rttToTokyoMs": 142.1,
-    "rttToSingaporeMs": 198.0
+    "rttToSingaporeMs": 198,
+    "fullAddress": "Wall Township Cable Landing Station Coastal Terminal, New Jersey, United States",
+    "city": "New Jersey",
+    "state": "New Jersey",
+    "postalCode": "00000",
+    "owner": "NJFX / Tata Communications Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-myrtle-beach",
@@ -46,15 +89,34 @@
     "region": "South Carolina",
     "latitude": 33.689,
     "longitude": -78.886,
-    "activeSubseaSystems": ["Firmina (Google)", "Nuvem (Google)", "Anjana (Meta)"],
+    "activeSubseaSystems": [
+      "Firmina (Google)",
+      "Nuvem (Google)",
+      "Anjana (Meta)"
+    ],
     "totalLitCapacityTbps": 480,
-    "consortiumMembers": ["Google", "Meta"],
+    "consortiumMembers": [
+      "Google",
+      "Meta"
+    ],
     "primaryTerrestrialCorridor": "Southeast Dark Fiber Ring to Atlanta & Charlotte",
     "tier1IxpDistanceKm": 3.8,
     "rttToLondonMs": 68.5,
     "rttToFrankfurtMs": 77.2,
     "rttToTokyoMs": 146.4,
-    "rttToSingaporeMs": 202.1
+    "rttToSingaporeMs": 202.1,
+    "fullAddress": "Myrtle Beach Landing Station Coastal Terminal, South Carolina, United States",
+    "city": "South Carolina",
+    "state": "South Carolina",
+    "postalCode": "00000",
+    "owner": "DC Blox Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-lynnwood-wa",
@@ -65,15 +127,37 @@
     "region": "Washington",
     "latitude": 47.821,
     "longitude": -122.315,
-    "activeSubseaSystems": ["Pacific Crossing-1 (PC-1)", "Jupiter (Google/Meta/Amazon/NTT)", "FASTER"],
+    "activeSubseaSystems": [
+      "Pacific Crossing-1 (PC-1)",
+      "Jupiter (Google/Meta/Amazon/NTT)",
+      "FASTER"
+    ],
     "totalLitCapacityTbps": 360,
-    "consortiumMembers": ["Amazon", "Google", "Meta", "NTT", "SoftBank"],
+    "consortiumMembers": [
+      "Amazon",
+      "Google",
+      "Meta",
+      "NTT",
+      "SoftBank"
+    ],
     "primaryTerrestrialCorridor": "Direct Seattle IXP (Westin Building) Dark Fiber",
     "tier1IxpDistanceKm": 24.5,
     "rttToLondonMs": 114.2,
     "rttToFrankfurtMs": 122.8,
     "rttToTokyoMs": 78.4,
-    "rttToSingaporeMs": 142.6
+    "rttToSingaporeMs": 142.6,
+    "fullAddress": "Pacific Northwest Transpacific Hub (Lynnwood) Coastal Terminal, Washington, United States",
+    "city": "Washington",
+    "state": "Washington",
+    "postalCode": "00000",
+    "owner": "Lumen / Zayo Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-bude-uk",
@@ -84,15 +168,37 @@
     "region": "Cornwall",
     "latitude": 50.826,
     "longitude": -4.543,
-    "activeSubseaSystems": ["Grace Hopper (Google)", "Yellow / AC2", "Apollo (North & South)", "Amitié (Meta/Orange)"],
+    "activeSubseaSystems": [
+      "Grace Hopper (Google)",
+      "Yellow / AC2",
+      "Apollo (North & South)",
+      "Amitié (Meta/Orange)"
+    ],
     "totalLitCapacityTbps": 540,
-    "consortiumMembers": ["Google", "Meta", "Vodafone", "Orange"],
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "Vodafone",
+      "Orange"
+    ],
     "primaryTerrestrialCorridor": "Cornwall to London Telehouse Ultra-Low Latency Fiber",
     "tier1IxpDistanceKm": 1.2,
     "rttToLondonMs": 4.8,
     "rttToFrankfurtMs": 14.2,
     "rttToTokyoMs": 178.5,
-    "rttToSingaporeMs": 148.0
+    "rttToSingaporeMs": 148,
+    "fullAddress": "Bude Cable Landing Station Coastal Terminal, Cornwall, United Kingdom",
+    "city": "Cornwall",
+    "state": "Cornwall",
+    "postalCode": "00000",
+    "owner": "CenturyLink / Vodafone Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-marseille-france",
@@ -103,15 +209,39 @@
     "region": "Provence-Alpes-Côte d'Azur",
     "latitude": 43.296,
     "longitude": 5.369,
-    "activeSubseaSystems": ["2Africa (180 Tbps)", "PEACE (96 Tbps)", "SeaMeWe-5", "AAE-1", "Blue-Raman (Google)"],
+    "activeSubseaSystems": [
+      "2Africa (180 Tbps)",
+      "PEACE (96 Tbps)",
+      "SeaMeWe-5",
+      "AAE-1",
+      "Blue-Raman (Google)"
+    ],
     "totalLitCapacityTbps": 720,
-    "consortiumMembers": ["Meta", "Google", "China Mobile", "Orange", "Telecom Egypt"],
+    "consortiumMembers": [
+      "Meta",
+      "Google",
+      "China Mobile",
+      "Orange",
+      "Telecom Egypt"
+    ],
     "primaryTerrestrialCorridor": "Marseille MRS1-MRS4 Gateway to Paris & Frankfurt",
     "tier1IxpDistanceKm": 0.5,
     "rttToLondonMs": 16.2,
     "rttToFrankfurtMs": 12.8,
     "rttToTokyoMs": 192.4,
-    "rttToSingaporeMs": 128.5
+    "rttToSingaporeMs": 128.5,
+    "fullAddress": "Marseille Euro-Mediterranean CLS Hub Coastal Terminal, Provence-Alpes-Côte d'Azur, France",
+    "city": "Provence-Alpes-Côte d'Azur",
+    "state": "Provence-Alpes-Côte d'Azur",
+    "postalCode": "00000",
+    "owner": "Interxion / Digital Realty Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-chiba-japan",
@@ -122,15 +252,39 @@
     "region": "Kanto",
     "latitude": 35.045,
     "longitude": 139.845,
-    "activeSubseaSystems": ["FASTER (60 Tbps)", "JUPITER (140 Tbps)", "SJC2 (126 Tbps)", "Unity"],
+    "activeSubseaSystems": [
+      "FASTER (60 Tbps)",
+      "JUPITER (140 Tbps)",
+      "SJC2 (126 Tbps)",
+      "Unity"
+    ],
     "totalLitCapacityTbps": 510,
-    "consortiumMembers": ["Google", "Amazon", "Meta", "NTT", "KDDI", "Singtel"],
+    "consortiumMembers": [
+      "Google",
+      "Amazon",
+      "Meta",
+      "NTT",
+      "KDDI",
+      "Singtel"
+    ],
     "primaryTerrestrialCorridor": "Boso Peninsula Express Highway to Tokyo Otemachi / Toyosu",
     "tier1IxpDistanceKm": 3.2,
     "rttToLondonMs": 174.5,
-    "rttToFrankfurtMs": 182.0,
+    "rttToFrankfurtMs": 182,
     "rttToTokyoMs": 1.4,
-    "rttToSingaporeMs": 62.8
+    "rttToSingaporeMs": 62.8,
+    "fullAddress": "Chiba / Minamiboso Transpacific Landing Station Coastal Terminal, Kanto, Japan",
+    "city": "Kanto",
+    "state": "Kanto",
+    "postalCode": "00000",
+    "owner": "NTT Communications / KDDI Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-tuas-singapore",
@@ -141,15 +295,37 @@
     "region": "Tuas South",
     "latitude": 1.321,
     "longitude": 103.635,
-    "activeSubseaSystems": ["Bifrost (Meta/Keppel)", "Echo (Google/Meta)", "Apricot (Google/Meta)", "SeaMeWe-6"],
+    "activeSubseaSystems": [
+      "Bifrost (Meta/Keppel)",
+      "Echo (Google/Meta)",
+      "Apricot (Google/Meta)",
+      "SeaMeWe-6"
+    ],
     "totalLitCapacityTbps": 680,
-    "consortiumMembers": ["Meta", "Google", "Singtel", "Keppel Telecommunications"],
+    "consortiumMembers": [
+      "Meta",
+      "Google",
+      "Singtel",
+      "Keppel Telecommunications"
+    ],
     "primaryTerrestrialCorridor": "Tuas to Jurong / Equinix SG1 / SG3 Data Corridor",
     "tier1IxpDistanceKm": 1.8,
     "rttToLondonMs": 146.2,
     "rttToFrankfurtMs": 152.4,
     "rttToTokyoMs": 62.5,
-    "rttToSingaporeMs": 0.8
+    "rttToSingaporeMs": 0.8,
+    "fullAddress": "Tuas South Cable Landing Station, Tuas, Singapore 637000",
+    "city": "Singapore",
+    "state": "South West Region",
+    "postalCode": "637000",
+    "owner": "Singtel (Singapore Telecommunications Ltd)",
+    "majorUsers": [
+      "Meta Platforms (Bifrost)",
+      "Google Cloud (Apricot)",
+      "Keppel T&T",
+      "ByteDance"
+    ],
+    "clientsServed": "Southeast Asia Financial Core, Asia-Europe Superhighway & Global Hyperscale Multi-Cloud Exchange"
   },
   {
     "id": "cls-mumbai-india",
@@ -160,15 +336,38 @@
     "region": "Maharashtra",
     "latitude": 19.132,
     "longitude": 72.815,
-    "activeSubseaSystems": ["India-Asia-Xpress (IAX)", "India-Europe-Xpress (IEX)", "2Africa", "SeaMeWe-4", "BBG"],
+    "activeSubseaSystems": [
+      "India-Asia-Xpress (IAX)",
+      "India-Europe-Xpress (IEX)",
+      "2Africa",
+      "SeaMeWe-4",
+      "BBG"
+    ],
     "totalLitCapacityTbps": 590,
-    "consortiumMembers": ["Reliance Jio", "Bharti Airtel", "Tata Communications", "Meta"],
+    "consortiumMembers": [
+      "Reliance Jio",
+      "Bharti Airtel",
+      "Tata Communications",
+      "Meta"
+    ],
     "primaryTerrestrialCorridor": "BKC & Navi Mumbai Datacenter Hyperscale Express Conduits",
     "tier1IxpDistanceKm": 4.5,
     "rttToLondonMs": 96.5,
     "rttToFrankfurtMs": 92.4,
-    "rttToTokyoMs": 118.0,
-    "rttToSingaporeMs": 34.2
+    "rttToTokyoMs": 118,
+    "rttToSingaporeMs": 34.2,
+    "fullAddress": "Mumbai Versova / Dronagiri CLS Gateway Coastal Terminal, Maharashtra, India",
+    "city": "Maharashtra",
+    "state": "Maharashtra",
+    "postalCode": "00000",
+    "owner": "Tata Communications / Bharti Airtel Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   },
   {
     "id": "cls-dublin-ireland",
@@ -179,14 +378,36 @@
     "region": "Fingal / Dublin",
     "latitude": 53.491,
     "longitude": -6.115,
-    "activeSubseaSystems": ["CeltixConnect", "Rockabill", "Sirius (Aqua Comms)", "Emerald Bridge"],
+    "activeSubseaSystems": [
+      "CeltixConnect",
+      "Rockabill",
+      "Sirius (Aqua Comms)",
+      "Emerald Bridge"
+    ],
     "totalLitCapacityTbps": 320,
-    "consortiumMembers": ["Aqua Comms", "Google", "Amazon", "Microsoft"],
+    "consortiumMembers": [
+      "Aqua Comms",
+      "Google",
+      "Amazon",
+      "Microsoft"
+    ],
     "primaryTerrestrialCorridor": "Dublin T50 Dark Fiber Ring & Grange Castle Hyperscale Spine",
     "tier1IxpDistanceKm": 2.1,
     "rttToLondonMs": 6.8,
     "rttToFrankfurtMs": 16.4,
-    "rttToTokyoMs": 182.0,
-    "rttToSingaporeMs": 154.5
+    "rttToTokyoMs": 182,
+    "rttToSingaporeMs": 154.5,
+    "fullAddress": "Dublin / Portrane Landing Station Coastal Terminal, Fingal / Dublin, Ireland",
+    "city": "Fingal / Dublin",
+    "state": "Fingal / Dublin",
+    "postalCode": "00000",
+    "owner": "Aqua Comms / Eir Infrastructure Consortium",
+    "majorUsers": [
+      "Microsoft",
+      "Google",
+      "Amazon",
+      "Meta"
+    ],
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
   }
 ]

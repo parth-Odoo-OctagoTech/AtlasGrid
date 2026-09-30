@@ -1416,6 +1416,115 @@ const inspectorHistorySrc = fs.readFileSync(path.join(process.cwd(), "components
 assert(inspectorHistorySrc.includes("Launch Institutional Time Machine & Backtest"), "StationInspector includes Time Machine launch trigger");
 
 // ---------------------------------------------------------------------------
+// TEST 25: Institutional Variables, Ownership & Offtake Metadata Across All Assets
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 25: Institutional Variables, Ownership & Offtake Metadata ---");
+
+// 1. Data Centers Institutional Metadata Verification
+const dcsInstitutional = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/datacenters.json"), "utf-8"));
+assert(dcsInstitutional.length >= 6600, `Data center dataset intact (${dcsInstitutional.length} records)`);
+
+let dcHasAddress = 0, dcHasCity = 0, dcHasState = 0, dcHasOwner = 0, dcHasUsers = 0, dcHasClients = 0, dcHasUtility = 0;
+for (const dc of dcsInstitutional) {
+  if (dc.fullAddress && dc.fullAddress.length > 5) dcHasAddress++;
+  if (dc.city && dc.city.length > 1) dcHasCity++;
+  if (dc.state && dc.state.length > 1) dcHasState++;
+  if (dc.owner && dc.owner.length > 2) dcHasOwner++;
+  if (Array.isArray(dc.majorUsers) && dc.majorUsers.length > 0) dcHasUsers++;
+  if (dc.clientsServed && dc.clientsServed.length > 5) dcHasClients++;
+  if (dc.servingElectricUtility && dc.servingElectricUtility.length > 3) dcHasUtility++;
+}
+
+assert(dcHasAddress === dcsInstitutional.length, `100% of data centers have fullAddress (${dcHasAddress}/${dcsInstitutional.length})`);
+assert(dcHasCity === dcsInstitutional.length, `100% of data centers have city (${dcHasCity}/${dcsInstitutional.length})`);
+assert(dcHasState === dcsInstitutional.length, `100% of data centers have state/province (${dcHasState}/${dcsInstitutional.length})`);
+assert(dcHasOwner === dcsInstitutional.length, `100% of data centers have ultimate corporate owner (${dcHasOwner}/${dcsInstitutional.length})`);
+assert(dcHasUsers === dcsInstitutional.length, `100% of data centers have majorUsers / anchorTenants (${dcHasUsers}/${dcsInstitutional.length})`);
+assert(dcHasClients === dcsInstitutional.length, `100% of data centers have clientsServed (${dcHasClients}/${dcsInstitutional.length})`);
+assert(dcHasUtility === dcsInstitutional.length, `100% of data centers have servingElectricUtility (${dcHasUtility}/${dcsInstitutional.length})`);
+assert(typeof dcsInstitutional[0].grossBuildingSqFt === "number" && dcsInstitutional[0].grossBuildingSqFt > 0, "Data centers include grossBuildingSqFt footprint");
+assert(typeof dcsInstitutional[0].redundancyRating === "string" && dcsInstitutional[0].redundancyRating.length > 0, "Data centers include redundancyRating");
+
+// 2. Power Plants Institutional Offtake Metadata Verification
+const ppsInstitutional = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/power-plants.json"), "utf-8"));
+assert(ppsInstitutional.length >= 5400, `Power plants dataset intact (${ppsInstitutional.length} records)`);
+
+let ppHasAddress = 0, ppHasCity = 0, ppHasState = 0, ppHasOwner = 0, ppHasOfftakers = 0, ppHasClients = 0, ppHasCooling = 0;
+for (const pp of ppsInstitutional) {
+  if (pp.fullAddress && pp.fullAddress.length > 5) ppHasAddress++;
+  if (pp.city && pp.city.length > 1) ppHasCity++;
+  if (pp.state && pp.state.length > 1) ppHasState++;
+  if (pp.owner && pp.owner.length > 2) ppHasOwner++;
+  if (Array.isArray(pp.offtakers) && pp.offtakers.length > 0) ppHasOfftakers++;
+  if (pp.clientsServed && pp.clientsServed.length > 5) ppHasClients++;
+  if (pp.coolingTechnology && pp.coolingTechnology.length > 3) ppHasCooling++;
+}
+
+assert(ppHasAddress === ppsInstitutional.length, `100% of power plants have fullAddress (${ppHasAddress}/${ppsInstitutional.length})`);
+assert(ppHasCity === ppsInstitutional.length, `100% of power plants have city (${ppHasCity}/${ppsInstitutional.length})`);
+assert(ppHasState === ppsInstitutional.length, `100% of power plants have state (${ppHasState}/${ppsInstitutional.length})`);
+assert(ppHasOwner === ppsInstitutional.length, `100% of power plants have ultimate asset owner (${ppHasOwner}/${ppsInstitutional.length})`);
+assert(ppHasOfftakers === ppsInstitutional.length, `100% of power plants have commercial offtakers (${ppHasOfftakers}/${ppsInstitutional.length})`);
+assert(ppHasClients === ppsInstitutional.length, `100% of power plants have clientsServed (${ppHasClients}/${ppsInstitutional.length})`);
+assert(ppHasCooling === ppsInstitutional.length, `100% of power plants have coolingTechnology (${ppHasCooling}/${ppsInstitutional.length})`);
+
+// 3. Substations Institutional Grid Siting Metadata Verification
+const subsInstitutional = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/substations.json"), "utf-8"));
+assert(subsInstitutional.length >= 3000, `Substations dataset intact (${subsInstitutional.length} records)`);
+
+let subHasAddress = 0, subHasCity = 0, subHasState = 0, subHasOwner = 0, subHasInterconnected = 0, subHasClients = 0, subHasBus = 0;
+for (const sub of subsInstitutional) {
+  if (sub.fullAddress && sub.fullAddress.length > 5) subHasAddress++;
+  if (sub.city && sub.city.length > 1) subHasCity++;
+  if (sub.state && sub.state.length > 1) subHasState++;
+  if (sub.owner && sub.owner.length > 2) subHasOwner++;
+  if (sub.interconnectedClients && sub.interconnectedClients.length > 5) subHasInterconnected++;
+  if (sub.clientsServed && sub.clientsServed.length > 5) subHasClients++;
+  if (sub.busConfiguration && sub.busConfiguration.length > 3) subHasBus++;
+}
+
+assert(subHasAddress === subsInstitutional.length, `100% of substations have fullAddress (${subHasAddress}/${subsInstitutional.length})`);
+assert(subHasCity === subsInstitutional.length, `100% of substations have city (${subHasCity}/${subsInstitutional.length})`);
+assert(subHasState === subsInstitutional.length, `100% of substations have state (${subHasState}/${subsInstitutional.length})`);
+assert(subHasOwner === subsInstitutional.length, `100% of substations have transmission owner (${subHasOwner}/${subsInstitutional.length})`);
+assert(subHasInterconnected === subsInstitutional.length, `100% of substations have interconnectedClients (${subHasInterconnected}/${subsInstitutional.length})`);
+assert(subHasClients === subsInstitutional.length, `100% of substations have clientsServed (${subHasClients}/${subsInstitutional.length})`);
+assert(subHasBus === subsInstitutional.length, `100% of substations have busConfiguration (${subHasBus}/${subsInstitutional.length})`);
+assert(typeof subsInstitutional[0].transformerCapacityMva === "number" && subsInstitutional[0].transformerCapacityMva > 0, "Substations include transformerCapacityMva");
+
+// 4. Cable Landing Stations & BTM Colocation Institutional Verification
+const clsInstitutional = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/cable-landing-stations.json"), "utf-8"));
+assert(clsInstitutional.length >= 10, "Cable Landing Stations dataset intact");
+assert(clsInstitutional.every((c) => c.fullAddress && c.city && c.state && c.owner && c.majorUsers?.length > 0 && c.clientsServed), "100% of CLS hubs have institutional address, owner, users, and clientsServed");
+
+const btmInstitutional = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/btm-colocation-sites.json"), "utf-8"));
+assert(btmInstitutional.length >= 10, "BTM colocation sites dataset intact");
+assert(btmInstitutional.every((b) => b.fullAddress && b.city && b.state && b.owner && b.clientsServed), "100% of BTM sites have institutional address, owner, and clientsServed");
+
+// 5. Flood Hazard Zones Municipal Risk Verification
+const fhzInstitutional = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/flood-hazard-zones.json"), "utf-8"));
+assert(fhzInstitutional.length >= 41, "Flood hazard zones dataset intact");
+assert(fhzInstitutional.every((f) => f.nearestCity && f.stateOrProvince && f.governingJurisdiction && f.responsibleFloodControlAuthority && f.clientsServed), "100% of flood hazard zones have municipal authority and jurisdiction metadata");
+
+// 6. UI Integration Verification
+const inspectorInstSrc = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(inspectorInstSrc.includes("parent_owner") && inspectorInstSrc.includes("clients_workloads_served"), "StationInspector displays DC corporate owner and clients served");
+assert(inspectorInstSrc.includes("Institutional Grid Siting & Interconnection"), "StationInspector displays Substation institutional siting and loads card");
+assert(inspectorInstSrc.includes("Commercial Offtakers") && inspectorInstSrc.includes("Cooling Technology"), "StationInspector displays Power Plant commercial offtakers and cooling");
+
+const tooltipInstSrc = fs.readFileSync(path.join(process.cwd(), "components/map/StationTooltip.tsx"), "utf-8");
+assert(tooltipInstSrc.includes("Parent:") && tooltipInstSrc.includes("Workloads:"), "StationTooltip renders DC parent owner and workloads");
+assert(tooltipInstSrc.includes("Feeds:") && tooltipInstSrc.includes("Utility:"), "StationTooltip renders Substation utility and feeds");
+assert(tooltipInstSrc.includes("Offtake:"), "StationTooltip renders Power Plant offtake counterparty");
+
+const fleetModalInstSrc = fs.readFileSync(path.join(process.cwd(), "components/analytics/DataCenterFleetModal.tsx"), "utf-8");
+assert(fleetModalInstSrc.includes("dc.clientsServed") && fleetModalInstSrc.includes("dc.owner"), "DataCenterFleetModal table renders owner and clientsServed");
+assert(fleetModalInstSrc.includes("matchOwner") && fleetModalInstSrc.includes("matchClients"), "DataCenterFleetModal instant search filters by owner and clientsServed");
+
+const aiEngineInstSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/ai-query-engine.ts"), "utf-8");
+assert(aiEngineInstSrc.includes("Institutional Asset Catalog & Ownership / Offtake Metadata"), "AI query engine prompt includes institutional metadata grounding");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 
 // ---------------------------------------------------------------------------

@@ -52,6 +52,7 @@ import {
   Atom,
   TrendingUp,
   Scale,
+  ShieldCheck,
 } from "lucide-react";
 import { calculateSitingScoreBreakdown, getSitingScoreColor } from "@/lib/services/siting-suitability-service";
 import { findNearestInterconnectionQueue } from "@/lib/services/interconnection-queue-service";
@@ -356,6 +357,62 @@ export function StationInspector() {
                 {selectedSubstation.operator}
               </div>
               <div className="text-[10px] text-[#2b95d6] mt-0.5">{selectedSubstation.country} Regional System</div>
+            </div>
+          </div>
+
+          {/* Institutional Grid Siting & Client Interconnection */}
+          <div className="rounded border border-[#293742] bg-[#101418] p-3 space-y-2 text-xs font-mono">
+            <div className="flex items-center justify-between text-[11px] font-bold text-[#f5f8fa] border-b border-[#293742] pb-1.5">
+              <span className="flex items-center gap-1.5 text-[#eab308]">
+                <ShieldCheck className="h-3.5 w-3.5 text-[#eab308]" />
+                Institutional Grid Siting & Interconnection
+              </span>
+              <span className="text-[10px] text-[#8a9ba8] font-mono">
+                {selectedSubstation.transformerCapacityMva ? `${selectedSubstation.transformerCapacityMva.toLocaleString()} MVA` : "Bulk Transco"}
+              </span>
+            </div>
+
+            <div className="divide-y divide-[#202b33]">
+              {selectedSubstation.fullAddress && (
+                <div className="py-1.5 flex items-start justify-between gap-2">
+                  <span className="text-[#8a9ba8] text-[11px] shrink-0">full_address</span>
+                  <span className="text-[#f5f8fa] text-right truncate max-w-[260px]" title={selectedSubstation.fullAddress}>
+                    {selectedSubstation.fullAddress}
+                  </span>
+                </div>
+              )}
+              {selectedSubstation.owner && (
+                <div className="py-1.5 flex items-center justify-between gap-2">
+                  <span className="text-[#8a9ba8] text-[11px] shrink-0">transmission_owner</span>
+                  <span className="text-[#c084fc] font-medium text-right truncate max-w-[240px]" title={selectedSubstation.owner}>
+                    {selectedSubstation.owner}
+                  </span>
+                </div>
+              )}
+              {selectedSubstation.busConfiguration && (
+                <div className="py-1.5 flex items-center justify-between gap-2">
+                  <span className="text-[#8a9ba8] text-[11px] shrink-0">bus_topology</span>
+                  <span className="text-[#2b95d6] text-right truncate max-w-[240px]" title={selectedSubstation.busConfiguration}>
+                    {selectedSubstation.busConfiguration}
+                  </span>
+                </div>
+              )}
+              {selectedSubstation.interconnectedClients && (
+                <div className="py-1.5 space-y-0.5">
+                  <span className="text-[#8a9ba8] text-[11px]">interconnected_loads</span>
+                  <div className="text-[#f5f8fa] text-[11px] font-sans leading-relaxed">
+                    {selectedSubstation.interconnectedClients}
+                  </div>
+                </div>
+              )}
+              {selectedSubstation.clientsServed && (
+                <div className="py-1.5 space-y-0.5">
+                  <span className="text-[#8a9ba8] text-[11px]">clients_workloads_served</span>
+                  <div className="text-[#d1d5db] text-[11px] font-sans leading-relaxed">
+                    {selectedSubstation.clientsServed}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -673,12 +730,78 @@ export function StationInspector() {
                 {peeringDbRef.label} ↗
               </a>
             </div>
-            {selectedDataCenter.address && (
+            {selectedDataCenter.owner && (
               <div className="flex items-center justify-between p-2">
-                <span className="text-[#8a9ba8] text-[11px]">facility_address</span>
-                <span className="text-[#f5f8fa] truncate max-w-[220px]">
-                  {selectedDataCenter.address}
+                <span className="text-[#8a9ba8] text-[11px]">parent_owner</span>
+                <span className="text-[#c084fc] font-medium truncate max-w-[220px]" title={selectedDataCenter.owner}>
+                  {selectedDataCenter.owner}
                 </span>
+              </div>
+            )}
+            {selectedDataCenter.servingElectricUtility && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">electric_utility</span>
+                <span className="text-[#eab308] font-medium truncate max-w-[220px]" title={selectedDataCenter.servingElectricUtility}>
+                  {selectedDataCenter.servingElectricUtility}
+                </span>
+              </div>
+            )}
+            {selectedDataCenter.rtoIso && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">rto_iso_grid</span>
+                <span className="text-[#2b95d6] font-medium">{selectedDataCenter.rtoIso}</span>
+              </div>
+            )}
+            {(selectedDataCenter.fullAddress || selectedDataCenter.address) && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">full_address</span>
+                <span className="text-[#f5f8fa] truncate max-w-[220px]" title={selectedDataCenter.fullAddress || selectedDataCenter.address}>
+                  {selectedDataCenter.fullAddress || selectedDataCenter.address}
+                </span>
+              </div>
+            )}
+            {selectedDataCenter.city && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">municipality</span>
+                <span className="text-[#f5f8fa]">
+                  {selectedDataCenter.city}{selectedDataCenter.state ? `, ${selectedDataCenter.state}` : ""}{selectedDataCenter.postalCode ? ` ${selectedDataCenter.postalCode}` : ""}
+                </span>
+              </div>
+            )}
+            {selectedDataCenter.grossBuildingSqFt != null && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">facility_sqft</span>
+                <span className="text-[#f5f8fa]">
+                  {selectedDataCenter.grossBuildingSqFt.toLocaleString()} sq ft ({selectedDataCenter.whiteSpaceSqFt?.toLocaleString() || "—"} white space)
+                </span>
+              </div>
+            )}
+            {selectedDataCenter.redundancyRating && (
+              <div className="flex items-center justify-between p-2">
+                <span className="text-[#8a9ba8] text-[11px]">redundancy</span>
+                <span className="text-[#10b981] truncate max-w-[220px]" title={selectedDataCenter.redundancyRating}>
+                  {selectedDataCenter.redundancyRating}
+                </span>
+              </div>
+            )}
+            {selectedDataCenter.majorUsers && selectedDataCenter.majorUsers.length > 0 && (
+              <div className="p-2 space-y-1">
+                <div className="text-[#8a9ba8] text-[11px]">major_users_tenants</div>
+                <div className="flex flex-wrap gap-1">
+                  {selectedDataCenter.majorUsers.map((u, i) => (
+                    <span key={i} className="px-1.5 py-0.5 rounded bg-[#1f2937] border border-[#374151] text-[10px] text-[#c084fc]">
+                      {u}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {selectedDataCenter.clientsServed && (
+              <div className="p-2 space-y-1">
+                <div className="text-[#8a9ba8] text-[11px]">clients_workloads_served</div>
+                <div className="text-[11px] text-[#d1d5db] font-sans leading-relaxed">
+                  {selectedDataCenter.clientsServed}
+                </div>
               </div>
             )}
             <div className="flex items-center justify-between p-2">
@@ -1764,6 +1887,18 @@ export function StationInspector() {
                 <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Operator</td>
                 <td className="px-3 py-1.5 text-[#f5f8fa] font-sans font-medium">{selectedStation.operator || "—"}</td>
               </tr>
+              {selectedStation.owner && (
+                <tr>
+                  <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Asset Owner</td>
+                  <td className="px-3 py-1.5 text-[#c084fc] font-medium">{selectedStation.owner}</td>
+                </tr>
+              )}
+              {selectedStation.fullAddress && (
+                <tr>
+                  <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Full Address</td>
+                  <td className="px-3 py-1.5 text-[#f5f8fa] text-[11px]">{selectedStation.fullAddress}</td>
+                </tr>
+              )}
               <tr>
                 <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Grid Region</td>
                 <td className="px-3 py-1.5 text-[#2b95d6]">{selectedStation.gridRegion || "—"}</td>
@@ -1777,9 +1912,29 @@ export function StationInspector() {
                 <td className="px-3 py-1.5 text-[#f5f8fa]">{selectedStation.turbineManufacturer || "—"}</td>
               </tr>
               <tr>
-                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Cooling System</td>
-                <td className="px-3 py-1.5 text-[#f5f8fa]">{selectedStation.coolingType || "—"}</td>
+                <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">Cooling Technology</td>
+                <td className="px-3 py-1.5 text-[#f5f8fa]">{selectedStation.coolingTechnology || selectedStation.coolingType || "—"}</td>
               </tr>
+              {selectedStation.offtakers && selectedStation.offtakers.length > 0 && (
+                <tr>
+                  <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60 align-top">Commercial Offtakers</td>
+                  <td className="px-3 py-1.5">
+                    <div className="flex flex-wrap gap-1">
+                      {selectedStation.offtakers.map((o, i) => (
+                        <span key={i} className="px-1.5 py-0.5 rounded bg-[#1f2937] border border-[#374151] text-[10px] text-[#2b95d6]">
+                          {o}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              )}
+              {selectedStation.clientsServed && (
+                <tr>
+                  <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60 align-top">Clients Served</td>
+                  <td className="px-3 py-1.5 text-[#d1d5db] text-[11px] font-sans leading-relaxed">{selectedStation.clientsServed}</td>
+                </tr>
+              )}
               <tr>
                 <td className="px-3 py-1.5 text-[#8a9ba8] bg-[#101418]/60">CO₂ Intensity</td>
                 <td className="px-3 py-1.5">

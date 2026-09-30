@@ -22,7 +22,22 @@ export interface DataCenter {
   peeringDbUrl?: string;
   officialWebsite?: string;
   address?: string;
+  fullAddress?: string;
   city?: string;
+  state?: string;
+  province?: string;
+  postalCode?: string;
+  owner?: string;
+  parentCompany?: string;
+  majorUsers?: string[];
+  anchorTenants?: string[];
+  clientsServed?: string;
+  workloadProfile?: string;
+  servingElectricUtility?: string;
+  rtoIso?: string;
+  grossBuildingSqFt?: number;
+  whiteSpaceSqFt?: number;
+  redundancyRating?: string;
   connectedNetworksCount?: number;
   ixpCount?: number;
   // Calculated Sustainability & Grid Integration

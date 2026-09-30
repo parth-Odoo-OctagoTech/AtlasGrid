@@ -5,7 +5,10 @@
     "basin": "Atlantic Ocean / Chesapeake Bay Estuary",
     "region": "Virginia",
     "country": "US",
-    "coordinates": [-75.98, 36.85],
+    "coordinates": [
+      -75.98,
+      36.85
+    ],
     "riskLevel": "High",
     "hazardType": "Coastal Storm Surge & Category 3-4 Hurricane Wave Action",
     "elevationMeters": 2.5,
@@ -13,7 +16,13 @@
     "waterDepth100YrMeters": 3.4,
     "floodDefenseStatus": "Open Coastline / Dune System Defenses",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 26000
+    "radiusMeters": 26000,
+    "nearestCity": "Virginia Beach",
+    "stateOrProvince": "Virginia",
+    "governingJurisdiction": "Virginia Beach Municipal Government & Virginia Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Virginia District) & FEMA Region III",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Virginia Beach",
+    "clientsServed": "Virginia Beach Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-potomac-lowlands",
@@ -21,15 +30,24 @@
     "basin": "Potomac River Basin",
     "region": "Virginia",
     "country": "US",
-    "coordinates": [-77.04, 38.80],
+    "coordinates": [
+      -77.04,
+      38.8
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Tidal Riverine Floodplain & Heavy Runoff Ponding",
-    "elevationMeters": 6.0,
+    "elevationMeters": 6,
     "zoneCode": "FEMA Zone AE (100-Yr Floodway)",
     "waterDepth100YrMeters": 2.1,
     "floodDefenseStatus": "Local Riparian Levee & Retention Sump",
-    "recommendedPadElevationMeters": 3.0,
-    "radiusMeters": 18000
+    "recommendedPadElevationMeters": 3,
+    "radiusMeters": 18000,
+    "nearestCity": "Reston",
+    "stateOrProvince": "Virginia",
+    "governingJurisdiction": "Reston Municipal Government & Virginia Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Virginia District) & FEMA Region III",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Reston",
+    "clientsServed": "Reston Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-nj-raritan-bay",
@@ -37,15 +55,24 @@
     "basin": "Raritan Bay / Atlantic Coast",
     "region": "New Jersey",
     "country": "US",
-    "coordinates": [-74.28, 40.48],
+    "coordinates": [
+      -74.28,
+      40.48
+    ],
     "riskLevel": "High",
     "hazardType": "Superstorm Sandy-Benchmark Tidal Surge & Wave Runup",
-    "elevationMeters": 3.0,
+    "elevationMeters": 3,
     "zoneCode": "FEMA Zone VE (Coastal Surge)",
     "waterDepth100YrMeters": 3.8,
     "floodDefenseStatus": "Engineered Seawalls & Tidal Flood Gates",
     "recommendedPadElevationMeters": 4.8,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "New York",
+    "stateOrProvince": "New Jersey",
+    "governingJurisdiction": "New York Municipal Government & New Jersey Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (New Jersey District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near New York",
+    "clientsServed": "New York Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-nj-meadowlands",
@@ -53,7 +80,10 @@
     "basin": "Hackensack River / Newark Bay",
     "region": "New Jersey",
     "country": "US",
-    "coordinates": [-74.06, 40.78],
+    "coordinates": [
+      -74.06,
+      40.78
+    ],
     "riskLevel": "High",
     "hazardType": "Tidal Marsh Inundation & Stormwater Retention Overflow",
     "elevationMeters": 1.5,
@@ -61,7 +91,13 @@
     "waterDepth100YrMeters": 2.6,
     "floodDefenseStatus": "Tide Gate Protected / Meadowlands Berms",
     "recommendedPadElevationMeters": 3.5,
-    "radiusMeters": 16000
+    "radiusMeters": 16000,
+    "nearestCity": "Secaucus",
+    "stateOrProvince": "New Jersey",
+    "governingJurisdiction": "Secaucus Municipal Government & New Jersey Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (New Jersey District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Secaucus",
+    "clientsServed": "Secaucus Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-ny-harbor",
@@ -69,7 +105,10 @@
     "basin": "Hudson River / Upper New York Bay",
     "region": "New York",
     "country": "US",
-    "coordinates": [-74.01, 40.70],
+    "coordinates": [
+      -74.01,
+      40.7
+    ],
     "riskLevel": "High",
     "hazardType": "Coastal Tidal Surge & Extreme Nor'easter Coastal Flooding",
     "elevationMeters": 2.8,
@@ -77,7 +116,13 @@
     "waterDepth100YrMeters": 3.9,
     "floodDefenseStatus": "East Side Coastal Resiliency (ESCR) Deployable Gates",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 18000
+    "radiusMeters": 18000,
+    "nearestCity": "New York",
+    "stateOrProvince": "New York",
+    "governingJurisdiction": "New York Municipal Government & New York Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (New York District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near New York",
+    "clientsServed": "New York Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-noaa-biscayne-bay",
@@ -85,7 +130,10 @@
     "basin": "Biscayne Bay / Atlantic Coast",
     "region": "Florida",
     "country": "US",
-    "coordinates": [-80.19, 25.76],
+    "coordinates": [
+      -80.19,
+      25.76
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Sunny Day King Tide Subsurface Infiltration & Hurricane Surge",
     "elevationMeters": 1.8,
@@ -93,7 +141,13 @@
     "waterDepth100YrMeters": 3.2,
     "floodDefenseStatus": "Porous Oolitic Limestone (Unprotectable by Traditional Levees)",
     "recommendedPadElevationMeters": 4.8,
-    "radiusMeters": 28000
+    "radiusMeters": 28000,
+    "nearestCity": "Miami",
+    "stateOrProvince": "Florida",
+    "governingJurisdiction": "Miami Municipal Government & Florida Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Florida District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Miami",
+    "clientsServed": "Miami Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-noaa-tampa-bay",
@@ -101,7 +155,10 @@
     "basin": "Tampa Bay / Gulf of Mexico",
     "region": "Florida",
     "country": "US",
-    "coordinates": [-82.45, 27.95],
+    "coordinates": [
+      -82.45,
+      27.95
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Shallow Bathymetry Category 4-5 Storm Surge Inundation",
     "elevationMeters": 2.2,
@@ -109,7 +166,13 @@
     "waterDepth100YrMeters": 4.5,
     "floodDefenseStatus": "Unprotected Coastal Estuary / Natural Bay",
     "recommendedPadElevationMeters": 5.5,
-    "radiusMeters": 26000
+    "radiusMeters": 26000,
+    "nearestCity": "Miami",
+    "stateOrProvince": "Florida",
+    "governingJurisdiction": "Miami Municipal Government & Florida Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Florida District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Miami",
+    "clientsServed": "Miami Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-houston-ship-channel",
@@ -117,7 +180,10 @@
     "basin": "San Jacinto River / Galveston Bay",
     "region": "Texas",
     "country": "US",
-    "coordinates": [-95.18, 29.74],
+    "coordinates": [
+      -95.18,
+      29.74
+    ],
     "riskLevel": "High",
     "hazardType": "Hurricane Harvey-Benchmark Pluvial & Petrochemical Corridor Surge",
     "elevationMeters": 4.5,
@@ -125,7 +191,13 @@
     "waterDepth100YrMeters": 3.6,
     "floodDefenseStatus": "HCFCD Detention Basins / Channelized Bayous",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 25000
+    "radiusMeters": 25000,
+    "nearestCity": "Houston",
+    "stateOrProvince": "Texas",
+    "governingJurisdiction": "Houston Municipal Government & Texas Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Texas District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Houston",
+    "clientsServed": "Houston Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-galveston-bay",
@@ -133,15 +205,24 @@
     "basin": "Galveston Bay / Gulf of Mexico",
     "region": "Texas",
     "country": "US",
-    "coordinates": [-94.88, 29.31],
+    "coordinates": [
+      -94.88,
+      29.31
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Open Gulf Storm Surge & Direct Overwash",
-    "elevationMeters": 2.0,
+    "elevationMeters": 2,
     "zoneCode": "FEMA Zone VE (Coastal High Velocity Hazard)",
     "waterDepth100YrMeters": 4.8,
     "floodDefenseStatus": "Galveston Seawall (17-ft) / Ike Dike Concept",
     "recommendedPadElevationMeters": 5.8,
-    "radiusMeters": 28000
+    "radiusMeters": 28000,
+    "nearestCity": "Houston",
+    "stateOrProvince": "Texas",
+    "governingJurisdiction": "Houston Municipal Government & Texas Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Texas District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Houston",
+    "clientsServed": "Houston Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-usace-new-orleans-polder",
@@ -149,15 +230,24 @@
     "basin": "Mississippi River / Lake Pontchartrain",
     "region": "Louisiana",
     "country": "US",
-    "coordinates": [-90.07, 29.95],
+    "coordinates": [
+      -90.07,
+      29.95
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Below-Sea-Level Bowl Inundation & Levee Overtopping Risk",
     "elevationMeters": -1.5,
     "zoneCode": "FEMA Zone AE (Below Sea Level Basin)",
     "waterDepth100YrMeters": 4.2,
     "floodDefenseStatus": "USACE Hurricane & Storm Damage Risk Reduction System (HSDRRS)",
-    "recommendedPadElevationMeters": 5.0,
-    "radiusMeters": 30000
+    "recommendedPadElevationMeters": 5,
+    "radiusMeters": 30000,
+    "nearestCity": "Jackson",
+    "stateOrProvince": "Louisiana",
+    "governingJurisdiction": "Jackson Municipal Government & Louisiana Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Louisiana District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Jackson",
+    "clientsServed": "Jackson Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-savannah-lowcountry",
@@ -165,15 +255,24 @@
     "basin": "Savannah River / Atlantic Coast",
     "region": "Georgia",
     "country": "US",
-    "coordinates": [-81.10, 32.08],
+    "coordinates": [
+      -81.1,
+      32.08
+    ],
     "riskLevel": "High",
     "hazardType": "Tidal River Surge & Barrier Island Breaching",
     "elevationMeters": 3.2,
     "zoneCode": "FEMA Zone AE (Coastal Lowland)",
     "waterDepth100YrMeters": 2.9,
     "floodDefenseStatus": "Natural Marsh Buffer / Tide Gates",
-    "recommendedPadElevationMeters": 4.0,
-    "radiusMeters": 22000
+    "recommendedPadElevationMeters": 4,
+    "radiusMeters": 22000,
+    "nearestCity": "Charlotte",
+    "stateOrProvince": "Georgia",
+    "governingJurisdiction": "Charlotte Municipal Government & Georgia Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Georgia District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Charlotte",
+    "clientsServed": "Charlotte Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-charleston-peninsula",
@@ -181,7 +280,10 @@
     "basin": "Charleston Harbor / Atlantic Coast",
     "region": "South Carolina",
     "country": "US",
-    "coordinates": [-79.93, 32.78],
+    "coordinates": [
+      -79.93,
+      32.78
+    ],
     "riskLevel": "High",
     "hazardType": "Chronic King Tide Overflow & Hurricane Storm Surge",
     "elevationMeters": 2.8,
@@ -189,7 +291,13 @@
     "waterDepth100YrMeters": 3.1,
     "floodDefenseStatus": "Historic Battery Seawall / Stormwater Pump Stations",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 20000
+    "radiusMeters": 20000,
+    "nearestCity": "Charlotte",
+    "stateOrProvince": "South Carolina",
+    "governingJurisdiction": "Charlotte Municipal Government & South Carolina Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (South Carolina District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Charlotte",
+    "clientsServed": "Charlotte Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-alviso-sf-bay",
@@ -197,7 +305,10 @@
     "basin": "San Francisco Bay / Guadalupe River",
     "region": "California",
     "country": "US",
-    "coordinates": [-121.98, 37.43],
+    "coordinates": [
+      -121.98,
+      37.43
+    ],
     "riskLevel": "High",
     "hazardType": "Subsidence-Prone Historic Salt Pond & King Tide Surge",
     "elevationMeters": 1.2,
@@ -205,7 +316,13 @@
     "waterDepth100YrMeters": 2.4,
     "floodDefenseStatus": "South Bay Shoreline Levee System (USACE Phase 1)",
     "recommendedPadElevationMeters": 3.5,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "Santa Clara",
+    "stateOrProvince": "California",
+    "governingJurisdiction": "Santa Clara Municipal Government & California Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (California District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Santa Clara",
+    "clientsServed": "Santa Clara Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-dwr-sacramento-delta",
@@ -213,15 +330,24 @@
     "basin": "Sacramento River / San Joaquin River",
     "region": "California",
     "country": "US",
-    "coordinates": [-121.50, 38.58],
+    "coordinates": [
+      -121.5,
+      38.58
+    ],
     "riskLevel": "High",
     "hazardType": "Sierra Snowmelt Atmospheric River Flooding & Levee Liquefaction",
-    "elevationMeters": 4.0,
+    "elevationMeters": 4,
     "zoneCode": "FEMA Zone A99 (Levee-Bounded Agricultural Delta)",
     "waterDepth100YrMeters": 3.2,
     "floodDefenseStatus": "Central Valley Flood Protection Plan (CVFPP) Levees",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 24000
+    "radiusMeters": 24000,
+    "nearestCity": "Sacramento",
+    "stateOrProvince": "California",
+    "governingJurisdiction": "Sacramento Municipal Government & California Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (California District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Sacramento",
+    "clientsServed": "Sacramento Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-usace-los-angeles-river",
@@ -229,15 +355,24 @@
     "basin": "Los Angeles River / San Pedro Bay",
     "region": "California",
     "country": "US",
-    "coordinates": [-118.19, 33.77],
+    "coordinates": [
+      -118.19,
+      33.77
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Engineered Channel Flash Overflow & Tsunami Inundation Buffer",
     "elevationMeters": 3.5,
     "zoneCode": "FEMA Zone AE (Riparian Confluence)",
     "waterDepth100YrMeters": 1.8,
     "floodDefenseStatus": "USACE Concrete Floodway & Breakwater Walls",
-    "recommendedPadElevationMeters": 3.0,
-    "radiusMeters": 18000
+    "recommendedPadElevationMeters": 3,
+    "radiusMeters": 18000,
+    "nearestCity": "Los Angeles",
+    "stateOrProvince": "California",
+    "governingJurisdiction": "Los Angeles Municipal Government & California Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (California District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Los Angeles",
+    "clientsServed": "Los Angeles Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-usace-columbia-river",
@@ -245,15 +380,24 @@
     "basin": "Columbia River / Willamette Confluence",
     "region": "Oregon / Washington",
     "country": "US",
-    "coordinates": [-122.68, 45.52],
+    "coordinates": [
+      -122.68,
+      45.52
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Spring Snowmelt Freshet & Upstream Dam Release Overflow",
-    "elevationMeters": 8.0,
+    "elevationMeters": 8,
     "zoneCode": "FEMA Zone AE (Riverine Floodplain)",
     "waterDepth100YrMeters": 2.5,
     "floodDefenseStatus": "Federal Dam Surcharge Regulation & Industrial Dikes",
     "recommendedPadElevationMeters": 3.5,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "Hillsboro",
+    "stateOrProvince": "Oregon / Washington",
+    "governingJurisdiction": "Hillsboro Municipal Government & Oregon / Washington Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Oregon / Washington District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Hillsboro",
+    "clientsServed": "Hillsboro Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fema-seattle-duwamish",
@@ -261,15 +405,24 @@
     "basin": "Duwamish River / Puget Sound",
     "region": "Washington",
     "country": "US",
-    "coordinates": [-122.33, 47.53],
+    "coordinates": [
+      -122.33,
+      47.53
+    ],
     "riskLevel": "Moderate",
     "hazardType": "King County High Tide Coastal & Riverine Convergence",
     "elevationMeters": 3.8,
     "zoneCode": "FEMA Zone AE (Tidal Riverine)",
     "waterDepth100YrMeters": 2.2,
     "floodDefenseStatus": "Industrial Sea Defenses & Pump Vaults",
-    "recommendedPadElevationMeters": 3.0,
-    "radiusMeters": 16000
+    "recommendedPadElevationMeters": 3,
+    "radiusMeters": 16000,
+    "nearestCity": "Seattle",
+    "stateOrProvince": "Washington",
+    "governingJurisdiction": "Seattle Municipal Government & Washington Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Washington District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Seattle",
+    "clientsServed": "Seattle Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-usace-ohio-river",
@@ -277,15 +430,24 @@
     "basin": "Ohio River Basin",
     "region": "Kentucky / Ohio",
     "country": "US",
-    "coordinates": [-85.76, 38.25],
+    "coordinates": [
+      -85.76,
+      38.25
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Prolonged Multi-State Watershed Rain Inundation",
-    "elevationMeters": 135.0,
+    "elevationMeters": 135,
     "zoneCode": "FEMA Zone AE (100-Year Floodway)",
     "waterDepth100YrMeters": 3.6,
     "floodDefenseStatus": "USACE Louisville / Cincinnati Concrete Floodwalls",
-    "recommendedPadElevationMeters": 4.0,
-    "radiusMeters": 20000
+    "recommendedPadElevationMeters": 4,
+    "radiusMeters": 20000,
+    "nearestCity": "Columbus",
+    "stateOrProvince": "Kentucky / Ohio",
+    "governingJurisdiction": "Columbus Municipal Government & Kentucky / Ohio Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Kentucky / Ohio District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Columbus",
+    "clientsServed": "Columbus Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-usace-mississippi-stlouis",
@@ -293,15 +455,24 @@
     "basin": "Mississippi River / Missouri River Confluence",
     "region": "Missouri / Illinois",
     "country": "US",
-    "coordinates": [-90.19, 38.63],
+    "coordinates": [
+      -90.19,
+      38.63
+    ],
     "riskLevel": "High",
     "hazardType": "Centennial Riverine Overflow & Levee Overtopping Hazard",
-    "elevationMeters": 125.0,
+    "elevationMeters": 125,
     "zoneCode": "FEMA Zone AE (Special Flood Hazard Area)",
     "waterDepth100YrMeters": 4.1,
     "floodDefenseStatus": "Metro East 500-Year Accredited Levee System",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 24000
+    "radiusMeters": 24000,
+    "nearestCity": "Aurora",
+    "stateOrProvince": "Missouri / Illinois",
+    "governingJurisdiction": "Aurora Municipal Government & Missouri / Illinois Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Missouri / Illinois District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Aurora",
+    "clientsServed": "Aurora Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-usace-missouri-river",
@@ -309,15 +480,24 @@
     "basin": "Missouri River Basin",
     "region": "Missouri / Kansas",
     "country": "US",
-    "coordinates": [-94.58, 39.10],
+    "coordinates": [
+      -94.58,
+      39.1
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Agricultural Silt Basin Overflow & High-Discharge Flash Crest",
-    "elevationMeters": 225.0,
+    "elevationMeters": 225,
     "zoneCode": "FEMA Zone AE (Riparian Floodway)",
     "waterDepth100YrMeters": 2.8,
     "floodDefenseStatus": "USACE Levee Units / Upstream Reservoir Regulation",
     "recommendedPadElevationMeters": 3.5,
-    "radiusMeters": 20000
+    "radiusMeters": 20000,
+    "nearestCity": "Kansas City",
+    "stateOrProvince": "Missouri / Kansas",
+    "governingJurisdiction": "Kansas City Municipal Government & Missouri / Kansas Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (Missouri / Kansas District) & FEMA Region IV",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Kansas City",
+    "clientsServed": "Kansas City Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-nl-haarlemmermeer-polder",
@@ -325,15 +505,24 @@
     "basin": "Rhine-Meuse-Scheldt Delta / Ringvaart",
     "region": "North Holland",
     "country": "NL",
-    "coordinates": [4.76, 52.31],
+    "coordinates": [
+      4.76,
+      52.31
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Deep Sub-Sea-Level Polder Basin (Critical Dike Breach Risk)",
     "elevationMeters": -3.8,
     "zoneCode": "EU Floods Directive High Vulnerability (Polder -4m)",
     "waterDepth100YrMeters": 4.2,
     "floodDefenseStatus": "Rijkswaterstaat Pumping Stations & Continuous Dike Monitoring",
-    "recommendedPadElevationMeters": 5.0,
-    "radiusMeters": 28000
+    "recommendedPadElevationMeters": 5,
+    "radiusMeters": 28000,
+    "nearestCity": "Haarlemmermeer",
+    "stateOrProvince": "North Holland",
+    "governingJurisdiction": "Gemeente Haarlemmermeer / Province of North Holland",
+    "responsibleFloodControlAuthority": "Rijkswaterstaat & Waterschap Rijnland Flood Defense Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Haarlemmermeer",
+    "clientsServed": "Haarlemmermeer Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-nl-rotterdam-nieuwe-maas",
@@ -341,15 +530,24 @@
     "basin": "Rhine-Meuse Delta / North Sea",
     "region": "South Holland",
     "country": "NL",
-    "coordinates": [4.48, 51.92],
+    "coordinates": [
+      4.48,
+      51.92
+    ],
     "riskLevel": "High",
     "hazardType": "North Sea Tidal Surge & Combined River Rhine Discharge",
     "elevationMeters": 1.5,
     "zoneCode": "EU Floods Directive Coastal Estuary Zone",
     "waterDepth100YrMeters": 3.2,
     "floodDefenseStatus": "Maeslantkering Automated Storm Surge Barrier",
-    "recommendedPadElevationMeters": 4.0,
-    "radiusMeters": 24000
+    "recommendedPadElevationMeters": 4,
+    "radiusMeters": 24000,
+    "nearestCity": "Rotterdam",
+    "stateOrProvince": "South Holland",
+    "governingJurisdiction": "Gemeente Haarlemmermeer / Province of North Holland",
+    "responsibleFloodControlAuthority": "Rijkswaterstaat & Waterschap Rijnland Flood Defense Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Rotterdam",
+    "clientsServed": "Rotterdam Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-uk-thames-estuary",
@@ -357,7 +555,10 @@
     "basin": "River Thames / North Sea",
     "region": "Greater London",
     "country": "GB",
-    "coordinates": [0.01, 51.50],
+    "coordinates": [
+      0.01,
+      51.5
+    ],
     "riskLevel": "High",
     "hazardType": "North Sea Surge Funneling & Estuarine Inundation",
     "elevationMeters": 3.5,
@@ -365,7 +566,13 @@
     "waterDepth100YrMeters": 2.8,
     "floodDefenseStatus": "Thames Barrier & Associated Downstream Floodwalls",
     "recommendedPadElevationMeters": 3.8,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "London",
+    "stateOrProvince": "Greater London",
+    "governingJurisdiction": "London Municipal Government & Greater London Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near London",
+    "clientsServed": "London Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-uk-severn-estuary",
@@ -373,7 +580,10 @@
     "basin": "Severn Estuary / Celtic Sea",
     "region": "South West England / Wales",
     "country": "GB",
-    "coordinates": [-2.70, 51.55],
+    "coordinates": [
+      -2.7,
+      51.55
+    ],
     "riskLevel": "High",
     "hazardType": "Extreme 14-Meter Tidal Range & Atlantic Surge Amplification",
     "elevationMeters": 4.5,
@@ -381,7 +591,13 @@
     "waterDepth100YrMeters": 3.4,
     "floodDefenseStatus": "Coastal Sea Banks & Tidal Sluices",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 25000
+    "radiusMeters": 25000,
+    "nearestCity": "Slough",
+    "stateOrProvince": "South West England / Wales",
+    "governingJurisdiction": "Slough Municipal Government & South West England / Wales Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Slough",
+    "clientsServed": "Slough Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-de-rhine-frankfurt",
@@ -389,15 +605,24 @@
     "basin": "Main River / Rhine Basin",
     "region": "Hesse",
     "country": "DE",
-    "coordinates": [8.68, 50.11],
+    "coordinates": [
+      8.68,
+      50.11
+    ],
     "riskLevel": "Moderate",
     "hazardType": "HQ100 Riverine 100-Year Floodplain Inundation",
-    "elevationMeters": 98.0,
+    "elevationMeters": 98,
     "zoneCode": "German WHG § 76 Designated Floodplain (Überschwemmungsgebiet)",
     "waterDepth100YrMeters": 2.6,
     "floodDefenseStatus": "Urban Mobile Floodwalls & Retention Polders",
     "recommendedPadElevationMeters": 3.2,
-    "radiusMeters": 18000
+    "radiusMeters": 18000,
+    "nearestCity": "Frankfurt am Main",
+    "stateOrProvince": "Hesse",
+    "governingJurisdiction": "Frankfurt am Main Municipal Government & Hesse Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Frankfurt am Main",
+    "clientsServed": "Frankfurt am Main Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-de-elbe-hamburg",
@@ -405,15 +630,24 @@
     "basin": "Elbe River / North Sea",
     "region": "Hamburg",
     "country": "DE",
-    "coordinates": [9.99, 53.55],
+    "coordinates": [
+      9.99,
+      53.55
+    ],
     "riskLevel": "High",
     "hazardType": "North Sea Tidal Sturmflut Surge Inundation",
-    "elevationMeters": 3.0,
+    "elevationMeters": 3,
     "zoneCode": "German WHG Coastal Hazard Zone",
     "waterDepth100YrMeters": 4.1,
     "floodDefenseStatus": "Hafencity Elevated Terraces & Hauptdeichline Levees (8.5m)",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "Hamburg",
+    "stateOrProvince": "Hamburg",
+    "governingJurisdiction": "Hamburg Municipal Government & Hamburg Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Hamburg",
+    "clientsServed": "Hamburg Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-fr-seine-paris",
@@ -421,15 +655,24 @@
     "basin": "Seine River Basin",
     "region": "Île-de-France",
     "country": "FR",
-    "coordinates": [2.35, 48.86],
+    "coordinates": [
+      2.35,
+      48.86
+    ],
     "riskLevel": "Moderate",
     "hazardType": "1910-Centennial Benchmark Major River Overflow",
-    "elevationMeters": 32.0,
+    "elevationMeters": 32,
     "zoneCode": "French PPRI Zone Rouge (Inconstructible Floodplain)",
     "waterDepth100YrMeters": 2.7,
     "floodDefenseStatus": "Four Upstream Grands Lacs de Seine Retention Reservoirs",
     "recommendedPadElevationMeters": 3.2,
-    "radiusMeters": 20000
+    "radiusMeters": 20000,
+    "nearestCity": "Paris",
+    "stateOrProvince": "Île-de-France",
+    "governingJurisdiction": "Paris Municipal Government & Île-de-France Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Paris",
+    "clientsServed": "Paris Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-it-po-valley",
@@ -437,15 +680,24 @@
     "basin": "Po River Basin / Lambro River",
     "region": "Lombardy",
     "country": "IT",
-    "coordinates": [9.19, 45.46],
+    "coordinates": [
+      9.19,
+      45.46
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Alpine Precipitation Runoff & Alluvial Plain Waterlogging",
-    "elevationMeters": 115.0,
+    "elevationMeters": 115,
     "zoneCode": "PAI Lombardia Class R4 (High Hydraulic Hazard)",
     "waterDepth100YrMeters": 2.4,
     "floodDefenseStatus": "AIPO Engineered Embankments & Diversion Canals",
-    "recommendedPadElevationMeters": 3.0,
-    "radiusMeters": 20000
+    "recommendedPadElevationMeters": 3,
+    "radiusMeters": 20000,
+    "nearestCity": "Milan",
+    "stateOrProvince": "Lombardy",
+    "governingJurisdiction": "Milan Municipal Government & Lombardy Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Milan",
+    "clientsServed": "Milan Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-pt-tagus-estuary",
@@ -453,7 +705,10 @@
     "basin": "Tagus Estuary / Atlantic Ocean",
     "region": "Lisbon",
     "country": "PT",
-    "coordinates": [-9.14, 38.72],
+    "coordinates": [
+      -9.14,
+      38.72
+    ],
     "riskLevel": "High",
     "hazardType": "Atlantic Tidal Surge & Marine Seismic Tsunami Runup Risk",
     "elevationMeters": 3.8,
@@ -461,7 +716,13 @@
     "waterDepth100YrMeters": 3.2,
     "floodDefenseStatus": "Urban Waterfront Dikes & Drainage Culverts",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "Madrid",
+    "stateOrProvince": "Lisbon",
+    "governingJurisdiction": "Madrid Municipal Government & Lisbon Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Madrid",
+    "clientsServed": "Madrid Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-ie-liffey-dublin",
@@ -469,7 +730,10 @@
     "basin": "River Liffey / Irish Sea",
     "region": "Dublin",
     "country": "IE",
-    "coordinates": [-6.26, 53.35],
+    "coordinates": [
+      -6.26,
+      53.35
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Irish Sea Winter Storm Surge & Estuary Confluence Overflow",
     "elevationMeters": 2.9,
@@ -477,7 +741,13 @@
     "waterDepth100YrMeters": 2.2,
     "floodDefenseStatus": "Dublin City Council Coastal Flood Defense Walls",
     "recommendedPadElevationMeters": 3.2,
-    "radiusMeters": 18000
+    "radiusMeters": 18000,
+    "nearestCity": "Dublin",
+    "stateOrProvince": "Dublin",
+    "governingJurisdiction": "Dublin Municipal Government & Dublin Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Dublin",
+    "clientsServed": "Dublin Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-jp-tokyo-arakawa-lowland",
@@ -485,7 +755,10 @@
     "basin": "Arakawa River / Tokyo Bay",
     "region": "Kanto",
     "country": "JP",
-    "coordinates": [139.77, 35.68],
+    "coordinates": [
+      139.77,
+      35.68
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Below-High-Tide Zero-Meter Zone & Typhoon Mega-Surge",
     "elevationMeters": -1.2,
@@ -493,7 +766,13 @@
     "waterDepth100YrMeters": 4.5,
     "floodDefenseStatus": "Tokyo Super Levees & G-CANS Metropolitan Underground Discharge Channel",
     "recommendedPadElevationMeters": 5.5,
-    "radiusMeters": 28000
+    "radiusMeters": 28000,
+    "nearestCity": "Tokyo",
+    "stateOrProvince": "Kanto",
+    "governingJurisdiction": "Tokyo Metropolitan Government Disaster Prevention Division",
+    "responsibleFloodControlAuthority": "Ministry of Land, Infrastructure, Transport and Tourism (MLIT Kanto Regional Bureau)",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Tokyo",
+    "clientsServed": "Tokyo Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-jp-osaka-yodo-river",
@@ -501,7 +780,10 @@
     "basin": "Yodo River / Osaka Bay",
     "region": "Kansai",
     "country": "JP",
-    "coordinates": [135.50, 34.69],
+    "coordinates": [
+      135.5,
+      34.69
+    ],
     "riskLevel": "High",
     "hazardType": "Typhoon Jebi-Benchmark Coastal Storm Surge & River Backwater",
     "elevationMeters": 1.5,
@@ -509,7 +791,13 @@
     "waterDepth100YrMeters": 3.5,
     "floodDefenseStatus": "Arch Tide Gates & High-Tide Coastal Barrier System",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 24000
+    "radiusMeters": 24000,
+    "nearestCity": "Osaka",
+    "stateOrProvince": "Kansai",
+    "governingJurisdiction": "Tokyo Metropolitan Government Disaster Prevention Division",
+    "responsibleFloodControlAuthority": "Ministry of Land, Infrastructure, Transport and Tourism (MLIT Kanto Regional Bureau)",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Osaka",
+    "clientsServed": "Osaka Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-sg-kallang-jurong-basin",
@@ -517,15 +805,24 @@
     "basin": "Singapore Strait / Kallang River",
     "region": "South West / Central",
     "country": "SG",
-    "coordinates": [103.85, 1.29],
+    "coordinates": [
+      103.85,
+      1.29
+    ],
     "riskLevel": "High",
     "hazardType": "Tropical Monsoonal Deluge Ponding & Sea Level Rise Exposure",
     "elevationMeters": 3.2,
     "zoneCode": "PUB Designated Low-Lying Coastal Reclamation Corridor",
     "waterDepth100YrMeters": 2.5,
     "floodDefenseStatus": "Marina Barrage Crest Gates & Large-Scale Retention Polders",
-    "recommendedPadElevationMeters": 4.0,
-    "radiusMeters": 20000
+    "recommendedPadElevationMeters": 4,
+    "radiusMeters": 20000,
+    "nearestCity": "Singapore",
+    "stateOrProvince": "South West / Central",
+    "governingJurisdiction": "Singapore Municipal Government & South West / Central Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Singapore",
+    "clientsServed": "Singapore Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-my-johor-strait",
@@ -533,15 +830,24 @@
     "basin": "Straits of Johor / Tebrau River",
     "region": "Johor",
     "country": "MY",
-    "coordinates": [103.76, 1.46],
+    "coordinates": [
+      103.76,
+      1.46
+    ],
     "riskLevel": "High",
     "hazardType": "Northeast Monsoon High-Tide Flash Inundation",
-    "elevationMeters": 4.0,
+    "elevationMeters": 4,
     "zoneCode": "JPS Malaysia 100-Year Floodplain Hazard Map",
     "waterDepth100YrMeters": 2.8,
     "floodDefenseStatus": "Mangrove Buffer Marshes & Tidal Bunds",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 22000
+    "radiusMeters": 22000,
+    "nearestCity": "Singapore",
+    "stateOrProvince": "Johor",
+    "governingJurisdiction": "Singapore Municipal Government & Johor Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Singapore",
+    "clientsServed": "Singapore Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-in-mumbai-mithi-creek",
@@ -549,7 +855,10 @@
     "basin": "Mithi River / Arabian Sea",
     "region": "Maharashtra",
     "country": "IN",
-    "coordinates": [72.87, 19.07],
+    "coordinates": [
+      72.87,
+      19.07
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Extreme Monsoonal Cloudburst (944mm/day Benchmark) & Tidal Lockout",
     "elevationMeters": 3.8,
@@ -557,7 +866,13 @@
     "waterDepth100YrMeters": 4.2,
     "floodDefenseStatus": "Stormwater Pumping Stations (Lovegrove & Cleveland Bunder)",
     "recommendedPadElevationMeters": 5.2,
-    "radiusMeters": 26000
+    "radiusMeters": 26000,
+    "nearestCity": "Mumbai",
+    "stateOrProvince": "Maharashtra",
+    "governingJurisdiction": "Brihanmumbai Municipal Corporation (BMC)",
+    "responsibleFloodControlAuthority": "Maharashtra Water Resources Department & Municipal Corporation of Greater Mumbai (MCGM)",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Mumbai",
+    "clientsServed": "Mumbai Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-in-chennai-adyar-basin",
@@ -565,15 +880,24 @@
     "basin": "Bay of Bengal / Adyar River",
     "region": "Tamil Nadu",
     "country": "IN",
-    "coordinates": [80.27, 13.08],
+    "coordinates": [
+      80.27,
+      13.08
+    ],
     "riskLevel": "High",
     "hazardType": "Northeast Monsoon Cyclone Heavy Rainfall Inundation",
     "elevationMeters": 5.5,
     "zoneCode": "CMDA Vulnerable Waterbody Floodplain",
-    "waterDepth100YrMeters": 3.0,
+    "waterDepth100YrMeters": 3,
     "floodDefenseStatus": "Chembarambakkam Dam Discharge Management & Micro-Canals",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 24000
+    "radiusMeters": 24000,
+    "nearestCity": "Chennai",
+    "stateOrProvince": "Tamil Nadu",
+    "governingJurisdiction": "Brihanmumbai Municipal Corporation (BMC)",
+    "responsibleFloodControlAuthority": "Maharashtra Water Resources Department & Municipal Corporation of Greater Mumbai (MCGM)",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Chennai",
+    "clientsServed": "Chennai Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-th-bangkok-chao-phraya",
@@ -581,7 +905,10 @@
     "basin": "Chao Phraya River / Gulf of Thailand",
     "region": "Central Thailand",
     "country": "TH",
-    "coordinates": [100.50, 13.75],
+    "coordinates": [
+      100.5,
+      13.75
+    ],
     "riskLevel": "Extreme",
     "hazardType": "2011-Mega-Flood Benchmark Tropical Runoff & Land Subsidence",
     "elevationMeters": 0.8,
@@ -589,7 +916,13 @@
     "waterDepth100YrMeters": 3.5,
     "floodDefenseStatus": "King's Dike Floodwall System & Bangkok Pumping Canals",
     "recommendedPadElevationMeters": 4.5,
-    "radiusMeters": 28000
+    "radiusMeters": 28000,
+    "nearestCity": "Singapore",
+    "stateOrProvince": "Central Thailand",
+    "governingJurisdiction": "Singapore Municipal Government & Central Thailand Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Singapore",
+    "clientsServed": "Singapore Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-id-jakarta-north-coast",
@@ -597,15 +930,24 @@
     "basin": "Java Sea / Ciliwung River Basin",
     "region": "DKI Jakarta",
     "country": "ID",
-    "coordinates": [106.85, -6.21],
+    "coordinates": [
+      106.85,
+      -6.21
+    ],
     "riskLevel": "Extreme",
     "hazardType": "Rapid Ground Subsidence (-10cm/yr) & Tidal Sea Wall Breaching",
     "elevationMeters": -1.8,
     "zoneCode": "Bappenas Coastal Hazard Red Zone",
-    "waterDepth100YrMeters": 4.0,
+    "waterDepth100YrMeters": 4,
     "floodDefenseStatus": "National Capital Integrated Coastal Development (NCICD) Seawall",
-    "recommendedPadElevationMeters": 5.0,
-    "radiusMeters": 30000
+    "recommendedPadElevationMeters": 5,
+    "radiusMeters": 30000,
+    "nearestCity": "Singapore",
+    "stateOrProvince": "DKI Jakarta",
+    "governingJurisdiction": "Singapore Municipal Government & DKI Jakarta Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Singapore",
+    "clientsServed": "Singapore Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-cn-pearl-river-delta",
@@ -613,7 +955,10 @@
     "basin": "Pearl River / South China Sea",
     "region": "Guangdong / Hong Kong",
     "country": "CN",
-    "coordinates": [114.17, 22.32],
+    "coordinates": [
+      114.17,
+      22.32
+    ],
     "riskLevel": "High",
     "hazardType": "Super Typhoon Coastal Storm Surge & Estuarine Reclaim Flooding",
     "elevationMeters": 2.9,
@@ -621,7 +966,13 @@
     "waterDepth100YrMeters": 3.6,
     "floodDefenseStatus": "Standardized Seawall Embankments (100-Yr Return Period)",
     "recommendedPadElevationMeters": 4.2,
-    "radiusMeters": 26000
+    "radiusMeters": 26000,
+    "nearestCity": "Hong Kong",
+    "stateOrProvince": "Guangdong / Hong Kong",
+    "governingJurisdiction": "Hong Kong Municipal Government & Guangdong / Hong Kong Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Hong Kong",
+    "clientsServed": "Hong Kong Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-au-sydney-botany-bay",
@@ -629,15 +980,24 @@
     "basin": "Botany Bay / Tasman Sea",
     "region": "New South Wales",
     "country": "AU",
-    "coordinates": [151.21, -33.87],
+    "coordinates": [
+      151.21,
+      -33.87
+    ],
     "riskLevel": "Moderate",
     "hazardType": "East Coast Low Ocean Surge & Lowland Urban Flash Inundation",
     "elevationMeters": 3.2,
     "zoneCode": "NSW SES High Hazard Flood Fringe",
-    "waterDepth100YrMeters": 2.0,
+    "waterDepth100YrMeters": 2,
     "floodDefenseStatus": "Engineered Stormwater Diversion & Tidal Flaps",
-    "recommendedPadElevationMeters": 3.0,
-    "radiusMeters": 20000
+    "recommendedPadElevationMeters": 3,
+    "radiusMeters": 20000,
+    "nearestCity": "Sydney",
+    "stateOrProvince": "New South Wales",
+    "governingJurisdiction": "Sydney Municipal Government & New South Wales Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Sydney",
+    "clientsServed": "Sydney Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   },
   {
     "id": "flood-ae-dubai-lagoon",
@@ -645,14 +1005,23 @@
     "basin": "Persian Gulf / Dubai Creek",
     "region": "Dubai",
     "country": "AE",
-    "coordinates": [55.30, 25.26],
+    "coordinates": [
+      55.3,
+      25.26
+    ],
     "riskLevel": "Moderate",
     "hazardType": "Desert Cloudburst Pluvial Ponding (April 2024 Record Event)",
     "elevationMeters": 2.5,
     "zoneCode": "Dubai Municipality Designated Low-Lying Drainage Area",
     "waterDepth100YrMeters": 1.8,
     "floodDefenseStatus": "Deep Tunnel Stormwater System (Jebel Ali Outfall)",
-    "recommendedPadElevationMeters": 3.0,
-    "radiusMeters": 20000
+    "recommendedPadElevationMeters": 3,
+    "radiusMeters": 20000,
+    "nearestCity": "Dubai",
+    "stateOrProvince": "Dubai",
+    "governingJurisdiction": "Dubai Municipal Government & Dubai Dept of Emergency Management",
+    "responsibleFloodControlAuthority": "US Army Corps of Engineers (USACE) & State Flood Mitigation Directorate",
+    "exposedInfrastructure": "Transmission Substations, Underground Utility Conduits, Fiber Optic Interconnect Vaults & Industrial Waterfront Assets near Dubai",
+    "clientsServed": "Dubai Metropolitan Area, Regional Colocation Campuses & Local Utility Ratepayers"
   }
 ]

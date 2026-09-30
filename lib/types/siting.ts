@@ -55,6 +55,13 @@ export interface FloodHazardZone {
   floodDefenseStatus: string;
   recommendedPadElevationMeters: number;
   radiusMeters?: number;
+  // Institutional Siting & Municipal Risk Metadata
+  nearestCity?: string;
+  stateOrProvince?: string;
+  governingJurisdiction?: string;
+  responsibleFloodControlAuthority?: string;
+  exposedInfrastructure?: string;
+  clientsServed?: string;
 }
 
 export interface SitingScoreBreakdown {
