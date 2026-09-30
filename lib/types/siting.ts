@@ -40,6 +40,23 @@ export interface HazardCorridor {
   coordinates: [number, number][]; // LineString or Polygon
 }
 
+export interface FloodHazardZone {
+  id: string;
+  name: string;
+  basin: string;
+  region: string;
+  country: string;
+  coordinates: [number, number]; // [lon, lat]
+  riskLevel: "Extreme" | "High" | "Moderate";
+  hazardType: string;
+  elevationMeters: number;
+  zoneCode: string; // e.g. "FEMA Zone VE", "FEMA Zone AE", "FEMA Zone Shaded X"
+  waterDepth100YrMeters: number;
+  floodDefenseStatus: string;
+  recommendedPadElevationMeters: number;
+  radiusMeters?: number;
+}
+
 export interface SitingScoreBreakdown {
   powerGridScore: number;       // Weight: 0.25
   telecomFiberScore: number;     // Weight: 0.20

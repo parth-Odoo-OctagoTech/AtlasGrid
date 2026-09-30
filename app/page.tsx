@@ -102,7 +102,7 @@ export default function PowerGridDashboard() {
     queryKey: ["siting-layers"],
     queryFn: async () => {
       const res = await fetch("/api/siting");
-      if (!res.ok) return { darkFiberCorridors: [], seismicFaults: [], flightCorridors: [], hazardCorridors: [], earthquakes: [], cableLandingStations: [] };
+      if (!res.ok) return { darkFiberCorridors: [], seismicFaults: [], flightCorridors: [], hazardCorridors: [], earthquakes: [], cableLandingStations: [], floodHazardZones: [] };
       return res.json();
     },
     staleTime: Infinity,
@@ -114,6 +114,7 @@ export default function PowerGridDashboard() {
   const setHazardCorridors = useGridStore((s) => s.setHazardCorridors);
   const setEarthquakes = useGridStore((s) => s.setEarthquakes);
   const setCableLandingStations = useGridStore((s) => s.setCableLandingStations);
+  const setFloodHazardZones = useGridStore((s) => s.setFloodHazardZones);
 
   useEffect(() => {
     if (sitingData?.darkFiberCorridors) {
@@ -123,8 +124,9 @@ export default function PowerGridDashboard() {
       setHazardCorridors(sitingData.hazardCorridors);
       if (sitingData.earthquakes) setEarthquakes(sitingData.earthquakes);
       if (sitingData.cableLandingStations) setCableLandingStations(sitingData.cableLandingStations);
+      if (sitingData.floodHazardZones) setFloodHazardZones(sitingData.floodHazardZones);
     }
-  }, [sitingData, setDarkFiberCorridors, setSeismicFaults, setFlightCorridors, setHazardCorridors, setEarthquakes, setCableLandingStations]);
+  }, [sitingData, setDarkFiberCorridors, setSeismicFaults, setFlightCorridors, setHazardCorridors, setEarthquakes, setCableLandingStations, setFloodHazardZones]);
 
   useEffect(() => {
     if (summaryData?.data) {

@@ -3,7 +3,7 @@ import { BasemapStyle, FilterState, InfrastructureType, ProjectionMode, Viewport
 import { FuelType, Interconnector, PowerPlant, StationStatus, Substation } from "../types/power-plant";
 import { DataCenter } from "../types/data-center";
 import { GridAlert, GridSummary } from "../types/telemetry";
-import { DarkFiberCorridor, FlightCorridor, HazardCorridor, SeismicFaultLine } from "../types/siting";
+import { DarkFiberCorridor, FlightCorridor, HazardCorridor, SeismicFaultLine, FloodHazardZone } from "../types/siting";
 import { HistoricalEarthquake } from "../types/historical";
 import { CableLandingStation } from "../types/subsea-backhaul";
 
@@ -84,7 +84,7 @@ interface GridStoreState {
   hoveredStation: PowerPlant | null;
   hoveredDataCenter: DataCenter | null;
   hoveredSubstation: Substation | null;
-  hoveredFloodZone: any | null;
+  hoveredFloodZone: FloodHazardZone | null;
   hoveredFiber: DarkFiberCorridor | null;
   hoveredCable: any | null;
   hoveredCls: CableLandingStation | null;
@@ -106,6 +106,7 @@ interface GridStoreState {
   hazardCorridors: HazardCorridor[];
   earthquakes: HistoricalEarthquake[];
   cableLandingStations: CableLandingStation[];
+  floodHazardZones: FloodHazardZone[];
 
   // Crawler Bot State
   crawlerStatus: {
@@ -137,6 +138,7 @@ interface GridStoreState {
   setHazardCorridors: (corridors: HazardCorridor[]) => void;
   setEarthquakes: (earthquakes: HistoricalEarthquake[]) => void;
   setCableLandingStations: (stations: CableLandingStation[]) => void;
+  setFloodHazardZones: (zones: FloodHazardZone[]) => void;
   setDataSourcesOpen: (open: boolean) => void;
   setDossierOpen: (open: boolean) => void;
   openDossierForTarget: (target: {
@@ -162,7 +164,7 @@ interface GridStoreState {
     coords?: { x: number; y: number } | null
   ) => void;
   setHoveredFloodZone: (
-    zone: any | null,
+    zone: FloodHazardZone | null,
     coords?: { x: number; y: number } | null
   ) => void;
   setHoveredFiber: (
@@ -278,6 +280,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   hazardCorridors: [],
   earthquakes: [],
   cableLandingStations: [],
+  floodHazardZones: [],
 
   setDarkFiberCorridors: (darkFiberCorridors) => set({ darkFiberCorridors }),
   setSeismicFaults: (seismicFaults) => set({ seismicFaults }),
@@ -285,6 +288,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setHazardCorridors: (hazardCorridors) => set({ hazardCorridors }),
   setEarthquakes: (earthquakes) => set({ earthquakes }),
   setCableLandingStations: (cableLandingStations) => set({ cableLandingStations }),
+  setFloodHazardZones: (floodHazardZones) => set({ floodHazardZones }),
 
   crawlerStatus: {
     isRunning: false,

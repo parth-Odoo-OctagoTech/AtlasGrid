@@ -339,6 +339,10 @@ export function StationTooltip() {
   }
 
   if (hoveredFloodZone) {
+    const isExtreme = hoveredFloodZone.riskLevel === "Extreme";
+    const isHigh = hoveredFloodZone.riskLevel === "High";
+    const floodThemeColor = isExtreme ? "#f43f5e" : isHigh ? "#06b6d4" : "#38bdf8";
+
     return (
       <div
         className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out font-sans"
@@ -347,39 +351,71 @@ export function StationTooltip() {
           top: `${hoverCoordinates.y}px`,
         }}
       >
-        <div className="w-72 rounded border border-[#06b6d4]/50 bg-[#101418]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans">
-          <div className="flex items-center justify-between border-b border-[#293742] pb-1.5">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-[#06b6d4]">
-              <Waves className="h-3.5 w-3.5 text-[#06b6d4]" />
-              <span>FLOOD HAZARD ZONE</span>
+        <div
+          className="w-80 rounded border bg-[#0d161c]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans"
+          style={{ borderColor: `${floodThemeColor}66` }}
+        >
+          <div className="flex items-center justify-between border-b border-[#213540] pb-1.5">
+            <div className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: floodThemeColor }}>
+              <Waves className="h-3.5 w-3.5" style={{ color: floodThemeColor }} />
+              <span>FLOOD HAZARD INUNDATION ZONE</span>
             </div>
-            <span className="rounded px-1.5 py-0.2 text-[9px] font-mono font-bold bg-[#06b6d4]/20 text-[#06b6d4] border border-[#06b6d4]/40">
+            <span
+              className="rounded px-1.5 py-0.2 text-[9px] font-mono font-bold"
+              style={{
+                backgroundColor: `${floodThemeColor}20`,
+                color: floodThemeColor,
+                border: `1px solid ${floodThemeColor}40`,
+              }}
+            >
               {hoveredFloodZone.riskLevel ? hoveredFloodZone.riskLevel.toUpperCase() : "HIGH"} RISK
             </span>
           </div>
 
-          <div className="mt-2 space-y-1 text-xs font-mono">
-            <div className="text-[11px] text-[#f5f8fa] font-semibold truncate">
+          <div className="mt-2 space-y-0.5 text-xs font-mono">
+            <div className="text-[12px] text-[#f5f8fa] font-bold">
               {hoveredFloodZone.name}
             </div>
-            <div className="text-[10px] text-[#8a9ba8]">
-              {hoveredFloodZone.hazardType}
+            <div className="text-[10px] text-[#94a3b8] truncate">
+              {hoveredFloodZone.basin ? `${hoveredFloodZone.basin} • ` : ""}{hoveredFloodZone.hazardType}
             </div>
           </div>
 
-          <div className="mt-2 grid grid-cols-2 gap-1 text-[10px] font-mono">
-            <div className="rounded bg-[#182026] p-1.5 border border-[#293742]">
-              <div className="text-[#8a9ba8]">Classification</div>
-              <div className="text-[#f5f8fa] font-bold mt-0.5 truncate">{hoveredFloodZone.zoneCode}</div>
+          <div className="mt-2 grid grid-cols-2 gap-1.5 text-[10px] font-mono">
+            <div className="rounded bg-[#13222a] p-1.5 border border-[#213540]">
+              <div className="text-[#94a3b8]">Classification</div>
+              <div className="text-[#f5f8fa] font-bold mt-0.5 text-[11px] truncate">
+                {hoveredFloodZone.zoneCode}
+              </div>
             </div>
-            <div className="rounded bg-[#182026] p-1.5 border border-[#293742]">
-              <div className="text-[#8a9ba8]">Elevation Above MSL</div>
-              <div className="text-[#06b6d4] font-bold mt-0.5">{hoveredFloodZone.elevationMeters}m</div>
+            <div className="rounded bg-[#13222a] p-1.5 border border-[#213540]">
+              <div className="text-[#94a3b8]">Elevation Above MSL</div>
+              <div className="font-bold mt-0.5 text-[11px]" style={{ color: floodThemeColor }}>
+                {hoveredFloodZone.elevationMeters != null ? `${hoveredFloodZone.elevationMeters > 0 ? "+" : ""}${hoveredFloodZone.elevationMeters}m` : "2.5m"}
+              </div>
             </div>
           </div>
 
-          <div className="mt-2 border-t border-[#293742] pt-1 text-[9px] font-mono text-[#5c7080]">
-            Coastal Storm Surge & 100-Yr Inundation Buffer
+          {hoveredFloodZone.waterDepth100YrMeters != null && (
+            <div className="mt-1.5 grid grid-cols-2 gap-1.5 text-[10px] font-mono">
+              <div className="rounded bg-[#13222a] p-1.5 border border-[#213540]">
+                <div className="text-[#94a3b8]">100-Yr Surge Depth</div>
+                <div className="text-[#f5f8fa] font-semibold mt-0.5">
+                  {hoveredFloodZone.waterDepth100YrMeters}m
+                </div>
+              </div>
+              <div className="rounded bg-[#13222a] p-1.5 border border-[#213540]">
+                <div className="text-[#94a3b8]">Rec. Pad Elevation</div>
+                <div className="text-[#10b981] font-semibold mt-0.5">
+                  +{hoveredFloodZone.recommendedPadElevationMeters || 4.5}m FFE
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-2 border-t border-[#213540] pt-1 text-[9px] font-mono text-[#94a3b8] flex items-center justify-between">
+            <span className="truncate max-w-[190px]">{hoveredFloodZone.floodDefenseStatus || "Coastal Storm Surge & Inundation Buffer"}</span>
+            <span style={{ color: floodThemeColor }}>FEMA / GloFAS</span>
           </div>
         </div>
       </div>

@@ -1234,6 +1234,72 @@ assert(stationTooltipVisualSrc.includes("ACTIVE SEISMIC FAULT"), "StationTooltip
 const mapLegendVisualSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapLegend.tsx"), "utf-8");
 assert(mapLegendVisualSrc.includes("Subsea Cables") && mapLegendVisualSrc.includes("Cable Landing Hubs (CLS)"), "MapLegend includes Subsea Cables and CLS hubs");
 assert(mapLegendVisualSrc.includes("USGS Earthquakes M5.0+"), "MapLegend includes USGS Earthquakes M5.0+");
+assert(mapLegendVisualSrc.includes("Flood Inundation & Surge"), "MapLegend includes Flood Inundation & Surge");
+// ---------------------------------------------------------------------------
+// TEST 23: Global Flood Hazard Inundation Overlay (41 Verified FEMA & GloFAS Zones)
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 23: Global Flood Hazard Overlay & Inundation Risk ---");
+
+const floodDataPath = path.join(dataDir, "flood-hazard-zones.json");
+assert(fs.existsSync(floodDataPath), "data/flood-hazard-zones.json exists on disk");
+const floodData = JSON.parse(fs.readFileSync(floodDataPath, "utf-8"));
+assert(Array.isArray(floodData) && floodData.length >= 35, `Global flood hazard zones dataset: ${floodData.length} zones (target >= 35)`);
+
+// Verify critical US & global zones
+const vaBeachSurge = floodData.find((f) => f.id.includes("va-beach") || f.name.includes("Virginia Beach"));
+assert(!!vaBeachSurge, "Virginia Beach Atlantic Hurricane Storm Surge Zone exists");
+assert(vaBeachSurge.zoneCode.includes("VE"), "Virginia Beach is classified as FEMA Zone VE");
+
+const biscayneBay = floodData.find((f) => f.id.includes("biscayne") || f.name.includes("Biscayne"));
+assert(!!biscayneBay, "Biscayne Bay & South Florida King Tide basin exists");
+assert(biscayneBay.riskLevel === "Extreme", "Biscayne Bay is rated Extreme risk");
+
+const haarlemmermeer = floodData.find((f) => f.id.includes("haarlemmermeer") || f.name.includes("Haarlemmermeer"));
+assert(!!haarlemmermeer, "Haarlemmermeer below-sea-level polder basin exists in Netherlands");
+assert(haarlemmermeer.elevationMeters < 0, `Haarlemmermeer elevation is below sea level (${haarlemmermeer.elevationMeters}m)`);
+
+const tokyoLowland = floodData.find((f) => f.id.includes("tokyo") || f.name.includes("Tokyo"));
+assert(!!tokyoLowland, "Tokyo Bay & Arakawa River Zero-Meter Depression exists");
+
+const mumbaiMithi = floodData.find((f) => f.id.includes("mumbai") || f.name.includes("Mumbai"));
+assert(!!mumbaiMithi, "Mumbai Mithi River & Mahim Creek cloudburst basin exists");
+
+// Validate schema integrity
+let validFloodCount = 0;
+for (const f of floodData) {
+  if (
+    f.id &&
+    f.name &&
+    f.basin &&
+    f.country &&
+    Array.isArray(f.coordinates) &&
+    f.coordinates.length === 2 &&
+    typeof f.coordinates[0] === "number" &&
+    typeof f.coordinates[1] === "number" &&
+    f.riskLevel &&
+    f.hazardType &&
+    typeof f.elevationMeters === "number" &&
+    f.zoneCode &&
+    typeof f.waterDepth100YrMeters === "number" &&
+    typeof f.recommendedPadElevationMeters === "number"
+  ) {
+    validFloodCount++;
+  }
+}
+assert(validFloodCount === floodData.length, `100% of flood hazard records pass strict institutional schema validation (${validFloodCount}/${floodData.length})`);
+
+// Verify API route payload
+assert(sitingRouteSrc.includes("floodHazardZones") && sitingRouteSrc.includes("flood-hazard-zones.json"), "api/siting route serves floodHazardZones");
+
+// Verify DeckGLMap integration
+const deckGlFloodSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlFloodSrc.includes("storeFloodHazardZones"), "DeckGLMap loads storeFloodHazardZones");
+assert(deckGlFloodSrc.includes("flood-hazard-zones-outer") && deckGlFloodSrc.includes("flood-hazard-zones-core"), "DeckGLMap renders multi-ring flood surge zones");
+
+// Verify StationTooltip flood rendering
+assert(stationTooltipVisualSrc.includes("FLOOD HAZARD INUNDATION ZONE"), "StationTooltip renders enhanced Flood Hazard Inundation card");
+assert(stationTooltipVisualSrc.includes("100-Yr Surge Depth"), "StationTooltip renders 100-Yr Surge Depth metric");
+assert(stationTooltipVisualSrc.includes("Rec. Pad Elevation"), "StationTooltip renders Recommended Pad Elevation metric");
 
 // ---------------------------------------------------------------------------
 // FINAL SUMMARY

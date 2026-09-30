@@ -130,9 +130,9 @@ export function MapLegend() {
               <div className="border-t border-[#293742] pt-2 flex items-center justify-between text-[9px] text-[#06b6d4]">
                 <div className="flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full border border-[#22d3ee] bg-[#06b6d4]/40 animate-pulse" />
-                  <span>Flood Hazard (100-Yr Surge)</span>
+                  <span>Flood Inundation & Surge</span>
                 </div>
-                <span className="font-bold font-mono">ACTIVE</span>
+                <span className="font-mono text-[#8a9ba8]">41 FEMA/GloFAS Zones</span>
               </div>
             )}
 

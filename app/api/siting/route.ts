@@ -14,6 +14,7 @@ export async function GET() {
     const hazardPath = path.join(dataDir, "hazard-corridors.json");
     const eqPath = path.join(dataDir, "historical-earthquakes.json");
     const clsPath = path.join(dataDir, "cable-landing-stations.json");
+    const floodPath = path.join(dataDir, "flood-hazard-zones.json");
 
     const darkFiberCorridors = fs.existsSync(fiberPath)
       ? JSON.parse(fs.readFileSync(fiberPath, "utf-8"))
@@ -33,6 +34,9 @@ export async function GET() {
     const cableLandingStations = fs.existsSync(clsPath)
       ? JSON.parse(fs.readFileSync(clsPath, "utf-8"))
       : [];
+    const floodHazardZones = fs.existsSync(floodPath)
+      ? JSON.parse(fs.readFileSync(floodPath, "utf-8"))
+      : [];
 
     return NextResponse.json(
       {
@@ -42,6 +46,7 @@ export async function GET() {
         hazardCorridors,
         earthquakes,
         cableLandingStations,
+        floodHazardZones,
         summary: {
           darkFiberCount: darkFiberCorridors.length,
           seismicFaultCount: seismicFaults.length,
@@ -49,6 +54,7 @@ export async function GET() {
           hazardCorridorCount: hazardCorridors.length,
           earthquakeCount: earthquakes.length,
           cableLandingStationCount: cableLandingStations.length,
+          floodHazardZoneCount: floodHazardZones.length,
         },
       },
       {
