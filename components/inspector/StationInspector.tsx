@@ -59,6 +59,7 @@ import { findNearestInterconnectionQueue } from "@/lib/services/interconnection-
 import { findNearestBtmColocation } from "@/lib/services/btm-colocation-service";
 import { analyzeTransmissionRedundancy } from "@/lib/services/transmission-redundancy-service";
 import { findNearestCableLandingStation } from "@/lib/services/subsea-backhaul-service";
+import { getElectricityPriceForLocation } from "@/lib/services/electricity-price-service";
 import {
   getGoogleMapsUrl,
   getOfficialWebsite,
@@ -1205,6 +1206,130 @@ export function StationInspector() {
           );
         })()}
 
+        {/* Institutional Power Tariffs & Regional Electricity Pricing (USD/kWh & USD/MWh) */}
+        {(() => {
+          const elec = getElectricityPriceForLocation(
+            selectedDataCenter.latitude,
+            selectedDataCenter.longitude,
+            selectedDataCenter.country,
+            selectedDataCenter.state || selectedDataCenter.region,
+            selectedDataCenter.estimatedPowerMw || 100
+          );
+          if (!elec) return null;
+          const rec = elec.record;
+          const facilityMw = selectedDataCenter.estimatedPowerMw || 100;
+
+          return (
+            <div className="p-4 border-b border-[#293742] space-y-3 bg-[#11171d]">
+              <div className="text-[10px] uppercase tracking-wider font-mono font-semibold text-[#8a9ba8] flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-[#10b981]">
+                  <DollarSign className="h-3.5 w-3.5 text-[#10b981]" />
+                  <span>Institutional Power Tariffs & OpEx Underwriting</span>
+                </div>
+                <span className="text-[9px] font-mono text-[#10b981] bg-[#101418] px-1.5 py-0.5 rounded border border-[#293742]">
+                  USD / MWh & kWh
+                </span>
+              </div>
+
+              <div className="p-3 rounded bg-[#101418] border border-[#293742] space-y-2.5">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[#f5f8fa]">
+                      <Zap className="h-3.5 w-3.5 text-[#f59e0b]" />
+                      <span>{rec.marketHub}</span>
+                    </div>
+                    <div className="text-[10px] font-mono text-[#8a9ba8] mt-0.5">
+                      {rec.gridOperator} • {elec.isExactJurisdictionMatch ? "Direct Tariff Schedule" : `${elec.distanceKm} km Market Proxy`}
+                    </div>
+                  </div>
+                  <span
+                    className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                      rec.vsVirginiaBenchmarkPct < 0
+                        ? "text-[#10b981] border-[#10b981]/30 bg-[#10b981]/10"
+                        : rec.vsVirginiaBenchmarkPct === 0
+                        ? "text-[#3b82f6] border-[#3b82f6]/30 bg-[#3b82f6]/10"
+                        : "text-[#f59e0b] border-[#f59e0b]/30 bg-[#f59e0b]/10"
+                    }`}
+                  >
+                    {rec.vsVirginiaBenchmarkPct < 0
+                      ? `${Math.abs(rec.vsVirginiaBenchmarkPct)}% Cheaper than Ashburn`
+                      : rec.vsVirginiaBenchmarkPct === 0
+                      ? "Ashburn Benchmark Tier"
+                      : `+${rec.vsVirginiaBenchmarkPct}% vs Ashburn Benchmark`}
+                  </span>
+                </div>
+
+                {/* Primary Tariffs Grid */}
+                <div className="grid grid-cols-3 gap-2 py-2 px-2.5 rounded bg-[#161f27] border border-[#243340] text-center font-mono">
+                  <div>
+                    <div className="text-[9px] text-[#8a9ba8] uppercase">Industrial Tariff</div>
+                    <div className="text-xs font-bold text-[#10b981] mt-0.5">
+                      ${rec.industrialTariffUsdPerKwh.toFixed(3)}
+                    </div>
+                    <div className="text-[9px] text-[#5c7080]">
+                      ${(rec.industrialTariffUsdPerKwh * 1000).toFixed(1)}/MWh
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] text-[#8a9ba8] uppercase">Day-Ahead LMP</div>
+                    <div className="text-xs font-bold text-[#3b82f6] mt-0.5">
+                      ${rec.wholesaleDayAheadUsdPerMwh.toFixed(1)}
+                    </div>
+                    <div className="text-[9px] text-[#5c7080]">Wholesale Spot/MWh</div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] text-[#8a9ba8] uppercase">RTO Wheeling</div>
+                    <div className="text-xs font-bold text-[#f59e0b] mt-0.5">
+                      ${rec.rtoWheelingTariffUsdPerMwh.toFixed(1)}
+                    </div>
+                    <div className="text-[9px] text-[#5c7080]">T&D Delivery/MWh</div>
+                  </div>
+                </div>
+
+                {/* Secondary Underwriting Metrics */}
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono pt-1">
+                  <div>
+                    <span className="text-[#5c7080]">Campus Load ({facilityMw} MW): </span>
+                    <span className="text-[#10b981] font-bold">
+                      ${(elec.estimatedFacilityAnnualCostUsd / 1_000_000).toFixed(1)}M / yr
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Renewable PPA: </span>
+                    <span className="text-[#f5f8fa] font-bold">
+                      ${rec.renewablePpaPriceUsdPerMwh.toFixed(1)} / MWh
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Negative Hours: </span>
+                    <span className="text-[#3b82f6] font-semibold">
+                      {rec.negativePricingHoursPct}% of year
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[#5c7080]">Commercial Retail: </span>
+                    <span className="text-[#8a9ba8]">
+                      ${rec.commercialTariffUsdPerKwh.toFixed(3)} / kWh
+                    </span>
+                  </div>
+                </div>
+
+                {/* Utility Schedule & Source */}
+                <div className="pt-1.5 border-t border-[#202b33] space-y-1 text-[9px] font-mono text-[#8a9ba8]">
+                  <div className="truncate">
+                    <span className="text-[#5c7080]">Utility Schedule: </span>
+                    <span className="text-[#cbd5e1]">{rec.primaryUtilityTariffSchedule}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-[8.5px]">
+                    <span className="text-[#5c7080]">Source: {rec.reportingSource}</span>
+                    <span className="text-[#10b981]">{rec.dataConfidence}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* External References & Online Intelligence (Google Maps, Official Website, Primary Source) */}
         <div className="p-4 border-b border-[#293742] bg-[#141c22]">
           <div className="text-[10px] uppercase tracking-wider font-mono font-semibold text-[#8a9ba8] mb-2.5 flex items-center justify-between">
@@ -1781,6 +1906,51 @@ export function StationInspector() {
                     </div>
                   </>
                 )}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Regional Power Market & Wholesale Pricing */}
+        {(() => {
+          const elec = getElectricityPriceForLocation(
+            selectedStation.latitude,
+            selectedStation.longitude,
+            selectedStation.countryName,
+            selectedStation.gridRegion,
+            selectedStation.capacityMw
+          );
+          if (!elec) return null;
+          const rec = elec.record;
+
+          return (
+            <div className="p-3 bg-[#101418] border border-[#293742] rounded space-y-2">
+              <div className="flex items-center justify-between text-xs font-semibold text-[#f5f8fa]">
+                <div className="flex items-center gap-1.5 text-[#10b981]">
+                  <DollarSign className="h-3.5 w-3.5" />
+                  <span>Regional Wholesale Power Market</span>
+                </div>
+                <span className="text-[9px] font-mono text-[#8a9ba8] bg-[#202b33] px-1.5 py-0.5 rounded border border-[#293742]">
+                  {rec.marketHub}
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-center font-mono py-1.5 px-2 rounded bg-[#161f27] border border-[#243340]">
+                <div>
+                  <div className="text-[9px] text-[#8a9ba8]">Day-Ahead LMP</div>
+                  <div className="text-xs font-bold text-[#3b82f6] mt-0.5">${rec.wholesaleDayAheadUsdPerMwh.toFixed(1)}/MWh</div>
+                </div>
+                <div>
+                  <div className="text-[9px] text-[#8a9ba8]">Industrial Retail</div>
+                  <div className="text-xs font-bold text-[#10b981] mt-0.5">${rec.industrialTariffUsdPerKwh.toFixed(3)}/kWh</div>
+                </div>
+                <div>
+                  <div className="text-[9px] text-[#8a9ba8]">Renewable PPA</div>
+                  <div className="text-xs font-bold text-[#f59e0b] mt-0.5">${rec.renewablePpaPriceUsdPerMwh.toFixed(1)}/MWh</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-[9px] font-mono text-[#8a9ba8]">
+                <span>Grid: {rec.gridOperator}</span>
+                <span className="text-[#3b82f6]">{rec.negativePricingHoursPct}% Neg. Hours</span>
               </div>
             </div>
           );

@@ -43,6 +43,8 @@ interface ChatMessage {
 }
 
 const DEFAULT_SUGGESTIONS = [
+  "What are data sources for electricity prices in USD around the world?",
+  "What is the cheapest electricity price in the world for data centers?",
   "Which US states do not have a data center?",
   "Compare Ashburn vs Dallas for 500MW site selection",
   "What are BTM nuclear co-location economics at Susquehanna?",
@@ -90,6 +92,7 @@ export function AtlasAIChatModal() {
         { label: "India Data Centers (By 2025)", value: 272 },
         { label: "India Total (2026)", value: 290 },
         { label: "Global Data Centers", value: 6686 },
+        { label: "Global Electricity Hubs", value: 26 },
         { label: "Subsea Cable Landing Hubs", value: 10 },
         { label: "BTM Baseload Sites", value: 8 },
       ],

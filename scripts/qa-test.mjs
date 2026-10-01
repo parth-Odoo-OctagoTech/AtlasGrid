@@ -1566,6 +1566,90 @@ const copilotModalStateSrc = fs.readFileSync(path.join(process.cwd(), "component
 assert(copilotModalStateSrc.includes("Which US states do not have a data center?"), "AtlasAIChatModal includes prompt suggestion for zero-DC US states");
 
 // ---------------------------------------------------------------------------
+// TEST 27: Global Electricity Prices Dataset & OpEx Underwriting Engine
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 27: Global Electricity Prices Dataset & OpEx Underwriting ---");
+
+const elecPricesJsonPath = path.join(process.cwd(), "data/global-electricity-prices.json");
+assert(fs.existsSync(elecPricesJsonPath), "global-electricity-prices.json exists on disk");
+
+const globalElecPrices = JSON.parse(fs.readFileSync(elecPricesJsonPath, "utf-8"));
+assert(Array.isArray(globalElecPrices) && globalElecPrices.length >= 26, `Loaded ${globalElecPrices.length} global electricity price records (>= 26)`);
+
+// Verify essential institutional underwriting fields and types
+let invalidElecRecords = 0;
+for (const p of globalElecPrices) {
+  if (
+    !p.id ||
+    !p.country ||
+    !p.countryCode ||
+    !p.stateOrRegion ||
+    !p.marketHub ||
+    typeof p.lat !== "number" ||
+    typeof p.lng !== "number" ||
+    typeof p.industrialTariffUsdPerKwh !== "number" ||
+    p.industrialTariffUsdPerKwh <= 0 ||
+    typeof p.commercialTariffUsdPerKwh !== "number" ||
+    p.commercialTariffUsdPerKwh <= 0 ||
+    typeof p.wholesaleDayAheadUsdPerMwh !== "number" ||
+    p.wholesaleDayAheadUsdPerMwh <= 0 ||
+    typeof p.annualCost100MwUsd !== "number" ||
+    p.annualCost100MwUsd <= 0 ||
+    !p.gridOperator ||
+    !p.primaryUtilityTariffSchedule ||
+    !p.reportingSource ||
+    !p.dataConfidence
+  ) {
+    invalidElecRecords++;
+  }
+}
+assert(invalidElecRecords === 0, "100% of global electricity price records pass strict schema and numeric validation");
+
+// Verify benchmark markets
+const montrealHub = globalElecPrices.find(p => p.id === "elec-ca-qc");
+assert(montrealHub && montrealHub.industrialTariffUsdPerKwh === 0.048, "Montreal, QC correctly quoted at $0.048/kWh (Hydro-Quebec Rate LG)");
+
+const waHub = globalElecPrices.find(p => p.id === "elec-us-wa");
+assert(waHub && waHub.industrialTariffUsdPerKwh === 0.054, "Washington State correctly quoted at $0.054/kWh (Grant/Douglas PUD Hydro)");
+
+const vaHub = globalElecPrices.find(p => p.id === "elec-us-va");
+assert(vaHub && vaHub.industrialTariffUsdPerKwh === 0.082, "Northern Virginia correctly quoted at $0.082/kWh (Dominion Schedule GS-4)");
+
+const txHub = globalElecPrices.find(p => p.id === "elec-us-tx");
+assert(txHub && txHub.industrialTariffUsdPerKwh === 0.068, "Texas ERCOT correctly quoted at $0.068/kWh");
+
+const ukHub = globalElecPrices.find(p => p.id === "elec-eu-gb");
+assert(ukHub && ukHub.industrialTariffUsdPerKwh === 0.235, "London, UK correctly quoted at $0.235/kWh");
+
+const deHub = globalElecPrices.find(p => p.id === "elec-eu-de");
+assert(deHub && deHub.industrialTariffUsdPerKwh === 0.198, "Frankfurt, Germany correctly quoted at $0.198/kWh");
+
+// Verify 100MW campus OpEx calculations: 100MW @ 95% CF = 832,200,000 kWh/yr
+assert(montrealHub.annualCost100MwUsd === 39945600, "Montreal 100MW campus OpEx correctly calculated at $39,945,600/yr");
+assert(vaHub.annualCost100MwUsd === 68240400, "Virginia 100MW campus OpEx correctly calculated at $68,240,400/yr");
+assert(ukHub.annualCost100MwUsd === 195567000, "London 100MW campus OpEx correctly calculated at $195,567,000/yr");
+
+// Verify Service & Route
+const serviceSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/electricity-price-service.ts"), "utf-8");
+assert(serviceSrc.includes("getGlobalElectricityPrices") && serviceSrc.includes("calculateAnnualCampusPowerOpEx") && serviceSrc.includes("getElectricityPriceForLocation"), "electricity-price-service.ts exports all core methods");
+
+const routeSrc = fs.readFileSync(path.join(process.cwd(), "app/api/electricity-prices/route.ts"), "utf-8");
+assert(routeSrc.includes("getElectricityPriceForLocation") && routeSrc.includes("getElectricityPriceSummaryStats"), "app/api/electricity-prices/route.ts implements spatial and summary query endpoints");
+
+// Verify StationInspector & AI Copilot Integration
+const inspectorElecSrc = fs.readFileSync(path.join(process.cwd(), "components/inspector/StationInspector.tsx"), "utf-8");
+assert(inspectorElecSrc.includes("Institutional Power Tariffs & OpEx Underwriting") && inspectorElecSrc.includes("getElectricityPriceForLocation"), "StationInspector renders Institutional Power Tariffs card for data centers");
+assert(inspectorElecSrc.includes("Regional Wholesale Power Market"), "StationInspector renders Regional Wholesale Power Market card for power plants");
+
+const aiEngineElecSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/ai-query-engine.ts"), "utf-8");
+assert(aiEngineElecSrc.includes("Global Electricity Prices & AI Campus Power OpEx Underwriting"), "ai-query-engine grounds prompt in global electricity prices");
+assert(aiEngineElecSrc.includes("isElectricityQuery"), "ai-query-engine implements deterministic query handler for global electricity pricing and OpEx underwriting");
+
+// Verify Daily Harvester Tracking
+const harvesterSrc = fs.readFileSync(path.join(process.cwd(), "scripts/daily-historical-harvester.mjs"), "utf-8");
+assert(harvesterSrc.includes("globalElectricityPricingHubs") && harvesterSrc.includes("globalAvgIndustrialTariffUsdPerKwh"), "daily-historical-harvester records electricity pricing metrics in immutable snapshots");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 
 // ---------------------------------------------------------------------------

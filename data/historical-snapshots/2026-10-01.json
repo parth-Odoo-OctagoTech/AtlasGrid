@@ -1,0 +1,32 @@
+{
+  "snapshotDate": "2026-10-01",
+  "timestamp": "2026-10-01T06:56:58.726Z",
+  "runId": "daily-harvest-2026-10-01-1790837818726",
+  "metrics": {
+    "substationsCount": 3047,
+    "powerPlantsCount": 5415,
+    "totalGenerationCapacityMw": 7194978,
+    "dataCentersCount": 6686,
+    "totalDataCenterPowerMw": 0,
+    "darkFiberCorridorsCount": 30,
+    "floodHazardZonesCount": 41,
+    "historicalEarthquakesIndexed": 945,
+    "historicalStormsIndexed": 460,
+    "interconnectionQueueNodes": 12,
+    "globalElectricityPricingHubs": 26,
+    "activeDisasterAlerts": 0,
+    "newEarthquakesHarvestedToday": 0
+  },
+  "pricingBenchmarks": {
+    "pjmWesternHubLmp": 52.4,
+    "ercotNorthHubLmp": 46.1,
+    "globalAvgIndustrialTariffUsdPerKwh": 0.119
+  },
+  "metadata": {
+    "engineVersion": "2.4.0-institutional",
+    "sourcesPolled": [
+      "OFFLINE_LOCAL_VERIFIED_REGISTRIES"
+    ],
+    "integritySha256": "9269e92c1a2ad7d848c9939c9dcee4b92e446a51322d725065f5ad7cb2f0baf1"
+  }
+}

@@ -31,6 +31,7 @@ const stormsPath = path.join(DATA_DIR, 'historical-storms.json');
 const queuesPath = path.join(DATA_DIR, 'interconnection-queues.json');
 const lmpPath = path.join(DATA_DIR, 'historical-lmp-pricing.json');
 const genPath = path.join(DATA_DIR, 'historical-power-generation.json');
+const elecPricesPath = path.join(DATA_DIR, 'global-electricity-prices.json');
 const manifestPath = path.join(SNAPSHOT_DIR, 'manifest.json');
 
 console.log('🏛️  [AtlasGrid Daily Historical Harvester] Starting daily institutional ingestion cycle...');
@@ -124,12 +125,17 @@ async function run() {
   const queues = fs.existsSync(queuesPath) ? JSON.parse(fs.readFileSync(queuesPath, 'utf-8')) : [];
   const lmps = fs.existsSync(lmpPath) ? JSON.parse(fs.readFileSync(lmpPath, 'utf-8')) : [];
   const gens = fs.existsSync(genPath) ? JSON.parse(fs.readFileSync(genPath, 'utf-8')) : [];
+  const elecPrices = fs.existsSync(elecPricesPath) ? JSON.parse(fs.readFileSync(elecPricesPath, 'utf-8')) : [];
 
   // Compute total fleet MW and averages
   const totalDcPowerMw = dcs.reduce((acc, d) => acc + (d.powerCapacityMw || 0), 0);
   const totalPlantCapacityMw = plants.reduce((acc, p) => acc + (p.capacityMw || 0), 0);
   const avgPjmPrice = lmps[lmps.length - 1]?.hubs?.find(h => h.hubId === 'pjm_west')?.avgLmpUsdPerMwh || 52.4;
   const avgErcotPrice = lmps[lmps.length - 1]?.hubs?.find(h => h.hubId === 'ercot_north')?.avgLmpUsdPerMwh || 46.1;
+
+  const avgGlobalTariff = elecPrices.length > 0
+    ? Math.round((elecPrices.reduce((acc, p) => acc + (p.industrialTariffUsdPerKwh || 0), 0) / elecPrices.length) * 1000) / 1000
+    : 0.112;
 
   // Build daily snapshot payload
   const snapshot = {
@@ -147,12 +153,14 @@ async function run() {
       historicalEarthquakesIndexed: quakes.length,
       historicalStormsIndexed: storms.length,
       interconnectionQueueNodes: queues.length,
+      globalElectricityPricingHubs: elecPrices.length,
       activeDisasterAlerts: liveSync.activeAlerts,
       newEarthquakesHarvestedToday: liveSync.newEarthquakes
     },
     pricingBenchmarks: {
       pjmWesternHubLmp: avgPjmPrice,
-      ercotNorthHubLmp: avgErcotPrice
+      ercotNorthHubLmp: avgErcotPrice,
+      globalAvgIndustrialTariffUsdPerKwh: avgGlobalTariff
     },
     metadata: {
       engineVersion: '2.4.0-institutional',
@@ -193,9 +201,11 @@ async function run() {
     floodHazardZonesCount: floods.length,
     earthquakesCount: quakes.length,
     stormsCount: storms.length,
+    globalElectricityPricingHubs: elecPrices.length,
     totalPlantCapacityMw: Math.round(totalPlantCapacityMw),
     pjmWesternHubLmp: avgPjmPrice,
-    ercotNorthHubLmp: avgErcotPrice
+    ercotNorthHubLmp: avgErcotPrice,
+    globalAvgIndustrialTariffUsdPerKwh: avgGlobalTariff
   });
 
   // Keep latest 365 daily snapshots in manifest

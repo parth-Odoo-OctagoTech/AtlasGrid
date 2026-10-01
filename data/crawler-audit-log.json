@@ -1,5 +1,17 @@
 [
   {
+    "runId": "daily-harvest-2026-10-01-1790837818726",
+    "timestamp": "2026-10-01T06:56:58.726Z",
+    "source": "AtlasGrid Daily Historical Harvester Engine",
+    "status": "success",
+    "discoveredCandidates": 1405,
+    "verifiedNewNodes": 0,
+    "repairedLinks": 0,
+    "maritimePointsRejected": 0,
+    "durationMs": 106,
+    "details": "Daily harvest complete: archived snapshot 2026-10-01 with 3047 substations, 5415 plants, 6686 DCs, 945 earthquakes, 41 flood basins."
+  },
+  {
     "runId": "crawl-2026-10-01T03-11-46-153Z",
     "timestamp": "2026-10-01T03:11:46.396Z",
     "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",

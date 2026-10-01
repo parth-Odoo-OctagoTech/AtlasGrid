@@ -1,5 +1,22 @@
 [
   {
+    "snapshotDate": "2026-10-01",
+    "timestamp": "2026-10-01T06:56:58.726Z",
+    "sha256": "9269e92c1a2ad7d848c9939c9dcee4b92e446a51322d725065f5ad7cb2f0baf1",
+    "substationsCount": 3047,
+    "powerPlantsCount": 5415,
+    "dataCentersCount": 6686,
+    "darkFiberCorridorsCount": 30,
+    "floodHazardZonesCount": 41,
+    "earthquakesCount": 945,
+    "stormsCount": 460,
+    "globalElectricityPricingHubs": 26,
+    "totalPlantCapacityMw": 7194978,
+    "pjmWesternHubLmp": 52.4,
+    "ercotNorthHubLmp": 46.1,
+    "globalAvgIndustrialTariffUsdPerKwh": 0.119
+  },
+  {
     "snapshotDate": "2026-09-30",
     "timestamp": "2026-09-30T06:13:30.431Z",
     "sha256": "d010df47f0c992d394d06389b6df1c327eb082bb490a778dc830560806593e1b",

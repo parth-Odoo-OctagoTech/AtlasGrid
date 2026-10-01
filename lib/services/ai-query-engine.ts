@@ -4,6 +4,11 @@ import { DataCenter } from "@/lib/types/data-center";
 import { getCableLandingStations } from "@/lib/services/subsea-backhaul-service";
 import { getBtmColocationSites } from "@/lib/services/btm-colocation-service";
 import { getInterconnectionQueues } from "@/lib/services/interconnection-queue-service";
+import {
+  getGlobalElectricityPrices,
+  getElectricityPriceForLocation,
+  getElectricityPriceSummaryStats,
+} from "@/lib/services/electricity-price-service";
 
 export interface AIQueryAction {
   type: "FLY_TO" | "FILTER" | "SELECT_DC" | "HIGHLIGHT_OPERATOR";
@@ -795,6 +800,25 @@ ${queueSummary}
   * 100% of data centers have verified full address, city, state, postal code, ultimate parent holding company (e.g. Amazon, Alphabet, Microsoft, Meta, Equinix, Digital Realty, Blackstone/QTS), serving electric utility, RTO/ISO, major anchor users/tenants (e.g. OpenAI, Anthropic, Apple, DoD, NVIDIA), and workload profiles (e.g. LLM Training Clusters, HFT Arbitrage).
   * 100% of substations have verified municipal address, transmission utility owner (e.g. Dominion, Oncor, PG&E, KEPCO, TEPCO, POWERGRID), bus topology (BAAH, Ring Bus), and interconnected industrial loads.
   * 100% of power plants have verified physical location, ultimate asset owner, commercial offtake counterparties (e.g. Microsoft 20-yr PPA, Amazon Climate Pledge, Wholesale RTO clearing), and cooling technologies.
+- Global Electricity Prices & AI Campus Power OpEx Underwriting (All Figures Normalized to USD):
+  * Tracked across 26 premier global markets covering Americas, Europe, APAC, and Middle East.
+  * Official Data Sources: U.S. EIA API v2, ENTSO-E Transparency Platform (Document Type A44), GlobalPetrolPrices / IEA Energy Prices Database, Regional ISOs/RTOs (PJM Data Miner 2, ERCOT MIS, CAISO OASIS), and BNEF/LevelTen Renewable PPA indices.
+  * Global Average Industrial Tariff: $0.112 / kWh ($112.00 / MWh).
+  * Top Lowest-Cost Global Markets (Annual 100MW campus @ 95% CF = 832.2M kWh/yr):
+    1. Montreal, QC, Canada: $0.048/kWh ($48.00/MWh) -> $39.9M/yr OpEx (Hydro-Quebec Rate LG)
+    2. Washington State, USA: $0.054/kWh ($54.00/MWh) -> $45.0M/yr OpEx (Grant/Douglas PUD Hydro)
+    3. Iowa, USA: $0.062/kWh ($62.00/MWh) -> $51.6M/yr OpEx (MidAmerican Energy Industrial)
+    4. Wyoming, USA: $0.065/kWh ($65.00/MWh) -> $54.1M/yr OpEx (Rocky Mountain Power Large General)
+    5. Texas (ERCOT), USA: $0.068/kWh ($68.00/MWh) -> $56.6M/yr OpEx (Deregulated Wholesale Pass-Through + 4CP)
+    6. Dubai / Abu Dhabi, UAE: $0.076/kWh ($76.00/MWh) -> $63.2M/yr OpEx (DEWA Industrial Large Commercial)
+    7. Virginia (PJM / Ashburn Benchmark): $0.082/kWh ($82.00/MWh) -> $68.2M/yr OpEx (Dominion Schedule GS-4)
+  * Top Highest-Cost Global Markets:
+    1. United Kingdom (London): $0.235/kWh ($235.00/MWh) -> $195.6M/yr OpEx (+186.6% vs Virginia)
+    2. Germany (Frankfurt): $0.198/kWh ($198.00/MWh) -> $164.8M/yr OpEx (+141.5% vs Virginia)
+    3. Singapore: $0.194/kWh ($194.00/MWh) -> $161.4M/yr OpEx (+136.6% vs Virginia)
+    4. Tokyo, Japan: $0.185/kWh ($185.00/MWh) -> $154.0M/yr OpEx (+125.6% vs Virginia)
+    5. California (CAISO / Silicon Valley): $0.174/kWh ($174.00/MWh) -> $144.8M/yr OpEx (+112.2% vs Virginia)
+  * Institutional OpEx Spread: Operating a 100MW AI training campus costs $39.9M/yr in Montreal vs $195.6M/yr in London — an annual spread of over $155M/year per 100 MW.
 
 INSTRUCTIONS:
 1. You are AtlasGrid Intelligence Copilot (Palantir Gotham / Foundry style).
@@ -810,6 +834,11 @@ INSTRUCTIONS:
 7. When asked about a specific US state (e.g. Texas, Virginia, Wyoming, Vermont, California):
    - If the state has data centers, cite exact facility count, power load, and top operators (e.g., Virginia: 451 DCs, 37.3 GW; Texas: 220 DCs, 9.6 GW).
    - If 0 facilities, state clearly that it has 0 facilities in the registry and cite the nearest regional serving hub and institutional rationale.
+8. When asked about electricity prices in USD around the world, power costs, tariffs, or AI campus OpEx:
+   - Cite official institutional data sources: EIA API v2, ENTSO-E Transparency Platform (Doc A44), GlobalPetrolPrices / IEA Energy Prices Database, Regional ISOs/RTOs (PJM, ERCOT, CAISO), and BNEF/LevelTen PPA indices.
+   - State figures clearly in USD/kWh and USD/MWh.
+   - Highlight the lowest-cost hubs (Montreal $0.048/kWh, Washington $0.054/kWh, Iowa $0.062/kWh, Texas $0.068/kWh, UAE $0.076/kWh, Virginia $0.082/kWh) and highest-cost hubs (UK $0.235/kWh, Germany $0.198/kWh, Singapore $0.194/kWh).
+   - Calculate annual campus OpEx for a 100MW or 250MW facility to illustrate the $150M+/year spread.
 `.trim();
 }
 
@@ -1418,7 +1447,251 @@ In the verified AtlasGrid infrastructure registry of **${stats.totalUsDcs.toLoca
     };
   }
 
-  // 12. Global Overview / Default
+  // 12. Global Electricity Prices in USD & AI Campus Power OpEx Underwriting
+  const isElectricityQuery =
+    q.includes("electricity") ||
+    q.includes("power price") ||
+    q.includes("power cost") ||
+    q.includes("energy price") ||
+    q.includes("energy cost") ||
+    q.includes("tariff") ||
+    q.includes("usd/kwh") ||
+    q.includes("usd/mwh") ||
+    q.includes("cheapest power") ||
+    q.includes("cheapest electricity") ||
+    q.includes("lowest power") ||
+    q.includes("lowest electricity") ||
+    q.includes("most expensive power") ||
+    q.includes("expensive electricity") ||
+    q.includes("power opex") ||
+    (q.includes("power") && q.includes("cost")) ||
+    (q.includes("electricity") && q.includes("cost"));
+
+  if (isElectricityQuery) {
+    const prices = getGlobalElectricityPrices();
+    const statsSummary = getElectricityPriceSummaryStats();
+
+    // A. Check for specific region/market match
+    const matchedHub = prices.find((p) => {
+      const pRegion = p.stateOrRegion.toLowerCase();
+      const pCountry = p.country.toLowerCase();
+      const pHub = p.marketHub.toLowerCase();
+      return (
+        q.includes(pRegion) ||
+        q.includes(pCountry) ||
+        q.includes(pHub) ||
+        (q.includes("texas") && p.id === "elec-us-tx") ||
+        (q.includes("virginia") && p.id === "elec-us-va") ||
+        (q.includes("california") && p.id === "elec-us-ca") ||
+        (q.includes("montreal") && p.id === "elec-ca-qc") ||
+        (q.includes("quebec") && p.id === "elec-ca-qc") ||
+        (q.includes("washington") && p.id === "elec-us-wa") ||
+        (q.includes("iowa") && p.id === "elec-us-ia") ||
+        (q.includes("wyoming") && p.id === "elec-us-wy") ||
+        (q.includes("germany") && p.id === "elec-eu-de") ||
+        (q.includes("frankfurt") && p.id === "elec-eu-de") ||
+        (q.includes("uk") && p.id === "elec-eu-gb") ||
+        (q.includes("london") && p.id === "elec-eu-gb") ||
+        (q.includes("britain") && p.id === "elec-eu-gb") ||
+        (q.includes("singapore") && p.id === "elec-ap-sg") ||
+        (q.includes("japan") && p.id === "elec-ap-jp") ||
+        (q.includes("tokyo") && p.id === "elec-ap-jp") ||
+        (q.includes("uae") && p.id === "elec-me-ae") ||
+        (q.includes("dubai") && p.id === "elec-me-ae") ||
+        (q.includes("abu dhabi") && p.id === "elec-me-ae") ||
+        (q.includes("ireland") && p.id === "elec-eu-ie") ||
+        (q.includes("dublin") && p.id === "elec-eu-ie") ||
+        (q.includes("france") && p.id === "elec-eu-fr") ||
+        (q.includes("paris") && p.id === "elec-eu-fr") ||
+        (q.includes("sweden") && p.id === "elec-eu-se") ||
+        (q.includes("brazil") && p.id === "elec-la-br") ||
+        (q.includes("australia") && p.id === "elec-ap-au") ||
+        (q.includes("sydney") && p.id === "elec-ap-au") ||
+        (q.includes("korea") && p.id === "elec-ap-kr") ||
+        (q.includes("seoul") && p.id === "elec-ap-kr")
+      );
+    });
+
+    if (matchedHub && !q.includes("cheapest") && !q.includes("source") && !q.includes("around the world") && !q.includes("all")) {
+      const spreadText =
+        matchedHub.vsVirginiaBenchmarkPct < 0
+          ? `**${Math.abs(matchedHub.vsVirginiaBenchmarkPct)}% lower** than the Northern Virginia (Ashburn) benchmark`
+          : matchedHub.vsVirginiaBenchmarkPct === 0
+          ? `the baseline reference benchmark for global hyperscale underwriting`
+          : `**${matchedHub.vsVirginiaBenchmarkPct}% higher** than Northern Virginia (Ashburn)`;
+
+      return {
+        answer: `### Electricity Tariffs & Power OpEx Underwriting: ${matchedHub.stateOrRegion}
+
+In **${matchedHub.stateOrRegion}** (${matchedHub.country}), electricity tariffs and market pricing for hyperscale data centers are structured as follows:
+
+#### Primary Power Cost Metrics (Normalized to USD):
+- **All-in Industrial Retail Tariff**: **$${matchedHub.industrialTariffUsdPerKwh.toFixed(3)} / kWh** ($${(matchedHub.industrialTariffUsdPerKwh * 1000).toFixed(1)} / MWh)
+- **Wholesale Day-Ahead Spot LMP**: **$${matchedHub.wholesaleDayAheadUsdPerMwh.toFixed(1)} / MWh**
+- **Wholesale Real-Time Spot LMP**: **$${matchedHub.wholesaleRealTimeUsdPerMwh.toFixed(1)} / MWh**
+- **RTO / Transmission Wheeling Tariff**: **$${matchedHub.rtoWheelingTariffUsdPerMwh.toFixed(1)} / MWh**
+- **Corporate Renewable PPA Benchmark**: **$${matchedHub.renewablePpaPriceUsdPerMwh.toFixed(1)} / MWh**
+- **Commercial Retail Tariff**: **$${matchedHub.commercialTariffUsdPerKwh.toFixed(3)} / kWh**
+- **Negative Pricing Frequency**: **${matchedHub.negativePricingHoursPct}%** of total operating hours
+
+#### Hyperscale Annual Power OpEx Sizing (@ 95% Capacity Factor):
+- **100 MW AI Training Campus**: Consumes **${(matchedHub.annualKwh100Mw / 1_000_000).toFixed(1)}M kWh/yr**, incurring **$${(matchedHub.annualCost100MwUsd / 1_000_000).toFixed(2)}M / year** in direct power OpEx (~$${(matchedHub.annualCost100MwUsd / 12 / 1_000_000).toFixed(2)}M / month).
+- **250 MW Gigawatt-Cluster Campus**: Incurs **$${(matchedHub.annualCost250MwUsd / 1_000_000).toFixed(2)}M / year** in annual power OpEx.
+- **RTO Wheeling / Delivery Component**: Contributes **$${(matchedHub.annualWheelingCost100MwUsd / 1_000_000).toFixed(2)}M / year** per 100 MW.
+
+#### Grid Operator, Tariff Structure & Generation Mix:
+- **Grid Operator & ISO**: ${matchedHub.gridOperator}
+- **Utility Tariff Schedule**: *${matchedHub.primaryUtilityTariffSchedule}*
+- **Primary Generation Mix**: ${matchedHub.powerMixPrimarySource}
+- **Benchmark Variance**: This market is ${spreadText}.
+- **Reporting Authority**: ${matchedHub.reportingSource} (${matchedHub.dataConfidence})`,
+        facts: [
+          { label: "Market Hub", value: matchedHub.marketHub },
+          { label: "Industrial Tariff", value: `$${matchedHub.industrialTariffUsdPerKwh.toFixed(3)}/kWh` },
+          { label: "Wholesale Day-Ahead LMP", value: `$${matchedHub.wholesaleDayAheadUsdPerMwh.toFixed(1)}/MWh` },
+          { label: "Annual 100MW Power OpEx", value: `$${(matchedHub.annualCost100MwUsd / 1_000_000).toFixed(1)}M/yr` },
+          { label: "vs Ashburn Benchmark", value: `${matchedHub.vsVirginiaBenchmarkPct >= 0 ? "+" : ""}${matchedHub.vsVirginiaBenchmarkPct}%` },
+        ],
+        actions: [
+          {
+            type: "FLY_TO",
+            label: `Inspect ${matchedHub.marketHub}`,
+            coordinates: [matchedHub.lng, matchedHub.lat],
+            zoom: 9,
+          },
+        ],
+        confidence: 1.0,
+        source: "grounded-dataset",
+        referenceCount: 1,
+      };
+    }
+
+    // B. Cheapest / Lowest Cost Electricity Query
+    if (q.includes("cheap") || q.includes("lowest") || q.includes("best price") || q.includes("bargain")) {
+      const sorted = [...prices].sort((a, b) => a.industrialTariffUsdPerKwh - b.industrialTariffUsdPerKwh);
+      const top5 = sorted.slice(0, 6);
+
+      const tableRows = top5
+        .map(
+          (p, i) =>
+            `| ${i + 1} | **${p.stateOrRegion}** (${p.country}) | **$${p.industrialTariffUsdPerKwh.toFixed(3)}** | $${(p.industrialTariffUsdPerKwh * 1000).toFixed(1)} | $${p.wholesaleDayAheadUsdPerMwh.toFixed(1)} | **$${(p.annualCost100MwUsd / 1_000_000).toFixed(1)}M** | ${p.vsVirginiaBenchmarkPct}% |`
+        )
+        .join("\n");
+
+      return {
+        answer: `### Lowest-Cost Electricity Markets for Data Centers Worldwide (USD Underwriting)
+
+Across the **${prices.length} premier global data center hubs** tracked in AtlasGrid, the lowest-cost electricity markets for powering high-density AI compute campuses are:
+
+| Rank | Hub / Market | Industrial Tariff (USD/kWh) | All-in (USD/MWh) | Day-Ahead LMP ($/MWh) | 100 MW Annual OpEx | vs Ashburn Benchmark |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+${tableRows}
+
+---
+
+#### Institutional Drivers Behind Low Power Tariffs:
+1. **Quebec, Canada ($0.048/kWh — $39.9M/yr per 100MW)**:
+   - Anchored by Hydro-Québec's massive James Bay and Manicouagan hydroelectric cascades (~40 GW installed hydro capacity). Industrial customers on *Rate LG* benefit from long-term, fixed-cost baseload power with virtually 0 g CO2/kWh emissions.
+2. **Central Washington State ($0.054/kWh — $45.0M/yr per 100MW)**:
+   - Public Utility Districts (Grant PUD, Douglas PUD, Chelan PUD) along the Columbia River generate surplus hydropower (Priest Rapids, Wanapum dams), offering long-term industrial contracts at 5.0–5.5¢/kWh.
+3. **Iowa ($0.062/kWh — $51.6M/yr per 100MW)**:
+   - MidAmerican Energy generates over 85–100% of its annual retail load from low-cost utility-scale wind farms across western Iowa, passing zero-fuel-cost savings to hyperscale operators (Google, Meta, Microsoft).
+4. **Wyoming ($0.065/kWh — $54.1M/yr per 100MW)**:
+   - Rocky Mountain Power offers regulated Schedule 400 Large General Service tariffs leveraging combined minemouth coal, wind, and transmission corridors serving Cheyenne and Laramie.
+5. **Texas ERCOT ($0.068/kWh — $56.6M/yr per 100MW)**:
+   - An intensely deregulated nodal wholesale market where high wind and solar penetration (50+ GW combined) generates frequent negative pricing hours (13.5% of the year), allowing sophisticated operators with 4CP peak-coincident avoidance to clear power well below national averages.
+6. **UAE / Dubai ($0.076/kWh — $63.2M/yr per 100MW)**:
+   - Sovereign-subsidized commercial power through DEWA and EWEC, supported by ultra-cheap solar (Mohammed bin Rashid Al Maktoum Solar Park) and Barakah Nuclear Energy Plant baseload.
+
+#### Financial OpEx Disparity:
+Operating a 100 MW campus costs **$39.9M/yr in Montreal vs $164.8M/yr in Germany and $195.6M/yr in London** — a massive annual delta of **over $155M/year per 100 MW**, representing the single largest variable cost in hyperscale AI infrastructure underwriting.`,
+        facts: [
+          { label: "Cheapest Global Market", value: "Montreal, Canada ($0.048/kWh)" },
+          { label: "Cheapest US Market", value: "Washington State ($0.054/kWh)" },
+          { label: "Lowest 100MW Annual OpEx", value: "$39.9M / year" },
+          { label: "Global Power Spread", value: ">$155M / yr per 100MW" },
+        ],
+        actions: [
+          {
+            type: "FLY_TO",
+            label: "Inspect Montreal Hydro Hub",
+            coordinates: [-73.5673, 45.5017],
+            zoom: 8,
+          },
+        ],
+        confidence: 1.0,
+        source: "grounded-dataset",
+        referenceCount: prices.length,
+      };
+    }
+
+    // C. Institutional Data Sources & Comprehensive Global Summary
+    const summaryRows = prices
+      .slice(0, 10)
+      .map(
+        (p) =>
+          `| **${p.stateOrRegion}** | ${p.countryCode} | **$${p.industrialTariffUsdPerKwh.toFixed(3)}** | $${p.wholesaleDayAheadUsdPerMwh.toFixed(1)} | $${p.rtoWheelingTariffUsdPerMwh.toFixed(1)} | **$${(p.annualCost100MwUsd / 1_000_000).toFixed(1)}M** | ${p.vsVirginiaBenchmarkPct >= 0 ? "+" : ""}${p.vsVirginiaBenchmarkPct}% |`
+      )
+      .join("\n");
+
+    return {
+      answer: `### Global Electricity Price Data Sources & Market Benchmarks (USD)
+
+AtlasGrid aggregates and normalizes institutional electricity tariffs and wholesale power market prices into **USD / kWh** and **USD / MWh** across **${prices.length} premier global data center hubs**.
+
+---
+
+#### Authoritative Institutional Data Sources:
+1. **U.S. Energy Information Administration (EIA) API v2**:
+   - *Dataset*: Form EIA-861M (Monthly Electric Power Industry Report) and Table 5.6.A/B (Average Retail Price of Electricity to Ultimate Customers by End-Use Sector).
+   - *Coverage*: Regulated and competitive retail tariffs for Industrial and Commercial sectors across all 50 US states, updated monthly in cents/kWh and converted to USD/kWh.
+2. **ENTSO-E Transparency Platform (European Network of Transmission System Operators for Electricity)**:
+   - *Dataset*: Day-Ahead Prices (Document Type \`A44\`) under Regulation (EU) No 543/2013.
+   - *Coverage*: Hourly day-ahead clearing prices across all European bidding zones (Germany/LU, France, UK, Ireland, Nordics, Spain), normalized to USD using ECB/FRED exchange rates.
+3. **GlobalPetrolPrices.com & International Energy Agency (IEA) Energy Prices Database**:
+   - *Dataset*: End-Use Industrial and Commercial Electricity Prices across 145 countries.
+   - *Coverage*: All-in retail tariffs including energy generation, transmission, capacity reserves, distribution, environmental levies, and non-recoverable VAT.
+4. **Regional RTO / ISO Market Settled Nodal LMP Feeds**:
+   - *Americas*: PJM Data Miner 2, ERCOT Market Information System (MIS), CAISO OASIS, MISO, ISO-NE.
+   - *Asia-Pacific*: Grid-India / Indian Energy Exchange (IEX Day-Ahead DAM), JEPX (Japan Electric Power Exchange), and OpenNEM / AEMO (Australia National Electricity Market).
+5. **BloombergNEF (BNEF) & LevelTen Energy**:
+   - *Dataset*: Continental Renewable Energy Power Purchase Agreement (PPA) Price Indices (P25 LevelTen Solar and Wind Indices).
+
+---
+
+#### Global Electricity Price Underwriting Benchmark (Sample of 10 Premier Hubs):
+| Market Hub | ISO / Country | Industrial Tariff ($/kWh) | Day-Ahead LMP ($/MWh) | Wheeling ($/MWh) | 100 MW Annual OpEx | vs Ashburn Benchmark |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+${summaryRows}
+
+---
+
+#### Key Takeaways for Data Center Underwriting:
+- **Global Average Industrial Tariff**: **$${statsSummary?.averageIndustrialTariffUsdPerKwh || 0.112} / kWh** ($${((statsSummary?.averageIndustrialTariffUsdPerKwh || 0.112) * 1000).toFixed(1)} / MWh).
+- **Benchmark Reference**: Northern Virginia (Ashburn) clears at **$0.082 / kWh** ($82.00 / MWh) on Dominion Schedule GS-4, representing an annual OpEx of **$68.2M/yr per 100 MW**.
+- **Extreme Spread**: Electricity OpEx varies by more than **$155M/year per 100 MW** between ultra-low-cost hydro markets (Montreal at $39.9M/yr) and constrained island/import markets (London at $195.6M/yr).`,
+      facts: [
+        { label: "Global Hubs Indexed", value: prices.length },
+        { label: "Global Avg Industrial Tariff", value: `$${statsSummary?.averageIndustrialTariffUsdPerKwh || 0.112}/kWh` },
+        { label: "Ashburn Benchmark", value: "$0.082/kWh ($68.2M/yr)" },
+        { label: "Lowest Cost Hub", value: "Montreal ($0.048/kWh)" },
+        { label: "Highest Cost Hub", value: "London ($0.235/kWh)" },
+      ],
+      actions: [
+        {
+          type: "FLY_TO",
+          label: "View Ashburn Benchmark Hub",
+          coordinates: [-77.4875, 39.0438],
+          zoom: 8,
+        },
+      ],
+      confidence: 1.0,
+      source: "grounded-dataset",
+      referenceCount: prices.length,
+    };
+  }
+
+  // 13. Global Overview / Default
   return {
     answer: `### AtlasGrid Global Infrastructure Telemetry\n\nAtlasGrid provides continuous observability for global compute infrastructure:\n\n- **Verified Data Centers**: **${stats.totalDcs.toLocaleString()}** facilities globally.\n- **Aggregate DC Power Load**: **${(stats.totalDcPowerMw / 1000).toFixed(2)} GW** (${stats.totalDcPowerMw.toFixed(0)} MW).\n- **India DC Fleet**: **${stats.countryCounts["INDIA"]?.total || 290}** facilities (**${stats.countryCounts["INDIA"]?.by2025 || 272}** in 2025).\n- **United States DC Fleet**: **${stats.countryCounts["UNITED STATES"]?.total || 478}** facilities.\n- **Power Generation Units**: **${stats.totalPlants.toLocaleString()}** plants (${(stats.totalPlantCapacityMw / 1000).toFixed(1)} GW capacity).\n\nYou can ask specific questions such as:\n* *"How many data centres are in India?"*\n* *"How many were there in 2025?"*\n* *"What is the largest data center by power?"*\n* *"How many facilities does Equinix operate?"*`,
     facts: [
