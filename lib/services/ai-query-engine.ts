@@ -822,7 +822,15 @@ export function executeDatasetQuery(query: string): AIQueryResponse {
   const dcs = getAllDataCenters();
 
   // 1. India specific queries (Count, 2025, etc.)
-  if (q.includes("india") || q.includes("in ") || q.endsWith(" in")) {
+  const isIndiaQuery =
+    /\bindia\b/i.test(q) ||
+    /\bindian\b/i.test(q) ||
+    /\bbharat\b/i.test(q) ||
+    /\b(in\s+india)\b/i.test(q) ||
+    q.endsWith(" in india") ||
+    /\b(mumbai|delhi|bengaluru|bangalore|hyderabad|chennai|noida)\b/i.test(q);
+
+  if (isIndiaQuery) {
     const ind = stats.countryCounts["INDIA"] || { total: 290, by2025: 272, in2026: 18, totalMw: 14107 };
 
     if (q.includes("2025") || q.includes("year") || q.includes("were there") || q.includes("how many in")) {
