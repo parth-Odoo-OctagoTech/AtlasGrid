@@ -1650,8 +1650,45 @@ const harvesterSrc = fs.readFileSync(path.join(process.cwd(), "scripts/daily-his
 assert(harvesterSrc.includes("globalElectricityPricingHubs") && harvesterSrc.includes("globalAvgIndustrialTariffUsdPerKwh"), "daily-historical-harvester records electricity pricing metrics in immutable snapshots");
 
 // ---------------------------------------------------------------------------
-// FINAL SUMMARY
+// TEST 28: AI Copilot Cyber Security, Zero Key Exposure & Anti-Exfiltration DLP Defense
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 28: AI Copilot Cyber Security, Zero Key Exposure & Anti-Exfiltration ---");
 
+const aiEngineSecureSrc = fs.readFileSync(aiEnginePath, "utf-8");
+const chatRouteSecureSrc = fs.readFileSync(aiChatRoute, "utf-8");
+const chatModalSecureSrc = fs.readFileSync(chatModalPath, "utf-8");
+const testKeySecureSrc = fs.readFileSync(testKeyRoutePath, "utf-8");
+
+// 1. AI Query Engine Grounding Directive & Rule 0
+assert(aiEngineSecureSrc.includes("CYBER DEFENSE MANDATE (STRICT ZERO-EXPOSURE & ANTI-EXFILTRATION POLICY)"), "AI Query Engine specifies non-overridable Cyber Defense Directive");
+assert(aiEngineSecureSrc.includes("isCredentialQuery"), "AI Query Engine implements credential probe detector");
+assert(aiEngineSecureSrc.includes("SEC-403: Zero-Trust Credential Shield"), "AI Query Engine returns SEC-403 security directive on credential probe");
+assert(aiEngineSecureSrc.includes("ISOLATED_ENCRYPTED"), "AI Query Engine marks credential vault status as isolated & encrypted");
+assert(aiEngineSecureSrc.includes("ZERO_EXPOSURE"), "AI Query Engine confirms zero client-side key exposure");
+
+// 2. Chat Route Egress DLP & Ingress Scrubbing
+assert(chatRouteSecureSrc.includes("sanitizeCyberSecurityOutput"), "AI Chat route implements Data Loss Prevention (DLP) egress sanitizer");
+assert(chatRouteSecureSrc.includes("AIza[0-9A-Za-z-_]{35}"), "AI Chat route DLP redacts Google AI Studio key patterns");
+assert(chatRouteSecureSrc.includes("sk-[a-zA-Z0-9]{20,}"), "AI Chat route DLP redacts OpenAI key patterns");
+assert(chatRouteSecureSrc.includes("Bearer [REDACTED_TOKEN]"), "AI Chat route DLP redacts Bearer tokens");
+assert(chatRouteSecureSrc.includes("[REDACTED_ENV_VAR]"), "AI Chat route DLP redacts process.env variable disclosures");
+assert(chatRouteSecureSrc.includes("process.env.GEMINI_API_KEY"), "AI Chat route reads Master Gemini key exclusively from server environment");
+assert(chatRouteSecureSrc.includes("cyberShield"), "AI Chat route annotates responses with cyberShield metadata");
+
+// 3. Test Key Route Security
+assert(testKeySecureSrc.includes("process.env.GEMINI_API_KEY"), "Test Key route verifies server-side vault key");
+assert(testKeySecureSrc.includes("[REDACTED_API_KEY]"), "Test Key route redacts credentials from failure diagnostics");
+
+// 4. UI Copilot Modal Key Protection
+assert(chatModalSecureSrc.includes('removeItem("atlasgrid_gemini_key")'), "Copilot Modal auto-purges legacy keys from localStorage on mount");
+assert(chatModalSecureSrc.includes("Direct Credential Input Intercepted by Cyber Shield") || chatModalSecureSrc.includes("Direct credential pasting or injection is strictly blocked"), "Copilot Modal blocks credential paste attempts");
+assert(!chatModalSecureSrc.includes("apiKey: geminiApiKey"), "Copilot Modal never transmits client API keys in request bodies");
+assert(chatModalSecureSrc.includes("readOnly") && chatModalSecureSrc.includes("disabled"), "Copilot Modal renders key input as read-only and disabled");
+assert(chatModalSecureSrc.includes("select-none"), "Copilot Modal protects masked credentials with select-none to prevent copy-pasting");
+assert(chatModalSecureSrc.includes("CYBER DEFENSE CREDENTIAL SHIELD // SERVER VAULT"), "Copilot Modal displays hardened Server Vault header");
+
+// ---------------------------------------------------------------------------
+// FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");
 console.log(`QA TEST RUN COMPLETED: ${passed} PASSED, ${failed} FAILED`);

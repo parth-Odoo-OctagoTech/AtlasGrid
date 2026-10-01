@@ -7,14 +7,14 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => ({}));
     let { apiKey } = body;
 
-    if (!apiKey || typeof apiKey !== "string") {
+    apiKey = (apiKey || process.env.GEMINI_API_KEY || "").trim().replace(/['"]/g, "");
+
+    if (!apiKey) {
       return NextResponse.json(
-        { valid: false, error: "API key is required." },
+        { valid: false, error: "Server AI Vault key is not configured." },
         { status: 400 }
       );
     }
-
-    apiKey = apiKey.trim().replace(/['"]/g, "");
 
     // 1. Dynamic Model Discovery: query Google API for models accessible to this key
     let candidateModels: string[] = [];
