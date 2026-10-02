@@ -1184,7 +1184,9 @@ In the verified AtlasGrid infrastructure registry of **${stats.totalUsDcs.toLoca
 
   // 3. Operator Queries (Google, AWS, Microsoft, Equinix, CtrlS, etc.)
   for (const [opName, opData] of Object.entries(stats.operatorCounts)) {
-    if (q.includes(opName.toLowerCase())) {
+    if (!opName || opName.length < 2) continue;
+    const opRegex = new RegExp(`(^|\\b)${opName.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\$&")}(\\b|$)`, "i");
+    if (opRegex.test(q)) {
       const topFacility = dcs
         .filter((d) => d.operator.toLowerCase().includes(opName.toLowerCase()))
         .sort((a, b) => (b.estimatedPowerMw || 0) - (a.estimatedPowerMw || 0))[0];
@@ -1215,7 +1217,9 @@ In the verified AtlasGrid infrastructure registry of **${stats.totalUsDcs.toLoca
 
   // 4. Power plants / fuel type queries (Solar, Hydro, Nuclear, Wind, Coal, etc.)
   for (const [fuel, data] of Object.entries(stats.fuelCapacity)) {
-    if (q.includes(fuel.toLowerCase())) {
+    if (!fuel || fuel.length < 2) continue;
+    const fuelRegex = new RegExp(`(^|\\b)${fuel.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\$&")}(\\b|$)`, "i");
+    if (fuelRegex.test(q)) {
       return {
         answer: `### Power Generation Telemetry: ${fuel}\n\n- **Total Registered Plants**: **${data.count}** units.\n- **Aggregate Nameplate Capacity**: **${(data.totalMw / 1000).toFixed(2)} GW** (${data.totalMw.toLocaleString()} MW).\n- **Share of Monitored Grid**: ${((data.totalMw / stats.totalPlantCapacityMw) * 100).toFixed(1)}% of total generation capacity.`,
         facts: [

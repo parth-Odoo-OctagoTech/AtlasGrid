@@ -635,28 +635,29 @@ export function DeckGLMap({
       );
     }
 
-    // 2. 3D Extruded Column Layer
+    // 2. 3D Extruded Column Layer (with Level of Detail LOD optimization)
     if (visualizationMode === "3d_column" && layerVisibility.plants) {
+      const isDetailedLOD = viewport.zoom > 5.0;
       activeLayers.push(
         new ColumnLayer<PowerPlant>({
           id: "plants-columns-3d",
           data: filteredPlants,
           getPosition: (d) => [d.longitude, d.latitude],
-          getElevation: (d) => Math.min(d.currentOutputMw * 40, 750000),
+          getElevation: (d) => Math.min(d.currentOutputMw * (isDetailedLOD ? 40 : 25), 750000),
           getFillColor: (d) => {
             const meta = FUEL_CONFIG[d.fuelType] || FUEL_CONFIG.other;
             return [...meta.rgb, 240] as [number, number, number, number];
           },
           getLineColor: [255, 255, 255, 140],
-          radius: 5000,
-          diskResolution: 16,
-          extruded: true,
+          radius: isDetailedLOD ? 5000 : 8000,
+          diskResolution: isDetailedLOD ? 16 : 6, // 6-sided cylinder on low zoom, 16-sided on high zoom
+          extruded: isDetailedLOD,
           pickable: true,
           autoHighlight: true,
           highlightColor: [56, 189, 248, 230],
           elevationScale: 1,
           updateTriggers: {
-            getElevation: [filteredPlants],
+            getElevation: [filteredPlants, isDetailedLOD],
             getFillColor: [filteredPlants],
           },
         })

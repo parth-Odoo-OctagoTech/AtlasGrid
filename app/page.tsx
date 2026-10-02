@@ -36,7 +36,7 @@ export default function PowerGridDashboard() {
   const { data: stationsData, isLoading: isStationsLoading } = useQuery({
     queryKey: ["stations"],
     queryFn: async () => {
-      const res = await fetch("/api/stations?limit=10000");
+      const res = await fetch("/api/stations?limit=5000");
       if (!res.ok) throw new Error("Failed to load power station nodes");
       return res.json();
     },

@@ -14,16 +14,19 @@ export async function POST(req: NextRequest) {
     message: "Session terminated. Security perimeter engaged.",
   });
 
-  // Clear cookie
-  response.cookies.set({
-    name: "atlasgrid_session",
+  // Clear all auth cookies
+  const cookieOptions = {
     value: "",
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "lax" as const,
     path: "/",
     maxAge: 0,
-  });
+  };
+
+  response.cookies.set({ name: "auth", ...cookieOptions });
+  response.cookies.set({ name: "refresh", ...cookieOptions });
+  response.cookies.set({ name: "atlasgrid_session", ...cookieOptions });
 
   return response;
 }

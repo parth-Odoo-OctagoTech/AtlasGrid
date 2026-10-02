@@ -215,3 +215,74 @@ CREATE TABLE IF NOT EXISTS historical_datacenter_growth (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- =============================================================================
+-- Substations High-Voltage Spatial Grid
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS substations (
+  id VARCHAR(64) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  operator VARCHAR(255) NOT NULL,
+  voltage_kv NUMERIC(8, 2) NOT NULL,
+  country VARCHAR(8) NOT NULL,
+  country_name VARCHAR(128) NOT NULL,
+  grid_region VARCHAR(64) NOT NULL,
+  latitude NUMERIC(10, 6) NOT NULL,
+  longitude NUMERIC(10, 6) NOT NULL,
+  location GEOMETRY(Point, 4326),
+  transformer_bays INT DEFAULT 2,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_substations_location ON substations USING GIST(location);
+CREATE INDEX IF NOT EXISTS idx_substations_voltage ON substations(voltage_kv DESC);
+
+-- =============================================================================
+-- Telemetry Time Series (High-Throughput 2.5s Grid Ticks)
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS telemetry_timeseries (
+  id UUID DEFAULT uuid_generate_v4(),
+  station_id VARCHAR(64) NOT NULL,
+  recorded_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  output_mw NUMERIC(10, 2) NOT NULL,
+  price_mwh NUMERIC(8, 2) NOT NULL,
+  frequency_hz NUMERIC(5, 3) NOT NULL DEFAULT 50.000,
+  capacity_factor NUMERIC(5, 4) NOT NULL DEFAULT 0.85,
+  status VARCHAR(32) NOT NULL DEFAULT 'online',
+  PRIMARY KEY (station_id, recorded_at)
+);
+
+CREATE INDEX IF NOT EXISTS idx_telemetry_timeseries_time ON telemetry_timeseries(recorded_at DESC);
+CREATE INDEX IF NOT EXISTS idx_telemetry_timeseries_station ON telemetry_timeseries(station_id, recorded_at DESC);
+
+-- =============================================================================
+-- Registered Users & Institutional RBAC
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR(255) UNIQUE NOT NULL,
+  company VARCHAR(255),
+  use_case VARCHAR(255),
+  role VARCHAR(50) DEFAULT 'viewer', -- 'viewer', 'analyst', 'admin'
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  last_login TIMESTAMP WITH TIME ZONE
+);
+
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+
+-- =============================================================================
+-- Public Audit Log for API Freshness & Rate-Limit Tracking
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS audit_log (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  endpoint VARCHAR(255) NOT NULL,
+  status INT NOT NULL,
+  latency_ms NUMERIC(10, 2),
+  user_id VARCHAR(255),
+  ip VARCHAR(64),
+  error_message TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_audit_log_created_at ON audit_log(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_audit_log_endpoint ON audit_log(endpoint);
+
