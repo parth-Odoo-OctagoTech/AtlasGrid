@@ -57,7 +57,7 @@ export class EiaClient {
   private async fetchWithRetry(url: string, retries = 3, backoffMs = 500): Promise<Response> {
     for (let attempt = 1; attempt <= retries; attempt++) {
       try {
-        const res = await fetch(url, { next: { revalidate: 300 } });
+        const res = await fetch(url, { next: { revalidate: 300 } } as any);
         if (res.ok) return res;
         if (res.status === 429 || res.status >= 500) {
           throw new Error(`HTTP ${res.status}`);

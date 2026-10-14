@@ -286,3 +286,65 @@ CREATE TABLE IF NOT EXISTS audit_log (
 CREATE INDEX IF NOT EXISTS idx_audit_log_created_at ON audit_log(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_audit_log_endpoint ON audit_log(endpoint);
 
+-- =============================================================================
+-- Cable Landing Stations (CLS) & Subsea Interconnection Spatial Catalog
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS cable_landing_stations (
+  id VARCHAR(64) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  operator VARCHAR(255) NOT NULL,
+  country VARCHAR(8) NOT NULL,
+  country_name VARCHAR(128) NOT NULL,
+  region VARCHAR(128),
+  latitude NUMERIC(10, 6) NOT NULL,
+  longitude NUMERIC(10, 6) NOT NULL,
+  location GEOMETRY(Point, 4326),
+  peeringdb_facility_id INT,
+  ixp_present BOOLEAN DEFAULT FALSE,
+  regulatory_license_id VARCHAR(128),
+  total_lit_capacity_tbps NUMERIC(10, 2) NOT NULL DEFAULT 0.0,
+  active_subsea_systems JSONB DEFAULT '[]'::jsonb,
+  consortium_members JSONB DEFAULT '[]'::jsonb,
+  primary_terrestrial_corridor TEXT,
+  tier1_ixp_distance_km NUMERIC(8, 2) NOT NULL DEFAULT 0.0,
+  rtt_to_london_ms NUMERIC(6, 2) NOT NULL DEFAULT 0.0,
+  rtt_to_frankfurt_ms NUMERIC(6, 2) NOT NULL DEFAULT 0.0,
+  rtt_to_tokyo_ms NUMERIC(6, 2) NOT NULL DEFAULT 0.0,
+  rtt_to_singapore_ms NUMERIC(6, 2) NOT NULL DEFAULT 0.0,
+  station_type VARCHAR(64) DEFAULT 'carrier_neutral_cls',
+  operational_status VARCHAR(32) DEFAULT 'active',
+  power_redundancy VARCHAR(128),
+  terrestrial_dark_fiber_pairs INT,
+  full_address TEXT,
+  city VARCHAR(128),
+  state VARCHAR(128),
+  postal_code VARCHAR(32),
+  owner VARCHAR(255),
+  major_users JSONB DEFAULT '[]'::jsonb,
+  clients_served TEXT,
+  data_sources JSONB DEFAULT '["TeleGeography", "PeeringDB"]'::jsonb,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Populate spatial geometry column automatically
+CREATE OR REPLACE FUNCTION update_cable_landing_station_geom()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.location := ST_SetSRID(ST_MakePoint(NEW.longitude, NEW.latitude), 4326);
+  NEW.updated_at := NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trg_cable_landing_stations_geom
+BEFORE INSERT OR UPDATE ON cable_landing_stations
+FOR EACH ROW EXECUTE FUNCTION update_cable_landing_station_geom();
+
+-- Spatial & Lookup Indexes
+CREATE INDEX IF NOT EXISTS idx_cable_landing_stations_location ON cable_landing_stations USING GIST(location);
+CREATE INDEX IF NOT EXISTS idx_cable_landing_stations_country ON cable_landing_stations(country);
+CREATE INDEX IF NOT EXISTS idx_cable_landing_stations_operator ON cable_landing_stations(operator);
+CREATE INDEX IF NOT EXISTS idx_cable_landing_stations_peeringdb ON cable_landing_stations(peeringdb_facility_id);
+CREATE INDEX IF NOT EXISTS idx_cable_landing_stations_lit_capacity ON cable_landing_stations(total_lit_capacity_tbps DESC);
+

@@ -112,3 +112,88 @@ export async function getLMPGrid(timestamp?: string): Promise<Array<{ latitude: 
     weight: Math.max(5, p.spotPriceMwh + 25),
   }));
 }
+
+/**
+ * Spatial query for Cable Landing Stations (CLS) within a bounding box
+ */
+export async function getCableLandingStationsByBounds(
+  bounds: BoundingBox,
+  options: { limit?: number; offset?: number } = {}
+): Promise<{ stations: any[]; total: number }> {
+  const limit = Math.min(options.limit || 500, 500);
+  const offset = options.offset || 0;
+
+  const sql = `
+    SELECT id, name, operator, country, country_name, region, latitude, longitude,
+           peeringdb_facility_id, ixp_present, regulatory_license_id, total_lit_capacity_tbps,
+           active_subsea_systems, consortium_members, primary_terrestrial_corridor,
+           tier1_ixp_distance_km, rtt_to_london_ms, rtt_to_frankfurt_ms, rtt_to_tokyo_ms, rtt_to_singapore_ms,
+           full_address, city, state, owner, major_users, clients_served
+    FROM cable_landing_stations
+    WHERE ST_Contains(
+      ST_MakeEnvelope($1, $2, $3, $4, 4326),
+      location
+    )
+    ORDER BY total_lit_capacity_tbps DESC
+    LIMIT $5 OFFSET $6;
+  `;
+
+  try {
+    const res = await db.query(sql, [bounds.minLng, bounds.minLat, bounds.maxLng, bounds.maxLat, limit, offset]);
+    if (res.rows && res.rows.length > 0) {
+      return { stations: res.rows, total: res.rowCount };
+    }
+  } catch {
+    // In-memory fallback
+  }
+
+  // Fallback to static CLS dataset
+  const { getCableLandingStations } = await import("../services/subsea-backhaul-service");
+  const all = getCableLandingStations();
+  const filtered = all.filter(
+    (s) =>
+      s.longitude >= bounds.minLng &&
+      s.longitude <= bounds.maxLng &&
+      s.latitude >= bounds.minLat &&
+      s.latitude <= bounds.maxLat
+  );
+
+  return {
+    stations: filtered.slice(offset, offset + limit),
+    total: filtered.length,
+  };
+}
+
+/**
+ * Fast nearest neighbor Cable Landing Station lookup using PostGIS <-> operator
+ */
+export async function getNearestCableLandingStationFromDb(
+  lat: number,
+  lng: number
+): Promise<any | null> {
+  const sql = `
+    SELECT id, name, operator, country, country_name, region, latitude, longitude,
+           peeringdb_facility_id, ixp_present, regulatory_license_id, total_lit_capacity_tbps,
+           active_subsea_systems, consortium_members, primary_terrestrial_corridor,
+           tier1_ixp_distance_km, rtt_to_london_ms, rtt_to_frankfurt_ms, rtt_to_tokyo_ms, rtt_to_singapore_ms,
+           full_address, city, state, owner, major_users, clients_served,
+           ST_Distance(location::geography, ST_SetSRID(ST_MakePoint($1, $2), 4326)::geography) / 1000.0 AS distance_km
+    FROM cable_landing_stations
+    ORDER BY location <-> ST_SetSRID(ST_MakePoint($1, $2), 4326)
+    LIMIT 1;
+  `;
+
+  try {
+    const res = await db.query(sql, [lng, lat]);
+    if (res.rows && res.rows.length > 0) {
+      return res.rows[0];
+    }
+  } catch {
+    // Fallback to in-memory Haversine
+  }
+
+  const { findNearestCableLandingStation } = await import("../services/subsea-backhaul-service");
+  const result = findNearestCableLandingStation(lat, lng);
+  return result ? result.nearestCls : null;
+}
+

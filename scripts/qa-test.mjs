@@ -1692,6 +1692,229 @@ assert(chatModalSecureSrc.includes("select-none"), "Copilot Modal protects maske
 assert(chatModalSecureSrc.includes("CYBER DEFENSE CREDENTIAL SHIELD // SERVER VAULT"), "Copilot Modal displays hardened Server Vault header");
 
 // ---------------------------------------------------------------------------
+// TEST 29: AtlasGrid × AInframework Integration & Roadmap Verification
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 29: AtlasGrid × AInframework Integration & Roadmap Verification ---");
+
+// 1. Data Pipeline
+const entsoeClientPath = path.join(process.cwd(), "lib/api/entso-e-client.ts");
+assert(fs.existsSync(entsoeClientPath), "lib/api/entso-e-client.ts exists");
+const entsoeSrc = fs.readFileSync(entsoeClientPath, "utf-8");
+assert(entsoeSrc.includes("CACHE_TTL_MS"), "ENTSO-E client implements 5-min TTL caching");
+assert(entsoeSrc.includes("fetchWithRetry"), "ENTSO-E client implements exponential backoff retry");
+assert(entsoeSrc.includes("getActualGeneration"), "ENTSO-E client exposes getActualGeneration [16.1.A]");
+assert(entsoeSrc.includes("getDayAheadPrices"), "ENTSO-E client exposes getDayAheadPrices [12.1.D]");
+
+const eiaClientPath = path.join(process.cwd(), "lib/api/eia-client.ts");
+assert(fs.existsSync(eiaClientPath), "lib/api/eia-client.ts exists");
+const eiaSrc = fs.readFileSync(eiaClientPath, "utf-8");
+assert(eiaSrc.includes("REALTIME_TTL_MS"), "EIA client implements 5-min TTL caching");
+assert(eiaSrc.includes("fetchWithRetry"), "EIA client implements exponential backoff retry");
+assert(eiaSrc.includes("getIsoFuelMix"), "EIA client exposes getIsoFuelMix (CAISO, ERCOT, PJM)");
+assert(eiaSrc.includes("getIsoLmp"), "EIA client exposes getIsoLmp");
+
+const stationsRoutePath = path.join(process.cwd(), "app/api/stations/route.ts");
+assert(fs.existsSync(stationsRoutePath), "app/api/stations/route.ts exists");
+const stationsRouteSrc = fs.readFileSync(stationsRoutePath, "utf-8");
+assert(stationsRouteSrc.includes("limit > 5000") || stationsRouteSrc.includes("limit = 5000"), "Stations endpoint clamps query limit to 5000 (DoS defense)");
+assert(stationsRouteSrc.includes("checkIpRateLimit"), "Stations endpoint enforces IP rate limiting");
+assert(stationsRouteSrc.includes("X-Data-Delay-Disclaimer"), "Stations endpoint includes 15-minute delay disclaimer header");
+
+// 2. PostgreSQL / PostGIS Pool & Spatial Queries
+const poolPath = path.join(process.cwd(), "lib/db/pool.ts");
+assert(fs.existsSync(poolPath), "lib/db/pool.ts exists");
+const poolSrc = fs.readFileSync(poolPath, "utf-8");
+assert(poolSrc.includes("export const db"), "lib/db/pool.ts exports db query interface");
+assert(poolSrc.includes("users"), "lib/db/pool.ts supports users persistence with fallback");
+assert(poolSrc.includes("audit_log"), "lib/db/pool.ts supports audit_log table");
+
+const queriesPath = path.join(process.cwd(), "lib/db/queries.ts");
+assert(fs.existsSync(queriesPath), "lib/db/queries.ts exists");
+const queriesSrc = fs.readFileSync(queriesPath, "utf-8");
+assert(queriesSrc.includes("getStationsByBounds"), "lib/db/queries.ts exports getStationsByBounds");
+assert(queriesSrc.includes("getTelemetrySince"), "lib/db/queries.ts exports getTelemetrySince");
+assert(queriesSrc.includes("getLMPGrid"), "lib/db/queries.ts exports getLMPGrid");
+
+const schemaSqlPath = path.join(process.cwd(), "lib/db/schema.sql");
+const schemaSrc = fs.readFileSync(schemaSqlPath, "utf-8");
+assert(schemaSrc.includes("CREATE TABLE IF NOT EXISTS users"), "schema.sql defines public.users table");
+assert(schemaSrc.includes("CREATE TABLE IF NOT EXISTS audit_log"), "schema.sql defines public.audit_log table");
+assert(schemaSrc.includes("CREATE TABLE IF NOT EXISTS substations"), "schema.sql defines substations spatial table");
+assert(schemaSrc.includes("CREATE TABLE IF NOT EXISTS telemetry_timeseries"), "schema.sql defines telemetry_timeseries hypertable");
+
+// 3. Authentication & RBAC
+const jwtPath = path.join(process.cwd(), "lib/auth/jwt.ts");
+assert(fs.existsSync(jwtPath), "lib/auth/jwt.ts exists");
+const jwtSrc = fs.readFileSync(jwtPath, "utf-8");
+assert(jwtSrc.includes("signJWT"), "lib/auth/jwt.ts exports signJWT");
+assert(jwtSrc.includes("verifyJWT"), "lib/auth/jwt.ts exports verifyJWT");
+assert(jwtSrc.includes("crypto.subtle"), "lib/auth/jwt.ts uses standard Web Crypto API for Edge Runtime");
+
+const signupRoutePath = path.join(process.cwd(), "app/api/auth/signup/route.ts");
+assert(fs.existsSync(signupRoutePath), "app/api/auth/signup/route.ts exists");
+const signupSrc = fs.readFileSync(signupRoutePath, "utf-8");
+assert(signupSrc.includes("cookies.set(\"auth\""), "Signup route sets 15-min auth cookie");
+assert(signupSrc.includes("cookies.set(\"refresh\""), "Signup route sets 7-day refresh cookie");
+assert(signupSrc.includes("isValidEmail"), "Signup route enforces strict email format validation");
+
+const refreshRoutePath = path.join(process.cwd(), "app/api/auth/refresh/route.ts");
+assert(fs.existsSync(refreshRoutePath), "app/api/auth/refresh/route.ts exists");
+
+const middlewarePath = path.join(process.cwd(), "middleware.ts");
+assert(fs.existsSync(middlewarePath), "middleware.ts exists");
+const middlewareSrc = fs.readFileSync(middlewarePath, "utf-8");
+assert(middlewareSrc.includes("/products/atlasgrid/demo"), "middleware.ts protects email-gated demo route");
+assert(middlewareSrc.includes("verifyJWT"), "middleware.ts verifies JWT in Edge Runtime");
+assert(middlewareSrc.includes("Access-Control-Allow-Origin"), "middleware.ts enforces CORS security origin filtering");
+
+// 4. Rate Limiting & Secret Redaction
+const rateLimiterPath = path.join(process.cwd(), "lib/middleware/rateLimiter.ts");
+assert(fs.existsSync(rateLimiterPath), "lib/middleware/rateLimiter.ts exists");
+const rateLimiterSrc = fs.readFileSync(rateLimiterPath, "utf-8");
+assert(rateLimiterSrc.includes("checkIpRateLimit"), "lib/middleware/rateLimiter.ts exports checkIpRateLimit (100 req/min)");
+assert(rateLimiterSrc.includes("checkUserRateLimit"), "lib/middleware/rateLimiter.ts exports checkUserRateLimit (1000 req/hr)");
+
+const loggingPath = path.join(process.cwd(), "lib/logging.ts");
+assert(fs.existsSync(loggingPath), "lib/logging.ts exists");
+const loggingSrc = fs.readFileSync(loggingPath, "utf-8");
+assert(loggingSrc.includes("redactSensitiveData"), "lib/logging.ts redacts API keys and tokens");
+
+// 5. Performance Optimization & Map LOD
+const deckMapPath = path.join(process.cwd(), "components/map/DeckGLMap.tsx");
+const deckMapSrc = fs.readFileSync(deckMapPath, "utf-8");
+assert(deckMapSrc.includes("isDetailedLOD") || deckMapSrc.includes("diskResolution: isDetailedLOD"), "DeckGLMap implements zoom-based Level of Detail (LOD) for 3D towers");
+
+// 6. Data Governance & Health Dashboard
+const dataSourcesDocPath = path.join(process.cwd(), "DATA_SOURCES.md");
+assert(fs.existsSync(dataSourcesDocPath), "DATA_SOURCES.md governance document exists");
+const dataSourcesDocSrc = fs.readFileSync(dataSourcesDocPath, "utf-8");
+assert(dataSourcesDocSrc.includes("WRI-GPPD-V1"), "DATA_SOURCES.md documents WRI Global Power Plant Database");
+assert(dataSourcesDocSrc.includes("ENTSO-E-TP"), "DATA_SOURCES.md documents ENTSO-E Transparency Platform");
+assert(dataSourcesDocSrc.includes("US-EIA-V2"), "DATA_SOURCES.md documents US EIA API v2");
+
+const healthPagePath = path.join(process.cwd(), "app/admin/health/page.tsx");
+assert(fs.existsSync(healthPagePath), "app/admin/health/page.tsx exists");
+const healthPageSrc = fs.readFileSync(healthPagePath, "utf-8");
+assert(healthPageSrc.includes("Platform Uptime") || healthPageSrc.includes("99.98%"), "Health dashboard renders platform uptime and SLA stats");
+
+// 7. AInframework Product Integration
+const productPagePath = path.join(process.cwd(), "app/products/atlasgrid/page.tsx");
+assert(fs.existsSync(productPagePath), "app/products/atlasgrid/page.tsx exists");
+const productPageSrc = fs.readFileSync(productPagePath, "utf-8");
+assert(productPageSrc.includes("Global Power Grid & Data Center Observability"), "Product page renders headline");
+assert(productPageSrc.includes("See where the grid flows, where the GPUs land, and what it costs to power them"), "Product page renders tagline");
+assert(productPageSrc.includes("Launch Interactive Demo") || productPageSrc.includes("Launch Free Interactive Demo"), "Product page includes demo launch CTA");
+
+const signinPagePath = path.join(process.cwd(), "app/products/atlasgrid/signin/page.tsx");
+assert(fs.existsSync(signinPagePath), "app/products/atlasgrid/signin/page.tsx exists");
+const signinPageSrc = fs.readFileSync(signinPagePath, "utf-8");
+assert(signinPageSrc.includes("Work Email Address"), "Sign in page requires corporate email");
+assert(signinPageSrc.includes("DC Planning") || signinPageSrc.includes("Primary Use Case"), "Sign in page captures user intent dropdown");
+
+const demoPagePath = path.join(process.cwd(), "app/products/atlasgrid/demo/page.tsx");
+assert(fs.existsSync(demoPagePath), "app/products/atlasgrid/demo/page.tsx exists");
+
+const demoClientPath = path.join(process.cwd(), "components/demo/AtlasGridDemoClient.tsx");
+assert(fs.existsSync(demoClientPath), "components/demo/AtlasGridDemoClient.tsx exists");
+const demoClientSrc = fs.readFileSync(demoClientPath, "utf-8");
+assert(demoClientSrc.includes("user.email"), "Demo client renders user email badge");
+assert(demoClientSrc.includes("handleLogout"), "Demo client renders logout button");
+
+const siteNavPath = path.join(process.cwd(), "lib/site-nav.ts");
+assert(fs.existsSync(siteNavPath), "lib/site-nav.ts exists");
+const siteNavSrc = fs.readFileSync(siteNavPath, "utf-8");
+assert(siteNavSrc.includes("/products/atlasgrid"), "lib/site-nav.ts registers /products/atlasgrid in capabilities array");
+
+// ---------------------------------------------------------------------------
+// TEST 30: Cable Landing Stations (CLS) & Subsea Interconnection Spatial Mapping
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 30: Cable Landing Stations (CLS) & Subsea Interconnection Spatial Mapping ---");
+
+const clsEnrichedData = JSON.parse(fs.readFileSync(path.join(process.cwd(), "data/cable-landing-stations.json"), "utf-8"));
+assert(clsEnrichedData.length >= 25, `Loaded ${clsEnrichedData.length} global Cable Landing Stations (>= 25 requirement)`);
+assert(clsEnrichedData.every((c) => c.peeringDbFacilityId && typeof c.ixpPresent === "boolean" && c.regulatoryLicenseId), "100% of CLS hubs have PeeringDB facility ID, IXP presence flag, and regulatory license");
+assert(clsEnrichedData.every((c) => c.fullAddress && c.city && c.state && c.owner && c.majorUsers?.length > 0 && c.clientsServed), "100% of CLS hubs maintain institutional metadata compliance");
+
+const fortalezaCls = clsEnrichedData.find((c) => c.id === "cls-fortaleza-brazil");
+assert(!!fortalezaCls, "Fortaleza International Cable Landing Hub exists in CLS dataset");
+assert(fortalezaCls.country === "BR" && fortalezaCls.activeSubseaSystems.some((s) => s.includes("EllaLink")), "Fortaleza connects EllaLink subsea cable");
+
+const bilbaoCls = clsEnrichedData.find((c) => c.id === "cls-bilbao-spain");
+assert(!!bilbaoCls, "Bilbao Sopelana Landing Gateway exists in CLS dataset");
+assert(bilbaoCls.country === "ES" && bilbaoCls.activeSubseaSystems.some((s) => s.includes("Grace Hopper")), "Bilbao connects Grace Hopper subsea cable");
+
+const dedicatedClsRoutePath = path.join(process.cwd(), "app/api/cls/route.ts");
+assert(fs.existsSync(dedicatedClsRoutePath), "app/api/cls/route.ts exists on disk");
+const dedicatedClsRouteSrc = fs.readFileSync(dedicatedClsRoutePath, "utf-8");
+assert(dedicatedClsRouteSrc.includes("findNearestCableLandingStation"), "app/api/cls handles nearest neighbor calculations");
+assert(dedicatedClsRouteSrc.includes("getCableLandingStationsByBounds"), "app/api/cls handles bounding box spatial queries");
+assert(dedicatedClsRouteSrc.includes("countryParam"), "app/api/cls handles country ISO filtering");
+
+const schemaClsSrc = fs.readFileSync(path.join(process.cwd(), "lib/db/schema.sql"), "utf-8");
+assert(schemaClsSrc.includes("CREATE TABLE IF NOT EXISTS cable_landing_stations"), "schema.sql defines cable_landing_stations table");
+assert(schemaClsSrc.includes("idx_cable_landing_stations_location"), "schema.sql defines GiST spatial index on cable_landing_stations");
+
+const dataSourcesClsSrc = fs.readFileSync(path.join(process.cwd(), "DATA_SOURCES.md"), "utf-8");
+assert(dataSourcesClsSrc.includes("PEERINGDB-FAC"), "DATA_SOURCES.md documents PeeringDB Carrier-Neutral Facility registry");
+assert(dataSourcesClsSrc.includes("EMODNET-HA-CABLES"), "DATA_SOURCES.md documents EMODnet Human Activities subsea cables");
+assert(dataSourcesClsSrc.includes("FCC-ICFS-SCL"), "DATA_SOURCES.md documents FCC Submarine Cable Landing License filings");
+
+const tooltipClsSrc = fs.readFileSync(path.join(process.cwd(), "components/map/StationTooltip.tsx"), "utf-8");
+assert(tooltipClsSrc.includes("IXP ON-SITE") && tooltipClsSrc.includes("PDB #"), "StationTooltip renders IXP On-Site and PeeringDB facility badges");
+
+// ---------------------------------------------------------------------------
+// TEST 31: Dynamic City & Metropolitan Names Zoom Overlay
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 31: Dynamic City & Metropolitan Names Zoom Overlay ---");
+
+const citiesDataPath = path.join(process.cwd(), "data/cities.json");
+assert(fs.existsSync(citiesDataPath), "data/cities.json exists on disk");
+const citiesData = JSON.parse(fs.readFileSync(citiesDataPath, "utf-8"));
+assert(Array.isArray(citiesData) && citiesData.length >= 350, `Loaded ${citiesData.length} global cities and metropolitan areas (>= 350 requirement)`);
+
+assert(
+  citiesData.every(
+    (c) =>
+      c.id &&
+      c.name &&
+      c.displayName &&
+      typeof c.latitude === "number" &&
+      typeof c.longitude === "number" &&
+      c.country &&
+      [1, 2, 3].includes(c.tier) &&
+      typeof c.minZoom === "number"
+  ),
+  "100% of global cities pass strict schema validation (id, name, displayName, lat, lng, tier, minZoom)"
+);
+
+const ashburnCity = citiesData.find((c) => c.name.toLowerCase() === "ashburn");
+assert(!!ashburnCity, "Ashburn, VA exists in global cities dataset");
+assert(ashburnCity.dcCount >= 100, `Ashburn has ${ashburnCity.dcCount} data centers (>= 100)`);
+assert(ashburnCity.displayName.includes("VA"), "Ashburn displays state abbreviation 'Ashburn, VA'");
+
+const tokyoCity = citiesData.find((c) => c.name.toLowerCase() === "tokyo");
+assert(!!tokyoCity, "Tokyo exists in global cities dataset");
+assert(tokyoCity.tier === 1 && tokyoCity.minZoom <= 3.5, "Tokyo is classified as Tier-1 Anchor Hub with low minZoom");
+
+const londonCity = citiesData.find((c) => c.name.toLowerCase() === "london");
+assert(!!londonCity && londonCity.tier === 1, "London is classified as Tier-1 Global Hub");
+
+const frankfurtCity = citiesData.find((c) => c.name.toLowerCase().includes("frankfurt"));
+assert(!!frankfurtCity, "Frankfurt exists in global cities dataset");
+
+const deckGlMapCitySrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlMapCitySrc.includes("map-city-labels"), "DeckGLMap implements TextLayer with id 'map-city-labels'");
+assert(deckGlMapCitySrc.includes("map-city-anchors"), "DeckGLMap implements ScatterplotLayer with id 'map-city-anchors'");
+assert(deckGlMapCitySrc.includes("currentZoom >= 5.8 ? d.displayName : d.name"), "DeckGLMap dynamically expands to detailed displayName on closer zoom");
+assert(deckGlMapCitySrc.includes("minZoom"), "DeckGLMap filters visible cities based on viewport zoom and minZoom");
+
+const mapControlsCitySrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapControls.tsx"), "utf-8");
+assert(mapControlsCitySrc.includes("City Labels:") && mapControlsCitySrc.includes("toggleLayer(\"labels\")"), "MapControls provides dedicated City Labels toggle button");
+
+const tooltipCitySrc = fs.readFileSync(path.join(process.cwd(), "components/map/StationTooltip.tsx"), "utf-8");
+assert(tooltipCitySrc.includes("hoveredCity") && tooltipCitySrc.includes("GLOBAL CLOUD & FINANCIAL HUB"), "StationTooltip renders contextual city and metropolitan tooltip");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");

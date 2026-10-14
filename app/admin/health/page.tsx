@@ -102,13 +102,62 @@ export default function AdminHealthDashboard() {
   const [sources, setSources] = useState<HealthSource[]>(SOURCES);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastChecked, setLastChecked] = useState(new Date().toLocaleTimeString());
+  const [liveStats, setLiveStats] = useState<{ memoryUsageMb?: number; uptimeSeconds?: number; auditCount?: number } | null>(null);
 
-  const handleRefreshAll = () => {
+  const fetchLiveStatus = async () => {
+    try {
+      const res = await fetch("/api/admin/health/status");
+      if (res.ok) {
+        const json = await res.json();
+        setSources((prev) =>
+          prev.map((s) => {
+            if (s.id === "entsoe" && json.systemHealth?.entsoe) {
+              return {
+                ...s,
+                latencyMs: json.systemHealth.entsoe.latencyMs,
+                status: json.systemHealth.entsoe.status === "healthy" ? "healthy" : "degraded",
+              };
+            }
+            if (s.id === "eia" && json.systemHealth?.eia) {
+              return {
+                ...s,
+                latencyMs: json.systemHealth.eia.latencyMs,
+                status: json.systemHealth.eia.status === "healthy" ? "healthy" : "degraded",
+              };
+            }
+            if (s.id === "postgis_db" && json.systemHealth?.postgis) {
+              return {
+                ...s,
+                latencyMs: json.systemHealth.postgis.latencyMs,
+              };
+            }
+            return s;
+          })
+        );
+        if (json.nodeStats) {
+          setLiveStats({
+            memoryUsageMb: json.nodeStats.memoryUsageMb,
+            uptimeSeconds: json.nodeStats.uptimeSeconds,
+            auditCount: json.systemHealth?.postgis?.auditEntriesCount,
+          });
+        }
+      }
+    } catch {
+      // Keep static baseline
+    }
+  };
+
+  useEffect(() => {
+    fetchLiveStatus();
+    const interval = setInterval(fetchLiveStatus, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleRefreshAll = async () => {
     setIsRefreshing(true);
-    setTimeout(() => {
-      setLastChecked(new Date().toLocaleTimeString());
-      setIsRefreshing(false);
-    }, 800);
+    await fetchLiveStatus();
+    setLastChecked(new Date().toLocaleTimeString());
+    setIsRefreshing(false);
   };
 
   return (

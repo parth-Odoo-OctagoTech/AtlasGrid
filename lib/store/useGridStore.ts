@@ -6,6 +6,7 @@ import { GridAlert, GridSummary } from "../types/telemetry";
 import { DarkFiberCorridor, FlightCorridor, HazardCorridor, SeismicFaultLine, FloodHazardZone } from "../types/siting";
 import { HistoricalEarthquake } from "../types/historical";
 import { CableLandingStation } from "../types/subsea-backhaul";
+import { MapCity } from "../types/city";
 
 export interface LayerVisibility {
   plants: boolean;
@@ -91,6 +92,7 @@ interface GridStoreState {
   hoveredCls: CableLandingStation | null;
   hoveredEarthquake: HistoricalEarthquake | null;
   hoveredFault: SeismicFaultLine | null;
+  hoveredCity: MapCity | null;
   hoverCoordinates: { x: number; y: number } | null;
 
   // Filters
@@ -189,6 +191,10 @@ interface GridStoreState {
     fault: SeismicFaultLine | null,
     coords?: { x: number; y: number } | null
   ) => void;
+  setHoveredCity: (
+    city: MapCity | null,
+    coords?: { x: number; y: number } | null
+  ) => void;
   setVisualizationMode: (mode: VisualizationMode) => void;
   setBasemapStyle: (style: BasemapStyle) => void;
   setProjectionMode: (mode: ProjectionMode) => void;
@@ -272,6 +278,7 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   hoveredCls: null,
   hoveredEarthquake: null,
   hoveredFault: null,
+  hoveredCity: null,
   hoverCoordinates: null,
 
   filters: INITIAL_FILTERS,
@@ -421,6 +428,12 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setHoveredFault: (fault, coords) =>
     set({
       hoveredFault: fault,
+      hoverCoordinates: coords || null,
+    }),
+
+  setHoveredCity: (city, coords) =>
+    set({
+      hoveredCity: city,
       hoverCoordinates: coords || null,
     }),
 

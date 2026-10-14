@@ -2,7 +2,7 @@
 
 import React, { useCallback, useMemo, useRef, useEffect } from "react";
 import DeckGL from "@deck.gl/react";
-import { ScatterplotLayer, ColumnLayer, ArcLayer, BitmapLayer, GeoJsonLayer, PathLayer, PolygonLayer } from "@deck.gl/layers";
+import { ScatterplotLayer, ColumnLayer, ArcLayer, BitmapLayer, GeoJsonLayer, PathLayer, PolygonLayer, TextLayer } from "@deck.gl/layers";
 import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
 import { TileLayer } from "@deck.gl/geo-layers";
 import { MapView, _GlobeView as GlobeView, FlyToInterpolator } from "@deck.gl/core";
@@ -23,6 +23,8 @@ import { MapLegend } from "./MapLegend";
 import { DarkFiberCorridor, SeismicFaultLine, FloodHazardZone } from "@/lib/types/siting";
 import { CableLandingStation } from "@/lib/types/subsea-backhaul";
 import { HistoricalEarthquake } from "@/lib/types/historical";
+import { MapCity } from "@/lib/types/city";
+import rawCities from "@/data/cities.json";
 
 const BASEMAP_STYLES: Record<string, any> = {
   positron: {
@@ -209,6 +211,8 @@ export function DeckGLMap({
   const setHoveredCls = useGridStore((s) => s.setHoveredCls);
   const setHoveredEarthquake = useGridStore((s) => s.setHoveredEarthquake);
   const setHoveredFault = useGridStore((s) => s.setHoveredFault);
+  const setHoveredCity = useGridStore((s) => s.setHoveredCity);
+  const flyToCoordinates = useGridStore((s) => s.flyToCoordinates);
   const filters = useGridStore((s) => s.filters);
 
   const darkFiberCorridors = useGridStore((s) => s.darkFiberCorridors);
@@ -491,6 +495,16 @@ export function DeckGLMap({
     return zones;
   }, [layerVisibility.floodOverlay, storeFloodHazardZones, plants]);
 
+  // Memoized 1-minute time bucket for LMP pricing heatmap weight caching (reused across 24 SSE ticks)
+  const lmpTimeBucket = Math.floor(Date.now() / 60000);
+  const lmpHeatmapData = useMemo(() => {
+    if (visualizationMode !== "heatmap_lmp" && !layerVisibility.lmpHeatmap) return [];
+    return filteredPlants.map((p) => ({
+      position: [p.longitude, p.latitude] as [number, number],
+      weight: Math.max(5, p.spotPriceMwh + 25),
+    }));
+  }, [filteredPlants, visualizationMode, layerVisibility.lmpHeatmap, lmpTimeBucket]);
+
   // Initialize MapLibre GL Basemap (Mercator mode)
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -664,14 +678,14 @@ export function DeckGLMap({
       );
     }
 
-    // 3. LMP Nodal Pricing Heatmap Layer
-    if (visualizationMode === "heatmap_lmp" || layerVisibility.lmpHeatmap) {
+    // 3. LMP Nodal Pricing Heatmap Layer (1-Minute Cache Granularity)
+    if ((visualizationMode === "heatmap_lmp" || layerVisibility.lmpHeatmap) && lmpHeatmapData.length > 0) {
       activeLayers.push(
-        new HeatmapLayer<PowerPlant>({
+        new HeatmapLayer({
           id: "lmp-pricing-heatmap",
-          data: filteredPlants,
-          getPosition: (d) => [d.longitude, d.latitude],
-          getWeight: (d) => Math.max(5, d.spotPriceMwh + 25),
+          data: lmpHeatmapData,
+          getPosition: (d: any) => d.position,
+          getWeight: (d: any) => d.weight,
           radiusPixels: 45,
           intensity: 1.4,
           threshold: 0.05,
@@ -1049,6 +1063,72 @@ export function DeckGLMap({
       );
     }
 
+    // 12. City & Metropolitan Name Labels (Adaptive Zoom-Based Level of Detail)
+    const currentZoom = viewport.zoom ?? 1.8;
+    if (layerVisibility.labels && currentZoom >= 3.0) {
+      const visibleCities = (rawCities as MapCity[]).filter((c) => currentZoom >= c.minZoom);
+      if (visibleCities.length > 0) {
+        // Centroid anchor portal dot
+        activeLayers.push(
+          new ScatterplotLayer<MapCity>({
+            id: "map-city-anchors",
+            data: visibleCities,
+            getPosition: (d) => [d.longitude, d.latitude],
+            getRadius: 2200,
+            radiusMinPixels: 2.5,
+            radiusMaxPixels: 5,
+            getFillColor: isLightMode ? [30, 41, 59, 230] : [0, 229, 255, 230],
+            getLineColor: [255, 255, 255, 255],
+            lineWidthMinPixels: 1,
+            stroked: true,
+            pickable: false,
+          })
+        );
+
+        // High-contrast floating pill text label
+        activeLayers.push(
+          new TextLayer<MapCity>({
+            id: "map-city-labels",
+            data: visibleCities,
+            getPosition: (d) => [d.longitude, d.latitude],
+            getText: (d) => (currentZoom >= 5.8 ? d.displayName : d.name),
+            getSize: () => {
+              if (currentZoom >= 8.5) return 14;
+              if (currentZoom >= 6.0) return 13;
+              if (currentZoom >= 4.5) return 12;
+              return 11;
+            },
+            getColor: isLightMode ? [15, 23, 42, 245] : [248, 250, 252, 245],
+            getTextAnchor: "middle",
+            getAlignmentBaseline: "bottom",
+            getPixelOffset: [0, -7],
+            background: true,
+            getBackgroundColor: isLightMode
+              ? [255, 255, 255, 225]
+              : [10, 16, 26, 230],
+            backgroundPadding: [5, 2.5, 5, 2.5],
+            fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontWeight: 700,
+            outlineWidth: 2,
+            outlineColor: isLightMode ? [255, 255, 255, 255] : [2, 6, 23, 255],
+            billboard: true,
+            sizeScale: 1,
+            sizeMinPixels: 10,
+            sizeMaxPixels: 16,
+            pickable: true,
+            autoHighlight: true,
+            highlightColor: [0, 229, 255, 80],
+            updateTriggers: {
+              getText: [currentZoom >= 5.8],
+              getSize: [currentZoom],
+              getColor: [isLightMode],
+              getBackgroundColor: [isLightMode],
+            },
+          })
+        );
+      }
+    }
+
     return activeLayers;
   }, [
     visualizationMode,
@@ -1074,6 +1154,7 @@ export function DeckGLMap({
     dataCenters,
     filters.infrastructureType,
     floodHazardZones,
+    viewport.zoom,
   ]);
 
   // Click handler on map features
@@ -1086,10 +1167,12 @@ export function DeckGLMap({
           setSelectedDataCenter(info.object as DataCenter);
         } else if ("voltageKv" in info.object) {
           setSelectedSubstation(info.object as Substation);
+        } else if ("minZoom" in info.object) {
+          flyToCoordinates(info.object.longitude, info.object.latitude, Math.max((viewport.zoom || 1.8) + 2.0, 7), 35, 0);
         }
       }
     },
-    [setSelectedStation, setSelectedDataCenter, setSelectedSubstation]
+    [setSelectedStation, setSelectedDataCenter, setSelectedSubstation, flyToCoordinates, viewport.zoom]
   );
 
   // Hover handler for interactive HUD tooltip
@@ -1107,6 +1190,7 @@ export function DeckGLMap({
           setHoveredCls(null, null);
           setHoveredEarthquake(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if ("magnitude" in info.object) {
           setHoveredEarthquake(info.object as HistoricalEarthquake, coords);
           setHoveredStation(null, null);
@@ -1117,6 +1201,7 @@ export function DeckGLMap({
           setHoveredCable(null, null);
           setHoveredCls(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if ("activeSubseaSystems" in info.object) {
           setHoveredCls(info.object as CableLandingStation, coords);
           setHoveredStation(null, null);
@@ -1127,6 +1212,7 @@ export function DeckGLMap({
           setHoveredCable(null, null);
           setHoveredEarthquake(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if ("slipRateMmPerYr" in info.object) {
           setHoveredFault(info.object as SeismicFaultLine, coords);
           setHoveredStation(null, null);
@@ -1137,6 +1223,7 @@ export function DeckGLMap({
           setHoveredCable(null, null);
           setHoveredCls(null, null);
           setHoveredEarthquake(null, null);
+          setHoveredCity(null, null);
         } else if (
           "fiberPairs" in info.object ||
           ("type" in info.object && "operator" in info.object && "coordinates" in info.object && !("activeSubseaSystems" in info.object))
@@ -1150,6 +1237,7 @@ export function DeckGLMap({
           setHoveredCls(null, null);
           setHoveredEarthquake(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if (info.object?.type === "Feature" && info.object?.properties?.name) {
           setHoveredCable(info.object.properties, coords);
           setHoveredStation(null, null);
@@ -1160,6 +1248,7 @@ export function DeckGLMap({
           setHoveredCls(null, null);
           setHoveredEarthquake(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if ("fuelType" in info.object) {
           setHoveredStation(info.object as PowerPlant, coords);
           setHoveredDataCenter(null, null);
@@ -1170,6 +1259,7 @@ export function DeckGLMap({
           setHoveredCls(null, null);
           setHoveredEarthquake(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if ("estimatedPowerMw" in info.object) {
           setHoveredDataCenter(info.object as DataCenter, coords);
           setHoveredStation(null, null);
@@ -1180,10 +1270,23 @@ export function DeckGLMap({
           setHoveredCls(null, null);
           setHoveredEarthquake(null, null);
           setHoveredFault(null, null);
+          setHoveredCity(null, null);
         } else if ("voltageKv" in info.object) {
           setHoveredSubstation(info.object as Substation, coords);
           setHoveredStation(null, null);
           setHoveredDataCenter(null, null);
+          setHoveredFloodZone(null, null);
+          setHoveredFiber(null, null);
+          setHoveredCable(null, null);
+          setHoveredCls(null, null);
+          setHoveredEarthquake(null, null);
+          setHoveredFault(null, null);
+          setHoveredCity(null, null);
+        } else if ("minZoom" in info.object) {
+          setHoveredCity(info.object as MapCity, coords);
+          setHoveredStation(null, null);
+          setHoveredDataCenter(null, null);
+          setHoveredSubstation(null, null);
           setHoveredFloodZone(null, null);
           setHoveredFiber(null, null);
           setHoveredCable(null, null);
@@ -1201,6 +1304,7 @@ export function DeckGLMap({
         setHoveredCls(null, null);
         setHoveredEarthquake(null, null);
         setHoveredFault(null, null);
+        setHoveredCity(null, null);
       }
     },
     [
@@ -1213,6 +1317,7 @@ export function DeckGLMap({
       setHoveredCls,
       setHoveredEarthquake,
       setHoveredFault,
+      setHoveredCity,
     ]
   );
 

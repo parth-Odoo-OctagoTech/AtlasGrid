@@ -68,7 +68,7 @@ class DatabasePool {
       return this.handleUsersQuery<T>(trimmed, params);
     }
 
-    // Check for Audit Log operations
+    // Check for audit_log table operations
     if (trimmed.toUpperCase().includes("AUDIT_LOG")) {
       return this.handleAuditLogQuery<T>(trimmed, params);
     }

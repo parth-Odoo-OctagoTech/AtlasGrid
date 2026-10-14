@@ -22,7 +22,7 @@ export async function fetchFromSupabase<T>(table: string, queryParams: string = 
         Authorization: `Bearer ${supabaseConfig.anonKey}`,
       },
       next: { revalidate: 3600 },
-    });
+    } as any);
     if (!res.ok) {
       return null;
     }

@@ -42,6 +42,8 @@ export const capabilities: NavItem[] = [
 export const mainNav: NavItem[] = [
   { href: "/products/atlasgrid", name: "AtlasGrid" },
   { href: "/products/atlasgrid/demo", name: "Interactive Map" },
+  { href: "/products/atlasgrid/case-study", name: "Case Study" },
+  { href: "/products/atlasgrid/pricing", name: "Pricing" },
   { href: "/admin/health", name: "Grid Health & Freshness" },
   { href: "/products/atlasgrid/signin", name: "Sign In" },
 ];

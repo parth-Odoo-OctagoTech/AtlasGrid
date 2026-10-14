@@ -40,13 +40,17 @@ export default function AtlasGridProductPage() {
             </div>
           </div>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-7 md:flex">
             <a href="#features" className="text-xs font-mono text-slate-400 hover:text-white transition-colors">Features</a>
             <a href="#use-cases" className="text-xs font-mono text-slate-400 hover:text-white transition-colors">Use Cases</a>
-            <a href="#how-it-works" className="text-xs font-mono text-slate-400 hover:text-white transition-colors">Workflow</a>
-            <a href="#data-sources" className="text-xs font-mono text-slate-400 hover:text-white transition-colors">Data Sources</a>
+            <Link href="/products/atlasgrid/case-study" className="text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors">
+              Case Study
+            </Link>
+            <Link href="/products/atlasgrid/pricing" className="text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors">
+              Pricing
+            </Link>
             <Link href="/admin/health" className="text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors">
-              Health Dashboard
+              Health
             </Link>
           </nav>
 
@@ -114,19 +118,25 @@ export default function AtlasGridProductPage() {
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-wrap items-center gap-4 pt-4">
+                <div className="flex flex-wrap items-center gap-3 pt-4">
                   <Link
                     href="/products/atlasgrid/demo"
-                    className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-cyan-500/25 hover:opacity-95 transition-all"
+                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white shadow-xl shadow-cyan-500/25 hover:opacity-95 transition-all"
                   >
                     Launch Interactive Demo
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                   <Link
-                    href="/DATA_SOURCES.md"
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-6 py-3.5 text-sm font-medium text-slate-300 hover:border-slate-600 hover:text-white transition-all"
+                    href="/products/atlasgrid/case-study"
+                    className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-950/20 px-5 py-3.5 text-xs sm:text-sm font-medium text-cyan-300 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all"
                   >
-                    Data Governance & SLAs
+                    Read Case Study
+                  </Link>
+                  <Link
+                    href="/products/atlasgrid/pricing"
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-5 py-3.5 text-xs sm:text-sm font-medium text-slate-300 hover:border-slate-600 hover:text-white transition-all"
+                  >
+                    Pricing & Tiers
                   </Link>
                 </div>
               </div>

@@ -50,7 +50,7 @@ export class EntsoEClient {
         const res = await fetch(url, {
           headers: { Accept: "application/xml" },
           next: { revalidate: 300 },
-        });
+        } as any);
         if (res.ok) return res;
         if (res.status === 429 || res.status >= 500) {
           throw new Error(`HTTP ${res.status}`);

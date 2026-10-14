@@ -15,6 +15,7 @@ import {
   Anchor,
   ShieldAlert,
   AlertTriangle,
+  MapPin,
 } from "lucide-react";
 
 export function StationTooltip() {
@@ -27,6 +28,7 @@ export function StationTooltip() {
   const hoveredCls = useGridStore((s) => s.hoveredCls);
   const hoveredEarthquake = useGridStore((s) => s.hoveredEarthquake);
   const hoveredFault = useGridStore((s) => s.hoveredFault);
+  const hoveredCity = useGridStore((s) => s.hoveredCity);
   const hoverCoordinates = useGridStore((s) => s.hoverCoordinates);
 
   if (
@@ -38,10 +40,62 @@ export function StationTooltip() {
       !hoveredCable &&
       !hoveredCls &&
       !hoveredEarthquake &&
-      !hoveredFault) ||
+      !hoveredFault &&
+      !hoveredCity) ||
     !hoverCoordinates
   )
     return null;
+
+  if (hoveredCity) {
+    return (
+      <div
+        className="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-full pb-3 transition-transform duration-75 ease-out font-sans"
+        style={{
+          left: `${hoverCoordinates.x}px`,
+          top: `${hoverCoordinates.y}px`,
+        }}
+      >
+        <div className="w-72 rounded border border-[#00e5ff]/70 bg-[#041926]/95 p-2.5 text-[#f5f8fa] shadow-2xl backdrop-blur-md font-sans">
+          <div className="flex items-center justify-between border-b border-[#123e59] pb-1.5">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-[#00e5ff]">
+              <MapPin className="h-3.5 w-3.5 text-[#00e5ff]" />
+              <span>{hoveredCity.tier === 1 ? "GLOBAL CLOUD & FINANCIAL HUB" : hoveredCity.tier === 2 ? "REGIONAL METROPOLITAN CORE" : "DATA CENTER CORRIDOR / METRO"}</span>
+            </div>
+            <span className="rounded px-1.5 py-0.5 text-[9px] font-mono font-bold bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/40">
+              {hoveredCity.country}
+            </span>
+          </div>
+
+          <div className="mt-2 space-y-0.5 text-xs font-mono">
+            <div className="text-[13px] text-[#f5f8fa] font-bold">
+              {hoveredCity.name}
+            </div>
+            <div className="text-[10px] text-[#7dd3fc]">
+              {hoveredCity.state ? `${hoveredCity.state}, ${hoveredCity.countryName}` : hoveredCity.countryName}
+            </div>
+          </div>
+
+          {(hoveredCity.dcCount || 0) > 0 && (
+            <div className="mt-2 grid grid-cols-2 gap-1.5 text-[10px] font-mono">
+              <div className="rounded bg-[#082335] p-1.5 border border-[#123e59]">
+                <div className="text-[#7dd3fc]">Tracked Facilities</div>
+                <div className="text-[#00e5ff] font-bold mt-0.5 text-[11px]">{hoveredCity.dcCount} Data Centers</div>
+              </div>
+              <div className="rounded bg-[#082335] p-1.5 border border-[#123e59]">
+                <div className="text-[#7dd3fc]">IT Capacity</div>
+                <div className="text-[#f5f8fa] font-bold mt-0.5 text-[11px]">{hoveredCity.totalPowerMw} MW</div>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-2 text-[9px] font-mono text-[#7dd3fc]/80 border-t border-[#123e59] pt-1 flex justify-between">
+            <span>Coordinates: {hoveredCity.latitude.toFixed(2)}°, {hoveredCity.longitude.toFixed(2)}°</span>
+            <span className="text-[#00e5ff] font-semibold">Tier {hoveredCity.tier}</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (hoveredFiber) {
     return (
@@ -160,9 +214,21 @@ export function StationTooltip() {
               <Anchor className="h-3.5 w-3.5 text-[#00e5ff]" />
               <span>CABLE LANDING STATION (CLS)</span>
             </div>
-            <span className="rounded px-1.5 py-0.2 text-[9px] font-mono font-bold bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/40">
-              {hoveredCls.country}
-            </span>
+            <div className="flex items-center gap-1">
+              {hoveredCls.ixpPresent && (
+                <span className="rounded px-1.5 py-0.5 text-[8px] font-mono font-bold bg-[#8b5cf6]/25 text-[#c4b5fd] border border-[#8b5cf6]/40">
+                  IXP ON-SITE
+                </span>
+              )}
+              {hoveredCls.peeringDbFacilityId && (
+                <span className="rounded px-1.5 py-0.5 text-[8px] font-mono font-bold bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/40">
+                  PDB #{hoveredCls.peeringDbFacilityId}
+                </span>
+              )}
+              <span className="rounded px-1.5 py-0.5 text-[9px] font-mono font-bold bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/40">
+                {hoveredCls.country}
+              </span>
+            </div>
           </div>
 
           <div className="mt-2 space-y-0.5 text-xs font-mono">
@@ -186,8 +252,13 @@ export function StationTooltip() {
             </div>
           </div>
 
-          <div className="mt-2 rounded bg-[#082335] p-1.5 border border-[#123e59] p-1.5 text-[10px] font-mono">
-            <div className="text-[#7dd3fc]">Active Subsea Systems</div>
+          <div className="mt-2 rounded bg-[#082335] p-1.5 border border-[#123e59] text-[10px] font-mono">
+            <div className="flex items-center justify-between">
+              <span className="text-[#7dd3fc]">Active Subsea Systems</span>
+              {hoveredCls.regulatoryLicenseId && (
+                <span className="text-[8px] text-[#94a3b8] truncate max-w-[120px]">{hoveredCls.regulatoryLicenseId}</span>
+              )}
+            </div>
             <div className="text-[#f5f8fa] font-medium text-[10px] mt-0.5 truncate">
               {hoveredCls.activeSubseaSystems?.join(", ") || "—"}
             </div>

@@ -24,6 +24,15 @@ export interface CableLandingStation {
   owner?: string;
   majorUsers?: string[];
   clientsServed?: string;
+  // Carrier-Neutral Interconnection & Regulatory Metadata
+  peeringDbFacilityId?: number;
+  ixpPresent?: boolean;
+  regulatoryLicenseId?: string;
+  stationType?: "carrier_neutral_cls" | "consortium_terminal" | "telco_landing_hub" | "hyperscale_direct";
+  operationalStatus?: "active" | "planned" | "under_construction";
+  powerRedundancy?: string;
+  terrestrialDarkFiberPairs?: number;
+  dataSources?: string[];
 }
 
 export interface SubseaBackhaulAnalysis {

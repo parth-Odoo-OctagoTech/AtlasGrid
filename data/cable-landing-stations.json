@@ -38,7 +38,17 @@
       "Meta Platforms",
       "Amazon AWS"
     ],
-    "clientsServed": "Transatlantic Hyperscale AI Model Synchronization, Global Inter-Cloud Peering & Low-Latency Financial Transaction Routing"
+    "clientsServed": "Transatlantic Hyperscale AI Model Synchronization, Global Inter-Cloud Peering & Low-Latency Financial Transaction Routing",
+    "peeringDbFacilityId": 6732,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "FCC SCL-LIC-20160624-00013",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-wall-nj",
@@ -78,7 +88,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 4421,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "FCC SCL-LIC-20180410-00007",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-myrtle-beach",
@@ -116,7 +136,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 8120,
+    "ixpPresent": false,
+    "regulatoryLicenseId": "FCC SCL-LIC-20220315-00006",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-lynnwood-wa",
@@ -157,7 +187,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 3012,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "FCC SCL-LIC-19990812-00015",
+    "stationType": "consortium_terminal",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-bude-uk",
@@ -198,7 +238,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 5120,
+    "ixpPresent": false,
+    "regulatoryLicenseId": "OFCOM-UK-2020-04",
+    "stationType": "telco_landing_hub",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-marseille-france",
@@ -241,7 +291,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 2840,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ARCEP-FR-2019-11",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-chiba-japan",
@@ -284,7 +344,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 3670,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "MIC-JP-2017-08",
+    "stationType": "consortium_terminal",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-tuas-singapore",
@@ -325,7 +395,17 @@
       "Keppel T&T",
       "ByteDance"
     ],
-    "clientsServed": "Southeast Asia Financial Core, Asia-Europe Superhighway & Global Hyperscale Multi-Cloud Exchange"
+    "clientsServed": "Southeast Asia Financial Core, Asia-Europe Superhighway & Global Hyperscale Multi-Cloud Exchange",
+    "peeringDbFacilityId": 4180,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "IMDA-SG-2021-02",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-mumbai-india",
@@ -367,7 +447,17 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 5290,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "TRAI-IN-2020-09",
+    "stationType": "telco_landing_hub",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
   },
   {
     "id": "cls-dublin-ireland",
@@ -408,6 +498,879 @@
       "Amazon",
       "Meta"
     ],
-    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering"
+    "clientsServed": "International Hyperscale Subsea Connectivity & Cloud Peering",
+    "peeringDbFacilityId": 4930,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "COMREG-IE-2018-03",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-fortaleza-brazil",
+    "name": "Fortaleza International Cable Landing Hub",
+    "operator": "Telxius / Angola Cables",
+    "country": "BR",
+    "countryName": "Brazil",
+    "region": "Ceará",
+    "latitude": -3.722,
+    "longitude": -38.515,
+    "activeSubseaSystems": [
+      "Monet (64 Tbps)",
+      "SACS (40 Tbps)",
+      "EllaLink (72 Tbps)",
+      "Seabras-1 (72 Tbps)"
+    ],
+    "totalLitCapacityTbps": 380,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "Angola Cables",
+      "Telxius"
+    ],
+    "primaryTerrestrialCorridor": "Direct Dark Fiber Spine to São Paulo / Rio de Janeiro",
+    "tier1IxpDistanceKm": 1.5,
+    "rttToLondonMs": 84.5,
+    "rttToFrankfurtMs": 91.2,
+    "rttToTokyoMs": 164.8,
+    "rttToSingaporeMs": 182.4,
+    "fullAddress": "Praia do Futuro Landing Station, Fortaleza, Ceará 60182-010, Brazil",
+    "city": "Fortaleza",
+    "state": "Ceará",
+    "postalCode": "60182-010",
+    "owner": "Telxius Telecom S.A. / Angola Cables",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "Angola Cables",
+      "Equinix SP4"
+    ],
+    "clientsServed": "South America-to-Europe & North America Hyperscale Transatlantic Transit",
+    "peeringDbFacilityId": 1045,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ANATEL-BR-2018-09",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-santos-brazil",
+    "name": "Santos / Praia Grande Subsea Terminal",
+    "operator": "GlobeNet / V.tal",
+    "country": "BR",
+    "countryName": "Brazil",
+    "region": "São Paulo",
+    "latitude": -24.005,
+    "longitude": -46.402,
+    "activeSubseaSystems": [
+      "Malbec (108 Tbps)",
+      "Junior (Google)",
+      "Tannat (90 Tbps)"
+    ],
+    "totalLitCapacityTbps": 320,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "GlobeNet",
+      "Antel"
+    ],
+    "primaryTerrestrialCorridor": "Serra do Mar Dark Fiber Ascent to Barueri / Santana de Parnaíba",
+    "tier1IxpDistanceKm": 0.8,
+    "rttToLondonMs": 98.4,
+    "rttToFrankfurtMs": 104.5,
+    "rttToTokyoMs": 158.2,
+    "rttToSingaporeMs": 174.6,
+    "fullAddress": "Praia Grande Terminal Marítimo, Santos, São Paulo 11700-000, Brazil",
+    "city": "Santos",
+    "state": "São Paulo",
+    "postalCode": "11700-000",
+    "owner": "V.tal Telecomunicações / GlobeNet Infrastructure",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "GlobeNet",
+      "Ascenty"
+    ],
+    "clientsServed": "São Paulo Financial Center & Campinas Cloud Cluster Ultra-Low Latency Feed",
+    "peeringDbFacilityId": 1120,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ANATEL-SP-2020-04",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB"
+    ]
+  },
+  {
+    "id": "cls-valparaiso-chile",
+    "name": "Valparaíso / Las Cruces Transpacific Gateway",
+    "operator": "Google Infra / GTD Teleductos",
+    "country": "CL",
+    "countryName": "Chile",
+    "region": "Valparaíso",
+    "latitude": -33.045,
+    "longitude": -71.62,
+    "activeSubseaSystems": [
+      "Curie (Google 72 Tbps)",
+      "Prat (GTD)",
+      "Humboldt (Planned 144 Tbps)"
+    ],
+    "totalLitCapacityTbps": 240,
+    "consortiumMembers": [
+      "Google",
+      "GTD Grupo",
+      "Desarrollo País"
+    ],
+    "primaryTerrestrialCorridor": "Route 68 Terrestrial Fiber Tunnel to Santiago Megacenter",
+    "tier1IxpDistanceKm": 2.2,
+    "rttToLondonMs": 128.5,
+    "rttToFrankfurtMs": 135.2,
+    "rttToTokyoMs": 142.1,
+    "rttToSingaporeMs": 168.9,
+    "fullAddress": "Las Cruces Submarine Landing Station, Valparaíso 2340000, Chile",
+    "city": "Valparaíso",
+    "state": "Valparaíso",
+    "postalCode": "2340000",
+    "owner": "Google Infrastructure / GTD Grupo Consortium",
+    "majorUsers": [
+      "Google Cloud",
+      "GTD",
+      "Entel",
+      "Equinix Santiago ST1"
+    ],
+    "clientsServed": "Trans-Andean Cloud Transit to Santiago & Buenos Aires Financial Corridors",
+    "peeringDbFacilityId": 1244,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "SUBTEL-CL-2019-01",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB"
+    ]
+  },
+  {
+    "id": "cls-grover-beach-ca",
+    "name": "Grover Beach Transpacific Landing Facility",
+    "operator": "RTI Cables / PC-Landing Corp",
+    "country": "US",
+    "countryName": "United States",
+    "region": "California",
+    "latitude": 35.121,
+    "longitude": -120.621,
+    "activeSubseaSystems": [
+      "JUPITER (140 Tbps)",
+      "BIFROST (Meta/Keppel)",
+      "Southern Cross Cable Network"
+    ],
+    "totalLitCapacityTbps": 420,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "Amazon AWS",
+      "Telstra",
+      "NTT"
+    ],
+    "primaryTerrestrialCorridor": "Highway 101 Dark Fiber Conduit to San Jose & Los Angeles One Wilshire",
+    "tier1IxpDistanceKm": 4.8,
+    "rttToLondonMs": 122.4,
+    "rttToFrankfurtMs": 130.6,
+    "rttToTokyoMs": 82.5,
+    "rttToSingaporeMs": 138.4,
+    "fullAddress": "921 South 4th Street, Grover Beach, CA 93433, United States",
+    "city": "Grover Beach",
+    "state": "California",
+    "postalCode": "93433",
+    "owner": "RTI Infrastructure / PC-Landing Corp",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "Amazon AWS",
+      "Telstra"
+    ],
+    "clientsServed": "Direct Silicon Valley & Los Angeles Hyperscale Fiber Interconnection",
+    "peeringDbFacilityId": 1350,
+    "ixpPresent": false,
+    "regulatoryLicenseId": "FCC SCL-LIC-20180801-00021",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "FCC ICFS"
+    ]
+  },
+  {
+    "id": "cls-nedonna-beach-or",
+    "name": "Pacific City / Tillamook Cable Landing Hub",
+    "operator": "Tillamook Lightwave / CoastCom",
+    "country": "US",
+    "countryName": "United States",
+    "region": "Oregon",
+    "latitude": 45.202,
+    "longitude": -123.963,
+    "activeSubseaSystems": [
+      "FASTER (60 Tbps)",
+      "Hawaiki Transpacific (67 Tbps)",
+      "New Cross Pacific (NCP)"
+    ],
+    "totalLitCapacityTbps": 390,
+    "consortiumMembers": [
+      "Amazon AWS",
+      "Google",
+      "Microsoft Azure",
+      "Hawaiki"
+    ],
+    "primaryTerrestrialCorridor": "Wilson River Highway Dark Fiber Spine to Hillsboro Data Center Alley",
+    "tier1IxpDistanceKm": 3.1,
+    "rttToLondonMs": 118.2,
+    "rttToFrankfurtMs": 126.5,
+    "rttToTokyoMs": 76.8,
+    "rttToSingaporeMs": 134.2,
+    "fullAddress": "Pacific City Landing Station, Tillamook County, OR 97135, United States",
+    "city": "Pacific City",
+    "state": "Oregon",
+    "postalCode": "97135",
+    "owner": "Tillamook Lightwave Consortium",
+    "majorUsers": [
+      "Amazon AWS",
+      "Google Cloud",
+      "Microsoft Azure",
+      "Hawaiki Submarine Cable"
+    ],
+    "clientsServed": "Hillsboro Data Center Alley & Portland Hyperscale Inter-Cloud Transit",
+    "peeringDbFacilityId": 1410,
+    "ixpPresent": false,
+    "regulatoryLicenseId": "FCC SCL-LIC-20150917-00027",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "FCC ICFS"
+    ]
+  },
+  {
+    "id": "cls-lynn-ma",
+    "name": "Lynn / Boston North Atlantic Landing Hub",
+    "operator": "GTT Communications / Hibernia Networks",
+    "country": "US",
+    "countryName": "United States",
+    "region": "Massachusetts",
+    "latitude": 42.463,
+    "longitude": -70.95,
+    "activeSubseaSystems": [
+      "GTT Express / Hibernia Express (53 Tbps)",
+      "Columbus-III"
+    ],
+    "totalLitCapacityTbps": 210,
+    "consortiumMembers": [
+      "GTT Communications",
+      "Hibernia Networks",
+      "Financial Consortia"
+    ],
+    "primaryTerrestrialCorridor": "North Shore Express Dark Fiber to Boston Markley 1 Summer & NYC",
+    "tier1IxpDistanceKm": 1.8,
+    "rttToLondonMs": 54.2,
+    "rttToFrankfurtMs": 63.8,
+    "rttToTokyoMs": 145.4,
+    "rttToSingaporeMs": 196.2,
+    "fullAddress": "1000 Western Ave, Lynn, MA 01905, United States",
+    "city": "Lynn",
+    "state": "Massachusetts",
+    "postalCode": "01905",
+    "owner": "GTT Communications / Hibernia Networks",
+    "majorUsers": [
+      "Goldman Sachs HFT",
+      "Bloomberg LP",
+      "Amazon AWS",
+      "Jump Trading"
+    ],
+    "clientsServed": "Ultra-Low Latency Transatlantic Algorithmic Trading Corridor (Sub-59ms New York-London)",
+    "peeringDbFacilityId": 1530,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "FCC SCL-LIC-20140502-00012",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "FCC ICFS"
+    ]
+  },
+  {
+    "id": "cls-boca-raton-fl",
+    "name": "Boca Raton / South Florida Gateway Station",
+    "operator": "Telxius / Lumen",
+    "country": "US",
+    "countryName": "United States",
+    "region": "Florida",
+    "latitude": 26.35,
+    "longitude": -80.088,
+    "activeSubseaSystems": [
+      "SAm-1 (South America-1)",
+      "Americas-II",
+      "Maya-1",
+      "GlobeNet"
+    ],
+    "totalLitCapacityTbps": 290,
+    "consortiumMembers": [
+      "Telefónica",
+      "Lumen",
+      "Telxius",
+      "GlobeNet"
+    ],
+    "primaryTerrestrialCorridor": "Florida East Coast Fiber Spine to Miami NAP of the Americas (NOTA)",
+    "tier1IxpDistanceKm": 2.6,
+    "rttToLondonMs": 72.4,
+    "rttToFrankfurtMs": 81.1,
+    "rttToTokyoMs": 152.6,
+    "rttToSingaporeMs": 204.8,
+    "fullAddress": "Yamato Rd Telecom Corridor, Boca Raton, FL 33431, United States",
+    "city": "Boca Raton",
+    "state": "Florida",
+    "postalCode": "33431",
+    "owner": "Telxius Telecom / Lumen Technologies",
+    "majorUsers": [
+      "Telefónica",
+      "Lumen",
+      "Google Cloud",
+      "Equinix MI1 Miami NOTA"
+    ],
+    "clientsServed": "Latin America to North America Interconnection & Caribbean Subsea Aggregation",
+    "peeringDbFacilityId": 1612,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "FCC SCL-LIC-20000309-00008",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "FCC ICFS"
+    ]
+  },
+  {
+    "id": "cls-bilbao-spain",
+    "name": "Bilbao / Sopelana Atlantic Landing Gateway",
+    "operator": "Telxius / Virgin Media O2",
+    "country": "ES",
+    "countryName": "Spain",
+    "region": "Basque Country",
+    "latitude": 43.382,
+    "longitude": -2.981,
+    "activeSubseaSystems": [
+      "MAREA (200 Tbps)",
+      "Grace Hopper (Google 352 Tbps)"
+    ],
+    "totalLitCapacityTbps": 560,
+    "consortiumMembers": [
+      "Microsoft",
+      "Google",
+      "Meta",
+      "Telxius"
+    ],
+    "primaryTerrestrialCorridor": "Bilbao to Madrid Interxion MAD1-MAD4 Express Fiber Conduit",
+    "tier1IxpDistanceKm": 1.4,
+    "rttToLondonMs": 12.8,
+    "rttToFrankfurtMs": 18.2,
+    "rttToTokyoMs": 186.4,
+    "rttToSingaporeMs": 144.1,
+    "fullAddress": "Sopelana CLS Terminal, Sopela, Biscay 48600, Spain",
+    "city": "Bilbao",
+    "state": "Basque Country",
+    "postalCode": "48600",
+    "owner": "Telxius Telecom S.A.",
+    "majorUsers": [
+      "Microsoft Azure",
+      "Google Cloud",
+      "Meta Platforms",
+      "Telxius"
+    ],
+    "clientsServed": "Transatlantic Iberian Gateway & Madrid Hyperscale Metro Connection",
+    "peeringDbFacilityId": 1720,
+    "ixpPresent": false,
+    "regulatoryLicenseId": "CNMC-ES-2017-02",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "EMODnet"
+    ]
+  },
+  {
+    "id": "cls-genoa-italy",
+    "name": "Genoa Landing Hub & Mediterranean Open Gateway",
+    "operator": "Sparkle / Retelit",
+    "country": "IT",
+    "countryName": "Italy",
+    "region": "Liguria",
+    "latitude": 44.405,
+    "longitude": 8.946,
+    "activeSubseaSystems": [
+      "BlueMed (Sparkle/Google)",
+      "2Africa (Meta)",
+      "Medusa"
+    ],
+    "totalLitCapacityTbps": 480,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "TIM Sparkle",
+      "Retelit"
+    ],
+    "primaryTerrestrialCorridor": "Genoa to Milan Caldera Campus High-Speed Rail Dark Fiber Spine",
+    "tier1IxpDistanceKm": 1.1,
+    "rttToLondonMs": 18.4,
+    "rttToFrankfurtMs": 11.2,
+    "rttToTokyoMs": 188.2,
+    "rttToSingaporeMs": 124.6,
+    "fullAddress": "Via San Quirico, 16163 Genova GE, Italy",
+    "city": "Genoa",
+    "state": "Liguria",
+    "postalCode": "16163",
+    "owner": "TIM Sparkle S.p.A. / Genoa Sea Ground Consortium",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "TIM Sparkle",
+      "Equinix Milan ML2"
+    ],
+    "clientsServed": "Southern European Gateway & Milan Financial Hub High-Speed Transit",
+    "peeringDbFacilityId": 1810,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "AGCOM-IT-2022-09",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "EMODnet"
+    ]
+  },
+  {
+    "id": "cls-sesimbra-portugal",
+    "name": "Sesimbra / Sines Atlantic Gateway Station",
+    "operator": "Altice Portugal / EllaLink",
+    "country": "PT",
+    "countryName": "Portugal",
+    "region": "Setúbal",
+    "latitude": 38.443,
+    "longitude": -9.103,
+    "activeSubseaSystems": [
+      "EllaLink (72 Tbps)",
+      "Equiano (Google 144 Tbps)",
+      "Nuvem (Google)",
+      "2Africa"
+    ],
+    "totalLitCapacityTbps": 510,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "Altice Portugal",
+      "EllaLink"
+    ],
+    "primaryTerrestrialCorridor": "Direct Sines Start Campus Mega-DC & Lisbon Telehouse Fiber Conduits",
+    "tier1IxpDistanceKm": 2.1,
+    "rttToLondonMs": 22.4,
+    "rttToFrankfurtMs": 28.5,
+    "rttToTokyoMs": 194.2,
+    "rttToSingaporeMs": 148.8,
+    "fullAddress": "Sesimbra Landing Terminal, Sesimbra, Setúbal 2970-001, Portugal",
+    "city": "Sesimbra",
+    "state": "Setúbal",
+    "postalCode": "2970-001",
+    "owner": "Altice Portugal / EllaLink Consortium",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "EllaLink",
+      "Sines Start Campus DC"
+    ],
+    "clientsServed": "Europe-Latin America Direct Optical Span & Lisbon Tech Ecosystem Backhaul",
+    "peeringDbFacilityId": 1905,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ANACOM-PT-2021-03",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "EMODnet"
+    ]
+  },
+  {
+    "id": "cls-hong-kong",
+    "name": "Chung Hom Kok International Cable Landing Station",
+    "operator": "PCCW Global / HKBN",
+    "country": "HK",
+    "countryName": "Hong Kong",
+    "region": "Southern District",
+    "latitude": 22.218,
+    "longitude": 114.205,
+    "activeSubseaSystems": [
+      "Asia Pacific Gateway (APG 54 Tbps)",
+      "Asia Submarine-cable Express (ASE)",
+      "SJC",
+      "AAG"
+    ],
+    "totalLitCapacityTbps": 620,
+    "consortiumMembers": [
+      "PCCW Global",
+      "China Telecom",
+      "NTT",
+      "Singtel",
+      "Google"
+    ],
+    "primaryTerrestrialCorridor": "Tseung Kwan O Industrial Estate & HKIX Mega-Exchange Spine",
+    "tier1IxpDistanceKm": 3.5,
+    "rttToLondonMs": 158.4,
+    "rttToFrankfurtMs": 165.2,
+    "rttToTokyoMs": 38.4,
+    "rttToSingaporeMs": 28.2,
+    "fullAddress": "Chung Hom Kok Cable Landing Site, Stanley, Hong Kong",
+    "city": "Hong Kong",
+    "state": "Southern District",
+    "postalCode": "999077",
+    "owner": "PCCW Global / HKT Trust",
+    "majorUsers": [
+      "Alibaba Cloud",
+      "Tencent Cloud",
+      "Google Cloud",
+      "AWS",
+      "PCCW"
+    ],
+    "clientsServed": "Greater China & East Asia Interconnection Backbone",
+    "peeringDbFacilityId": 2040,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "OFCA-HK-2016-01",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-sydney-australia",
+    "name": "Sydney / Brookvale Subsea Gateway",
+    "operator": "Telstra / Southern Cross Cables",
+    "country": "AU",
+    "countryName": "Australia",
+    "region": "New South Wales",
+    "latitude": -33.762,
+    "longitude": 151.265,
+    "activeSubseaSystems": [
+      "Southern Cross NEXT (72 Tbps)",
+      "Indigo-Central",
+      "Hawaiki",
+      "JGA-South"
+    ],
+    "totalLitCapacityTbps": 440,
+    "consortiumMembers": [
+      "Telstra",
+      "Spark New Zealand",
+      "Singtel Optus",
+      "Google"
+    ],
+    "primaryTerrestrialCorridor": "Sydney CBD Equinix SY1-SY5 & Global Switch Dark Fiber Ring",
+    "tier1IxpDistanceKm": 2.8,
+    "rttToLondonMs": 182.5,
+    "rttToFrankfurtMs": 189.2,
+    "rttToTokyoMs": 98.4,
+    "rttToSingaporeMs": 88.5,
+    "fullAddress": "Brookvale Landing Station, Brookvale, NSW 2100, Australia",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "postalCode": "2100",
+    "owner": "Telstra Corporation Ltd / Southern Cross Consortia",
+    "majorUsers": [
+      "Google Cloud",
+      "Microsoft Azure",
+      "Amazon AWS",
+      "Telstra",
+      "Spark NZ"
+    ],
+    "clientsServed": "Trans-Tasman & Transpacific Hyperscale Cloud Peering",
+    "peeringDbFacilityId": 2110,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ACMA-AU-2022-07",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-perth-australia",
+    "name": "Perth / Shenton Park Indian Ocean Gateway",
+    "operator": "NextDC / SUB.CO",
+    "country": "AU",
+    "countryName": "Australia",
+    "region": "Western Australia",
+    "latitude": -31.95,
+    "longitude": 115.805,
+    "activeSubseaSystems": [
+      "Oman Australia Cable (OAC 39 Tbps)",
+      "Australia Singapore Cable (ASC 60 Tbps)",
+      "Indigo-West"
+    ],
+    "totalLitCapacityTbps": 310,
+    "consortiumMembers": [
+      "SUB.CO",
+      "Singtel Optus",
+      "Telstra",
+      "Google"
+    ],
+    "primaryTerrestrialCorridor": "Direct Dark Fiber Interconnect to NextDC P2 Hyperscale DC",
+    "tier1IxpDistanceKm": 1.2,
+    "rttToLondonMs": 142.1,
+    "rttToFrankfurtMs": 148.5,
+    "rttToTokyoMs": 112.4,
+    "rttToSingaporeMs": 44.2,
+    "fullAddress": "NextDC P2, Shenton Park, WA 6008, Australia",
+    "city": "Perth",
+    "state": "Western Australia",
+    "postalCode": "6008",
+    "owner": "NextDC / SUB.CO Infrastructure",
+    "majorUsers": [
+      "SUB.CO",
+      "Singtel Optus",
+      "Telstra",
+      "Google Cloud"
+    ],
+    "clientsServed": "Direct Australia-EMEA & Southeast Asia Redundant Interconnection",
+    "peeringDbFacilityId": 2200,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ACMA-AU-2021-11",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-alexandria-egypt",
+    "name": "Alexandria / Abu Talat Mediterranean Maritime Gateway",
+    "operator": "Telecom Egypt",
+    "country": "EG",
+    "countryName": "Egypt",
+    "region": "Alexandria",
+    "latitude": 31.085,
+    "longitude": 29.742,
+    "activeSubseaSystems": [
+      "AAE-1 (40 Tbps)",
+      "SeaMeWe-5 (24 Tbps)",
+      "PEACE (96 Tbps)",
+      "2Africa",
+      "SeaMeWe-6"
+    ],
+    "totalLitCapacityTbps": 590,
+    "consortiumMembers": [
+      "Telecom Egypt",
+      "China Mobile",
+      "Meta",
+      "Google",
+      "Orange"
+    ],
+    "primaryTerrestrialCorridor": "Suez Canal Trans-Egypt Terrestrial Fiber Spine to Zafarana & Red Sea",
+    "tier1IxpDistanceKm": 4.2,
+    "rttToLondonMs": 38.5,
+    "rttToFrankfurtMs": 32.1,
+    "rttToTokyoMs": 168.4,
+    "rttToSingaporeMs": 104.2,
+    "fullAddress": "Abu Talat CLS Facility, Alexandria Governorate, Egypt",
+    "city": "Alexandria",
+    "state": "Alexandria Governorate",
+    "postalCode": "21500",
+    "owner": "Telecom Egypt S.A.E.",
+    "majorUsers": [
+      "Meta Platforms",
+      "Google Cloud",
+      "China Mobile",
+      "Orange",
+      "Telecom Egypt"
+    ],
+    "clientsServed": "Suez Canal Trans-Continental Europe-Asia-Africa Fiber Bridge",
+    "peeringDbFacilityId": 2315,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "NTRA-EG-2018-05",
+    "stationType": "telco_landing_hub",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-cape-town-sa",
+    "name": "Cape Town / Melkbosstrand South Atlantic CLS",
+    "operator": "Telkom SA / Liquid Intelligent Tech",
+    "country": "ZA",
+    "countryName": "South Africa",
+    "region": "Western Cape",
+    "latitude": -33.722,
+    "longitude": 18.441,
+    "activeSubseaSystems": [
+      "Equiano (Google 144 Tbps)",
+      "2Africa (Meta 180 Tbps)",
+      "WACS",
+      "SAT-3"
+    ],
+    "totalLitCapacityTbps": 490,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "Telkom SA",
+      "MTN",
+      "Vodacom"
+    ],
+    "primaryTerrestrialCorridor": "Western Cape Terrestrial Dark Fiber to Teraco CT1/CT2 Hyperscale DC",
+    "tier1IxpDistanceKm": 3.6,
+    "rttToLondonMs": 124.5,
+    "rttToFrankfurtMs": 132.8,
+    "rttToTokyoMs": 196.4,
+    "rttToSingaporeMs": 142.1,
+    "fullAddress": "Melkbosstrand CLS, City of Cape Town, Western Cape 7441, South Africa",
+    "city": "Cape Town",
+    "state": "Western Cape",
+    "postalCode": "7441",
+    "owner": "Telkom SA SOC / OpenServe",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "Liquid Intelligent Technologies",
+      "MTN"
+    ],
+    "clientsServed": "Sub-Saharan Africa Hyperscale Transit & Western Cape AI Datacenter Core",
+    "peeringDbFacilityId": 2410,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "ICASA-ZA-2022-01",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-mombasa-kenya",
+    "name": "Mombasa East Africa Subsea Terminal",
+    "operator": "Telkom Kenya / Safaricom",
+    "country": "KE",
+    "countryName": "Kenya",
+    "region": "Coast Province",
+    "latitude": -4.043,
+    "longitude": 39.668,
+    "activeSubseaSystems": [
+      "2Africa (180 Tbps)",
+      "TEAMS (East Africa Marine System)",
+      "EASSy",
+      "DARIBA"
+    ],
+    "totalLitCapacityTbps": 380,
+    "consortiumMembers": [
+      "Telkom Kenya",
+      "Safaricom",
+      "Meta",
+      "MTN"
+    ],
+    "primaryTerrestrialCorridor": "Mombasa-Nairobi Standard Gauge Railway Dark Fiber Route to IXP",
+    "tier1IxpDistanceKm": 2.4,
+    "rttToLondonMs": 112.5,
+    "rttToFrankfurtMs": 118.2,
+    "rttToTokyoMs": 172.6,
+    "rttToSingaporeMs": 98.4,
+    "fullAddress": "Nyali Beach Landing Facility, Mombasa 80100, Kenya",
+    "city": "Mombasa",
+    "state": "Coast Province",
+    "postalCode": "80100",
+    "owner": "Telkom Kenya Ltd / TEAMS Consortium",
+    "majorUsers": [
+      "Safaricom",
+      "Google Cloud",
+      "Meta Platforms",
+      "Airtel Africa"
+    ],
+    "clientsServed": "East and Central African Multi-Country Terrestrial Cross-Border Fiber Spine",
+    "peeringDbFacilityId": 2510,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "CAK-KE-2023-04",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "SubTel Forum"
+    ]
+  },
+  {
+    "id": "cls-piti-guam",
+    "name": "Guam / Piti Western Pacific Interconnection Hub",
+    "operator": "GTA Teleguam / RTI Cables",
+    "country": "GU",
+    "countryName": "Guam",
+    "region": "Piti",
+    "latitude": 13.462,
+    "longitude": 144.693,
+    "activeSubseaSystems": [
+      "JUPITER (140 Tbps)",
+      "SEA-US (20 Tbps)",
+      "Echo (Google)",
+      "HANTRU-1"
+    ],
+    "totalLitCapacityTbps": 410,
+    "consortiumMembers": [
+      "Google",
+      "Meta",
+      "GTA",
+      "NEC",
+      "AWS"
+    ],
+    "primaryTerrestrialCorridor": "Piti Marine Drive Underground Ducting to GIX Meet-Me-Room",
+    "tier1IxpDistanceKm": 0.9,
+    "rttToLondonMs": 162.4,
+    "rttToFrankfurtMs": 169.8,
+    "rttToTokyoMs": 34.2,
+    "rttToSingaporeMs": 64.5,
+    "fullAddress": "GTA Data Center & CLS Facility, Piti, GU 96915, United States",
+    "city": "Piti",
+    "state": "Guam",
+    "postalCode": "96915",
+    "owner": "Teleguam Holdings LLC (GTA) / RTI Infrastructure",
+    "majorUsers": [
+      "Google Cloud",
+      "Meta Platforms",
+      "GTA",
+      "NEC",
+      "Amazon AWS"
+    ],
+    "clientsServed": "Transpacific Multi-Angle Resiliency Node connecting US West Coast, Japan, Taiwan, Philippines & Australia",
+    "peeringDbFacilityId": 2605,
+    "ixpPresent": true,
+    "regulatoryLicenseId": "FCC SCL-LIC-20161102-00025",
+    "stationType": "carrier_neutral_cls",
+    "operationalStatus": "active",
+    "dataSources": [
+      "TeleGeography",
+      "PeeringDB",
+      "FCC ICFS"
+    ]
   }
 ]

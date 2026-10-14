@@ -25,6 +25,7 @@ import {
   Activity,
   Plane,
   ShieldAlert,
+  MapPin,
 } from "lucide-react";
 
 export function MapControls() {
@@ -250,6 +251,22 @@ export function MapControls() {
           <ShieldAlert className="h-3.5 w-3.5" />
           <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
             {layerVisibility.hazardBuffers ? "Hazards: Hide Pipeline & Rail Buffers" : "Hazards: Show Pipeline & Rail Buffers"}
+          </span>
+        </button>
+
+        {/* City & Metropolitan Names Overlay Toggle */}
+        <button
+          onClick={() => toggleLayer("labels")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.labels
+              ? "bg-[#00e5ff]/20 text-[#00e5ff] border border-[#00e5ff]/50 shadow-[0_0_8px_rgba(0,229,255,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle City & Metro Names on Zoom"
+        >
+          <MapPin className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.labels ? "City Labels: Active (Hide Cities)" : "City Labels: Show Cities on Zoom"}
           </span>
         </button>
 
