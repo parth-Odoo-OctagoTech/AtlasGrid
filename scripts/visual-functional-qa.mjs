@@ -237,6 +237,46 @@ async function runVisualFunctionalQA() {
   assert(siteNavSrc.includes("/products/atlasgrid"), "lib/site-nav.ts integrates /products/atlasgrid in global navigation");
 
   // -------------------------------------------------------------------------
+  // PHASE 6: 4 MAJOR MAP VISUAL UPGRADES
+  // -------------------------------------------------------------------------
+  console.log("\n--- PHASE 6: 4 Major Map Visual Upgrades ---");
+
+  // 6.1 Upgrade 1: Animated Living Grid Flow Particles
+  const deckGlSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+  assert(deckGlSrc.includes('id: "grid-flow-particles"'), "Flow particles layer rendered with id 'grid-flow-particles'");
+  assert(deckGlSrc.includes("setAnimTick") && deckGlSrc.includes("requestAnimationFrame"), "Map engine runs smooth 60fps animation frame loop");
+  assert(deckGlSrc.includes("flowParticleData"), "Particle positions computed along high-voltage interties & supply lines");
+
+  // 6.2 Upgrade 2: Interactive Siting Sonar Radar & Buffer Due Diligence Tool
+  assert(deckGlSrc.includes('id: "siting-sonar-buffer-area"'), "Sonar buffer area polygon rendered on globe canvas");
+  assert(deckGlSrc.includes('id: "siting-sonar-pulse-ring"'), "Sonar dynamic pulse ring rendered with animated alpha sweep");
+  assert(deckGlSrc.includes('id: "siting-sonar-center-anchor"'), "Sonar center crosshair anchor rendered at target coordinate");
+  assert(deckGlSrc.includes("isSitingSonarActive ? \"crosshair\""), "Pointer cursor switches to precision crosshair in Sonar mode");
+  assert(deckGlSrc.includes("<SitingSonarOverlay"), "SitingSonarOverlay HUD component mounted above map canvas");
+
+  const sonarUiSrc = fs.readFileSync(path.join(process.cwd(), "components/map/SitingSonarOverlay.tsx"), "utf-8");
+  assert(sonarUiSrc.includes("Export Greenfield Siting Memo (JSON)"), "SitingSonarOverlay provides 1-click JSON siting memo download");
+  assert(sonarUiSrc.includes("setSitingSonarRadius"), "SitingSonarOverlay allows dynamic 25km / 50km / 100km buffer selection");
+
+  // 6.3 Upgrade 3: 24/7 Carbon Intensity (CFE %) & Clean Energy Heatmap
+  assert(deckGlSrc.includes('id: "carbon-intensity-heatmap"'), "Carbon intensity heatmap layer rendered with multi-color ramp");
+  assert(deckGlSrc.includes('visualizationMode === "carbon_intensity"'), "Map supports dedicated carbon_intensity visualization mode");
+
+  const mapControlsSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapControls.tsx"), "utf-8");
+  assert(mapControlsSrc.includes("carbon_intensity") && mapControlsSrc.includes("24/7 Carbon Intensity"), "MapControls provides 24/7 Carbon Intensity mode selector");
+  assert(mapControlsSrc.includes("toggleLayer(\"carbonHeatmap\")"), "MapControls provides Carbon Heatmap layer toggle button");
+
+  const legendSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapLegend.tsx"), "utf-8");
+  assert(legendSrc.includes("Legend // Carbon & CFE %"), "MapLegend adapts to Carbon & CFE % mode");
+  assert(legendSrc.includes("Hydro/Nuclear/Wind") && legendSrc.includes("Unabated Peakers"), "MapLegend displays clean vs fossil resource ramp");
+
+  // 6.4 Upgrade 4: Real-Time Anomaly Beacons & Price Spike Shockwaves
+  assert(deckGlSrc.includes('id: "anomaly-beacons-shockwave"'), "Shockwave ripple layer rendered on price spike & outage nodes");
+  assert(deckGlSrc.includes('id: "anomaly-beacons-core"'), "Glowing anomaly core beacon layer rendered");
+  assert(mapControlsSrc.includes("toggleLayer(\"anomalyBeacons\")"), "MapControls provides Anomaly Beacons toggle button");
+  assert(legendSrc.includes("Price Spike Beacons"), "MapLegend displays Price Spike Beacons status indicator");
+
+  // -------------------------------------------------------------------------
   // FINAL REPORT
   // -------------------------------------------------------------------------
   console.log("\n===============================================================");

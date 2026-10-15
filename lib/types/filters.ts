@@ -6,7 +6,8 @@ export type VisualizationMode =
   | "heatmap_lmp"
   | "interconnect_flow"
   | "hex_density"
-  | "siting_score";
+  | "siting_score"
+  | "carbon_intensity";
 
 export type InfrastructureType = "all" | "plants" | "datacenters" | "substations";
 export type PriceFilter = "all" | "spikes" | "negative" | "normal";

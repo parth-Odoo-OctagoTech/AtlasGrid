@@ -26,6 +26,9 @@ import {
   Plane,
   ShieldAlert,
   MapPin,
+  Leaf,
+  Radar,
+  AlertTriangle,
 } from "lucide-react";
 
 export function MapControls() {
@@ -39,6 +42,8 @@ export function MapControls() {
   const toggleProjectionMode = useGridStore((s) => s.toggleProjectionMode);
   const layerVisibility = useGridStore((s) => s.layerVisibility);
   const toggleLayer = useGridStore((s) => s.toggleLayer);
+  const isSitingSonarActive = useGridStore((s) => s.isSitingSonarActive);
+  const toggleSitingSonarMode = useGridStore((s) => s.toggleSitingSonarMode);
 
   const handleZoomIn = () => {
     setViewport({
@@ -80,6 +85,7 @@ export function MapControls() {
     { id: "2d_scatter", label: "2D Scatter (Capacity Radius)", icon: CircleDot },
     { id: "3d_column", label: "3D Extrusion (Generation MW)", icon: Box },
     { id: "heatmap_lmp", label: "LMP Nodal Price Heatmap", icon: Flame },
+    { id: "carbon_intensity", label: "24/7 Carbon Intensity & CFE %", icon: Leaf },
     { id: "hex_density", label: "Hexagon Density Aggregation", icon: Hexagon },
     { id: "siting_score", label: "Site Suitability Siting Score (0-100)", icon: ShieldAlert },
   ];
@@ -267,6 +273,70 @@ export function MapControls() {
           <MapPin className="h-3.5 w-3.5" />
           <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
             {layerVisibility.labels ? "City Labels: Active (Hide Cities)" : "City Labels: Show Cities on Zoom"}
+          </span>
+        </button>
+
+        {/* Animated Power & Fiber Flow Particles Toggle */}
+        <button
+          onClick={() => toggleLayer("flowParticles")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.flowParticles
+              ? "bg-[#38bdf8]/20 text-[#38bdf8] border border-[#38bdf8]/50 shadow-[0_0_8px_rgba(56,189,248,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Animated Grid & Fiber Flow Particles"
+        >
+          <Activity className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.flowParticles ? "Particles: Active (Hide Flow)" : "Particles: Show Flow Pulses"}
+          </span>
+        </button>
+
+        {/* Real-Time Anomaly Beacons & Price Spike Shockwaves Toggle */}
+        <button
+          onClick={() => toggleLayer("anomalyBeacons")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.anomalyBeacons
+              ? "bg-[#f59e0b]/20 text-[#f59e0b] border border-[#f59e0b]/50 shadow-[0_0_8px_rgba(245,158,11,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Real-Time Anomaly Beacons & Price Spike Shockwaves"
+        >
+          <AlertTriangle className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.anomalyBeacons ? "Anomalies: Active (Hide Beacons)" : "Anomalies: Show Price Spikes"}
+          </span>
+        </button>
+
+        {/* 24/7 Carbon Intensity Heatmap Layer Toggle */}
+        <button
+          onClick={() => toggleLayer("carbonHeatmap")}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            layerVisibility.carbonHeatmap
+              ? "bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/50 shadow-[0_0_8px_rgba(16,185,129,0.35)]"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Toggle Carbon Intensity & Clean Energy Heatmap"
+        >
+          <Leaf className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {layerVisibility.carbonHeatmap ? "Carbon Heatmap: Active (Hide)" : "Carbon Heatmap: Show gCO₂/kWh"}
+          </span>
+        </button>
+
+        {/* Interactive Siting Sonar Radar Buffer Tool */}
+        <button
+          onClick={toggleSitingSonarMode}
+          className={`group relative flex h-8 w-8 items-center justify-center rounded transition-colors ${
+            isSitingSonarActive
+              ? "bg-[#00e5ff]/25 text-[#00e5ff] border border-[#00e5ff]/80 shadow-[0_0_12px_rgba(0,229,255,0.6)] animate-pulse"
+              : "text-[#5c7080] hover:bg-[#202b33] hover:text-[#8a9ba8]"
+          }`}
+          title="Siting Sonar (25km-100km Buffer Due Diligence)"
+        >
+          <Radar className="h-3.5 w-3.5" />
+          <span className="pointer-events-none absolute right-10 hidden whitespace-nowrap rounded border border-[#293742] bg-[#101418] px-2 py-0.5 text-[10px] font-mono text-[#f5f8fa] shadow-xl group-hover:block backdrop-blur-md z-30">
+            {isSitingSonarActive ? "Siting Sonar: Active (Click map to probe)" : "Siting Sonar: Radius Buffer Tool"}
           </span>
         </button>
 

@@ -1915,6 +1915,135 @@ const tooltipCitySrc = fs.readFileSync(path.join(process.cwd(), "components/map/
 assert(tooltipCitySrc.includes("hoveredCity") && tooltipCitySrc.includes("GLOBAL CLOUD & FINANCIAL HUB"), "StationTooltip renders contextual city and metropolitan tooltip");
 
 // ---------------------------------------------------------------------------
+// TEST 32: Data Center Dot Interactive Hit-Testing, Layer Ordering & Proximity Resolution
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 32: Data Center Dot Interactive Hit-Testing & Layer Priority ---");
+
+const deckGlHitTestSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlHitTestSrc.includes("pickingRadius={10}"), "DeckGL overlay specifies pickingRadius={10} for generous pointer hit targets");
+assert(deckGlHitTestSrc.includes("ref={deckRef}"), "DeckGL overlay attaches deckRef for GPU multi-object picking");
+assert(deckGlHitTestSrc.includes("radiusMinPixels: 6"), "datacenters-nodes specifies enlarged radiusMinPixels: 6 for distinct visibility and clickability");
+
+// Verify layer ordering: substations-nodes is pushed BEFORE datacenters-nodes
+const substationsIndex = deckGlHitTestSrc.indexOf('id: "substations-nodes"');
+const datacentersIndex = deckGlHitTestSrc.indexOf('id: "datacenters-nodes"');
+assert(substationsIndex > 0 && datacentersIndex > 0, "Both substations-nodes and datacenters-nodes layers exist in DeckGLMap");
+assert(substationsIndex < datacentersIndex, "substations-nodes is rendered BEFORE datacenters-nodes so data centers have click priority");
+
+// Verify multi-object picking and proximity resolution in handleDeckClick
+assert(deckGlHitTestSrc.includes("pickMultipleObjects"), "handleDeckClick utilizes pickMultipleObjects to penetrate through overlapping labels & hazard layers");
+assert(deckGlHitTestSrc.includes("toleranceDeg"), "handleDeckClick implements screen-space proximity resolution based on viewport zoom");
+assert(deckGlHitTestSrc.includes("nearbyDcs"), "handleDeckClick groups nearby facilities for intelligent cluster hit-testing");
+
+// Verify AtlasGridDemoClient data centers array handling
+const demoClientHitsSrc = fs.readFileSync(path.join(process.cwd(), "components/demo/AtlasGridDemoClient.tsx"), "utf-8");
+assert(demoClientHitsSrc.includes("Array.isArray(dataCentersData)"), "AtlasGridDemoClient correctly parses array response from /api/datacenters");
+assert(demoClientHitsSrc.includes("dataCenters={dataCentersList}"), "AtlasGridDemoClient passes resolved dataCentersList to DeckGLMap");
+
+// ---------------------------------------------------------------------------
+// TEST 33: Upgrade 1 — Animated Living Grid Flow Particles
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 33: Animated Flow Particles & The Living Grid ---");
+
+const deckGlFlowSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlFlowSrc.includes('id: "grid-flow-particles"'), "DeckGLMap implements 'grid-flow-particles' layer");
+assert(deckGlFlowSrc.includes("requestAnimationFrame") && deckGlFlowSrc.includes("setAnimTick"), "DeckGLMap runs 60fps animation loop with requestAnimationFrame and animTick");
+assert(deckGlFlowSrc.includes("flowParticleData"), "DeckGLMap computes flowParticleData for dynamic pulse interpolation");
+
+const storeFlowSrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(storeFlowSrc.includes("flowParticles: boolean"), "useGridStore LayerVisibility includes flowParticles");
+assert(storeFlowSrc.includes("flowParticles: true"), "useGridStore LayerVisibility defaults flowParticles to true");
+
+const mapControlsFlowSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapControls.tsx"), "utf-8");
+assert(mapControlsFlowSrc.includes("toggleLayer(\"flowParticles\")"), "MapControls provides flowParticles toggle button");
+assert(mapControlsFlowSrc.includes("Particles: Active"), "MapControls includes tooltip state for flow particles");
+
+const legendFlowSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapLegend.tsx"), "utf-8");
+assert(legendFlowSrc.includes("layerVisibility.flowParticles"), "MapLegend checks layerVisibility.flowParticles");
+assert(legendFlowSrc.includes("Flow Pulses"), "MapLegend displays 'Flow Pulses' status indicator");
+
+// ---------------------------------------------------------------------------
+// TEST 34: Upgrade 2 — Interactive Siting Sonar Radar & Buffer Tool
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 34: Interactive Siting Sonar Radar & Buffer Tool ---");
+
+assert(fs.existsSync(path.join(process.cwd(), "lib/services/siting-sonar-service.ts")), "lib/services/siting-sonar-service.ts exists on disk");
+const sonarServiceSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/siting-sonar-service.ts"), "utf-8");
+assert(sonarServiceSrc.includes("export function analyzeSitingSonar"), "siting-sonar-service.ts exports analyzeSitingSonar function");
+assert(sonarServiceSrc.includes("overallScore"), "analyzeSitingSonar computes overallScore (0-100)");
+assert(sonarServiceSrc.includes("overallTier"), "analyzeSitingSonar computes institutional tier classification");
+assert(sonarServiceSrc.includes("totalGenerationMw"), "analyzeSitingSonar computes total generation headroom");
+assert(sonarServiceSrc.includes("nearestSubstation"), "analyzeSitingSonar resolves nearest high-voltage substation POI");
+assert(sonarServiceSrc.includes("nearestCls"), "analyzeSitingSonar resolves nearest Cable Landing Station gateway");
+assert(sonarServiceSrc.includes("tariffUsdPerKwh"), "analyzeSitingSonar computes industrial electricity tariff ($/kWh)");
+assert(sonarServiceSrc.includes("nearestFaultDistanceKm"), "analyzeSitingSonar computes seismic fault hazard distance");
+
+assert(fs.existsSync(path.join(process.cwd(), "components/map/SitingSonarOverlay.tsx")), "components/map/SitingSonarOverlay.tsx exists on disk");
+const sonarOverlaySrc = fs.readFileSync(path.join(process.cwd(), "components/map/SitingSonarOverlay.tsx"), "utf-8");
+assert(sonarOverlaySrc.includes("handleDownloadMemo"), "SitingSonarOverlay provides institutional siting memo export download");
+assert(sonarOverlaySrc.includes("Export Greenfield Siting Memo (JSON)"), "SitingSonarOverlay renders download memo CTA button");
+
+const deckGlSonarSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlSonarSrc.includes('id: "siting-sonar-buffer-area"'), "DeckGLMap renders 'siting-sonar-buffer-area' polygon");
+assert(deckGlSonarSrc.includes('id: "siting-sonar-pulse-ring"'), "DeckGLMap renders animated 'siting-sonar-pulse-ring' radial sweep");
+assert(deckGlSonarSrc.includes('id: "siting-sonar-center-anchor"'), "DeckGLMap renders 'siting-sonar-center-anchor' crosshair");
+assert(deckGlSonarSrc.includes("isSitingSonarActive ? \"crosshair\""), "DeckGLMap changes cursor to crosshair when Siting Sonar is active");
+assert(deckGlSonarSrc.includes("<SitingSonarOverlay"), "DeckGLMap mounts SitingSonarOverlay component");
+
+// ---------------------------------------------------------------------------
+// TEST 35: Upgrade 3 — 24/7 Carbon Intensity (CFE %) & Clean Energy Heatmap
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 35: 24/7 Carbon Intensity (CFE %) & Clean Energy Heatmap ---");
+
+assert(fs.existsSync(path.join(process.cwd(), "lib/services/carbon-intensity-service.ts")), "lib/services/carbon-intensity-service.ts exists on disk");
+const carbonServiceSrc = fs.readFileSync(path.join(process.cwd(), "lib/services/carbon-intensity-service.ts"), "utf-8");
+
+assert(carbonServiceSrc.includes("FUEL_CARBON_FACTORS"), "carbon-intensity-service.ts defines FUEL_CARBON_FACTORS");
+assert(carbonServiceSrc.includes("getCarbonIntensityColor"), "carbon-intensity-service.ts exports getCarbonIntensityColor");
+assert(carbonServiceSrc.includes("calculateRegionalCarbonProfile"), "carbon-intensity-service.ts exports calculateRegionalCarbonProfile");
+assert(carbonServiceSrc.includes('fuelType: "nuclear"') && carbonServiceSrc.includes("isCarbonFree: true"), "Nuclear is classified as 0 gCO2/kWh 100% Carbon-Free");
+assert(carbonServiceSrc.includes('fuelType: "hydro"') && carbonServiceSrc.includes("isCarbonFree: true"), "Hydro is classified as near-zero Carbon-Free");
+assert(carbonServiceSrc.includes('fuelType: "coal"') && carbonServiceSrc.includes("940"), "Coal is classified as >= 900 gCO2/kWh high emission");
+assert(carbonServiceSrc.includes("#10b981") && carbonServiceSrc.includes('"Zero Carbon"'), "Zero-carbon energy maps to emerald green #10b981");
+assert(carbonServiceSrc.includes("#e11d48") && carbonServiceSrc.includes('"Extreme Carbon"'), "Coal peakers map to crimson #e11d48");
+
+const filtersTypeSrc = fs.readFileSync(path.join(process.cwd(), "lib/types/filters.ts"), "utf-8");
+assert(filtersTypeSrc.includes('"carbon_intensity"'), "VisualizationMode includes 'carbon_intensity'");
+
+const storeCarbonSrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(storeCarbonSrc.includes("carbonHeatmap: boolean"), "useGridStore LayerVisibility includes carbonHeatmap");
+
+const deckGlCarbonSrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlCarbonSrc.includes('id: "carbon-intensity-heatmap"'), "DeckGLMap implements 'carbon-intensity-heatmap' layer");
+assert(deckGlCarbonSrc.includes("FUEL_CARBON_FACTORS[d.fuelType]"), "DeckGLMap maps plant fill color to carbon intensity in carbon_intensity mode");
+
+const legendCarbonSrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapLegend.tsx"), "utf-8");
+assert(legendCarbonSrc.includes("Legend // Carbon & CFE %"), "MapLegend renders Carbon & CFE % legend header");
+assert(legendCarbonSrc.includes("0g (100% CFE)"), "MapLegend includes 0g (100% CFE) threshold");
+
+// ---------------------------------------------------------------------------
+// TEST 36: Upgrade 4 — Real-Time Anomaly Beacons & Price Spike Shockwaves
+// ---------------------------------------------------------------------------
+console.log("\n--- TEST 36: Real-Time Anomaly Beacons & Price Spike Shockwaves ---");
+
+const deckGlAnomalySrc = fs.readFileSync(path.join(process.cwd(), "components/map/DeckGLMap.tsx"), "utf-8");
+assert(deckGlAnomalySrc.includes('id: "anomaly-beacons-shockwave"'), "DeckGLMap implements 'anomaly-beacons-shockwave' layer");
+assert(deckGlAnomalySrc.includes('id: "anomaly-beacons-core"'), "DeckGLMap implements 'anomaly-beacons-core' layer");
+assert(deckGlAnomalySrc.includes("anomalyNodes"), "DeckGLMap computes anomalyNodes filtering for price spikes and outages");
+
+const storeAnomalySrc = fs.readFileSync(path.join(process.cwd(), "lib/store/useGridStore.ts"), "utf-8");
+assert(storeAnomalySrc.includes("anomalyBeacons: boolean"), "useGridStore LayerVisibility includes anomalyBeacons");
+assert(storeAnomalySrc.includes("anomalyBeacons: true"), "useGridStore LayerVisibility defaults anomalyBeacons to true");
+
+const mapControlsAnomalySrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapControls.tsx"), "utf-8");
+assert(mapControlsAnomalySrc.includes("toggleLayer(\"anomalyBeacons\")"), "MapControls provides anomalyBeacons toggle button");
+assert(mapControlsAnomalySrc.includes("Anomalies: Active"), "MapControls includes tooltip state for anomaly beacons");
+
+const legendAnomalySrc = fs.readFileSync(path.join(process.cwd(), "components/map/MapLegend.tsx"), "utf-8");
+assert(legendAnomalySrc.includes("layerVisibility.anomalyBeacons"), "MapLegend checks layerVisibility.anomalyBeacons");
+assert(legendAnomalySrc.includes("Price Spike Beacons"), "MapLegend displays 'Price Spike Beacons' status indicator");
+
+// ---------------------------------------------------------------------------
 // FINAL SUMMARY
 // ---------------------------------------------------------------------------
 console.log("\n===============================================================");

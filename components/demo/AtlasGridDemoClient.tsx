@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -138,7 +138,9 @@ export function AtlasGridDemoClient({ initialUser }: AtlasGridDemoClientProps) {
   const setFloodHazardZones = useGridStore((s) => s.setFloodHazardZones);
 
   useEffect(() => {
-    if (dataCentersData?.data) {
+    if (Array.isArray(dataCentersData)) {
+      setDataCenters(dataCentersData);
+    } else if (dataCentersData?.data && Array.isArray(dataCentersData.data)) {
       setDataCenters(dataCentersData.data);
     }
   }, [dataCentersData, setDataCenters]);
@@ -186,13 +188,19 @@ export function AtlasGridDemoClient({ initialUser }: AtlasGridDemoClientProps) {
     }
   };
 
+  const dataCentersList = useMemo(() => {
+    if (Array.isArray(dataCentersData)) return dataCentersData;
+    if (Array.isArray(dataCentersData?.data)) return dataCentersData.data;
+    return [];
+  }, [dataCentersData]);
+
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-background">
       {/* Fullscreen Deck.gl Map Canvas */}
       <DeckGLMap
         plants={stationsData?.data || []}
         interconnectors={interconnectorsData?.data || []}
-        dataCenters={dataCentersData?.data || []}
+        dataCenters={dataCentersList}
         substations={substationsData?.data || []}
         cables={cablesData?.features || []}
         isLoading={isStationsLoading || isDcLoading}
@@ -251,7 +259,7 @@ export function AtlasGridDemoClient({ initialUser }: AtlasGridDemoClientProps) {
       {/* Analytics, Fleet, Alert & Chat Modals */}
       <GridAnalyticsModal plants={stationsData?.data || []} interconnectors={interconnectorsData?.data || []} />
       <AlertCenterDrawer />
-      <DataCenterFleetModal dataCenters={dataCentersData?.data || []} />
+      <DataCenterFleetModal dataCenters={dataCentersList} />
       <DataSourcesRegistryModal />
       <InstitutionalSitingDossierModal />
       <SitePortfolioBenchmarkModal />

@@ -14,6 +14,7 @@ export function MapLegend() {
 
   const isLmpMode = visualizationMode === "heatmap_lmp";
   const isSitingMode = visualizationMode === "siting_score";
+  const isCarbonMode = visualizationMode === "carbon_intensity";
 
   return (
     <div className="absolute bottom-4 left-4 z-20 transition-all duration-300 animate-in fade-in slide-in-from-bottom-2 duration-200 font-sans">
@@ -30,6 +31,8 @@ export function MapLegend() {
             <span className="font-semibold uppercase tracking-wider">
               {isSitingMode
                 ? "Legend // Siting Suitability (0-100)"
+                : isCarbonMode
+                ? "Legend // Carbon & CFE %"
                 : isLmpMode
                 ? "Legend // LMP Ramp"
                 : "Legend // Fuel Matrix"}
@@ -56,6 +59,21 @@ export function MapLegend() {
                 <div className="h-2 w-full rounded bg-gradient-to-r from-[#ef4444] via-[#f59e0b] via-[#06b6d4] to-[#10b981] shadow-inner" />
                 <div className="mt-1 text-[9px] text-[#8a9ba8] text-center">
                   Weighted: Power (25%) • Fiber (20%) • Hazards (15%) • Climate (15%)
+                </div>
+              </div>
+            ) : isCarbonMode ? (
+              /* 24/7 Carbon Intensity gCO2/kWh & CFE % */
+              <div>
+                <div className="mb-1 flex justify-between text-[9px] text-[#8a9ba8]">
+                  <span className="text-[#10b981] font-semibold">0g (100% CFE)</span>
+                  <span className="text-[#06b6d4]">200g</span>
+                  <span className="text-[#f59e0b]">450g (Gas)</span>
+                  <span className="text-[#ef4444] font-semibold">900+g (Coal)</span>
+                </div>
+                <div className="h-2 w-full rounded bg-gradient-to-r from-[#10b981] via-[#06b6d4] via-[#f59e0b] to-[#ef4444] shadow-inner" />
+                <div className="mt-1 flex justify-between text-[9px] text-[#8a9ba8]">
+                  <span className="text-[#10b981]">Hydro/Nuclear/Wind</span>
+                  <span className="text-[#ef4444]">Unabated Peakers</span>
                 </div>
               </div>
             ) : isLmpMode ? (
@@ -202,6 +220,36 @@ export function MapLegend() {
                   <span>Gas & Rail Blast Zones</span>
                 </div>
                 <span className="font-mono text-[#8a9ba8]">EIA/DOT</span>
+              </div>
+            )}
+
+            {layerVisibility.flowParticles && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#38bdf8]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#38bdf8] animate-ping" />
+                  <span>Flow Pulses</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">Power & Fiber</span>
+              </div>
+            )}
+
+            {layerVisibility.anomalyBeacons && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#f59e0b]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full border border-[#f59e0b] bg-[#f59e0b]/40 animate-pulse" />
+                  <span>Price Spike Beacons</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">&gt;$150 or &lt;$0</span>
+              </div>
+            )}
+
+            {layerVisibility.carbonHeatmap && !isCarbonMode && (
+              <div className="border-t border-[#293742] pt-1.5 flex items-center justify-between text-[9px] text-[#10b981]">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-[#10b981]/50 border border-[#10b981]" />
+                  <span>Carbon Heatmap</span>
+                </div>
+                <span className="font-mono text-[#8a9ba8]">gCO₂/kWh</span>
               </div>
             )}
           </div>

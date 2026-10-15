@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useRef, useEffect } from "react";
+import React, { useCallback, useMemo, useRef, useEffect, useState } from "react";
 import DeckGL from "@deck.gl/react";
 import { ScatterplotLayer, ColumnLayer, ArcLayer, BitmapLayer, GeoJsonLayer, PathLayer, PolygonLayer, TextLayer } from "@deck.gl/layers";
 import { HeatmapLayer, HexagonLayer } from "@deck.gl/aggregation-layers";
@@ -17,14 +17,27 @@ import {
   findLocalGridSupply,
   findSuppliedDataCenters,
 } from "@/lib/services/cross-reference-service";
+import { FUEL_CARBON_FACTORS, getCarbonIntensityColor } from "@/lib/services/carbon-intensity-service";
 import { StationTooltip } from "./StationTooltip";
 import { MapControls } from "./MapControls";
 import { MapLegend } from "./MapLegend";
+import { SitingSonarOverlay } from "./SitingSonarOverlay";
 import { DarkFiberCorridor, SeismicFaultLine, FloodHazardZone } from "@/lib/types/siting";
 import { CableLandingStation } from "@/lib/types/subsea-backhaul";
 import { HistoricalEarthquake } from "@/lib/types/historical";
 import { MapCity } from "@/lib/types/city";
 import rawCities from "@/data/cities.json";
+
+function getCirclePolygon(lng: number, lat: number, radiusKm: number, points = 48): [number, number][] {
+  const coords: [number, number][] = [];
+  const dLat = radiusKm / 110.574;
+  const dLng = radiusKm / (111.32 * Math.cos((lat * Math.PI) / 180));
+  for (let i = 0; i <= points; i++) {
+    const theta = (i / points) * (2 * Math.PI);
+    coords.push([lng + dLng * Math.cos(theta), lat + dLat * Math.sin(theta)]);
+  }
+  return coords;
+}
 
 const BASEMAP_STYLES: Record<string, any> = {
   positron: {
@@ -189,6 +202,7 @@ export function DeckGLMap({
 }: DeckGLMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
+  const deckRef = useRef<any>(null);
 
   const viewport = useGridStore((s) => s.viewport);
   const setViewport = useGridStore((s) => s.setViewport);
@@ -222,6 +236,26 @@ export function DeckGLMap({
   const earthquakes = useGridStore((s) => s.earthquakes);
   const cableLandingStations = useGridStore((s) => s.cableLandingStations);
   const storeFloodHazardZones = useGridStore((s) => s.floodHazardZones);
+
+  const isSitingSonarActive = useGridStore((s) => s.isSitingSonarActive);
+  const sitingSonar = useGridStore((s) => s.sitingSonar);
+  const setSitingSonar = useGridStore((s) => s.setSitingSonar);
+
+  // 60fps Animation Loop for dynamic flow particles, anomaly shockwaves & sonar sweep
+  const [animTick, setAnimTick] = useState(0);
+  useEffect(() => {
+    let animId: number;
+    let lastTime = performance.now();
+    const loop = (time: number) => {
+      if (time - lastTime >= 45) {
+        setAnimTick((t) => (t + 1) % 1000);
+        lastTime = time;
+      }
+      animId = requestAnimationFrame(loop);
+    };
+    animId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(animId);
+  }, []);
 
   const isGlobe = projectionMode === "globe";
 
@@ -505,6 +539,69 @@ export function DeckGLMap({
     }));
   }, [filteredPlants, visualizationMode, layerVisibility.lmpHeatmap, lmpTimeBucket]);
 
+  // Carbon Intensity & Clean Energy Heatmap Data
+  const carbonHeatmapData = useMemo(() => {
+    if (visualizationMode !== "carbon_intensity" && !layerVisibility.carbonHeatmap) return [];
+    return filteredPlants.map((p) => {
+      const metric = FUEL_CARBON_FACTORS[p.fuelType] || FUEL_CARBON_FACTORS.other;
+      return {
+        position: [p.longitude, p.latitude] as [number, number],
+        weight: Math.max(8, metric.gCo2PerKwh / 10),
+      };
+    });
+  }, [filteredPlants, visualizationMode, layerVisibility.carbonHeatmap]);
+
+  // Animated flow particles along transmission interconnectors and dynamic supply arcs
+  const flowParticleData = useMemo(() => {
+    if (!layerVisibility.flowParticles) return [];
+    const particles: { position: [number, number]; type: "power" | "fiber"; color: [number, number, number, number] }[] = [];
+
+    // Interconnector flow particles
+    if (layerVisibility.interconnectors && interconnectors.length > 0) {
+      const step = 4;
+      for (const conn of interconnectors) {
+        const isReverse = conn.currentFlowMw < 0;
+        const [srcLng, srcLat] = isReverse ? conn.target : conn.source;
+        const [tgtLng, tgtLat] = isReverse ? conn.source : conn.target;
+        for (let i = 0; i < step; i++) {
+          const progress = ((animTick * 0.012) + (i / step)) % 1.0;
+          const lng = srcLng + (tgtLng - srcLng) * progress;
+          const lat = srcLat + (tgtLat - srcLat) * progress;
+          particles.push({
+            position: [lng, lat],
+            type: "power",
+            color: [56, 189, 248, 240], // Electric cyan
+          });
+        }
+      }
+    }
+
+    // Dynamic local supply arc particles (when DC is selected)
+    if (selectedDataCenter && plants.length > 0) {
+      const supply = findLocalGridSupply(selectedDataCenter, plants, 120);
+      for (const p of supply.supplyingPlants) {
+        for (let i = 0; i < 3; i++) {
+          const progress = ((animTick * 0.02) + (i / 3)) % 1.0;
+          const lng = p.longitude + (selectedDataCenter.longitude - p.longitude) * progress;
+          const lat = p.latitude + (selectedDataCenter.latitude - p.latitude) * progress;
+          particles.push({
+            position: [lng, lat],
+            type: "power",
+            color: [34, 197, 94, 255], // Green supply flow
+          });
+        }
+      }
+    }
+
+    return particles;
+  }, [layerVisibility.flowParticles, layerVisibility.interconnectors, interconnectors, selectedDataCenter, plants, animTick]);
+
+  // Real-Time Anomaly Nodes (LMP Spikes >$150/MWh, Curtailment Negative Pricing <$0/MWh, Outages)
+  const anomalyNodes = useMemo(() => {
+    if (!layerVisibility.anomalyBeacons) return [];
+    return filteredPlants.filter((p) => p.spotPriceMwh >= 150 || p.spotPriceMwh < 0 || p.status === "outage");
+  }, [filteredPlants, layerVisibility.anomalyBeacons]);
+
   // Initialize MapLibre GL Basemap (Mercator mode)
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -612,8 +709,8 @@ export function DeckGLMap({
       );
     }
 
-    // 1. 2D Scatterplot Layer
-    if (visualizationMode === "2d_scatter" && layerVisibility.plants) {
+    // 1. 2D Scatterplot Layer (Fuel Type & 24/7 Carbon Intensity Modes)
+    if ((visualizationMode === "2d_scatter" || visualizationMode === "carbon_intensity") && layerVisibility.plants) {
       activeLayers.push(
         new ScatterplotLayer<PowerPlant>({
           id: "plants-scatter-2d",
@@ -624,11 +721,20 @@ export function DeckGLMap({
             return Math.max(1500, Math.min(base, 50000));
           },
           getFillColor: (d) => {
+            if (visualizationMode === "carbon_intensity") {
+              const metric = FUEL_CARBON_FACTORS[d.fuelType] || FUEL_CARBON_FACTORS.other;
+              const col = getCarbonIntensityColor(metric.gCo2PerKwh);
+              return [...col.rgb, d.status === "outage" ? 60 : 230] as [number, number, number, number];
+            }
             const meta = FUEL_CONFIG[d.fuelType] || FUEL_CONFIG.other;
             const opacity = d.status === "outage" ? 60 : 230;
             return [...meta.rgb, opacity] as [number, number, number, number];
           },
           getLineColor: (d) => {
+            if (visualizationMode === "carbon_intensity") {
+              const metric = FUEL_CARBON_FACTORS[d.fuelType] || FUEL_CARBON_FACTORS.other;
+              return metric.isCarbonFree ? [52, 211, 153, 255] : [239, 68, 68, 255];
+            }
             if (d.spotPriceMwh >= 150) return [239, 68, 68, 255]; // Red glow
             if (d.spotPriceMwh < 0) return [34, 197, 94, 255]; // Green negative price
             return isLightMode ? [15, 23, 42, 180] : [255, 255, 255, 110];
@@ -641,8 +747,8 @@ export function DeckGLMap({
           autoHighlight: true,
           highlightColor: [56, 189, 248, 220],
           updateTriggers: {
-            getFillColor: [filteredPlants],
-            getLineColor: [filteredPlants, isLightMode],
+            getFillColor: [filteredPlants, visualizationMode],
+            getLineColor: [filteredPlants, isLightMode, visualizationMode],
             getRadius: [filteredPlants],
           },
         })
@@ -700,6 +806,28 @@ export function DeckGLMap({
       );
     }
 
+    // 3b. 24/7 Carbon Intensity Heatmap Layer
+    if ((visualizationMode === "carbon_intensity" || layerVisibility.carbonHeatmap) && carbonHeatmapData.length > 0) {
+      activeLayers.push(
+        new HeatmapLayer({
+          id: "carbon-intensity-heatmap",
+          data: carbonHeatmapData,
+          getPosition: (d: any) => d.position,
+          getWeight: (d: any) => d.weight,
+          radiusPixels: 48,
+          intensity: 1.5,
+          threshold: 0.05,
+          colorRange: [
+            [16, 185, 129, 25],  // Zero-carbon (Emerald)
+            [6, 182, 212, 75],   // Low-carbon (Cyan)
+            [234, 179, 8, 140],  // Moderate (Amber)
+            [249, 115, 22, 195], // High gas (Orange)
+            [225, 29, 72, 245],  // Coal / Peaker (Crimson)
+          ],
+        })
+      );
+    }
+
     // 4. Hexagon Generation Density Aggregation Layer
     if (visualizationMode === "hex_density" || layerVisibility.densityHex) {
       activeLayers.push(
@@ -741,6 +869,28 @@ export function DeckGLMap({
           pickable: true,
           autoHighlight: true,
           highlightColor: [255, 255, 255, 255],
+        })
+      );
+    }
+
+    // 5b. Animated Living Grid Flow Particles (Interties & Dynamic Supply Pulses)
+    if (layerVisibility.flowParticles && flowParticleData.length > 0) {
+      activeLayers.push(
+        new ScatterplotLayer({
+          id: "grid-flow-particles",
+          data: flowParticleData,
+          getPosition: (d: any) => d.position,
+          getRadius: 3200,
+          radiusMinPixels: 3.5,
+          radiusMaxPixels: 9,
+          getFillColor: (d: any) => d.color,
+          getLineColor: [255, 255, 255, 240],
+          stroked: true,
+          lineWidthMinPixels: 1.2,
+          pickable: false,
+          updateTriggers: {
+            getPosition: [animTick],
+          },
         })
       );
     }
@@ -939,7 +1089,39 @@ export function DeckGLMap({
       );
     }
 
-    // 7. Global Data Centers Layer (4,351 Facilities from GE view)
+    // 7. High-Voltage Substations Layer (765kV, 500kV, 400kV, 345kV, 275kV, etc.)
+    if (layerVisibility.substations && filteredSubstations && filteredSubstations.length > 0) {
+      activeLayers.push(
+        new ScatterplotLayer<Substation>({
+          id: "substations-nodes",
+          data: filteredSubstations,
+          getPosition: (d) => [d.longitude ?? (d as any).lng ?? 0, d.latitude ?? (d as any).lat ?? 0],
+          getRadius: (d) => Math.max(1200, Math.sqrt(d.voltageKv) * 160),
+          getFillColor: (d) => {
+            const col = getSubstationColor(d.voltageKv);
+            return [...col.rgb, 210] as [number, number, number, number];
+          },
+          getLineColor: (d) => {
+            const col = getSubstationColor(d.voltageKv);
+            return [...col.rgb, 255] as [number, number, number, number];
+          },
+          stroked: true,
+          lineWidthMinPixels: 2,
+          radiusMinPixels: 4,
+          radiusMaxPixels: 20,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+          updateTriggers: {
+            getFillColor: [filteredSubstations],
+            getLineColor: [filteredSubstations],
+            getRadius: [filteredSubstations],
+          },
+        })
+      );
+    }
+
+    // 8. Global Data Centers Layer (Rendered on top of substations for clean click priority)
     if (layerVisibility.datacenters && filteredDataCenters && filteredDataCenters.length > 0) {
       activeLayers.push(
         new ScatterplotLayer<DataCenter>({
@@ -966,9 +1148,9 @@ export function DeckGLMap({
             return isLightMode ? [15, 23, 42, 220] : [255, 255, 255, 200];
           },
           stroked: true,
-          lineWidthMinPixels: 1.5,
-          radiusMinPixels: 4,
-          radiusMaxPixels: 24,
+          lineWidthMinPixels: 1.8,
+          radiusMinPixels: 6,
+          radiusMaxPixels: 26,
           pickable: true,
           autoHighlight: true,
           highlightColor: [56, 189, 248, 255],
@@ -981,7 +1163,7 @@ export function DeckGLMap({
       );
     }
 
-    // 8. Dynamic Radial Local Grid Supply Arcs Layer (Real-time Cross-Referencing)
+    // 9. Dynamic Radial Local Grid Supply Arcs Layer (Real-time Cross-Referencing)
     if (selectedDataCenter && plants.length > 0) {
       const supply = findLocalGridSupply(selectedDataCenter, plants, 120);
       const arcData = supply.supplyingPlants.map((plant) => ({
@@ -1027,38 +1209,6 @@ export function DeckGLMap({
           getWidth: (d: any) => Math.max(3, Math.sqrt(d.dc.estimatedPowerMw) * 0.25),
           getHeight: 0.35,
           pickable: false,
-        })
-      );
-    }
-
-    // 9. High-Voltage Substations Layer (765kV, 500kV, 400kV, 345kV, 275kV, etc.)
-    if (layerVisibility.substations && filteredSubstations && filteredSubstations.length > 0) {
-      activeLayers.push(
-        new ScatterplotLayer<Substation>({
-          id: "substations-nodes",
-          data: filteredSubstations,
-          getPosition: (d) => [d.longitude ?? (d as any).lng ?? 0, d.latitude ?? (d as any).lat ?? 0],
-          getRadius: (d) => Math.max(1200, Math.sqrt(d.voltageKv) * 160),
-          getFillColor: (d) => {
-            const col = getSubstationColor(d.voltageKv);
-            return [...col.rgb, 210] as [number, number, number, number];
-          },
-          getLineColor: (d) => {
-            const col = getSubstationColor(d.voltageKv);
-            return [...col.rgb, 255] as [number, number, number, number];
-          },
-          stroked: true,
-          lineWidthMinPixels: 2,
-          radiusMinPixels: 4,
-          radiusMaxPixels: 20,
-          pickable: true,
-          autoHighlight: true,
-          highlightColor: [255, 255, 255, 255],
-          updateTriggers: {
-            getFillColor: [filteredSubstations],
-            getLineColor: [filteredSubstations],
-            getRadius: [filteredSubstations],
-          },
         })
       );
     }
@@ -1129,6 +1279,119 @@ export function DeckGLMap({
       }
     }
 
+    // 13. Real-Time Anomaly Beacons & Price Spike Shockwaves
+    if (layerVisibility.anomalyBeacons && anomalyNodes.length > 0) {
+      const pulseFraction = (animTick % 40) / 40;
+      const pulseAlpha = Math.floor(255 * (1 - pulseFraction));
+
+      // Expanding sonar shockwave ripple
+      activeLayers.push(
+        new ScatterplotLayer<PowerPlant>({
+          id: "anomaly-beacons-shockwave",
+          data: anomalyNodes,
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: (d) => {
+            const base = Math.sqrt(d.capacityMw) * 160;
+            return (base + 2500) * (1 + pulseFraction * 2.2);
+          },
+          getFillColor: [0, 0, 0, 0],
+          getLineColor: (d) =>
+            d.spotPriceMwh >= 150 || d.status === "outage"
+              ? [239, 68, 68, pulseAlpha]
+              : [34, 197, 94, pulseAlpha],
+          stroked: true,
+          lineWidthMinPixels: 2.2,
+          pickable: false,
+          updateTriggers: {
+            getRadius: [animTick],
+            getLineColor: [animTick],
+          },
+        })
+      );
+
+      // Glowing core beacon
+      activeLayers.push(
+        new ScatterplotLayer<PowerPlant>({
+          id: "anomaly-beacons-core",
+          data: anomalyNodes,
+          getPosition: (d) => [d.longitude, d.latitude],
+          getRadius: 3500,
+          radiusMinPixels: 6,
+          radiusMaxPixels: 16,
+          getFillColor: (d) =>
+            d.spotPriceMwh >= 150 || d.status === "outage"
+              ? [239, 68, 68, 230]
+              : [34, 197, 94, 230],
+          getLineColor: [255, 255, 255, 255],
+          stroked: true,
+          lineWidthMinPixels: 1.5,
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [255, 255, 255, 255],
+        })
+      );
+    }
+
+    // 14. Interactive Siting Sonar Radar Buffer Area & Dynamic Pulse Rings
+    if (sitingSonar) {
+      const bufferCircle = getCirclePolygon(sitingSonar.lng, sitingSonar.lat, sitingSonar.radiusKm);
+      const pulseFraction = (animTick % 50) / 50;
+      const pulseRadiusKm = Math.max(1, sitingSonar.radiusKm * pulseFraction);
+      const pulseCircle = getCirclePolygon(sitingSonar.lng, sitingSonar.lat, pulseRadiusKm);
+      const pulseAlpha = Math.floor(255 * (1 - pulseFraction));
+
+      // Buffer area polygon
+      activeLayers.push(
+        new PolygonLayer({
+          id: "siting-sonar-buffer-area",
+          data: [{ polygon: bufferCircle }],
+          getPolygon: (d: any) => d.polygon,
+          getFillColor: [0, 229, 255, 30],
+          getLineColor: [0, 229, 255, 230],
+          lineWidthMinPixels: 2.2,
+          stroked: true,
+          filled: true,
+          pickable: false,
+        })
+      );
+
+      // Animated radial pulse ring
+      activeLayers.push(
+        new PolygonLayer({
+          id: "siting-sonar-pulse-ring",
+          data: [{ polygon: pulseCircle }],
+          getPolygon: (d: any) => d.polygon,
+          getFillColor: [0, 0, 0, 0],
+          getLineColor: [0, 229, 255, pulseAlpha],
+          lineWidthMinPixels: 2,
+          stroked: true,
+          filled: false,
+          pickable: false,
+          updateTriggers: {
+            getPolygon: [animTick],
+            getLineColor: [animTick],
+          },
+        })
+      );
+
+      // Center crosshair anchor
+      activeLayers.push(
+        new ScatterplotLayer({
+          id: "siting-sonar-center-anchor",
+          data: [{ position: [sitingSonar.lng, sitingSonar.lat] }],
+          getPosition: (d: any) => d.position,
+          getRadius: 2000,
+          radiusMinPixels: 6,
+          radiusMaxPixels: 14,
+          getFillColor: [0, 229, 255, 255],
+          getLineColor: [255, 255, 255, 255],
+          stroked: true,
+          lineWidthMinPixels: 2,
+          pickable: false,
+        })
+      );
+    }
+
     return activeLayers;
   }, [
     visualizationMode,
@@ -1155,24 +1418,132 @@ export function DeckGLMap({
     filters.infrastructureType,
     floodHazardZones,
     viewport.zoom,
+    animTick,
+    sitingSonar,
+    flowParticleData,
+    anomalyNodes,
+    carbonHeatmapData,
   ]);
 
-  // Click handler on map features
+  // Click handler on map features with multi-layer penetration & intelligent proximity resolution
   const handleDeckClick = useCallback(
     (info: any) => {
-      if (info.object) {
+      // 0. Siting Sonar Crosshair Placement Tool
+      if (isSitingSonarActive && info?.coordinate) {
+        const [clickLng, clickLat] = info.coordinate;
+        const currentRadius = sitingSonar?.radiusKm || 50;
+        setSitingSonar({ lat: clickLat, lng: clickLng, radiusKm: currentRadius });
+        return;
+      }
+
+      // 1. Direct hit check on a DataCenter node
+      if (info?.object && "estimatedPowerMw" in info.object) {
+        setSelectedDataCenter(info.object as DataCenter);
+        return;
+      }
+
+      // 2. GPU multi-object picking buffer (penetrates through city labels, substations, hazard zones, CLS rings)
+      const deck = deckRef.current?.deck || deckRef.current;
+      if (deck?.pickMultipleObjects && typeof info.x === "number" && typeof info.y === "number") {
+        try {
+          const pickedObjects = deck.pickMultipleObjects({
+            x: info.x,
+            y: info.y,
+            radius: 12,
+          });
+
+          if (Array.isArray(pickedObjects) && pickedObjects.length > 0) {
+            // Find any DataCenter among picked objects
+            const dcMatch = pickedObjects.find((p: any) => p?.object && "estimatedPowerMw" in p.object);
+            if (dcMatch) {
+              setSelectedDataCenter(dcMatch.object as DataCenter);
+              return;
+            }
+
+            // Find any PowerPlant
+            const plantMatch = pickedObjects.find((p: any) => p?.object && "fuelType" in p.object);
+            if (plantMatch) {
+              setSelectedStation(plantMatch.object as PowerPlant);
+              return;
+            }
+
+            // Find any Substation
+            const subMatch = pickedObjects.find((p: any) => p?.object && "voltageKv" in p.object);
+            if (subMatch) {
+              setSelectedSubstation(subMatch.object as Substation);
+              return;
+            }
+          }
+        } catch (e) {
+          // Continue to spatial proximity fallback
+        }
+      }
+
+      // 3. Screen-space proximity fallback for tiny dots or slight off-center clicks
+      if (info?.coordinate && filteredDataCenters && filteredDataCenters.length > 0) {
+        const [clickLng, clickLat] = info.coordinate;
+        const currentZoom = viewport.zoom ?? 1.8;
+        // Degrees per pixel at current viewport zoom level
+        const degPerPixel = 360 / (256 * Math.pow(2, currentZoom));
+        // 16-pixel hit radius tolerance
+        const toleranceDeg = degPerPixel * 16;
+
+        const nearbyDcs: DataCenter[] = [];
+        for (const dc of filteredDataCenters) {
+          const dLng = Math.abs(dc.longitude - clickLng);
+          const dLat = Math.abs(dc.latitude - clickLat);
+          if (dLng <= toleranceDeg && dLat <= toleranceDeg) {
+            nearbyDcs.push(dc);
+          }
+        }
+
+        if (nearbyDcs.length > 0) {
+          // If a data center in this cluster is already selected, cycle to the next facility
+          if (selectedDataCenter && nearbyDcs.some((d) => d.id === selectedDataCenter.id)) {
+            const currentIndex = nearbyDcs.findIndex((d) => d.id === selectedDataCenter.id);
+            const nextDc = nearbyDcs[(currentIndex + 1) % nearbyDcs.length];
+            setSelectedDataCenter(nextDc);
+            return;
+          }
+
+          // Otherwise select the closest facility to the click point
+          nearbyDcs.sort((a, b) => {
+            const distA = Math.hypot(a.longitude - clickLng, a.latitude - clickLat);
+            const distB = Math.hypot(b.longitude - clickLng, b.latitude - clickLat);
+            return distA - distB;
+          });
+          setSelectedDataCenter(nearbyDcs[0]);
+          return;
+        }
+      }
+
+      // 4. Secondary layer handlers (Power plants, Substations, Cable Landing Stations, Cities)
+      if (info?.object) {
         if ("fuelType" in info.object) {
           setSelectedStation(info.object as PowerPlant);
-        } else if ("estimatedPowerMw" in info.object) {
-          setSelectedDataCenter(info.object as DataCenter);
         } else if ("voltageKv" in info.object) {
           setSelectedSubstation(info.object as Substation);
+        } else if ("activeSubseaSystems" in info.object) {
+          // Cable Landing Station clicked: fly to landing gateway coordinates
+          flyToCoordinates(info.object.longitude, info.object.latitude, Math.max((viewport.zoom || 1.8) + 2.5, 8), 35, 0);
         } else if ("minZoom" in info.object) {
+          // City label clicked with no underlying data center: fly into the metropolitan area
           flyToCoordinates(info.object.longitude, info.object.latitude, Math.max((viewport.zoom || 1.8) + 2.0, 7), 35, 0);
         }
       }
     },
-    [setSelectedStation, setSelectedDataCenter, setSelectedSubstation, flyToCoordinates, viewport.zoom]
+    [
+      setSelectedStation,
+      setSelectedDataCenter,
+      setSelectedSubstation,
+      selectedDataCenter,
+      flyToCoordinates,
+      viewport.zoom,
+      filteredDataCenters,
+      isSitingSonarActive,
+      sitingSonar,
+      setSitingSonar,
+    ]
   );
 
   // Hover handler for interactive HUD tooltip
@@ -1354,6 +1725,8 @@ export function DeckGLMap({
 
       {/* Deck.gl Canvas Overlay (3D Globe / 2D Mercator) */}
       <DeckGL
+        ref={deckRef}
+        pickingRadius={10}
         views={views}
         viewState={{
           ...viewport,
@@ -1369,10 +1742,15 @@ export function DeckGLMap({
         layers={layers}
         onClick={handleDeckClick}
         onHover={handleDeckHover}
-        getCursor={({ isHovering }) => (isHovering ? "pointer" : "default")}
+        getCursor={({ isHovering }) => (isSitingSonarActive ? "crosshair" : isHovering ? "pointer" : "default")}
       />
 
       {/* Interactive HUD Elements Overlay */}
+      <SitingSonarOverlay
+        plants={plants}
+        dataCenters={dataCenters}
+        substations={substations}
+      />
       <StationTooltip />
       <MapControls />
       <MapLegend />

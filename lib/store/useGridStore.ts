@@ -22,6 +22,9 @@ export interface LayerVisibility {
   seismicFaults: boolean;
   flightCorridors: boolean;
   hazardBuffers: boolean;
+  flowParticles: boolean;
+  anomalyBeacons: boolean;
+  carbonHeatmap: boolean;
 }
 
 export const INITIAL_FILTERS: FilterState = {
@@ -129,6 +132,10 @@ interface GridStoreState {
   replayHour: number; // 0 to 24
   isReplayPlaying: boolean;
 
+  // Siting Sonar Radar & Buffer Tool
+  sitingSonar: { lat: number; lng: number; radiusKm: number } | null;
+  isSitingSonarActive: boolean;
+
   // Actions
   setSelectedStation: (station: PowerPlant | null) => void;
   setSelectedDataCenter: (dc: DataCenter | null) => void;
@@ -229,6 +236,9 @@ interface GridStoreState {
   setReplayMode: (isReplay: boolean) => void;
   setReplayHour: (hour: number) => void;
   setReplayPlaying: (isPlaying: boolean) => void;
+  setSitingSonar: (sonar: { lat: number; lng: number; radiusKm: number } | null) => void;
+  toggleSitingSonarMode: () => void;
+  setSitingSonarRadius: (radiusKm: number) => void;
 }
 
 export const useGridStore = create<GridStoreState>((set, get) => ({
@@ -249,6 +259,9 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   portfolioCandidateIds: [],
   isTimeMachineOpen: false,
 
+  sitingSonar: null,
+  isSitingSonarActive: false,
+
   viewport: DEFAULT_VIEWPORT,
   visualizationMode: "2d_scatter",
   basemapStyle: "positron",
@@ -267,6 +280,9 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
     seismicFaults: true,
     flightCorridors: false,
     hazardBuffers: false,
+    flowParticles: true,
+    anomalyBeacons: true,
+    carbonHeatmap: false,
   },
 
   hoveredStation: null,
@@ -648,4 +664,17 @@ export const useGridStore = create<GridStoreState>((set, get) => ({
   setReplayHour: (hour) => set({ replayHour: hour }),
 
   setReplayPlaying: (isPlaying) => set({ isReplayPlaying: isPlaying }),
+
+  setSitingSonar: (sonar) => set({ sitingSonar: sonar }),
+
+  toggleSitingSonarMode: () =>
+    set((state) => ({
+      isSitingSonarActive: !state.isSitingSonarActive,
+      sitingSonar: state.isSitingSonarActive ? null : state.sitingSonar,
+    })),
+
+  setSitingSonarRadius: (radiusKm) =>
+    set((state) => ({
+      sitingSonar: state.sitingSonar ? { ...state.sitingSonar, radiusKm } : null,
+    })),
 }));
