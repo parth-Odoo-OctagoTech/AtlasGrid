@@ -1,5 +1,17 @@
 [
   {
+    "runId": "crawl-2026-10-27T21-37-29-205Z",
+    "timestamp": "2026-10-27T21:37:29.465Z",
+    "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
+    "status": "success",
+    "discoveredCandidates": 5415,
+    "verifiedNewNodes": 0,
+    "repairedLinks": 0,
+    "maritimePointsRejected": 0,
+    "durationMs": 260,
+    "details": "Continuous crawler scan finished in 260ms. Verified 0 new onshore nodes, repaired 0 links, 0 maritime errors."
+  },
+  {
     "runId": "crawl-2026-10-27T17-03-39-296Z",
     "timestamp": "2026-10-27T17:03:39.545Z",
     "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
@@ -1186,17 +1198,5 @@
     "maritimePointsRejected": 0,
     "durationMs": 106,
     "details": "Daily harvest complete: archived snapshot 2026-10-01 with 3047 substations, 5415 plants, 6686 DCs, 945 earthquakes, 41 flood basins."
-  },
-  {
-    "runId": "crawl-2026-10-01T03-11-46-153Z",
-    "timestamp": "2026-10-01T03:11:46.396Z",
-    "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
-    "status": "success",
-    "discoveredCandidates": 5415,
-    "verifiedNewNodes": 0,
-    "repairedLinks": 0,
-    "maritimePointsRejected": 0,
-    "durationMs": 243,
-    "details": "Continuous crawler scan finished in 243ms. Verified 0 new onshore nodes, repaired 0 links, 0 maritime errors."
   }
 ]
