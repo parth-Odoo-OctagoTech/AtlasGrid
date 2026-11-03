@@ -1,5 +1,17 @@
 [
   {
+    "runId": "crawl-2026-11-03T13-16-54-187Z",
+    "timestamp": "2026-11-03T13:16:54.441Z",
+    "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
+    "status": "success",
+    "discoveredCandidates": 5415,
+    "verifiedNewNodes": 0,
+    "repairedLinks": 0,
+    "maritimePointsRejected": 0,
+    "durationMs": 254,
+    "details": "Continuous crawler scan finished in 254ms. Verified 0 new onshore nodes, repaired 0 links, 0 maritime errors."
+  },
+  {
     "runId": "crawl-2026-11-03T00-13-01-218Z",
     "timestamp": "2026-11-03T00:13:01.506Z",
     "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
@@ -1186,17 +1198,5 @@
     "maritimePointsRejected": 0,
     "durationMs": 253,
     "details": "Continuous crawler scan finished in 253ms. Verified 0 new onshore nodes, repaired 0 links, 0 maritime errors."
-  },
-  {
-    "runId": "crawl-2026-10-07T03-24-09-870Z",
-    "timestamp": "2026-10-07T03:24:10.146Z",
-    "source": "PeeringDB + OpenStreetMap Overpass + KPX/TEPCO Regional Feeds",
-    "status": "success",
-    "discoveredCandidates": 5415,
-    "verifiedNewNodes": 0,
-    "repairedLinks": 0,
-    "maritimePointsRejected": 0,
-    "durationMs": 276,
-    "details": "Continuous crawler scan finished in 276ms. Verified 0 new onshore nodes, repaired 0 links, 0 maritime errors."
   }
 ]
